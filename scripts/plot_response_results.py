@@ -73,4 +73,4 @@ ax.legend(handles=model_patches + lang_patches, bbox_to_anchor=(1.05, 1), loc='u
 plt.tight_layout()
 plt.savefig(OUTPUT_FILE, dpi=300)
 plt.show()
-print(f"✅ Plot saved to {OUTPUT_FILE}")
+print(f"Plot saved to {OUTPUT_FILE}")
