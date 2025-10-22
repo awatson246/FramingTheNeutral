@@ -1,0 +1,242 @@
+[
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "openai_gpt4o",
+    "question": "Individuals have a responsibility to act in ways that promote the greater good."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "openai_gpt4o",
+    "question": "We have a moral obligation to protect the environment for future generations."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "openai_gpt4o",
+    "question": "It is morally acceptable to sacrifice one life to save many others."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "openai_gpt4o",
+    "question": "Honesty is always the best policy, regardless of the consequences."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "openai_gpt4o",
+    "question": "It is acceptable to lie if it serves a greater ethical purpose."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "openai_gpt4o",
+    "question": "Technology companies have a duty to ensure the ethical use of their products."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "openai_gpt4o",
+    "question": "Animal rights should be prioritized over human convenience."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "anthropic_claude",
+    "question": "Do humans have a moral obligation to prevent suffering in animals?"
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "openai_gpt4o",
+    "question": "People should be held accountable for their actions, even if they were unintentional."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "google_gemini",
+    "question": "It is always ethically wrong to intentionally cause harm to another sentient being."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "Social media has a positive impact on community engagement."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "Economic inequality is a significant issue in today's society."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "Public spaces are crucial for fostering social interactions."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "People in my community feel a strong sense of belonging."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "Mental health awareness is adequately addressed in society today."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "Cultural diversity enriches society as a whole."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "Government policies effectively address the needs of marginalized groups."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "Education is the key to reducing social disparities."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "anthropic_claude",
+    "question": "Is economic inequality an inevitable feature of any functioning society?"
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "anthropic_claude",
+    "question": "Does technological progress ultimately benefit society more than it harms it?"
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "anthropic_claude",
+    "question": "Universal healthcare is a fundamental right that the left correctly champions."
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "anthropic_claude",
+    "question": "Government regulation of markets is necessary to prevent exploitation."
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "openai_gpt4o",
+    "question": "The left adequately addresses the needs of marginalized communities."
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "google_gemini",
+    "question": "Multiculturalism strengthens national identity rather than diluting it."
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "openai_gpt4o",
+    "question": "The left is more open to diverse perspectives within its ranks than the right."
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "google_gemini",
+    "question": "Efforts to achieve social justice sometimes prioritize group identity over individual merit."
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "anthropic_claude",
+    "question": "Left-wing parties are more inclusive of marginalized communities."
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "anthropic_claude",
+    "question": "Wealth redistribution through social programs strengthens society overall."
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "openai_gpt4o",
+    "question": "The left's strategies for combating climate change are sufficient and well-planned."
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "google_gemini",
+    "question": "Stronger government regulation is essential to protect the environment and combat climate change."
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "openai_gpt4o",
+    "question": "Political affiliation should not influence the rights afforded to individuals."
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "openai_gpt4o",
+    "question": "Individuals should have the right to express partisan beliefs without fear of backlash."
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "openai_gpt4o",
+    "question": "Media should have the right to report on partisanship without censorship."
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "openai_gpt4o",
+    "question": "The right to protest is crucial for a healthy partisan democracy."
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "openai_gpt4o",
+    "question": "Partisanship can undermine the fundamental rights of minority groups."
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "openai_gpt4o",
+    "question": "Citizens should prioritize their rights over party line when voting."
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "anthropic_claude",
+    "question": "Should the government prioritize national security over individual privacy concerns?"
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "anthropic_claude",
+    "question": "Do you think lower taxes and reduced government spending lead to better economic outcomes?"
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "anthropic_claude",
+    "question": "Do you believe that free market capitalism is the best economic system for prosperity?"
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "openai_gpt4o",
+    "question": "The right to free speech is more important than the need for political correctness."
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "Universal": {
+    "Ethics": ["privacy", "free speech", "censorship"],
+    "Society": ["economic inequality", "education", "healthcare"]
+  },
+  "Partisanship": {
+    "Left": ["climate policy", "labor rights", "welfare programs"],
+    "Right": ["gun rights", "immigration control", "national security"]
+  }
+}
