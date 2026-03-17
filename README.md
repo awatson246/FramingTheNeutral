@@ -4,7 +4,7 @@
 
 This repository contains prompts, data collection scripts, coding tools, and analysis scripts for a structured comparative study examining whether LLMs systematically encode particular conceptions of political and legal legitimacy when reasoning about governance — and whether those conceptions differ across models in politically meaningful ways.
 
-> **v1 of this study** (Purdue Cyberinfrastructure Symposium 2025 poster) is archived in the 'v1-language-peer-evaluation-study' branch.
+> **v1 of this study** (Purdue Cyberinfrastructure Symposium 2025 poster) is archived in the `v1-language-peer-evaluation-study` branch.
 
 ---
 

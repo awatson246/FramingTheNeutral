@@ -1,5 +1,9 @@
-tqdm
 openai>=1.40.0
 anthropic>=0.39.0
 google-generativeai>=0.8.3
+mistralai
 python-dotenv>=1.0.1
+sentence-transformers>=3.0.0
+plotly>=5.0.0
+kaleido
+nltk
