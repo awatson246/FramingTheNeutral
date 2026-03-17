@@ -25,18 +25,20 @@ RAW_DIR          = Path("data/raw")
 
 # Model identifiers — keys must match instruments.json "models" list
 MODELS = {
-    "gpt-4o":           "gpt-4o",
-    "claude-sonnet":    "claude-sonnet-4-5",
-    "deepseek-v3":      "deepseek-chat",
-    "mistral-large":    "mistral-large-latest",
+    "gpt-4o":                        "gpt-4o",
+    "claude-sonnet":                 "claude-sonnet-4-5",
+    "deepseek-v3":                   "deepseek-chat",
+    "mistral-large":                 "mistral-large-latest",
     "gemini-3.1-flash-lite-preview": "gemini-3.1-flash-lite-preview",
 }
 
 # Instruments to collect in this run
-ACTIVE_INSTRUMENTS = ["instrument_1", "instrument_2"]
+ACTIVE_INSTRUMENTS = ["instrument_1", "instrument_2", "instrument_3"]
 
-# Approximate max tokens for open-ended governance responses
-MAX_TOKENS = 1024
+# Max tokens for open-ended responses (I1, I2)
+MAX_TOKENS_OPEN = 1024
+# Max tokens for structured JSON responses (I3)
+MAX_TOKENS_JSON = 2048
 
 RETRY_ATTEMPTS = 3
 RETRY_DELAY    = 5   # seconds between retries
@@ -61,57 +63,57 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 # =============================================================================
 # Model callers
-# Each accepts (system_prompt, user_prompt) and returns a string or None.
+# Each accepts (system_prompt, user_prompt, max_tokens) and returns str | None.
 # =============================================================================
 
-def call_openai(system_prompt: str, user_prompt: str) -> str | None:
+def call_openai(system_prompt: str, user_prompt: str, max_tokens: int) -> str | None:
     resp = openai_client.chat.completions.create(
         model=MODELS["gpt-4o"],
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user",   "content": user_prompt},
         ],
-        max_tokens=MAX_TOKENS,
+        max_tokens=max_tokens,
         temperature=1,
     )
     return resp.choices[0].message.content.strip()
 
 
-def call_anthropic(system_prompt: str, user_prompt: str) -> str | None:
+def call_anthropic(system_prompt: str, user_prompt: str, max_tokens: int) -> str | None:
     resp = anthropic_client.messages.create(
         model=MODELS["claude-sonnet"],
-        max_tokens=MAX_TOKENS,
+        max_tokens=max_tokens,
         system=system_prompt,
         messages=[{"role": "user", "content": user_prompt}],
     )
     return resp.content[0].text.strip()
 
 
-def call_deepseek(system_prompt: str, user_prompt: str) -> str | None:
+def call_deepseek(system_prompt: str, user_prompt: str, max_tokens: int) -> str | None:
     resp = deepseek_client.chat.completions.create(
         model=MODELS["deepseek-v3"],
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user",   "content": user_prompt},
         ],
-        max_tokens=MAX_TOKENS,
+        max_tokens=max_tokens,
     )
     return resp.choices[0].message.content.strip()
 
 
-def call_mistral(system_prompt: str, user_prompt: str) -> str | None:
+def call_mistral(system_prompt: str, user_prompt: str, max_tokens: int) -> str | None:
     resp = mistral_client.chat.complete(
         model=MODELS["mistral-large"],
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user",   "content": user_prompt},
         ],
-        max_tokens=MAX_TOKENS,
+        max_tokens=max_tokens,
     )
     return resp.choices[0].message.content.strip()
 
 
-def call_gemini(system_prompt: str, user_prompt: str) -> str | None:
+def call_gemini(system_prompt: str, user_prompt: str, max_tokens: int) -> str | None:
     model = genai.GenerativeModel(
         model_name=MODELS["gemini-3.1-flash-lite-preview"],
         system_instruction=system_prompt,
@@ -121,10 +123,10 @@ def call_gemini(system_prompt: str, user_prompt: str) -> str | None:
 
 
 MODEL_CALLERS = {
-    "gpt-4o":           call_openai,
-    "claude-sonnet":    call_anthropic,
-    "deepseek-v3":      call_deepseek,
-    "mistral-large":    call_mistral,
+    "gpt-4o":                        call_openai,
+    "claude-sonnet":                 call_anthropic,
+    "deepseek-v3":                   call_deepseek,
+    "mistral-large":                 call_mistral,
     "gemini-3.1-flash-lite-preview": call_gemini,
 }
 
@@ -132,11 +134,12 @@ MODEL_CALLERS = {
 # Retry wrapper
 # =============================================================================
 
-def call_with_retry(model_id: str, system_prompt: str, user_prompt: str) -> str | None:
+def call_with_retry(model_id: str, system_prompt: str, user_prompt: str,
+                    max_tokens: int) -> str | None:
     caller = MODEL_CALLERS[model_id]
     for attempt in range(1, RETRY_ATTEMPTS + 1):
         try:
-            return caller(system_prompt, user_prompt)
+            return caller(system_prompt, user_prompt, max_tokens)
         except Exception as e:
             print(f"    [Attempt {attempt}/{RETRY_ATTEMPTS}] {model_id} failed: {e}")
             if attempt < RETRY_ATTEMPTS:
@@ -145,26 +148,110 @@ def call_with_retry(model_id: str, system_prompt: str, user_prompt: str) -> str 
 
 
 # =============================================================================
+# Instrument 3 prompt builder
+#
+# Sends all 6 scenarios in one message. Forces JSON-only response in the format:
+# {
+#   "I3_S1": {
+#     "legal_certainty":  {"score": 7, "explanation": "..."},
+#     "accountability":   {"score": 4, "explanation": "..."},
+#     "enforceability":   {"score": 5, "explanation": "..."}
+#   },
+#   "I3_S2": { ... },
+#   ...
+# }
+# =============================================================================
+
+def build_i3_prompt(instrument: dict) -> str:
+    fmt        = instrument["response_format"]
+    scenarios  = instrument["scenarios"]
+    dimensions = fmt["dimensions"]
+
+    dim_descriptions = "\n".join(
+        f'  - "{d["id"]}": 1 = {d["anchor_low"]}, 10 = {d["anchor_high"]}'
+        for d in dimensions
+    )
+
+    scenario_lines = "\n".join(
+        f'{s["id"]}: {s["text"]}' for s in scenarios
+    )
+
+    scenario_keys = ", ".join(f'"{s["id"]}"' for s in scenarios)
+    dim_keys      = ", ".join(f'"{d["id"]}"' for d in dimensions)
+
+    return (
+        f"{fmt['instruction']}\n\n"
+        f"Rate each scenario on these three dimensions (1–10):\n"
+        f"{dim_descriptions}\n\n"
+        f"Scenarios:\n{scenario_lines}\n\n"
+        f"Respond ONLY with a JSON object. No preamble, no markdown, no explanation outside the JSON.\n"
+        f"Structure:\n"
+        f"{{\n"
+        f'  "<scenario_id>": {{\n'
+        f'    "<dimension_id>": {{"score": <int 1-10>, "explanation": "<one sentence>"}}\n'
+        f"  }}\n"
+        f"}}\n\n"
+        f"Scenario IDs: {scenario_keys}\n"
+        f"Dimension IDs: {dim_keys}"
+    )
+
+
+def parse_i3_response(raw: str) -> dict | None:
+    """
+    Strip markdown fences if present and parse JSON.
+    Returns parsed dict or None if parsing fails.
+    """
+    if not raw:
+        return None
+    # Strip ```json ... ``` fences
+    clean = raw.strip()
+    if clean.startswith("```"):
+        clean = "\n".join(clean.split("\n")[1:])
+    if clean.endswith("```"):
+        clean = "\n".join(clean.split("\n")[:-1])
+    try:
+        return json.loads(clean.strip())
+    except json.JSONDecodeError as e:
+        print(f"    [parse_i3] JSON decode failed: {e}")
+        return None
+
+
+# =============================================================================
 # Per-instrument checkpoint helpers
 #
-# Each instrument gets its own file: data/raw/instrument_1.json, etc.
+# Each instrument gets its own file: data/raw/instrument_N.json
 #
-# File structure (same nested shape, instrument key removed since it's implied):
+# I1 / I2 structure:
+# {
+#   "gpt-4o": {
+#     "baseline": {
+#       "1": {"I1_Q1": "text...", "I1_Q2": "text...", ...},
+#       "2": { ... },
+#       "3": { ... }
+#     },
+#     "ceo": { ... }
+#   }, ...
+# }
+#
+# I3 structure (one call per run covers all scenarios):
 # {
 #   "gpt-4o": {
 #     "baseline": {
 #       "1": {
-#         "I1_Q1": "response text...",
-#         "I1_Q2": "response text...",
-#         "I1_Q3": "response text..."
+#         "raw": "...",           <- raw model output (preserved)
+#         "parsed": {             <- parsed JSON ratings (None if parse failed)
+#           "I3_S1": {
+#             "legal_certainty":  {"score": 7, "explanation": "..."},
+#             "accountability":   {"score": 4, "explanation": "..."},
+#             "enforceability":   {"score": 5, "explanation": "..."}
+#           }, ...
+#         }
 #       },
 #       "2": { ... },
 #       "3": { ... }
 #     },
 #     "ceo": { ... }
-#   },
-#   "claude-sonnet": { ... },
-#   ...
+#   }, ...
 # }
 # =============================================================================
 
@@ -188,19 +275,36 @@ def save_instrument(instrument_id: str, data: dict) -> None:
 
 def is_complete(data: dict, model: str, condition: str,
                 run: int, question_id: str) -> bool:
-    """Return True if this cell already has a non-None response."""
+    """Return True if this cell already has a non-None response. (I1/I2)"""
     try:
         return data[model][condition][str(run)][question_id] is not None
     except KeyError:
         return False
 
 
+def is_complete_i3(data: dict, model: str, condition: str, run: int) -> bool:
+    """Return True if this run already has a raw response stored. (I3)"""
+    try:
+        return data[model][condition][str(run)].get("raw") is not None
+    except (KeyError, AttributeError):
+        return False
+
+
 def store_response(data: dict, model: str, condition: str,
                    run: int, question_id: str, response: str | None) -> None:
+    """Store a single question response. (I1/I2)"""
     data.setdefault(model, {})
     data[model].setdefault(condition, {})
     data[model][condition].setdefault(str(run), {})
     data[model][condition][str(run)][question_id] = response
+
+
+def store_i3_response(data: dict, model: str, condition: str,
+                      run: int, raw: str | None, parsed: dict | None) -> None:
+    """Store raw + parsed ratings for one I3 run."""
+    data.setdefault(model, {})
+    data[model].setdefault(condition, {})
+    data[model][condition][str(run)] = {"raw": raw, "parsed": parsed}
 
 
 # =============================================================================
@@ -219,11 +323,15 @@ if __name__ == "__main__":
     total = 0
     for i_id in ACTIVE_INSTRUMENTS:
         instrument = instruments_data["instruments"][i_id]
+        n_questions = len(instrument.get("questions", instrument.get("scenarios", [])))
+        # I3 sends all scenarios in one call, so count runs not scenarios
+        if i_id == "instrument_3":
+            n_questions = 1
         total += (
             len(models)
             * len(instrument["conditions"])
             * runs_per_cond
-            * len(instrument["questions"])
+            * n_questions
         )
 
     completed = 0
@@ -240,36 +348,72 @@ if __name__ == "__main__":
         print(f"Instrument: {instrument_id} — {instrument['label']}")
         print(f"{'='*60}")
 
-        for model_id in models:
-            for condition_id, condition in conditions.items():
+        # ---- Instrument 3: one bundled call per run ----
+        if instrument_id == "instrument_3":
+            i3_prompt = build_i3_prompt(instrument)
 
-                if condition_id not in instrument["conditions"]:
-                    continue
+            for model_id in models:
+                for condition_id, condition in conditions.items():
+                    if condition_id not in instrument["conditions"]:
+                        continue
 
-                system_prompt = condition["system_prompt"]
+                    system_prompt = condition["system_prompt"]
 
-                for run in range(1, runs_per_cond + 1):
-                    for question in instrument["questions"]:
-                        q_id = question["id"]
-
-                        if is_complete(data, model_id, condition_id, run, q_id):
+                    for run in range(1, runs_per_cond + 1):
+                        if is_complete_i3(data, model_id, condition_id, run):
                             skipped += 1
-                            print(f"  [skip] {model_id} | {condition_id} | run {run} | {q_id}")
+                            print(f"  [skip] {model_id} | {condition_id} | run {run} | all scenarios")
                             continue
 
                         print(
-                            f"  [call] {model_id} | {condition_id} | run {run} | {q_id} ... ",
+                            f"  [call] {model_id} | {condition_id} | run {run} | all scenarios ... ",
                             end="", flush=True
                         )
 
-                        response = call_with_retry(model_id, system_prompt, question["text"])
+                        raw = call_with_retry(model_id, system_prompt, i3_prompt,
+                                              MAX_TOKENS_JSON)
+                        parsed = parse_i3_response(raw) if raw else None
 
-                        store_response(data, model_id, condition_id, run, q_id, response)
-                        save_instrument(instrument_id, data)  # checkpoint after every call
+                        store_i3_response(data, model_id, condition_id, run, raw, parsed)
+                        save_instrument(instrument_id, data)
 
-                        print("ok" if response else "FAILED")
+                        status = "ok" if parsed else ("raw only" if raw else "FAILED")
+                        print(status)
                         completed += 1
                         sleep(CALL_DELAY)
+
+        # ---- Instruments 1 & 2: one call per question ----
+        else:
+            for model_id in models:
+                for condition_id, condition in conditions.items():
+                    if condition_id not in instrument["conditions"]:
+                        continue
+
+                    system_prompt = condition["system_prompt"]
+
+                    for run in range(1, runs_per_cond + 1):
+                        for question in instrument["questions"]:
+                            q_id = question["id"]
+
+                            if is_complete(data, model_id, condition_id, run, q_id):
+                                skipped += 1
+                                print(f"  [skip] {model_id} | {condition_id} | run {run} | {q_id}")
+                                continue
+
+                            print(
+                                f"  [call] {model_id} | {condition_id} | run {run} | {q_id} ... ",
+                                end="", flush=True
+                            )
+
+                            response = call_with_retry(model_id, system_prompt,
+                                                       question["text"], MAX_TOKENS_OPEN)
+
+                            store_response(data, model_id, condition_id, run, q_id, response)
+                            save_instrument(instrument_id, data)
+
+                            print("ok" if response else "FAILED")
+                            completed += 1
+                            sleep(CALL_DELAY)
 
     print(f"\nDone. {completed} new responses collected, {skipped} already complete.")
     print(f"Files saved to {RAW_DIR}/")

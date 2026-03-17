@@ -46,7 +46,7 @@ load_dotenv()
 RAW_DIR     = Path("data/raw")
 RESULTS_DIR = Path("results")
 
-ACTIVE_INSTRUMENTS = ["instrument_1", "instrument_2"]
+ACTIVE_INSTRUMENTS = ["instrument_1", "instrument_2", "instrument_3"]
 
 CONDITIONS       = ["baseline", "ceo"]
 CONDITION_LABELS = {"baseline": "Baseline", "ceo": "CEO Role"}
@@ -67,6 +67,22 @@ I1_QUESTIONS = {
 
 TOP_N_WORDS     = 20
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
+
+# Instrument 3 — scenarios and dimensions
+I3_SCENARIOS = {
+    "I3_S1": "Parole Risk Scores",
+    "I3_S2": "AI-Drafted Legislation",
+    "I3_S3": "Political Speech Moderation",
+    "I3_S4": "Emergency Housing Allocation",
+    "I3_S5": "Central Bank Advisory",
+    "I3_S6": "Foreign Ministry Risk Assessments",
+}
+
+I3_DIMENSIONS = {
+    "legal_certainty": "Legal Certainty",
+    "accountability":  "Accountability",
+    "enforceability":  "Enforceability",
+}
 
 # Responsibility actors for radar chart axes (S2)
 RESPONSIBILITY_ACTORS = [
@@ -850,6 +866,363 @@ def i2_s3_enforcement_sankey(data: dict, models: list[str]) -> go.Figure:
 
 
 # =============================================================================
+# INSTRUMENT 3 helpers
+# =============================================================================
+
+def extract_i3_scores(data: dict, models: list[str]) -> dict:
+    """
+    Flatten I3 parsed ratings into a lookup:
+      scores[model][condition][scenario_id][dimension] -> list of scores (one per run)
+    Missing or unparseable runs are skipped.
+    """
+    scores = {}
+    for model in models:
+        scores[model] = {}
+        for cond in CONDITIONS:
+            scores[model][cond] = {}
+            runs = data.get(model, {}).get(cond, {})
+            for run_num in sorted(runs.keys(), key=int):
+                parsed = runs[run_num].get("parsed")
+                if not parsed:
+                    continue
+                for s_id, dims in parsed.items():
+                    scores[model][cond].setdefault(s_id, {})
+                    for dim, val in dims.items():
+                        scores[model][cond][s_id].setdefault(dim, [])
+                        if isinstance(val.get("score"), (int, float)):
+                            scores[model][cond][s_id][dim].append(val["score"])
+    return scores
+
+
+def mean_std(values: list) -> tuple[float, float]:
+    if not values:
+        return (None, None)
+    arr = np.array(values, dtype=float)
+    return (float(arr.mean()), float(arr.std()))
+
+
+# =============================================================================
+# INSTRUMENT 3 plots
+# =============================================================================
+
+def i3_grouped_bar(scores: dict, models: list[str], dimension: str,
+                   dim_label: str) -> go.Figure:
+    """
+    Grouped bar chart: x = scenarios, one bar group per model.
+    Condition = baseline. Error bars show std across 3 runs.
+    """
+    scenario_labels = list(I3_SCENARIOS.values())
+    scenario_ids    = list(I3_SCENARIOS.keys())
+    n_scenarios     = len(scenario_ids)
+
+    fig = go.Figure()
+
+    for model in models:
+        label = MODEL_LABELS.get(model, model)
+        color = MODEL_COLORS.get(model, "#888888")
+        means, errors = [], []
+
+        for s_id in scenario_ids:
+            vals = scores.get(model, {}).get("baseline", {}).get(s_id, {}).get(dimension, [])
+            m, s = mean_std(vals)
+            means.append(m)
+            errors.append(s if s is not None else 0)
+
+        fig.add_trace(go.Bar(
+            name=label,
+            x=scenario_labels,
+            y=means,
+            error_y=dict(type="data", array=errors, visible=True,
+                         color=color, thickness=1.5, width=4),
+            marker_color=color,
+            opacity=0.85,
+            hovertemplate=f"<b>{label}</b><br>%{{x}}<br>{dim_label}: %{{y:.2f}}<extra></extra>",
+        ))
+
+    fig.update_layout(
+        title=dict(
+            text=f"I3 Scores — <b>{dim_label}</b> (Baseline)<br>"
+                 "<sup>Mean across 3 runs — error bars = std dev</sup>",
+            font=dict(family=SERIF, size=17, color=TEXT_PRI),
+            x=0.5, xanchor="center",
+        ),
+        barmode="group",
+        paper_bgcolor=BG,
+        plot_bgcolor=BG,
+        font=dict(family=MONO, color=TEXT_SEC),
+        xaxis=dict(tickfont=dict(color=TEXT_PRI, size=10), gridcolor=BORDER),
+        yaxis=dict(range=[0, 10.5], tickfont=dict(color=TEXT_PRI),
+                   gridcolor=BORDER, title="Score (1–10)"),
+        legend=dict(bgcolor=SURFACE, bordercolor=BORDER, borderwidth=1,
+                    font=dict(color=TEXT_PRI)),
+        margin=dict(l=60, r=40, t=90, b=100),
+        height=520,
+        width=1200,
+    )
+    return fig
+
+
+def i3_heatmap(scores: dict, models: list[str], dimension: str,
+               dim_label: str) -> go.Figure:
+    """
+    Heatmap: rows = models, cols = scenarios.
+    Cell = mean baseline score across runs.
+    """
+    model_labels    = [MODEL_LABELS.get(m, m) for m in models]
+    scenario_labels = list(I3_SCENARIOS.values())
+    scenario_ids    = list(I3_SCENARIOS.keys())
+
+    z, text = [], []
+    for model in models:
+        row, row_text = [], []
+        for s_id in scenario_ids:
+            vals = scores.get(model, {}).get("baseline", {}).get(s_id, {}).get(dimension, [])
+            m, _ = mean_std(vals)
+            row.append(m)
+            row_text.append(f"{m:.1f}" if m is not None else "N/A")
+        z.append(row)
+        text.append(row_text)
+
+    fig = go.Figure(go.Heatmap(
+        z=z,
+        x=scenario_labels,
+        y=model_labels,
+        text=text,
+        texttemplate="%{text}",
+        textfont=dict(size=12, color=TEXT_PRI),
+        colorscale=COLORSCALE_BLUE,
+        zmin=1, zmax=10,
+        colorbar=dict(title="Score"),
+        hovertemplate="<b>%{y}</b><br>%{x}<br>Score: %{z:.2f}<extra></extra>",
+    ))
+    fig.update_layout(
+        title=dict(
+            text=f"I3 Score Heatmap — <b>{dim_label}</b> (Baseline)<br>"
+                 "<sup>Mean across 3 runs</sup>",
+            font=dict(family=SERIF, size=17, color=TEXT_PRI),
+            x=0.5, xanchor="center",
+        ),
+        paper_bgcolor=BG,
+        plot_bgcolor=BG,
+        font=dict(family=MONO, color=TEXT_SEC),
+        xaxis=dict(tickangle=-25, tickfont=dict(color=TEXT_PRI, size=10)),
+        yaxis=dict(tickfont=dict(color=TEXT_PRI), autorange="reversed"),
+        margin=dict(l=160, r=60, t=90, b=120),
+        height=400,
+        width=1000,
+    )
+    return fig
+
+
+def i3_radar(scores: dict, models: list[str], scenario_id: str,
+             scenario_label: str) -> go.Figure:
+    """
+    Radar chart: axes = 3 tripod dimensions.
+    One trace per model (baseline only), showing mean score.
+    """
+    dims        = list(I3_DIMENSIONS.keys())
+    dim_labels  = list(I3_DIMENSIONS.values())
+    closed_dims = dim_labels + [dim_labels[0]]
+
+    fig = go.Figure()
+
+    for model in models:
+        label = MODEL_LABELS.get(model, model)
+        color = MODEL_COLORS.get(model, "#ffffff")
+
+        vals = []
+        for dim in dims:
+            run_scores = scores.get(model, {}).get("baseline", {}).get(scenario_id, {}).get(dim, [])
+            m, _ = mean_std(run_scores)
+            vals.append(m if m is not None else 0)
+
+        closed_vals = vals + [vals[0]]
+
+        fig.add_trace(go.Scatterpolar(
+            r=closed_vals,
+            theta=closed_dims,
+            mode="lines+markers",
+            name=label,
+            line=dict(color=color, width=2),
+            marker=dict(size=6, color=color),
+            opacity=0.85,
+            hovertemplate=f"<b>{label}</b><br>%{{theta}}: %{{r:.2f}}<extra></extra>",
+        ))
+
+    fig.update_layout(
+        title=dict(
+            text=f"I3 Tripod Scores — <b>{scenario_label}</b><br>"
+                 "<sup>Baseline mean across 3 runs</sup>",
+            font=dict(family=SERIF, size=17, color=TEXT_PRI),
+            x=0.5, xanchor="center",
+        ),
+        polar=dict(
+            bgcolor=SURFACE,
+            radialaxis=dict(
+                visible=True, range=[0, 10],
+                color=TEXT_SEC, gridcolor=BORDER,
+                tickfont=dict(size=9, color=TEXT_SEC),
+            ),
+            angularaxis=dict(
+                color=TEXT_PRI, gridcolor=BORDER,
+                tickfont=dict(size=12, color=TEXT_PRI),
+            ),
+        ),
+        paper_bgcolor=BG,
+        font=dict(family=MONO, color=TEXT_SEC),
+        legend=dict(bgcolor=SURFACE, bordercolor=BORDER, borderwidth=1,
+                    font=dict(color=TEXT_PRI, size=10),
+                    x=1.05, y=1.0),
+        margin=dict(l=80, r=180, t=100, b=80),
+        height=520,
+        width=800,
+    )
+    return fig
+
+
+def i3_delta_heatmap(scores: dict, models: list[str]) -> go.Figure:
+    """
+    Delta heatmap: CEO mean − Baseline mean, averaged across dimensions.
+    Rows = models, cols = scenarios.
+    Positive = CEO rated higher, negative = CEO rated lower.
+    """
+    model_labels    = [MODEL_LABELS.get(m, m) for m in models]
+    scenario_labels = list(I3_SCENARIOS.values())
+    scenario_ids    = list(I3_SCENARIOS.keys())
+    dims            = list(I3_DIMENSIONS.keys())
+
+    z, text = [], []
+    for model in models:
+        row, row_text = [], []
+        for s_id in scenario_ids:
+            deltas = []
+            for dim in dims:
+                b_vals = scores.get(model, {}).get("baseline", {}).get(s_id, {}).get(dim, [])
+                c_vals = scores.get(model, {}).get("ceo",      {}).get(s_id, {}).get(dim, [])
+                b_m, _ = mean_std(b_vals)
+                c_m, _ = mean_std(c_vals)
+                if b_m is not None and c_m is not None:
+                    deltas.append(c_m - b_m)
+            delta = float(np.mean(deltas)) if deltas else None
+            row.append(delta)
+            row_text.append(f"{delta:+.2f}" if delta is not None else "N/A")
+        z.append(row)
+        text.append(row_text)
+
+    # Diverging colorscale: red = CEO lower, green = CEO higher
+    colorscale = [
+        [0.0,  "#b91c1c"],
+        [0.35, "#7a2020"],
+        [0.5,  "#21262d"],
+        [0.65, "#1a6b3c"],
+        [1.0,  "#3fb68a"],
+    ]
+
+    fig = go.Figure(go.Heatmap(
+        z=z,
+        x=scenario_labels,
+        y=model_labels,
+        text=text,
+        texttemplate="%{text}",
+        textfont=dict(size=12, color=TEXT_PRI),
+        colorscale=colorscale,
+        zmid=0,
+        colorbar=dict(
+            title="CEO − Baseline",
+            tickfont=dict(color=TEXT_SEC),
+        ),
+        hovertemplate="<b>%{y}</b><br>%{x}<br>Δ: %{z:+.2f}<extra></extra>",
+    ))
+    fig.update_layout(
+        title=dict(
+            text="I3 Condition Shift — CEO Role minus Baseline<br>"
+                 "<sup>Averaged across all three tripod dimensions — green = CEO rated higher</sup>",
+            font=dict(family=SERIF, size=17, color=TEXT_PRI),
+            x=0.5, xanchor="center",
+        ),
+        paper_bgcolor=BG,
+        plot_bgcolor=BG,
+        font=dict(family=MONO, color=TEXT_SEC),
+        xaxis=dict(tickangle=-25, tickfont=dict(color=TEXT_PRI, size=10)),
+        yaxis=dict(tickfont=dict(color=TEXT_PRI), autorange="reversed"),
+        margin=dict(l=160, r=80, t=100, b=120),
+        height=420,
+        width=1050,
+    )
+    return fig
+
+
+def i3_condition_bars(scores: dict, models: list[str]) -> go.Figure:
+    """
+    Side-by-side bars: one subplot per model.
+    x = scenarios, two bar groups per subplot (baseline vs CEO).
+    Averaged across all three dimensions and all runs.
+    """
+    scenario_labels = list(I3_SCENARIOS.values())
+    scenario_ids    = list(I3_SCENARIOS.keys())
+    dims            = list(I3_DIMENSIONS.keys())
+    n               = len(models)
+
+    fig = make_subplots(
+        rows=1, cols=n,
+        subplot_titles=[MODEL_LABELS.get(m, m) for m in models],
+        shared_yaxes=True,
+    )
+
+    cond_colors = {"baseline": "#2176ae", "ceo": "#e8a838"}
+
+    for col_idx, model in enumerate(models, start=1):
+        for cond in CONDITIONS:
+            means = []
+            for s_id in scenario_ids:
+                dim_means = []
+                for dim in dims:
+                    vals = scores.get(model, {}).get(cond, {}).get(s_id, {}).get(dim, [])
+                    m, _ = mean_std(vals)
+                    if m is not None:
+                        dim_means.append(m)
+                means.append(float(np.mean(dim_means)) if dim_means else None)
+
+            fig.add_trace(
+                go.Bar(
+                    name=CONDITION_LABELS[cond],
+                    x=scenario_labels,
+                    y=means,
+                    marker_color=cond_colors[cond],
+                    opacity=0.85,
+                    showlegend=(col_idx == 1),
+                    hovertemplate=f"<b>{CONDITION_LABELS[cond]}</b><br>%{{x}}<br>Avg Score: %{{y:.2f}}<extra></extra>",
+                ),
+                row=1, col=col_idx,
+            )
+
+    fig.update_layout(
+        title=dict(
+            text="I3 Baseline vs CEO — Average Score per Scenario<br>"
+                 "<sup>Averaged across all three tripod dimensions and 3 runs</sup>",
+            font=dict(family=SERIF, size=17, color=TEXT_PRI),
+            x=0.5, xanchor="center",
+        ),
+        barmode="group",
+        paper_bgcolor=BG,
+        plot_bgcolor=BG,
+        font=dict(family=MONO, color=TEXT_SEC),
+        legend=dict(bgcolor=SURFACE, bordercolor=BORDER, borderwidth=1,
+                    font=dict(color=TEXT_PRI)),
+        margin=dict(l=60, r=40, t=100, b=120),
+        height=480,
+        width=1400,
+    )
+    fig.update_yaxes(range=[0, 10.5], tickfont=dict(color=TEXT_PRI),
+                     gridcolor=BORDER)
+    fig.update_xaxes(tickangle=-35, tickfont=dict(color=TEXT_SEC, size=8))
+    for ann in fig.layout.annotations:
+        ann.font.color = TEXT_PRI
+        ann.font.size  = 11
+    return fig
+
+
+# =============================================================================
 # Main
 # =============================================================================
 
@@ -921,5 +1294,48 @@ if __name__ == "__main__":
             print("Building I2 S3 enforcement challenges Sankey...")
             save_fig(i2_s3_enforcement_sankey(i2_data, models),
                      out / "s3_enforcement_sankey")
+
+    # -------------------------------------------------------------------------
+    # Instrument 3
+    # -------------------------------------------------------------------------
+    if "instrument_3" in ACTIVE_INSTRUMENTS:
+        i3_path = RAW_DIR / "instrument_3.json"
+        if not i3_path.exists():
+            print(f"[skip] instrument_3.json not found at {i3_path}")
+        else:
+            print("\nLoading instrument_3.json...")
+            with open(i3_path, "r", encoding="utf-8") as f:
+                i3_data = json.load(f)
+            models = list(i3_data.keys())
+            out    = RESULTS_DIR / "instrument_3"
+
+            print("Extracting I3 scores...")
+            scores = extract_i3_scores(i3_data, models)
+
+            print("Building I3 grouped bar charts (per dimension)...")
+            for dim, dim_label in I3_DIMENSIONS.items():
+                slug = dim.lower().replace(" ", "_")
+                save_fig(i3_grouped_bar(scores, models, dim, dim_label),
+                         out / f"scores_grouped_bar_{slug}")
+
+            print("Building I3 heatmaps (per dimension)...")
+            for dim, dim_label in I3_DIMENSIONS.items():
+                slug = dim.lower().replace(" ", "_")
+                save_fig(i3_heatmap(scores, models, dim, dim_label),
+                         out / f"scores_heatmap_{slug}")
+
+            print("Building I3 radar charts (per scenario)...")
+            for s_id, s_label in I3_SCENARIOS.items():
+                slug = s_id.lower()
+                save_fig(i3_radar(scores, models, s_id, s_label),
+                         out / f"scores_radar_{slug}")
+
+            print("Building I3 condition delta heatmap...")
+            save_fig(i3_delta_heatmap(scores, models),
+                     out / "condition_delta_heatmap")
+
+            print("Building I3 condition side-by-side bars...")
+            save_fig(i3_condition_bars(scores, models),
+                     out / "condition_side_by_side")
 
     print("\nAll plots complete.")
