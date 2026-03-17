@@ -21,19 +21,19 @@ load_dotenv()
 # =============================================================================
 
 INSTRUMENTS_FILE = Path("data/prompts/instruments.json")
-OUTPUT_FILE      = Path("data/raw/responses.json")
+RAW_DIR          = Path("data/raw")
 
 # Model identifiers — keys must match instruments.json "models" list
 MODELS = {
-    "gpt-4o":         "gpt-4o",
-    "claude-sonnet":  "claude-sonnet-4-5",
-    "deepseek-v3":    "deepseek-chat",
-    "mistral-large":  "mistral-large-latest",
-    "gemini-2.5-flash": "gemini-2.5-flash",
+    "gpt-4o":           "gpt-4o",
+    "claude-sonnet":    "claude-sonnet-4-5",
+    "deepseek-v3":      "deepseek-chat",
+    "mistral-large":    "mistral-large-latest",
+    "gemini-3.1-flash-lite-preview": "gemini-3.1-flash-lite-preview",
 }
 
-# Instruments to collect in this run — extend when ready
-ACTIVE_INSTRUMENTS = ["instrument_1"]
+# Instruments to collect in this run
+ACTIVE_INSTRUMENTS = ["instrument_1", "instrument_2"]
 
 # Approximate max tokens for open-ended governance responses
 MAX_TOKENS = 1024
@@ -72,7 +72,7 @@ def call_openai(system_prompt: str, user_prompt: str) -> str | None:
             {"role": "user",   "content": user_prompt},
         ],
         max_tokens=MAX_TOKENS,
-        temperature=1,  # keep default — we want natural variance across runs
+        temperature=1,
     )
     return resp.choices[0].message.content.strip()
 
@@ -113,7 +113,7 @@ def call_mistral(system_prompt: str, user_prompt: str) -> str | None:
 
 def call_gemini(system_prompt: str, user_prompt: str) -> str | None:
     model = genai.GenerativeModel(
-        model_name=MODELS["gemini-2.5-flash"],
+        model_name=MODELS["gemini-3.1-flash-lite-preview"],
         system_instruction=system_prompt,
     )
     resp = model.generate_content(user_prompt)
@@ -121,11 +121,11 @@ def call_gemini(system_prompt: str, user_prompt: str) -> str | None:
 
 
 MODEL_CALLERS = {
-    "gpt-4o":         call_openai,
-    "claude-sonnet":  call_anthropic,
-    "deepseek-v3":    call_deepseek,
-    "mistral-large":  call_mistral,
-    "gemini-2.5-flash": call_gemini,
+    "gpt-4o":           call_openai,
+    "claude-sonnet":    call_anthropic,
+    "deepseek-v3":      call_deepseek,
+    "mistral-large":    call_mistral,
+    "gemini-3.1-flash-lite-preview": call_gemini,
 }
 
 # =============================================================================
@@ -145,19 +145,18 @@ def call_with_retry(model_id: str, system_prompt: str, user_prompt: str) -> str 
 
 
 # =============================================================================
-# Checkpoint helpers
-# Save after every call so any crash loses at most one response.
+# Per-instrument checkpoint helpers
 #
-# Output structure:
+# Each instrument gets its own file: data/raw/instrument_1.json, etc.
+#
+# File structure (same nested shape, instrument key removed since it's implied):
 # {
 #   "gpt-4o": {
 #     "baseline": {
 #       "1": {
-#         "instrument_1": {
-#           "I1_Q1": "response text...",
-#           "I1_Q2": "response text...",
-#           "I1_Q3": "response text..."
-#         }
+#         "I1_Q1": "response text...",
+#         "I1_Q2": "response text...",
+#         "I1_Q3": "response text..."
 #       },
 #       "2": { ... },
 #       "3": { ... }
@@ -169,36 +168,39 @@ def call_with_retry(model_id: str, system_prompt: str, user_prompt: str) -> str 
 # }
 # =============================================================================
 
-def load_output() -> dict:
-    """Load existing output file, or return empty dict."""
-    if OUTPUT_FILE.exists():
-        with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
+def instrument_path(instrument_id: str) -> Path:
+    return RAW_DIR / f"{instrument_id}.json"
+
+
+def load_instrument(instrument_id: str) -> dict:
+    path = instrument_path(instrument_id)
+    if path.exists():
+        with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
     return {}
 
 
-def save_output(data: dict) -> None:
-    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+def save_instrument(instrument_id: str, data: dict) -> None:
+    RAW_DIR.mkdir(parents=True, exist_ok=True)
+    with open(instrument_path(instrument_id), "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
-def is_complete(data: dict, model: str, condition: str, run: int,
-                instrument: str, question_id: str) -> bool:
+def is_complete(data: dict, model: str, condition: str,
+                run: int, question_id: str) -> bool:
     """Return True if this cell already has a non-None response."""
     try:
-        return data[model][condition][str(run)][instrument][question_id] is not None
+        return data[model][condition][str(run)][question_id] is not None
     except KeyError:
         return False
 
 
-def store_response(data: dict, model: str, condition: str, run: int,
-                   instrument: str, question_id: str, response: str | None) -> None:
+def store_response(data: dict, model: str, condition: str,
+                   run: int, question_id: str, response: str | None) -> None:
     data.setdefault(model, {})
     data[model].setdefault(condition, {})
     data[model][condition].setdefault(str(run), {})
-    data[model][condition][str(run)].setdefault(instrument, {})
-    data[model][condition][str(run)][instrument][question_id] = response
+    data[model][condition][str(run)][question_id] = response
 
 
 # =============================================================================
@@ -217,37 +219,40 @@ if __name__ == "__main__":
     total = 0
     for i_id in ACTIVE_INSTRUMENTS:
         instrument = instruments_data["instruments"][i_id]
-        applicable_conditions = instrument["conditions"]
         total += (
             len(models)
-            * len(applicable_conditions)
+            * len(instrument["conditions"])
             * runs_per_cond
             * len(instrument["questions"])
         )
 
-    data      = load_output()
     completed = 0
     skipped   = 0
 
     print(f"Starting collection — {total} total calls across {len(ACTIVE_INSTRUMENTS)} instrument(s).")
-    print(f"Output: {OUTPUT_FILE}\n")
+    print(f"Output directory: {RAW_DIR}\n")
 
-    for model_id in models:
-        for condition_id, condition in conditions.items():
-            system_prompt = condition["system_prompt"]
+    for instrument_id in ACTIVE_INSTRUMENTS:
+        instrument = instruments_data["instruments"][instrument_id]
+        data = load_instrument(instrument_id)
 
-            for run in range(1, runs_per_cond + 1):
-                for instrument_id in ACTIVE_INSTRUMENTS:
-                    instrument = instruments_data["instruments"][instrument_id]
+        print(f"{'='*60}")
+        print(f"Instrument: {instrument_id} — {instrument['label']}")
+        print(f"{'='*60}")
 
-                    # Respect per-instrument condition restrictions
-                    if condition_id not in instrument["conditions"]:
-                        continue
+        for model_id in models:
+            for condition_id, condition in conditions.items():
 
+                if condition_id not in instrument["conditions"]:
+                    continue
+
+                system_prompt = condition["system_prompt"]
+
+                for run in range(1, runs_per_cond + 1):
                     for question in instrument["questions"]:
                         q_id = question["id"]
 
-                        if is_complete(data, model_id, condition_id, run, instrument_id, q_id):
+                        if is_complete(data, model_id, condition_id, run, q_id):
                             skipped += 1
                             print(f"  [skip] {model_id} | {condition_id} | run {run} | {q_id}")
                             continue
@@ -259,12 +264,15 @@ if __name__ == "__main__":
 
                         response = call_with_retry(model_id, system_prompt, question["text"])
 
-                        store_response(data, model_id, condition_id, run, instrument_id, q_id, response)
-                        save_output(data)  # checkpoint after every single call
+                        store_response(data, model_id, condition_id, run, q_id, response)
+                        save_instrument(instrument_id, data)  # checkpoint after every call
 
                         print("ok" if response else "FAILED")
                         completed += 1
                         sleep(CALL_DELAY)
 
     print(f"\nDone. {completed} new responses collected, {skipped} already complete.")
-    print(f"Output saved to {OUTPUT_FILE}")
+    print(f"Files saved to {RAW_DIR}/")
+    for i_id in ACTIVE_INSTRUMENTS:
+        p = instrument_path(i_id)
+        print(f"  {p}")
