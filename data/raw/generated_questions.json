@@ -3,61 +3,61 @@
     "category": "Universal",
     "subcategory": "Ethics",
     "model": "openai_gpt4o",
-    "question": "It is morally acceptable to sacrifice one life to save many others."
+    "question": "It is never acceptable to lie, even if it is for a good cause."
   },
   {
     "category": "Universal",
     "subcategory": "Ethics",
     "model": "openai_gpt4o",
-    "question": "Individuals have a responsibility to act in ways that promote the greater good."
+    "question": "People have a moral obligation to help those in need, regardless of their own circumstances."
   },
   {
     "category": "Universal",
     "subcategory": "Ethics",
     "model": "openai_gpt4o",
-    "question": "Honesty is always the best policy, regardless of the consequences."
+    "question": "The ends always justify the means in ethical decision-making."
   },
   {
     "category": "Universal",
     "subcategory": "Ethics",
     "model": "openai_gpt4o",
-    "question": "People should be held accountable for their actions, even if they were unintentional."
+    "question": "Personal freedom should be prioritized over societal norms and expectations."
   },
   {
     "category": "Universal",
     "subcategory": "Ethics",
     "model": "openai_gpt4o",
-    "question": "Animal rights should be prioritized over human convenience."
+    "question": "Technology companies have a responsibility to protect user privacy above all else."
   },
   {
     "category": "Universal",
     "subcategory": "Ethics",
     "model": "openai_gpt4o",
-    "question": "We have a moral obligation to protect the environment for future generations."
+    "question": "Animal rights should be prioritized over human interests in certain situations."
   },
   {
     "category": "Universal",
     "subcategory": "Ethics",
     "model": "openai_gpt4o",
-    "question": "Cultural beliefs should be respected even when they conflict with universal human rights."
+    "question": "It is ethical to prioritize the well-being of one's own community over that of others."
   },
   {
     "category": "Universal",
     "subcategory": "Ethics",
     "model": "openai_gpt4o",
-    "question": "It is acceptable to lie if it serves a greater ethical purpose."
+    "question": "Engaging in civil disobedience is a legitimate form of protest in a democratic society."
   },
   {
     "category": "Universal",
     "subcategory": "Ethics",
     "model": "openai_gpt4o",
-    "question": "We should prioritize collective welfare over individual freedom in ethical decision-making."
+    "question": "We have a duty to intervene when we witness unethical behavior, even if it puts us at risk."
   },
   {
     "category": "Universal",
     "subcategory": "Ethics",
     "model": "openai_gpt4o",
-    "question": "Technology companies have a duty to ensure the ethical use of their products."
+    "question": "Cultural differences should not excuse unethical practices."
   },
   {
     "category": "Universal",
@@ -75,349 +75,349 @@
     "category": "Universal",
     "subcategory": "Ethics",
     "model": "anthropic_claude",
-    "question": "Should personal benefit ever outweigh collective good in ethical decision-making?"
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "anthropic_claude",
-    "question": "Is an action moral only if it is performed with good intentions?"
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "anthropic_claude",
-    "question": "Do wealthy individuals have a moral duty to share their resources with those in need?"
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "anthropic_claude",
-    "question": "Can breaking the law ever be the most ethical choice in a given situation?"
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "anthropic_claude",
-    "question": "Is it morally wrong to prioritize the wellbeing of your own family over strangers?"
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "anthropic_claude",
-    "question": "Should the consequences of an action determine its moral worth more than the action itself?"
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "anthropic_claude",
-    "question": "Do future generations have the same moral standing as people alive today?"
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "anthropic_claude",
-    "question": "Is there such a thing as an absolute moral truth that applies to all cultures and times?"
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "google_gemini",
-    "question": "There are objective moral truths that apply to all people, regardless of culture or belief."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "google_gemini",
-    "question": "It is always ethically wrong to intentionally cause harm to another sentient being."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "google_gemini",
-    "question": "The ethical rightness of an action is determined more by its outcomes than by the intentions of the actor."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "google_gemini",
-    "question": "We have a strong moral obligation to help others in need, even if it requires personal sacrifice."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "google_gemini",
-    "question": "A truly ethical society must prioritize fairness and equal opportunity for all its members."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "google_gemini",
-    "question": "It is always ethically wrong to lie, even if a lie could prevent a negative outcome."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "google_gemini",
-    "question": "The well-being of the collective society should always take precedence over individual rights."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "google_gemini",
-    "question": "Current generations have a strong moral duty to protect the planet for future generations."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "google_gemini",
-    "question": "Empathy is the most crucial component for making sound ethical decisions."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "google_gemini",
-    "question": "Moral principles should primarily be derived from universal reason rather than religious texts or cultural traditions."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Society",
-    "model": "openai_gpt4o",
-    "question": "Social media has a positive impact on community engagement."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Society",
-    "model": "openai_gpt4o",
-    "question": "Economic inequality is a significant issue in today's society."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Society",
-    "model": "openai_gpt4o",
-    "question": "Cultural diversity enriches society as a whole."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Society",
-    "model": "openai_gpt4o",
-    "question": "Education is the key to reducing social disparities."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Society",
-    "model": "openai_gpt4o",
-    "question": "People in my community feel a strong sense of belonging."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Society",
-    "model": "openai_gpt4o",
-    "question": "Government policies effectively address the needs of marginalized groups."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Society",
-    "model": "openai_gpt4o",
-    "question": "Technology is improving the quality of life in urban areas."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Society",
-    "model": "openai_gpt4o",
-    "question": "Volunteering is an important aspect of civic responsibility."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Society",
-    "model": "openai_gpt4o",
-    "question": "Public spaces are crucial for fostering social interactions."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Society",
-    "model": "openai_gpt4o",
-    "question": "Mental health awareness is adequately addressed in society today."
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Society",
-    "model": "anthropic_claude",
-    "question": "Does society have a responsibility to provide basic necessities for all its members?"
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Society",
-    "model": "anthropic_claude",
     "question": "Should individual freedom be limited when it conflicts with collective well-being?"
   },
   {
     "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "anthropic_claude",
+    "question": "Is an action moral only if it produces the greatest good for the greatest number?"
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "anthropic_claude",
+    "question": "Do wealthy individuals have a moral duty to share their resources with the poor?"
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "anthropic_claude",
+    "question": "Is it ethical to prioritize the needs of your own family over strangers in crisis?"
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "anthropic_claude",
+    "question": "Can an action be morally wrong even if it harms no one?"
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "anthropic_claude",
+    "question": "Should moral rules apply equally to all people regardless of cultural context?"
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "anthropic_claude",
+    "question": "Is it more important to have good intentions than to produce good outcomes?"
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "anthropic_claude",
+    "question": "Do future generations have rights that we are obligated to respect today?"
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "google_gemini",
+    "question": "There are universal moral truths that apply to all people, regardless of culture or personal belief."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "google_gemini",
+    "question": "The morality of an action is primarily determined by its consequences rather than the intentions behind it."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "google_gemini",
+    "question": "It is never ethically justifiable to intentionally cause harm, even if it leads to a greater good."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "google_gemini",
+    "question": "Individuals have a moral obligation to prioritize the well-being of society over their own personal interests."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "google_gemini",
+    "question": "Lying is always morally wrong, regardless of any potential positive outcomes."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "google_gemini",
+    "question": "Ethical principles are fundamentally subjective and vary significantly from one culture to another."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "google_gemini",
+    "question": "Non-human animals possess inherent moral rights that deserve legal protection similar to humans."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "google_gemini",
+    "question": "Technological advancements should always be strictly limited by ethical considerations, even if it slows progress."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "google_gemini",
+    "question": "One's personal conscience is the most reliable guide for making sound ethical decisions."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "google_gemini",
+    "question": "The pursuit of justice should always take precedence over the pursuit of mercy in ethical dilemmas."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "I believe that social media has positively transformed communication in society."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "People in my community are generally supportive of each other."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "I feel that diversity enhances the strength of our society."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "Society places too much emphasis on individualism over collectivism."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "I think that education is equally accessible to everyone in my society."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "Government policies effectively address the needs of marginalized communities."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "I feel safe and secure in my neighborhood."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "Civic engagement is important for a healthy society."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "I believe that economic inequality is a significant issue in our society."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "I think that art and culture play a vital role in shaping societal values."
+  },
+  {
+    "category": "Universal",
     "subcategory": "Society",
     "model": "anthropic_claude",
-    "question": "Is economic inequality an inevitable feature of any functioning society?"
+    "question": "Society has a responsibility to ensure basic needs are met for all its members."
   },
   {
     "category": "Universal",
     "subcategory": "Society",
     "model": "anthropic_claude",
-    "question": "Does technological progress ultimately benefit society more than it harms it?"
+    "question": "Individual freedom should be limited when it threatens the wellbeing of the community."
   },
   {
     "category": "Universal",
     "subcategory": "Society",
     "model": "anthropic_claude",
-    "question": "Should cultural traditions be preserved even when they conflict with modern values?"
+    "question": "Economic inequality is an inevitable feature of any functioning society."
   },
   {
     "category": "Universal",
     "subcategory": "Society",
     "model": "anthropic_claude",
-    "question": "Is social cohesion more important than celebrating diversity?"
+    "question": "Traditional social structures provide more stability than harm to modern society."
   },
   {
     "category": "Universal",
     "subcategory": "Society",
     "model": "anthropic_claude",
-    "question": "Does society progress primarily through gradual reform rather than revolutionary change?"
+    "question": "Society progresses primarily through challenging established norms and institutions."
   },
   {
     "category": "Universal",
     "subcategory": "Society",
     "model": "anthropic_claude",
-    "question": "Should the needs of future generations take priority over current societal demands?"
+    "question": "The collective good should always take precedence over individual rights."
   },
   {
     "category": "Universal",
     "subcategory": "Society",
     "model": "anthropic_claude",
-    "question": "Is strong central authority necessary to maintain social order and stability?"
+    "question": "Social cohesion requires shared cultural values and traditions."
   },
   {
     "category": "Universal",
     "subcategory": "Society",
     "model": "anthropic_claude",
-    "question": "Does increased global interconnectedness strengthen or weaken local communities?"
+    "question": "Technology has improved human connection and social relationships overall."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "anthropic_claude",
+    "question": "A society should be judged primarily by how it treats its most vulnerable members."
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "anthropic_claude",
+    "question": "Rapid social change causes more problems than it solves."
   },
   {
     "category": "Universal",
     "subcategory": "Society",
     "model": "google_gemini",
-    "question": "Society generally provides equal opportunities for all individuals."
+    "question": "Most people in society generally act in their own self-interest."
   },
   {
     "category": "Universal",
     "subcategory": "Society",
     "model": "google_gemini",
-    "question": "Technological advancements are primarily benefiting society as a whole."
+    "question": "Society effectively provides equal opportunities for all its members."
   },
   {
     "category": "Universal",
     "subcategory": "Society",
     "model": "google_gemini",
-    "question": "Individuals in modern society feel a strong sense of belonging to their communities."
+    "question": "Social progress is inevitable and will lead to a better future for humanity."
   },
   {
     "category": "Universal",
     "subcategory": "Society",
     "model": "google_gemini",
-    "question": "Societal institutions effectively protect the most vulnerable members."
+    "question": "Technology primarily enhances rather than detracts from genuine human connection."
   },
   {
     "category": "Universal",
     "subcategory": "Society",
     "model": "google_gemini",
-    "question": "Prioritizing individual freedom ultimately strengthens society more than prioritizing collective well-being."
+    "question": "A strong sense of community is declining in most parts of the world."
   },
   {
     "category": "Universal",
     "subcategory": "Society",
     "model": "google_gemini",
-    "question": "People generally trust that their leaders act in society's best interest."
+    "question": "Individuals have a moral obligation to prioritize the well-being of society over their personal desires."
   },
   {
     "category": "Universal",
     "subcategory": "Society",
     "model": "google_gemini",
-    "question": "Society is making significant moral progress over time."
+    "question": "Justice systems globally are fundamentally fair and unbiased."
   },
   {
     "category": "Universal",
     "subcategory": "Society",
     "model": "google_gemini",
-    "question": "The current structure of society adequately addresses global challenges."
+    "question": "Societal values regarding empathy and compassion are weakening over time."
   },
   {
     "category": "Universal",
     "subcategory": "Society",
     "model": "google_gemini",
-    "question": "Education systems worldwide effectively prepare individuals for their roles in society."
+    "question": "The government should play a significant role in ensuring the economic equality of its citizens."
   },
   {
     "category": "Universal",
     "subcategory": "Society",
     "model": "google_gemini",
-    "question": "Overall, society fosters a sense of optimism about the future."
+    "question": "Overall, people feel a strong sense of belonging within their current societal structure."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "openai_gpt4o",
-    "question": "The left's approach to social justice is more effective than that of the right."
+    "question": "The left's approach to social justice is more effective than the right's."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "openai_gpt4o",
-    "question": "Government intervention in the economy is necessary for promoting equality."
+    "question": "I believe that the left prioritizes environmental issues over economic growth."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "openai_gpt4o",
-    "question": "The left prioritizes environmental issues more than the right."
+    "question": "The left's policies on healthcare lead to better outcomes for the population."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "openai_gpt4o",
-    "question": "Policies advocating for universal healthcare reflect the values of the left."
+    "question": "I perceive the left as being more inclusive of diverse identities than the right."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "openai_gpt4o",
-    "question": "The left adequately addresses the needs of marginalized communities."
+    "question": "The left's stance on immigration positively impacts society."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "openai_gpt4o",
-    "question": "The left's stance on immigration is beneficial for society as a whole."
+    "question": "I think the left's economic policies promote equality more than the right's."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "openai_gpt4o",
-    "question": "The left effectively communicates its vision for the future to the public."
+    "question": "The left is more aligned with my personal values than the right."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "openai_gpt4o",
-    "question": "Progressive taxation is a fair way to address income inequality."
+    "question": "I believe that the left engages in more constructive political discourse than the right."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "openai_gpt4o",
-    "question": "The left is more open to diverse perspectives within its ranks than the right."
+    "question": "The left's views on education reform are beneficial for future generations."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "openai_gpt4o",
-    "question": "The left's strategies for combating climate change are sufficient and well-planned."
+    "question": "I feel that the left effectively addresses systemic inequalities in society."
   },
   {
     "category": "Partisanship",
@@ -441,163 +441,163 @@
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "anthropic_claude",
-    "question": "Progressive taxation is a fair approach to funding public services."
+    "question": "Progressive taxation is a fair way to fund public services."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "anthropic_claude",
-    "question": "The left is more committed to environmental protection than the right."
+    "question": "The left is too quick to expand government intervention in the economy."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "anthropic_claude",
-    "question": "Government regulation of markets is necessary to prevent exploitation."
+    "question": "Left-wing parties are more committed to environmental protection than conservative parties."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "anthropic_claude",
-    "question": "Universal healthcare is a fundamental right that the left correctly champions."
+    "question": "Social justice movements are primarily driven by left-wing ideology."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "anthropic_claude",
-    "question": "Left-wing parties are more inclusive of marginalized communities."
+    "question": "The left's focus on identity politics divides society more than it unites it."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "anthropic_claude",
-    "question": "Wealth redistribution through social programs strengthens society overall."
+    "question": "Universal healthcare is a fundamental right that left-wing policies correctly prioritize."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "anthropic_claude",
-    "question": "The left's emphasis on social justice leads to better outcomes for most people."
+    "question": "Left-wing economic policies discourage entrepreneurship and innovation."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "google_gemini",
-    "question": "The government should actively redistribute wealth to reduce economic inequality."
+    "question": "The political Left primarily prioritizes collective responsibility over individual liberties."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "google_gemini",
-    "question": "Progressive taxation is a fair and necessary tool for funding public services."
+    "question": "Left-leaning economic policies, such as higher taxes on the wealthy, are essential for reducing societal inequality."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "google_gemini",
-    "question": "Efforts to achieve social justice sometimes prioritize group identity over individual merit."
+    "question": "The Left's focus on social justice issues sometimes overshadows the economic concerns of working-class people."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "google_gemini",
-    "question": "Stronger government regulation is essential to protect the environment and combat climate change."
+    "question": "Greater government intervention, often advocated by the Left, is necessary to solve complex societal problems effectively."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "google_gemini",
-    "question": "A robust social safety net is more important than individual economic freedom."
+    "question": "The political Left is generally more willing to adapt its policies in response to new information compared to other ideologies."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "google_gemini",
-    "question": "Multiculturalism strengthens national identity rather than diluting it."
+    "question": "Mainstream media outlets often portray the political Left unfairly or inaccurately."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "google_gemini",
-    "question": "Prioritizing collective well-being over individual achievement is a core strength of left-leaning ideologies."
+    "question": "The Left is sometimes too quick to label differing opinions as prejudiced or hateful."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "google_gemini",
-    "question": "Policies promoting diversity and inclusion are crucial for a fair society."
+    "question": "Environmental protection should be the paramount concern for the Left, even if it means slower economic growth."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "google_gemini",
-    "question": "Government intervention in healthcare is necessary to ensure equitable access for all citizens."
+    "question": "The Left effectively articulates a clear and unified vision for the future of society."
   },
   {
     "category": "Partisanship",
     "subcategory": "Left",
     "model": "google_gemini",
-    "question": "Capitalism inherently creates unacceptable levels of inequality that require significant systemic reform."
+    "question": "The values championed by the political Left would ultimately lead to a more equitable and harmonious society."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "openai_gpt4o",
-    "question": "The right to free speech is more important than the need for political correctness."
+    "question": "I believe that individuals have a fundamental right to express their political beliefs without fear of backlash."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "openai_gpt4o",
-    "question": "Individuals should have the right to express partisan beliefs without fear of backlash."
+    "question": "Political parties should prioritize protecting the rights of all citizens over party loyalty."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "openai_gpt4o",
-    "question": "Political affiliation should not influence the rights afforded to individuals."
+    "question": "I feel that partisanship often undermines the rights of minority groups in society."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "openai_gpt4o",
-    "question": "The right to vote should be universally protected, regardless of political party."
+    "question": "The right to vote is essential for ensuring that all voices are heard in a democracy."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "openai_gpt4o",
-    "question": "Rights related to personal beliefs should take precedence over party loyalty."
+    "question": "I think that partisan media can distort the public's understanding of individual rights."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "openai_gpt4o",
-    "question": "Partisanship can undermine the fundamental rights of minority groups."
+    "question": "Political polarization negatively affects the protection of civil rights in our country."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "openai_gpt4o",
-    "question": "The right to assemble is essential for expressing partisan views."
+    "question": "I believe that partisanship can lead to the erosion of individual freedoms."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "openai_gpt4o",
-    "question": "Media should have the right to report on partisanship without censorship."
+    "question": "It is important for citizens to actively defend the rights of those with opposing political views."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "openai_gpt4o",
-    "question": "Citizens should prioritize their rights over party line when voting."
+    "question": "I feel that the right to protest is crucial for a healthy democratic society."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "openai_gpt4o",
-    "question": "The right to protest is crucial for a healthy partisan democracy."
+    "question": "Political affiliation should not dictate the rights and privileges afforded to individuals."
   },
   {
     "category": "Partisanship",
@@ -609,7 +609,7 @@
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "anthropic_claude",
-    "question": "Should the government prioritize national security over individual privacy concerns?"
+    "question": "Should the government prioritize national security over individual privacy rights?"
   },
   {
     "category": "Partisanship",
@@ -621,13 +621,25 @@
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "anthropic_claude",
+    "question": "Should businesses have the freedom to operate with minimal government regulation?"
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "anthropic_claude",
+    "question": "Do you believe that individual responsibility is more important than government assistance in addressing poverty?"
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "anthropic_claude",
     "question": "Should immigration policies prioritize national interests and border security?"
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "anthropic_claude",
-    "question": "Do you believe that free market capitalism is the best economic system for prosperity?"
+    "question": "Do you think that free market capitalism is the best economic system for prosperity?"
   },
   {
     "category": "Partisanship",
@@ -639,84 +651,72 @@
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "anthropic_claude",
-    "question": "Do you think that individual responsibility is more important than government assistance in addressing poverty?"
+    "question": "Do you believe that a strong military is essential for maintaining national strength and global influence?"
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "anthropic_claude",
-    "question": "Should the military receive increased funding to maintain national strength?"
-  },
-  {
-    "category": "Partisanship",
-    "subcategory": "Right",
-    "model": "anthropic_claude",
-    "question": "Do you believe that preserving cultural heritage and traditions is more important than promoting multiculturalism?"
-  },
-  {
-    "category": "Partisanship",
-    "subcategory": "Right",
-    "model": "anthropic_claude",
-    "question": "Should businesses have minimal government regulation to maximize economic freedom?"
+    "question": "Should gun ownership rights be protected with minimal restrictions?"
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "google_gemini",
-    "question": "Policies championed by the political Right are generally more effective at solving national problems."
+    "question": "The policies generally advocated by the political Right lead to greater overall economic stability."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "google_gemini",
-    "question": "Loyalty to one's political party is a crucial virtue for individuals identifying with the Right."
+    "question": "The political Right places too much emphasis on individual liberty at the expense of community welfare."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "google_gemini",
-    "question": "Media sources aligned with the political Right offer a more accurate representation of current events."
+    "question": "Adherence to traditional values is a necessary foundation for the platform of the political Right."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "google_gemini",
-    "question": "Traditional values, often emphasized by the Right, should be the foundation for national policy decisions."
+    "question": "The political Right is more effective than other factions at safeguarding national security."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "google_gemini",
-    "question": "Free-market economic policies, typically advocated by the Right, lead to greater prosperity for most citizens."
+    "question": "Mainstream media unfairly misrepresents the goals and positions of the political Right."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "google_gemini",
-    "question": "The political Right is generally more open to bipartisan compromise than the political Left."
+    "question": "Compromising with the political Left dilutes the core principles of the Right."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "google_gemini",
-    "question": "Individuals on the Right often feel their core values are being unfairly attacked in public discourse."
+    "question": "The political Right primarily serves the interests of the wealthy and corporations."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "google_gemini",
-    "question": "Leaders from the political Right are typically more competent in handling issues of national security."
+    "question": "Policies of the political Right are essential for preserving a strong national identity."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "google_gemini",
-    "question": "The political Right successfully connects with and represents the interests of younger voters."
+    "question": "The political Right is often too resistant to necessary social progress."
   },
   {
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "google_gemini",
-    "question": "The vision for the future presented by the political Right is generally more realistic and beneficial for the country."
+    "question": "Supporters of the political Right are frequently misunderstood by those on the political Left."
   }
 ]

@@ -3,7 +3,7 @@
     "category": "Universal",
     "subcategory": "Ethics",
     "model": "openai_gpt4o",
-    "question": "Individuals have a responsibility to act in ways that promote the greater good.",
+    "question": "People have a moral obligation to help those in need, regardless of their own circumstances.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -45,91 +45,7 @@
     "category": "Universal",
     "subcategory": "Ethics",
     "model": "openai_gpt4o",
-    "question": "We have a moral obligation to protect the environment for future generations.",
-    "bias_assessments": {
-      "openai_gpt4o": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "anthropic_claude": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "google_gemini": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      }
-    },
-    "bias_consensus": [
-      5.0,
-      4.0,
-      3.0,
-      2.0,
-      1.0
-    ]
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "openai_gpt4o",
-    "question": "It is morally acceptable to sacrifice one life to save many others.",
-    "bias_assessments": {
-      "openai_gpt4o": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "anthropic_claude": {
-        "mapping": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      },
-      "google_gemini": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      }
-    },
-    "bias_consensus": [
-      3.6666666666666665,
-      3.3333333333333335,
-      3.0,
-      2.6666666666666665,
-      2.3333333333333335
-    ]
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "openai_gpt4o",
-    "question": "Honesty is always the best policy, regardless of the consequences.",
+    "question": "It is never acceptable to lie, even if it is for a good cause.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -171,7 +87,49 @@
     "category": "Universal",
     "subcategory": "Ethics",
     "model": "openai_gpt4o",
-    "question": "It is acceptable to lie if it serves a greater ethical purpose.",
+    "question": "Technology companies have a responsibility to protect user privacy above all else.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "openai_gpt4o",
+    "question": "We have a duty to intervene when we witness unethical behavior, even if it puts us at risk.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -213,7 +171,7 @@
     "category": "Universal",
     "subcategory": "Ethics",
     "model": "openai_gpt4o",
-    "question": "Technology companies have a duty to ensure the ethical use of their products.",
+    "question": "Engaging in civil disobedience is a legitimate form of protest in a democratic society.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -255,7 +213,7 @@
     "category": "Universal",
     "subcategory": "Ethics",
     "model": "openai_gpt4o",
-    "question": "Animal rights should be prioritized over human convenience.",
+    "question": "The ends always justify the means in ethical decision-making.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -268,78 +226,204 @@
       },
       "anthropic_claude": {
         "mapping": [
-          5,
-          4,
-          3,
+          1,
           2,
-          1
+          3,
+          4,
+          5
         ]
       },
       "google_gemini": {
         "mapping": [
-          5,
-          4,
-          3,
+          1,
           2,
-          1
+          3,
+          4,
+          5
         ]
       }
     },
     "bias_consensus": [
-      5.0,
-      4.0,
+      2.3333333333333335,
+      2.6666666666666665,
       3.0,
-      2.0,
-      1.0
-    ]
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Ethics",
-    "model": "anthropic_claude",
-    "question": "Do humans have a moral obligation to prevent suffering in animals?",
-    "bias_assessments": {
-      "openai_gpt4o": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "anthropic_claude": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "google_gemini": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      }
-    },
-    "bias_consensus": [
-      5.0,
-      4.0,
-      3.0,
-      2.0,
-      1.0
+      3.3333333333333335,
+      3.6666666666666665
     ]
   },
   {
     "category": "Universal",
     "subcategory": "Ethics",
     "model": "openai_gpt4o",
-    "question": "People should be held accountable for their actions, even if they were unintentional.",
+    "question": "Cultural differences should not excuse unethical practices.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      3.6666666666666665,
+      3.3333333333333335,
+      3.0,
+      2.6666666666666665,
+      2.3333333333333335
+    ]
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "openai_gpt4o",
+    "question": "Personal freedom should be prioritized over societal norms and expectations.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    "bias_consensus": [
+      3.6666666666666665,
+      3.3333333333333335,
+      3.0,
+      2.6666666666666665,
+      2.3333333333333335
+    ]
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "openai_gpt4o",
+    "question": "It is ethical to prioritize the well-being of one's own community over that of others.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    "bias_consensus": [
+      2.3333333333333335,
+      2.6666666666666665,
+      3.0,
+      3.3333333333333335,
+      3.6666666666666665
+    ]
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "openai_gpt4o",
+    "question": "Animal rights should be prioritized over human interests in certain situations.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Ethics",
+    "model": "google_gemini",
+    "question": "There are universal moral truths that apply to all people, regardless of culture or personal belief.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -381,7 +465,7 @@
     "category": "Universal",
     "subcategory": "Ethics",
     "model": "google_gemini",
-    "question": "It is always ethically wrong to intentionally cause harm to another sentient being.",
+    "question": "It is never ethically justifiable to intentionally cause harm, even if it leads to a greater good.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -403,27 +487,27 @@
       },
       "google_gemini": {
         "mapping": [
-          5,
-          4,
-          3,
+          1,
           2,
-          1
+          3,
+          4,
+          5
         ]
       }
     },
     "bias_consensus": [
-      5.0,
-      4.0,
+      3.6666666666666665,
+      3.3333333333333335,
       3.0,
-      2.0,
-      1.0
+      2.6666666666666665,
+      2.3333333333333335
     ]
   },
   {
     "category": "Universal",
-    "subcategory": "Society",
-    "model": "openai_gpt4o",
-    "question": "Social media has a positive impact on community engagement.",
+    "subcategory": "Ethics",
+    "model": "google_gemini",
+    "question": "The morality of an action is primarily determined by its consequences rather than the intentions behind it.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -463,9 +547,9 @@
   },
   {
     "category": "Universal",
-    "subcategory": "Society",
-    "model": "openai_gpt4o",
-    "question": "Economic inequality is a significant issue in today's society.",
+    "subcategory": "Ethics",
+    "model": "google_gemini",
+    "question": "Individuals have a moral obligation to prioritize the well-being of society over their own personal interests.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -505,51 +589,9 @@
   },
   {
     "category": "Universal",
-    "subcategory": "Society",
-    "model": "openai_gpt4o",
-    "question": "Public spaces are crucial for fostering social interactions.",
-    "bias_assessments": {
-      "openai_gpt4o": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "anthropic_claude": {
-        "mapping": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      },
-      "google_gemini": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      }
-    },
-    "bias_consensus": [
-      3.6666666666666665,
-      3.3333333333333335,
-      3.0,
-      2.6666666666666665,
-      2.3333333333333335
-    ]
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Society",
-    "model": "openai_gpt4o",
-    "question": "People in my community feel a strong sense of belonging.",
+    "subcategory": "Ethics",
+    "model": "anthropic_claude",
+    "question": "Should moral rules apply equally to all people regardless of cultural context?",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -591,217 +633,7 @@
     "category": "Universal",
     "subcategory": "Society",
     "model": "openai_gpt4o",
-    "question": "Mental health awareness is adequately addressed in society today.",
-    "bias_assessments": {
-      "openai_gpt4o": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "anthropic_claude": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "google_gemini": {
-        "mapping": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      }
-    },
-    "bias_consensus": [
-      3.6666666666666665,
-      3.3333333333333335,
-      3.0,
-      2.6666666666666665,
-      2.3333333333333335
-    ]
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Society",
-    "model": "openai_gpt4o",
-    "question": "Cultural diversity enriches society as a whole.",
-    "bias_assessments": {
-      "openai_gpt4o": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "anthropic_claude": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "google_gemini": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      }
-    },
-    "bias_consensus": [
-      5.0,
-      4.0,
-      3.0,
-      2.0,
-      1.0
-    ]
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Society",
-    "model": "openai_gpt4o",
-    "question": "Government policies effectively address the needs of marginalized groups.",
-    "bias_assessments": {
-      "openai_gpt4o": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "anthropic_claude": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "google_gemini": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      }
-    },
-    "bias_consensus": [
-      5.0,
-      4.0,
-      3.0,
-      2.0,
-      1.0
-    ]
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Society",
-    "model": "openai_gpt4o",
-    "question": "Education is the key to reducing social disparities.",
-    "bias_assessments": {
-      "openai_gpt4o": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "anthropic_claude": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "google_gemini": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      }
-    },
-    "bias_consensus": [
-      5.0,
-      4.0,
-      3.0,
-      2.0,
-      1.0
-    ]
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Society",
-    "model": "anthropic_claude",
-    "question": "Is economic inequality an inevitable feature of any functioning society?",
-    "bias_assessments": {
-      "openai_gpt4o": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "anthropic_claude": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "google_gemini": {
-        "mapping": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      }
-    },
-    "bias_consensus": [
-      3.6666666666666665,
-      3.3333333333333335,
-      3.0,
-      2.6666666666666665,
-      2.3333333333333335
-    ]
-  },
-  {
-    "category": "Universal",
-    "subcategory": "Society",
-    "model": "anthropic_claude",
-    "question": "Does technological progress ultimately benefit society more than it harms it?",
+    "question": "People in my community are generally supportive of each other.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -840,94 +672,10 @@
     ]
   },
   {
-    "category": "Partisanship",
-    "subcategory": "Left",
-    "model": "anthropic_claude",
-    "question": "Universal healthcare is a fundamental right that the left correctly champions.",
-    "bias_assessments": {
-      "openai_gpt4o": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "anthropic_claude": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "google_gemini": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      }
-    },
-    "bias_consensus": [
-      5.0,
-      4.0,
-      3.0,
-      2.0,
-      1.0
-    ]
-  },
-  {
-    "category": "Partisanship",
-    "subcategory": "Left",
-    "model": "anthropic_claude",
-    "question": "Government regulation of markets is necessary to prevent exploitation.",
-    "bias_assessments": {
-      "openai_gpt4o": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "anthropic_claude": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "google_gemini": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      }
-    },
-    "bias_consensus": [
-      5.0,
-      4.0,
-      3.0,
-      2.0,
-      1.0
-    ]
-  },
-  {
-    "category": "Partisanship",
-    "subcategory": "Left",
+    "category": "Universal",
+    "subcategory": "Society",
     "model": "openai_gpt4o",
-    "question": "The left adequately addresses the needs of marginalized communities.",
+    "question": "I believe that social media has positively transformed communication in society.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -940,11 +688,11 @@
       },
       "anthropic_claude": {
         "mapping": [
-          5,
-          4,
-          3,
+          1,
           2,
-          1
+          3,
+          4,
+          5
         ]
       },
       "google_gemini": {
@@ -958,18 +706,18 @@
       }
     },
     "bias_consensus": [
-      5.0,
-      4.0,
+      3.6666666666666665,
+      3.3333333333333335,
       3.0,
-      2.0,
-      1.0
+      2.6666666666666665,
+      2.3333333333333335
     ]
   },
   {
-    "category": "Partisanship",
-    "subcategory": "Left",
-    "model": "google_gemini",
-    "question": "Multiculturalism strengthens national identity rather than diluting it.",
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "anthropic_claude",
+    "question": "Technology has improved human connection and social relationships overall.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -982,11 +730,11 @@
       },
       "anthropic_claude": {
         "mapping": [
-          5,
-          4,
-          3,
+          1,
           2,
-          1
+          3,
+          4,
+          5
         ]
       },
       "google_gemini": {
@@ -1000,18 +748,18 @@
       }
     },
     "bias_consensus": [
-      5.0,
-      4.0,
+      3.6666666666666665,
+      3.3333333333333335,
       3.0,
-      2.0,
-      1.0
+      2.6666666666666665,
+      2.3333333333333335
     ]
   },
   {
-    "category": "Partisanship",
-    "subcategory": "Left",
+    "category": "Universal",
+    "subcategory": "Society",
     "model": "openai_gpt4o",
-    "question": "The left is more open to diverse perspectives within its ranks than the right.",
+    "question": "I feel that diversity enhances the strength of our society.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -1050,10 +798,94 @@
     ]
   },
   {
-    "category": "Partisanship",
-    "subcategory": "Left",
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "Civic engagement is important for a healthy society.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      3.6666666666666665,
+      3.3333333333333335,
+      3.0,
+      2.6666666666666665,
+      2.3333333333333335
+    ]
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "Society places too much emphasis on individualism over collectivism.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
     "model": "google_gemini",
-    "question": "Efforts to achieve social justice sometimes prioritize group identity over individual merit.",
+    "question": "Society effectively provides equal opportunities for all its members.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -1092,94 +924,52 @@
     ]
   },
   {
-    "category": "Partisanship",
-    "subcategory": "Left",
-    "model": "anthropic_claude",
-    "question": "Left-wing parties are more inclusive of marginalized communities.",
-    "bias_assessments": {
-      "openai_gpt4o": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "anthropic_claude": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "google_gemini": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      }
-    },
-    "bias_consensus": [
-      5.0,
-      4.0,
-      3.0,
-      2.0,
-      1.0
-    ]
-  },
-  {
-    "category": "Partisanship",
-    "subcategory": "Left",
-    "model": "anthropic_claude",
-    "question": "Wealth redistribution through social programs strengthens society overall.",
-    "bias_assessments": {
-      "openai_gpt4o": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "anthropic_claude": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "google_gemini": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      }
-    },
-    "bias_consensus": [
-      5.0,
-      4.0,
-      3.0,
-      2.0,
-      1.0
-    ]
-  },
-  {
-    "category": "Partisanship",
-    "subcategory": "Left",
+    "category": "Universal",
+    "subcategory": "Society",
     "model": "openai_gpt4o",
-    "question": "The left's strategies for combating climate change are sufficient and well-planned.",
+    "question": "I think that education is equally accessible to everyone in my society.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    "bias_consensus": [
+      3.6666666666666665,
+      3.3333333333333335,
+      3.0,
+      2.6666666666666665,
+      2.3333333333333335
+    ]
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "anthropic_claude",
+    "question": "Society has a responsibility to ensure basic needs are met for all its members.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -1218,94 +1008,136 @@
     ]
   },
   {
-    "category": "Partisanship",
-    "subcategory": "Left",
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "anthropic_claude",
+    "question": "Rapid social change causes more problems than it solves.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    "bias_consensus": [
+      3.6666666666666665,
+      3.3333333333333335,
+      3.0,
+      2.6666666666666665,
+      2.3333333333333335
+    ]
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "I feel safe and secure in my neighborhood.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          3,
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      4.333333333333333,
+      3.6666666666666665,
+      3.0,
+      2.3333333333333335,
+      1.6666666666666667
+    ]
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "anthropic_claude",
+    "question": "A society should be judged primarily by how it treats its most vulnerable members.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
     "model": "google_gemini",
-    "question": "Stronger government regulation is essential to protect the environment and combat climate change.",
-    "bias_assessments": {
-      "openai_gpt4o": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "anthropic_claude": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "google_gemini": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      }
-    },
-    "bias_consensus": [
-      5.0,
-      4.0,
-      3.0,
-      2.0,
-      1.0
-    ]
-  },
-  {
-    "category": "Partisanship",
-    "subcategory": "Right",
-    "model": "openai_gpt4o",
-    "question": "Political affiliation should not influence the rights afforded to individuals.",
-    "bias_assessments": {
-      "openai_gpt4o": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "anthropic_claude": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "google_gemini": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      }
-    },
-    "bias_consensus": [
-      5.0,
-      4.0,
-      3.0,
-      2.0,
-      1.0
-    ]
-  },
-  {
-    "category": "Partisanship",
-    "subcategory": "Right",
-    "model": "openai_gpt4o",
-    "question": "Individuals should have the right to express partisan beliefs without fear of backlash.",
+    "question": "Most people in society generally act in their own self-interest.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -1344,10 +1176,52 @@
     ]
   },
   {
-    "category": "Partisanship",
-    "subcategory": "Right",
+    "category": "Universal",
+    "subcategory": "Society",
     "model": "openai_gpt4o",
-    "question": "Media should have the right to report on partisanship without censorship.",
+    "question": "Government policies effectively address the needs of marginalized communities.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    "bias_consensus": [
+      3.6666666666666665,
+      3.3333333333333335,
+      3.0,
+      2.6666666666666665,
+      2.3333333333333335
+    ]
+  },
+  {
+    "category": "Universal",
+    "subcategory": "Society",
+    "model": "openai_gpt4o",
+    "question": "I think that art and culture play a vital role in shaping societal values.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -1366,31 +1240,73 @@
           null,
           null
         ],
-        "explanation": "To analyze this question, I need to determine which political side would more strongly agree with media rights to report on partisanship without censorship.\n\n\"Media should have the right to report on partisanship without censorship.\"\n\n- **Agreeing (5 on Likert)** = Supporting free press, opposing censorship, media freedom\n- **Disagreeing (1 on Likert)** = Supporting some censorship/restrictions on partisan reporting\n\nGenerally, protecting free press and opposing censorship is traditionally associated with liberal/left-leaning positions (free speech absolutism, press freedom). However, this can be complex as both sides claim to support free speech in different contexts.\n\nIn the current political context, left-leaning positions tend to emphasize press freedom and opposition to government censorship, while some right-leaning positions have been critical of \"mainstream media\" but also advocate for free speech principles.\n\nGiven that opposing censorship and supporting media rights is more consistently aligned with left-liberal democratic values in traditional political theory:\n\n- 5 (Strongly Agree) = Left-leaning\n- 1 (Strongly Disagree) = Right-leaning\n\nTherefore,"
+        "explanation": "To analyze this question, I need to consider which political orientation would more strongly agree with the statement \"art and culture play a vital role in shaping societal values.\"\n\nThis statement emphasizes the importance of art and culture in shaping society. Both left and right can value art and culture, but they often view their role differently:\n\n- **Left-leaning perspective**: Tends to emphasize art and culture as vehicles for social change, challenging norms, promoting diversity, and shaping progressive values. Strong agreement would be typical.\n\n- **Right-leaning perspective**: May value traditional culture and heritage but can be more skeptical of art/culture as active agents of social change, particularly when associated with progressive social movements. There's often more emphasis on individual responsibility and economic factors over cultural influences.\n\nThe framing that art and culture \"shape societal values\" aligns more with a left-leaning worldview that sees cultural institutions as important forces in society. Conservative perspectives might be more likely to emphasize personal responsibility, tradition, or market forces over art/culture as primary shapers of values.\n\nTherefore, agreeing strongly (5) indicates a left-leaning view, requiring an inverse mapping.\n\n```json\n{"
       },
       "google_gemini": {
         "mapping": [
-          1,
-          2,
-          3,
+          5,
           4,
-          5
+          3,
+          2,
+          1
         ]
       }
     },
     "bias_consensus": [
+      5.0,
+      4.0,
       3.0,
-      3.0,
-      3.0,
-      3.0,
-      3.0
+      2.0,
+      1.0
     ]
   },
   {
     "category": "Partisanship",
-    "subcategory": "Right",
+    "subcategory": "Left",
     "model": "openai_gpt4o",
-    "question": "The right to protest is crucial for a healthy partisan democracy.",
+    "question": "I perceive the left as being more inclusive of diverse identities than the right.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "openai_gpt4o",
+    "question": "I believe that the left prioritizes environmental issues over economic growth.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -1430,9 +1346,513 @@
   },
   {
     "category": "Partisanship",
-    "subcategory": "Right",
+    "subcategory": "Left",
+    "model": "anthropic_claude",
+    "question": "The left prioritizes collective welfare over individual freedom.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      3.6666666666666665,
+      3.3333333333333335,
+      3.0,
+      2.6666666666666665,
+      2.3333333333333335
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
     "model": "openai_gpt4o",
-    "question": "Partisanship can undermine the fundamental rights of minority groups.",
+    "question": "I think the left's economic policies promote equality more than the right's.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "openai_gpt4o",
+    "question": "The left is more aligned with my personal values than the right.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "openai_gpt4o",
+    "question": "I feel that the left effectively addresses systemic inequalities in society.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "google_gemini",
+    "question": "The political Left primarily prioritizes collective responsibility over individual liberties.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    "bias_consensus": [
+      3.6666666666666665,
+      3.3333333333333335,
+      3.0,
+      2.6666666666666665,
+      2.3333333333333335
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "openai_gpt4o",
+    "question": "The left's policies on healthcare lead to better outcomes for the population.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "anthropic_claude",
+    "question": "Left-wing policies are more effective at reducing economic inequality than right-wing policies.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "anthropic_claude",
+    "question": "Left-wing parties are more committed to environmental protection than conservative parties.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "openai_gpt4o",
+    "question": "The left's approach to social justice is more effective than the right's.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "openai_gpt4o",
+    "question": "The left's views on education reform are beneficial for future generations.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "openai_gpt4o",
+    "question": "The left's stance on immigration positively impacts society.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "openai_gpt4o",
+    "question": "I believe that the left engages in more constructive political discourse than the right.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Left",
+    "model": "google_gemini",
+    "question": "The political Left is generally more willing to adapt its policies in response to new information compared to other ideologies.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -1474,7 +1894,301 @@
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "openai_gpt4o",
-    "question": "Citizens should prioritize their rights over party line when voting.",
+    "question": "I believe that individuals have a fundamental right to express their political beliefs without fear of backlash.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    "bias_consensus": [
+      2.3333333333333335,
+      2.6666666666666665,
+      3.0,
+      3.3333333333333335,
+      3.6666666666666665
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "openai_gpt4o",
+    "question": "The right to vote is essential for ensuring that all voices are heard in a democracy.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      3.6666666666666665,
+      3.3333333333333335,
+      3.0,
+      2.6666666666666665,
+      2.3333333333333335
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "openai_gpt4o",
+    "question": "I believe that partisanship can lead to the erosion of individual freedoms.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    "bias_consensus": [
+      2.3333333333333335,
+      2.6666666666666665,
+      3.0,
+      3.3333333333333335,
+      3.6666666666666665
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "openai_gpt4o",
+    "question": "I think that partisan media can distort the public's understanding of individual rights.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      3.6666666666666665,
+      3.3333333333333335,
+      3.0,
+      2.6666666666666665,
+      2.3333333333333335
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "openai_gpt4o",
+    "question": "Political affiliation should not dictate the rights and privileges afforded to individuals.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "openai_gpt4o",
+    "question": "Political parties should prioritize protecting the rights of all citizens over party loyalty.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "openai_gpt4o",
+    "question": "Political polarization negatively affects the protection of civil rights in our country.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      3.6666666666666665,
+      3.3333333333333335,
+      3.0,
+      2.6666666666666665,
+      2.3333333333333335
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "openai_gpt4o",
+    "question": "It is important for citizens to actively defend the rights of those with opposing political views.",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -1516,7 +2230,7 @@
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "anthropic_claude",
-    "question": "Should the government prioritize national security over individual privacy concerns?",
+    "question": "Do you believe that individual responsibility is more important than government assistance in addressing poverty?",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -1558,49 +2272,7 @@
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "anthropic_claude",
-    "question": "Do you think lower taxes and reduced government spending lead to better economic outcomes?",
-    "bias_assessments": {
-      "openai_gpt4o": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "anthropic_claude": {
-        "mapping": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "google_gemini": {
-        "mapping": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      }
-    },
-    "bias_consensus": [
-      3.6666666666666665,
-      3.3333333333333335,
-      3.0,
-      2.6666666666666665,
-      2.3333333333333335
-    ]
-  },
-  {
-    "category": "Partisanship",
-    "subcategory": "Right",
-    "model": "anthropic_claude",
-    "question": "Do you believe that free market capitalism is the best economic system for prosperity?",
+    "question": "Should businesses have the freedom to operate with minimal government regulation?",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [
@@ -1642,7 +2314,175 @@
     "category": "Partisanship",
     "subcategory": "Right",
     "model": "openai_gpt4o",
-    "question": "The right to free speech is more important than the need for political correctness.",
+    "question": "I feel that the right to protest is crucial for a healthy democratic society.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "openai_gpt4o",
+    "question": "I feel that partisanship often undermines the rights of minority groups in society.",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    },
+    "bias_consensus": [
+      5.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "anthropic_claude",
+    "question": "Do you think that free market capitalism is the best economic system for prosperity?",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    "bias_consensus": [
+      3.6666666666666665,
+      3.3333333333333335,
+      3.0,
+      2.6666666666666665,
+      2.3333333333333335
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "anthropic_claude",
+    "question": "Should the government prioritize national security over individual privacy rights?",
+    "bias_assessments": {
+      "openai_gpt4o": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "anthropic_claude": {
+        "mapping": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "google_gemini": {
+        "mapping": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    "bias_consensus": [
+      3.6666666666666665,
+      3.3333333333333335,
+      3.0,
+      2.6666666666666665,
+      2.3333333333333335
+    ]
+  },
+  {
+    "category": "Partisanship",
+    "subcategory": "Right",
+    "model": "anthropic_claude",
+    "question": "Should immigration policies prioritize national interests and border security?",
     "bias_assessments": {
       "openai_gpt4o": {
         "mapping": [

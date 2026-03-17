@@ -126,7 +126,7 @@ def compute_mean_ranks(questions, rankings):
     mean_ranks = [statistics.mean(scores) if scores else float("inf") for scores in rank_scores]
     return mean_ranks
 
-def rank_all_questions(all_questions, top_n=10):
+def rank_all_questions(all_questions, top_n=15):
     grouped = defaultdict(list)
     for q in all_questions:
         grouped[(q["category"], q["subcategory"])].append(q)
@@ -159,6 +159,6 @@ def rank_all_questions(all_questions, top_n=10):
 
 if __name__ == "__main__":
     questions = load_questions()
-    final_questions = rank_all_questions(questions, top_n=10)
+    final_questions = rank_all_questions(questions, top_n=15)
     save_final_questions(final_questions)
     print(f"\nSaved final ranked questions → {OUTPUT_FILE}")
