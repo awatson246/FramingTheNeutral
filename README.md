@@ -1,56 +1,105 @@
 # Framing the Neutral
 
-**Investigating Political Norms in Apolitical Prompts to Large Language Models (LLMs)**
+**How Large Language Models Encode and Express Political Legitimacy**
 
-This repository contains code, datasets, and analysis scripts for our study examining how large language models may introduce political frames when responding to ostensibly neutral prompts. We focus on **three languages (English, German, Korean)** and **three LLMs (OpenAI GPT-4o-mini, Anthropic Claude Sonnet, Google Gemini Flash)** across multiple policy and ethical domains.
+This repository contains prompts, data collection scripts, coding tools, and analysis scripts for a structured comparative study examining whether LLMs systematically encode particular conceptions of political and legal legitimacy when reasoning about governance — and whether those conceptions differ across models in politically meaningful ways.
 
----
-
-## **Project Overview**
-
-LLMs are increasingly deployed in social, policy, and knowledge domains. Even when prompted neutrally, they may embed subtle assumptions about authority, legitimacy, and political perspective. This study aims to:
-
-1. **Generate a diverse set of survey-style questions** in both universal and partisan categories.
-2. **Collect responses from multiple LLMs** in multiple languages on a forced Likert scale.
-3. **Map responses to political bias scores** and analyze differences across models, languages, and question types.
-4. Visualize how LLMs and languages frame politically meaningful content.
+> **v1 of this study** (Purdue Cyberinfrastructure Symposium 2025 poster) is archived in the main branch.
 
 ---
 
-## **Repository Structure**
+## Project Overview
+
+LLMs are increasingly deployed in governance contexts: drafting policy documents, summarizing legal options, and supporting administrative decisions. These deployments treat LLMs as epistemically neutral tools. This study challenges that assumption empirically.
+
+We examine how five leading LLMs define, apply, and evaluate three foundational conditions of democratic governance — **legal certainty**, **accountability**, and **enforceability** — under two conditions (baseline and CEO role assignment). We test for:
+
+1. **Epistemic legitimacy bias** — systematic variation in how models frame assumptions about authority, responsibility, and binding governance
+2. **Procedural mimicry** — whether definitional competence holds under scenario-based pressure
+3. **Role-induced framing shifts** — whether CEO role assignment shifts models toward market-centered or self-regulatory framings
+4. **Normative self-positioning asymmetry** — whether models evaluate peer reasoning less favorably when it diverges from their own default framings
+
+---
+
+## Models
+
+| Model | Origin | Regulatory Context |
+|---|---|---|
+| GPT-4o | OpenAI | U.S. commercial |
+| Claude Sonnet | Anthropic | U.S. commercial (safety-focused) |
+| DeepSeek-V3 | DeepSeek | China, state-adjacent |
+| Mistral Large | Mistral AI | EU-proximate |
+| Gemini 1.5 Pro | Google | U.S. platform / public sector deployment |
+
+Model origin is theoretically motivated: if the institutional embeddedness argument holds, origin should predict systematic framing differences — not random variation.
+
+---
+
+## Repository Structure
 
 ```
 FramingTheNeutral/
+├─ v1/                               # Archived original study (Purdue poster)
 ├─ data/
-│  ├─ raw/
-│  │  └─ generated_questions.json          # Initial question pool
-│  ├─ processed/
-│  │  ├─ final_question_set.json           # Selected questions per subcategory
-│  │  ├─ final_question_set_with_bias.json # Question-specific bias mappings
-│  │  └─ final_question_set_translated.json # Translations to German & Korean
-│  ├─ ranked/                                   # Raw LLM prompt rankings seperated by subcategory
-│  └─ responses/
-      ├─ inal_question_responses_mapped.json # LLM responses mapped to political bias
-│     └─ final_question_responses.json     # LLM responses to final questions
+│  ├─ prompts/
+│  │  ├─ instruments.json            # All 4 instruments, both conditions, coding dimensions
+│  │  └─ peer_eval_pairs.json        # Peer evaluation pairings with theoretical rationale
+│  ├─ raw/                           # Raw API responses
+│  │  └─ {model}_{condition}_{run}.json
+│  └─ processed/
+│     ├─ coded_responses.json        # Qualitative coding output (human + LLM passes)
+│     └─ ratings.json                # Instrument 3 + 4 numeric scores
 ├─ scripts/
-│  ├─ collect_llm_responses.py                 # Query LLMs for responses to final questions
-│  ├─ evaluate_question_bias.py                 # Query LLMs for prompt bias and normalize
-│  ├─ generate_questions.py                # Question generation from multiple LLMs
-│  ├─ map_llm_responses.py                   # Convert responses to political bias scores
-│  ├─ plot_response_results.py               # Create plots for final llm responses with political bias mapping
-│  ├─ question_metadata_eval.py                   # Create plots to show selected prompt metadata
-│  ├─ rank_questions.py                    # LLM-based ranking and selection of questions
-│  └─ translate_prompts.py               # Translate final question set to other languages
+│  ├─ collect_responses.py           # Query all models across instruments and conditions
+│  ├─ code_responses.py              # Apply coding dimensions (LLM-assisted pass)
+│  ├─ peer_eval.py                   # Run Instrument 4 peer evaluation
+│  ├─ analyze_variance.py            # Within-model and cross-model variance analysis
+│  └─ plot_results.py                # Visualizations
 ├─ results/
-│  ├─ llm_responses/                       # Plots and graphs for final output
-│  └─ question_metadata_eval/               # Plots for prompt selection metadata
-├─ .env                                   # API keys for OpenAI, Anthropic, Google Gemini
+│  ├─ qualitative/                   # Coded framing outputs
+│  └─  quantitative/                 # Numeric rating comparisons, asymmetry scores
+├─ codebook.md                       # Coding scheme, dimension definitions, decision rules
+├─ .env                              # API keys (not committed)
 └─ README.md
 ```
 
 ---
 
-## **Installation**
+## Study Design
+
+### Instruments
+
+| Instrument | Type | Purpose |
+|---|---|---|
+| 1 — Conceptual Anchoring | Open-ended definitions | Baseline framing of legal certainty, accountability, enforceability |
+| 2 — Scenario-Based Prompting | Open-ended responses to governance scenarios | Tests whether definitional framings hold under pressure (procedural mimicry hypothesis) |
+| 3 — Real-World Decision Scale | Numeric ratings (1–10) on 6 governance scenarios | Quantitative comparison across models, conditions, domains |
+| 4 — Peer Evaluation | Numeric ratings of peer model responses | Tests normative self-positioning asymmetry |
+
+### Conditions
+
+- **Baseline**: neutral policy working group framing
+- **CEO**: role assigned as CEO of a major AI company
+
+All prompts are administered **3 runs per condition** to assess within-model variance. Full prompt text and system prompts for both conditions are in `data/prompts/instruments.json`.
+
+### Coding
+
+Qualitative responses (Instruments 1 & 2) are coded on the following dimensions:
+
+- **Definitional scope** — narrow/procedural vs. broad/substantive
+- **Institutional reference** — state-centered / rights-centered / market-centered / technocratic
+- **Epistemic confidence** — assertive vs. hedged
+- **Democratic preconditions** — present / partial / absent
+- **Responsibility attribution** *(Instrument 2)* — concentrated / diffuse / absent
+- **Legal mechanism reference** *(Instrument 2)* — specific / general / absent
+- **Tripod alignment** *(Instrument 2)* — which legitimacy dimensions are addressed
+
+Coding uses **both a human pass and an LLM-assisted pass** for inter-rater reliability. Full decision rules are in `codebook.md`.
+
+---
+
+## Installation
 
 1. Clone the repository:
 
@@ -70,82 +119,66 @@ pip install -r requirements.txt
 ```
 OPENAI_API_KEY=your_openai_key
 ANTHROPIC_API_KEY=your_anthropic_key
-GOOGLE_API_KEY=your_google_gemini_key
+DEEPSEEK_API_KEY=your_deepseek_key
+MISTRAL_API_KEY=your_mistral_key
+GOOGLE_API_KEY=your_google_key
 ```
 
 ---
 
-## **Usage**
+## Usage
 
-### 1. Generate questions
-
-```bash
-python scripts/generate_questions.py
-```
-
-* Queries multiple LLMs to produce initial question sets for Universal and Partisan categories.
-* Outputs raw JSON in `data/raw/generated_questions.json`.
-
-### 2. Rank and select final questions and generate prompt bias
+### 1. Collect responses
 
 ```bash
-python scripts/rank_questions.py
-python scripts/evaluate_question_bias.py
+python scripts/collect_responses.py
 ```
 
-* Uses LLM rankings to select top `n` questions per subcategory.
-* Stores final question set in `data/processed/final_question_set.json`.
-* Stores bias rankings in `data/processed/dinal_question_set_with_bias.json`.
+Queries all five models across all instruments and both conditions, 3 runs each. Outputs one JSON file per model/condition/run to `data/raw/`. Supports checkpointing — safe to re-run if interrupted.
 
-### 3. Translate questions
+### 2. Run LLM-assisted coding pass
 
 ```bash
-python scripts/translate_questions.py
+python scripts/code_responses.py
 ```
 
-* Translates final questions into German and Korean.
-* Saves `data/processed/final_question_set_translated.json`.
+Applies coding dimensions to Instrument 1 and 2 responses using an LLM coder. Output saved to `data/processed/coded_responses.json`. Human coding pass applied separately; inter-rater reliability computed in `analyze_variance.py`.
 
-### 4. Collect LLM responses
+### 3. Run peer evaluations
 
 ```bash
-python scripts/collect_llm_responses.py
+python scripts/peer_eval.py
 ```
 
-* Queries each LLM for responses to all questions in each language.
-* Outputs `data/responses/final_question_responses.json`.
+Feeds selected Instrument 1 and 2 responses to institutionally contrasting models per `peer_eval_pairs.json`. Outputs ratings to `data/processed/ratings.json`.
 
-### 5. Map responses to political bias
+### 4. Analyze variance and asymmetry
 
 ```bash
-python scripts/map_llm_responses.py
+python scripts/analyze_variance.py
 ```
 
-* Converts Likert responses to a **political bias scale** (1 = Left, 5 = Right) based on pre-defined mapping.
-* Generates JSON suitable for analysis and plotting.
-* Outputs `data/final_question_responses_mapped.json`.
+Computes within-model variance across runs, cross-model framing differences, condition-induced shifts (baseline vs. CEO), and peer evaluation asymmetry scores.
+
+### 5. Plot results
+
+```bash
+python scripts/plot_results.py
+```
+
+Generates visualizations across models, conditions, instruments, and tripod dimensions. Outputs to `results/`.
 
 ---
 
-## **Analysis & Visualization**
+## Notes
 
-* Graphs compare LLM responses **across models, languages, and subcategories**.
-* Plots indicate systematic biases, cross-language effects, and consensus across models.
-* Example graph: **Grouped bar chart with model color and language hatch** for easy interpretation.
-![Bias Output](results/llm_responses/llm_bias_plot_grouped.png)
-
-
----
-
-## **Citation / Poster**
-
-This repository supports the poster **"Framing the Neutral: Political Norms in Apolitical Prompts to Large Language Models"**, presented as part of Cyberinfrastructure Symposium 2025, Purdue University.
+- API costs vary significantly by model — DeepSeek is substantially cheaper per token than GPT-4o or Claude. Budget accordingly before running full collection.
+- `collect_responses.py` includes checkpointing; partial runs are recoverable from `data/raw/`.
+- Scripts are designed for research purposes; not optimized for production deployment.
+- No user data is included in this repository.
 
 ---
 
-## **Notes**
+## Citation
 
-* Ensure API keys are valid and usage limits are considered — some LLM calls may incur costs.
-* Scripts are designed for **research purposes**; not optimized for production LLM deployments.
-* Data privacy and ethical considerations have been taken into account; no user data is included.
-
+> Citation forthcoming. Paper under review.
