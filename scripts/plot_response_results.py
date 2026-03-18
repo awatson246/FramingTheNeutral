@@ -46,7 +46,9 @@ load_dotenv()
 RAW_DIR     = Path("data/raw")
 RESULTS_DIR = Path("results")
 
-ACTIVE_INSTRUMENTS = ["instrument_1", "instrument_2", "instrument_3"]
+ACTIVE_INSTRUMENTS = ["instrument_1", "instrument_2", "instrument_3", "instrument_4"]
+
+PEER_EVAL_FILE = Path("data/prompts/peer_eval_pairs.json")
 
 CONDITIONS       = ["baseline", "ceo"]
 CONDITION_LABELS = {"baseline": "Baseline", "ceo": "CEO Role"}
@@ -82,6 +84,23 @@ I3_DIMENSIONS = {
     "legal_certainty": "Legal Certainty",
     "accountability":  "Accountability",
     "enforceability":  "Enforceability",
+}
+
+# Instrument 4 — peer eval dimensions
+I4_DIMENSIONS = {
+    "legal_certainty_adequacy":  "Legal Certainty Adequacy",
+    "accountability_mechanisms": "Accountability Mechanisms",
+    "enforcement_conditions":    "Enforcement Conditions",
+}
+
+# I4 question labels for display
+I4_QUESTION_LABELS = {
+    "I1_Q1": "I1: Legal Certainty",
+    "I1_Q2": "I1: Accountability",
+    "I1_Q3": "I1: Enforceability",
+    "I2_S1": "I2: Visa Scenario",
+    "I2_S2": "I2: Housing Scenario",
+    "I2_S3": "I2: Audit Scenario",
 }
 
 # Responsibility actors for radar chart axes (S2)
@@ -871,9 +890,8 @@ def i2_s3_enforcement_sankey(data: dict, models: list[str]) -> go.Figure:
 
 def extract_i3_scores(data: dict, models: list[str]) -> dict:
     """
-    Flatten I3 parsed ratings into a lookup:
-      scores[model][condition][scenario_id][dimension] -> list of scores (one per run)
-    Missing or unparseable runs are skipped.
+    Flatten I3 parsed ratings into:
+      scores[model][condition][scenario_id][dimension] -> list of scores per run
     """
     scores = {}
     for model in models:
@@ -907,71 +925,46 @@ def mean_std(values: list) -> tuple[float, float]:
 
 def i3_grouped_bar(scores: dict, models: list[str], dimension: str,
                    dim_label: str) -> go.Figure:
-    """
-    Grouped bar chart: x = scenarios, one bar group per model.
-    Condition = baseline. Error bars show std across 3 runs.
-    """
     scenario_labels = list(I3_SCENARIOS.values())
     scenario_ids    = list(I3_SCENARIOS.keys())
-    n_scenarios     = len(scenario_ids)
-
     fig = go.Figure()
-
     for model in models:
         label = MODEL_LABELS.get(model, model)
         color = MODEL_COLORS.get(model, "#888888")
         means, errors = [], []
-
         for s_id in scenario_ids:
             vals = scores.get(model, {}).get("baseline", {}).get(s_id, {}).get(dimension, [])
             m, s = mean_std(vals)
             means.append(m)
             errors.append(s if s is not None else 0)
-
         fig.add_trace(go.Bar(
-            name=label,
-            x=scenario_labels,
-            y=means,
+            name=label, x=scenario_labels, y=means,
             error_y=dict(type="data", array=errors, visible=True,
                          color=color, thickness=1.5, width=4),
-            marker_color=color,
-            opacity=0.85,
+            marker_color=color, opacity=0.85,
             hovertemplate=f"<b>{label}</b><br>%{{x}}<br>{dim_label}: %{{y:.2f}}<extra></extra>",
         ))
-
     fig.update_layout(
-        title=dict(
-            text=f"I3 Scores — <b>{dim_label}</b> (Baseline)<br>"
-                 "<sup>Mean across 3 runs — error bars = std dev</sup>",
-            font=dict(family=SERIF, size=17, color=TEXT_PRI),
-            x=0.5, xanchor="center",
-        ),
-        barmode="group",
-        paper_bgcolor=BG,
-        plot_bgcolor=BG,
+        title=dict(text=f"I3 Scores — <b>{dim_label}</b> (Baseline)<br>"
+                        "<sup>Mean across 3 runs — error bars = std dev</sup>",
+                   font=dict(family=SERIF, size=17, color=TEXT_PRI), x=0.5, xanchor="center"),
+        barmode="group", paper_bgcolor=BG, plot_bgcolor=BG,
         font=dict(family=MONO, color=TEXT_SEC),
         xaxis=dict(tickfont=dict(color=TEXT_PRI, size=10), gridcolor=BORDER),
-        yaxis=dict(range=[0, 10.5], tickfont=dict(color=TEXT_PRI),
-                   gridcolor=BORDER, title="Score (1–10)"),
+        yaxis=dict(range=[0, 10.5], tickfont=dict(color=TEXT_PRI), gridcolor=BORDER,
+                   title="Score (1–10)"),
         legend=dict(bgcolor=SURFACE, bordercolor=BORDER, borderwidth=1,
                     font=dict(color=TEXT_PRI)),
-        margin=dict(l=60, r=40, t=90, b=100),
-        height=520,
-        width=1200,
+        margin=dict(l=60, r=40, t=90, b=100), height=520, width=1200,
     )
     return fig
 
 
 def i3_heatmap(scores: dict, models: list[str], dimension: str,
                dim_label: str) -> go.Figure:
-    """
-    Heatmap: rows = models, cols = scenarios.
-    Cell = mean baseline score across runs.
-    """
     model_labels    = [MODEL_LABELS.get(m, m) for m in models]
     scenario_labels = list(I3_SCENARIOS.values())
     scenario_ids    = list(I3_SCENARIOS.keys())
-
     z, text = [], []
     for model in models:
         row, row_text = [], []
@@ -982,115 +975,68 @@ def i3_heatmap(scores: dict, models: list[str], dimension: str,
             row_text.append(f"{m:.1f}" if m is not None else "N/A")
         z.append(row)
         text.append(row_text)
-
     fig = go.Figure(go.Heatmap(
-        z=z,
-        x=scenario_labels,
-        y=model_labels,
-        text=text,
-        texttemplate="%{text}",
-        textfont=dict(size=12, color=TEXT_PRI),
-        colorscale=COLORSCALE_BLUE,
-        zmin=1, zmax=10,
-        colorbar=dict(title="Score"),
+        z=z, x=scenario_labels, y=model_labels,
+        text=text, texttemplate="%{text}", textfont=dict(size=12, color=TEXT_PRI),
+        colorscale=COLORSCALE_BLUE, zmin=1, zmax=10,
+        colorbar=dict(title="Score",
+                      tickfont=dict(color=TEXT_SEC)),
         hovertemplate="<b>%{y}</b><br>%{x}<br>Score: %{z:.2f}<extra></extra>",
     ))
     fig.update_layout(
-        title=dict(
-            text=f"I3 Score Heatmap — <b>{dim_label}</b> (Baseline)<br>"
-                 "<sup>Mean across 3 runs</sup>",
-            font=dict(family=SERIF, size=17, color=TEXT_PRI),
-            x=0.5, xanchor="center",
-        ),
-        paper_bgcolor=BG,
-        plot_bgcolor=BG,
-        font=dict(family=MONO, color=TEXT_SEC),
+        title=dict(text=f"I3 Score Heatmap — <b>{dim_label}</b> (Baseline)<br>"
+                        "<sup>Mean across 3 runs</sup>",
+                   font=dict(family=SERIF, size=17, color=TEXT_PRI), x=0.5, xanchor="center"),
+        paper_bgcolor=BG, plot_bgcolor=BG, font=dict(family=MONO, color=TEXT_SEC),
         xaxis=dict(tickangle=-25, tickfont=dict(color=TEXT_PRI, size=10)),
         yaxis=dict(tickfont=dict(color=TEXT_PRI), autorange="reversed"),
-        margin=dict(l=160, r=60, t=90, b=120),
-        height=400,
-        width=1000,
+        margin=dict(l=160, r=60, t=90, b=120), height=400, width=1000,
     )
     return fig
 
 
 def i3_radar(scores: dict, models: list[str], scenario_id: str,
              scenario_label: str) -> go.Figure:
-    """
-    Radar chart: axes = 3 tripod dimensions.
-    One trace per model (baseline only), showing mean score.
-    """
-    dims        = list(I3_DIMENSIONS.keys())
-    dim_labels  = list(I3_DIMENSIONS.values())
-    closed_dims = dim_labels + [dim_labels[0]]
-
+    dims       = list(I3_DIMENSIONS.keys())
+    dim_labels = list(I3_DIMENSIONS.values())
+    closed     = dim_labels + [dim_labels[0]]
     fig = go.Figure()
-
     for model in models:
         label = MODEL_LABELS.get(model, model)
         color = MODEL_COLORS.get(model, "#ffffff")
-
-        vals = []
+        vals  = []
         for dim in dims:
             run_scores = scores.get(model, {}).get("baseline", {}).get(scenario_id, {}).get(dim, [])
             m, _ = mean_std(run_scores)
             vals.append(m if m is not None else 0)
-
-        closed_vals = vals + [vals[0]]
-
         fig.add_trace(go.Scatterpolar(
-            r=closed_vals,
-            theta=closed_dims,
-            mode="lines+markers",
-            name=label,
-            line=dict(color=color, width=2),
-            marker=dict(size=6, color=color),
-            opacity=0.85,
+            r=vals + [vals[0]], theta=closed, mode="lines+markers",
+            name=label, line=dict(color=color, width=2),
+            marker=dict(size=6, color=color), opacity=0.85,
             hovertemplate=f"<b>{label}</b><br>%{{theta}}: %{{r:.2f}}<extra></extra>",
         ))
-
     fig.update_layout(
-        title=dict(
-            text=f"I3 Tripod Scores — <b>{scenario_label}</b><br>"
-                 "<sup>Baseline mean across 3 runs</sup>",
-            font=dict(family=SERIF, size=17, color=TEXT_PRI),
-            x=0.5, xanchor="center",
-        ),
-        polar=dict(
-            bgcolor=SURFACE,
-            radialaxis=dict(
-                visible=True, range=[0, 10],
-                color=TEXT_SEC, gridcolor=BORDER,
-                tickfont=dict(size=9, color=TEXT_SEC),
-            ),
-            angularaxis=dict(
-                color=TEXT_PRI, gridcolor=BORDER,
-                tickfont=dict(size=12, color=TEXT_PRI),
-            ),
-        ),
-        paper_bgcolor=BG,
-        font=dict(family=MONO, color=TEXT_SEC),
+        title=dict(text=f"I3 Tripod Scores — <b>{scenario_label}</b><br>"
+                        "<sup>Baseline mean across 3 runs</sup>",
+                   font=dict(family=SERIF, size=17, color=TEXT_PRI), x=0.5, xanchor="center"),
+        polar=dict(bgcolor=SURFACE,
+                   radialaxis=dict(visible=True, range=[0, 10], color=TEXT_SEC,
+                                   gridcolor=BORDER, tickfont=dict(size=9, color=TEXT_SEC)),
+                   angularaxis=dict(color=TEXT_PRI, gridcolor=BORDER,
+                                    tickfont=dict(size=12, color=TEXT_PRI))),
+        paper_bgcolor=BG, font=dict(family=MONO, color=TEXT_SEC),
         legend=dict(bgcolor=SURFACE, bordercolor=BORDER, borderwidth=1,
-                    font=dict(color=TEXT_PRI, size=10),
-                    x=1.05, y=1.0),
-        margin=dict(l=80, r=180, t=100, b=80),
-        height=520,
-        width=800,
+                    font=dict(color=TEXT_PRI, size=10), x=1.05, y=1.0),
+        margin=dict(l=80, r=180, t=100, b=80), height=520, width=800,
     )
     return fig
 
 
 def i3_delta_heatmap(scores: dict, models: list[str]) -> go.Figure:
-    """
-    Delta heatmap: CEO mean − Baseline mean, averaged across dimensions.
-    Rows = models, cols = scenarios.
-    Positive = CEO rated higher, negative = CEO rated lower.
-    """
     model_labels    = [MODEL_LABELS.get(m, m) for m in models]
     scenario_labels = list(I3_SCENARIOS.values())
     scenario_ids    = list(I3_SCENARIOS.keys())
     dims            = list(I3_DIMENSIONS.keys())
-
     z, text = [], []
     for model in models:
         row, row_text = [], []
@@ -1108,69 +1054,37 @@ def i3_delta_heatmap(scores: dict, models: list[str]) -> go.Figure:
             row_text.append(f"{delta:+.2f}" if delta is not None else "N/A")
         z.append(row)
         text.append(row_text)
-
-    # Diverging colorscale: red = CEO lower, green = CEO higher
-    colorscale = [
-        [0.0,  "#b91c1c"],
-        [0.35, "#7a2020"],
-        [0.5,  "#21262d"],
-        [0.65, "#1a6b3c"],
-        [1.0,  "#3fb68a"],
-    ]
-
+    colorscale = [[0.0, "#b91c1c"], [0.35, "#7a2020"],
+                  [0.5, "#21262d"], [0.65, "#1a6b3c"], [1.0, "#3fb68a"]]
     fig = go.Figure(go.Heatmap(
-        z=z,
-        x=scenario_labels,
-        y=model_labels,
-        text=text,
-        texttemplate="%{text}",
-        textfont=dict(size=12, color=TEXT_PRI),
-        colorscale=colorscale,
-        zmid=0,
-        colorbar=dict(
-            title="CEO − Baseline",
-            tickfont=dict(color=TEXT_SEC),
-        ),
+        z=z, x=scenario_labels, y=model_labels,
+        text=text, texttemplate="%{text}", textfont=dict(size=12, color=TEXT_PRI),
+        colorscale=colorscale, zmid=0,
+        colorbar=dict(title="CEO − Baseline", 
+                      tickfont=dict(color=TEXT_SEC)),
         hovertemplate="<b>%{y}</b><br>%{x}<br>Δ: %{z:+.2f}<extra></extra>",
     ))
     fig.update_layout(
-        title=dict(
-            text="I3 Condition Shift — CEO Role minus Baseline<br>"
-                 "<sup>Averaged across all three tripod dimensions — green = CEO rated higher</sup>",
-            font=dict(family=SERIF, size=17, color=TEXT_PRI),
-            x=0.5, xanchor="center",
-        ),
-        paper_bgcolor=BG,
-        plot_bgcolor=BG,
-        font=dict(family=MONO, color=TEXT_SEC),
+        title=dict(text="I3 Condition Shift — CEO Role minus Baseline<br>"
+                        "<sup>Averaged across all three tripod dimensions — green = CEO rated higher</sup>",
+                   font=dict(family=SERIF, size=17, color=TEXT_PRI), x=0.5, xanchor="center"),
+        paper_bgcolor=BG, plot_bgcolor=BG, font=dict(family=MONO, color=TEXT_SEC),
         xaxis=dict(tickangle=-25, tickfont=dict(color=TEXT_PRI, size=10)),
         yaxis=dict(tickfont=dict(color=TEXT_PRI), autorange="reversed"),
-        margin=dict(l=160, r=80, t=100, b=120),
-        height=420,
-        width=1050,
+        margin=dict(l=160, r=80, t=100, b=120), height=420, width=1050,
     )
     return fig
 
 
 def i3_condition_bars(scores: dict, models: list[str]) -> go.Figure:
-    """
-    Side-by-side bars: one subplot per model.
-    x = scenarios, two bar groups per subplot (baseline vs CEO).
-    Averaged across all three dimensions and all runs.
-    """
     scenario_labels = list(I3_SCENARIOS.values())
     scenario_ids    = list(I3_SCENARIOS.keys())
     dims            = list(I3_DIMENSIONS.keys())
     n               = len(models)
-
-    fig = make_subplots(
-        rows=1, cols=n,
-        subplot_titles=[MODEL_LABELS.get(m, m) for m in models],
-        shared_yaxes=True,
-    )
-
+    fig = make_subplots(rows=1, cols=n,
+                        subplot_titles=[MODEL_LABELS.get(m, m) for m in models],
+                        shared_yaxes=True)
     cond_colors = {"baseline": "#2176ae", "ceo": "#e8a838"}
-
     for col_idx, model in enumerate(models, start=1):
         for cond in CONDITIONS:
             means = []
@@ -1182,43 +1096,300 @@ def i3_condition_bars(scores: dict, models: list[str]) -> go.Figure:
                     if m is not None:
                         dim_means.append(m)
                 means.append(float(np.mean(dim_means)) if dim_means else None)
-
             fig.add_trace(
-                go.Bar(
-                    name=CONDITION_LABELS[cond],
-                    x=scenario_labels,
-                    y=means,
-                    marker_color=cond_colors[cond],
-                    opacity=0.85,
-                    showlegend=(col_idx == 1),
-                    hovertemplate=f"<b>{CONDITION_LABELS[cond]}</b><br>%{{x}}<br>Avg Score: %{{y:.2f}}<extra></extra>",
-                ),
+                go.Bar(name=CONDITION_LABELS[cond], x=scenario_labels, y=means,
+                       marker_color=cond_colors[cond], opacity=0.85,
+                       showlegend=(col_idx == 1),
+                       hovertemplate=f"<b>{CONDITION_LABELS[cond]}</b><br>%{{x}}<br>Avg: %{{y:.2f}}<extra></extra>"),
                 row=1, col=col_idx,
             )
-
     fig.update_layout(
-        title=dict(
-            text="I3 Baseline vs CEO — Average Score per Scenario<br>"
-                 "<sup>Averaged across all three tripod dimensions and 3 runs</sup>",
-            font=dict(family=SERIF, size=17, color=TEXT_PRI),
-            x=0.5, xanchor="center",
-        ),
-        barmode="group",
-        paper_bgcolor=BG,
-        plot_bgcolor=BG,
+        title=dict(text="I3 Baseline vs CEO — Average Score per Scenario<br>"
+                        "<sup>Averaged across all three tripod dimensions and 3 runs</sup>",
+                   font=dict(family=SERIF, size=17, color=TEXT_PRI), x=0.5, xanchor="center"),
+        barmode="group", paper_bgcolor=BG, plot_bgcolor=BG,
         font=dict(family=MONO, color=TEXT_SEC),
         legend=dict(bgcolor=SURFACE, bordercolor=BORDER, borderwidth=1,
                     font=dict(color=TEXT_PRI)),
-        margin=dict(l=60, r=40, t=100, b=120),
-        height=480,
-        width=1400,
+        margin=dict(l=60, r=40, t=100, b=120), height=480, width=1400,
     )
-    fig.update_yaxes(range=[0, 10.5], tickfont=dict(color=TEXT_PRI),
-                     gridcolor=BORDER)
+    fig.update_yaxes(range=[0, 10.5], tickfont=dict(color=TEXT_PRI), gridcolor=BORDER)
     fig.update_xaxes(tickangle=-35, tickfont=dict(color=TEXT_SEC, size=8))
     for ann in fig.layout.annotations:
         ann.font.color = TEXT_PRI
         ann.font.size  = 11
+    return fig
+
+
+# =============================================================================
+# INSTRUMENT 4 helpers
+# =============================================================================
+
+def extract_i4_scores(i4_data: dict, pairs: list[dict]) -> dict:
+    """
+    Flatten I4 parsed ratings into:
+      peer_scores[pair_id][question_id][dimension] -> score (single value, no runs)
+    Also builds:
+      evaluator_means[evaluator_model][dimension] -> mean score given to peers
+    """
+    peer_scores = {}
+    for pair in pairs:
+        pair_id = pair["pair_id"]
+        peer_scores[pair_id] = {}
+        for q_id, q_data in i4_data.get(pair_id, {}).items():
+            parsed = q_data.get("parsed")
+            if not parsed:
+                continue
+            peer_scores[pair_id][q_id] = {
+                dim: val.get("score")
+                for dim, val in parsed.items()
+                if isinstance(val.get("score"), (int, float))
+            }
+    return peer_scores
+
+
+def build_elp(i3_scores: dict, peer_scores: dict, pairs: list[dict],
+              models: list[str]) -> dict:
+    """
+    Build the Epistemic Legitimacy Profile for each model.
+
+    For each model, computes:
+      - i3_strictness[dim]: inverted mean I3 score (10 - mean) across all scenarios
+        High value = model rates scenarios poorly = strict standard
+      - i4_peer_mean[dim]: mean score given to peers in I4 across all questions
+        High value = model rates peers highly = lenient evaluation
+      - asymmetry[dim]: i4_peer_mean - (10 - i3_strictness)
+        Positive = model is more lenient with peers than its own standards suggest
+        Negative = model holds peers to stricter standard than itself
+
+    Hook for qualitative coding:
+      - i1_coding: None until coding is complete, then populated from peer_eval_pairs.json
+    """
+    dims = list(I3_DIMENSIONS.keys())
+    elp  = {}
+
+    for model in models:
+        label = MODEL_LABELS.get(model, model)
+
+        # --- I3 strictness: invert mean score so high = strict ---
+        i3_strict = {}
+        for dim in dims:
+            all_scores = []
+            for s_id in I3_SCENARIOS:
+                vals = i3_scores.get(model, {}).get("baseline", {}).get(s_id, {}).get(dim, [])
+                all_scores.extend(vals)
+            m, _ = mean_std(all_scores)
+            i3_strict[dim] = round(10 - m, 3) if m is not None else None
+
+        # --- I4 peer mean: mean score this model gave to peers ---
+        i4_map = {
+            "legal_certainty_adequacy":  "legal_certainty",
+            "accountability_mechanisms": "accountability",
+            "enforcement_conditions":    "enforceability",
+        }
+        i4_peer = {dim: [] for dim in dims}
+        for pair in pairs:
+            if pair["evaluator"] != model:
+                continue
+            for q_id, dim_scores in peer_scores.get(pair["pair_id"], {}).items():
+                for i4_dim, i3_dim in i4_map.items():
+                    score = dim_scores.get(i4_dim)
+                    if score is not None:
+                        i4_peer[i3_dim].append(score)
+
+        i4_means = {}
+        for dim in dims:
+            m, _ = mean_std(i4_peer[dim])
+            i4_means[dim] = round(m, 3) if m is not None else None
+
+        # --- Asymmetry: peer leniency relative to own strictness ---
+        asymmetry = {}
+        for dim in dims:
+            if i3_strict[dim] is not None and i4_means[dim] is not None:
+                # i3_strictness is already inverted (high = strict)
+                # i4_means is direct (high = lenient with peers)
+                # asymmetry > 0 means more lenient with peers than self-revealed standards
+                asymmetry[dim] = round(i4_means[dim] - (10 - i3_strict[dim]), 3)
+            else:
+                asymmetry[dim] = None
+
+        elp[model] = {
+            "label":          label,
+            "i3_strictness":  i3_strict,   # high = strict standard
+            "i4_peer_mean":   i4_means,    # high = lenient with peers
+            "asymmetry":      asymmetry,   # >0 = lenient with peers, <0 = strict with peers
+            "i1_coding":      None,        # hook: populate after qualitative coding
+        }
+
+    return elp
+
+
+# =============================================================================
+# INSTRUMENT 4 / ELP plots
+# =============================================================================
+
+def i4_elp_radar(elp: dict, models: list[str]) -> go.Figure:
+    """
+    All 5 models on one radar. 6 axes:
+      - 3 axes: I3 strictness per dimension (high = strict)
+      - 3 axes: I4 peer mean per dimension (high = lenient with peers)
+    Solid lines. One trace per model.
+    Divergence between paired axes (e.g. LC strictness vs LC peer leniency)
+    = inconsistency = asymmetric self-positioning.
+    """
+    dims       = list(I3_DIMENSIONS.keys())
+    dim_labels = list(I3_DIMENSIONS.values())
+
+    axes        = ([f"Strict: {l}" for l in dim_labels] +
+                   [f"Peer: {l}" for l in dim_labels])
+    axes_closed = axes + [axes[0]]
+
+    fig = go.Figure()
+
+    for model in models:
+        profile = elp.get(model, {})
+        label   = MODEL_LABELS.get(model, model)
+        color   = MODEL_COLORS.get(model, "#ffffff")
+
+        strict_vals = [profile.get("i3_strictness", {}).get(d) or 0 for d in dims]
+        peer_vals   = [profile.get("i4_peer_mean",  {}).get(d) or 0 for d in dims]
+        vals_closed = strict_vals + peer_vals + [strict_vals[0]]
+
+        fig.add_trace(go.Scatterpolar(
+            r=vals_closed, theta=axes_closed,
+            mode="lines+markers", name=label,
+            line=dict(color=color, width=2.5),
+            marker=dict(size=7, color=color),
+            opacity=0.9,
+            hovertemplate=f"<b>{label}</b><br>%{{theta}}: %{{r:.2f}}<extra></extra>",
+        ))
+
+    fig.update_layout(
+        title=dict(
+            text="Epistemic Legitimacy Profile — All Models<br>"
+                 "<sup>Left axes: I3 strictness (high = strict standard) · "
+                 "Right axes: I4 peer leniency (high = lenient with peers)<br>"
+                 "Gap between paired axes = normative self-positioning asymmetry</sup>",
+            font=dict(family=SERIF, size=16, color=TEXT_PRI),
+            x=0.5, xanchor="center",
+        ),
+        polar=dict(
+            bgcolor=SURFACE,
+            radialaxis=dict(visible=True, range=[0, 10], color=TEXT_SEC,
+                            gridcolor=BORDER, tickfont=dict(size=9, color=TEXT_SEC)),
+            angularaxis=dict(color=TEXT_PRI, gridcolor=BORDER,
+                             tickfont=dict(size=11, color=TEXT_PRI)),
+        ),
+        paper_bgcolor=BG,
+        font=dict(family=MONO, color=TEXT_SEC),
+        legend=dict(bgcolor=SURFACE, bordercolor=BORDER, borderwidth=1,
+                    font=dict(color=TEXT_PRI, size=11), x=1.08, y=1.0),
+        margin=dict(l=80, r=220, t=130, b=80),
+        height=660, width=1000,
+    )
+    return fig
+
+
+def i4_asymmetry_heatmap(elp: dict, models: list[str]) -> go.Figure:
+    """
+    Asymmetry heatmap: rows = models, cols = dimensions.
+    Cell = asymmetry score (peer leniency - own strictness).
+    Diverging: green = lenient with peers, red = strict with peers.
+    """
+    model_labels = [MODEL_LABELS.get(m, m) for m in models]
+    dim_labels   = list(I3_DIMENSIONS.values())
+    dims         = list(I3_DIMENSIONS.keys())
+
+    z, text = [], []
+    for model in models:
+        row, row_text = [], []
+        for dim in dims:
+            val = elp.get(model, {}).get("asymmetry", {}).get(dim)
+            row.append(val)
+            row_text.append(f"{val:+.2f}" if val is not None else "N/A")
+        z.append(row)
+        text.append(row_text)
+
+    colorscale = [[0.0, "#b91c1c"], [0.35, "#7a2020"],
+                  [0.5,  "#21262d"], [0.65, "#1a6b3c"], [1.0, "#3fb68a"]]
+
+    fig = go.Figure(go.Heatmap(
+        z=z, x=dim_labels, y=model_labels,
+        text=text, texttemplate="%{text}", textfont=dict(size=13, color=TEXT_PRI),
+        colorscale=colorscale, zmid=0,
+        colorbar=dict(title="Asymmetry Score",
+                      tickfont=dict(color=TEXT_SEC)),
+        hovertemplate="<b>%{y}</b><br>%{x}<br>Asymmetry: %{z:+.2f}<extra></extra>",
+    ))
+    fig.update_layout(
+        title=dict(
+            text="I4 Normative Self-Positioning Asymmetry<br>"
+                 "<sup>Green = more lenient with peers than own I3 standards · "
+                 "Red = stricter with peers than own standards</sup>",
+            font=dict(family=SERIF, size=17, color=TEXT_PRI),
+            x=0.5, xanchor="center",
+        ),
+        paper_bgcolor=BG, plot_bgcolor=BG,
+        font=dict(family=MONO, color=TEXT_SEC),
+        xaxis=dict(tickfont=dict(color=TEXT_PRI, size=12)),
+        yaxis=dict(tickfont=dict(color=TEXT_PRI), autorange="reversed"),
+        margin=dict(l=160, r=80, t=110, b=80),
+        height=380, width=760,
+    )
+    return fig
+
+
+def i4_peer_scores_heatmap(peer_scores: dict, pairs: list[dict]) -> go.Figure:
+    """
+    Heatmap: rows = pair × question, cols = I4 dimensions.
+    Shows the raw peer scores before asymmetry calculation.
+    """
+    dims       = list(I4_DIMENSIONS.keys())
+    dim_labels = list(I4_DIMENSIONS.values())
+
+    row_labels, z, text = [], [], []
+
+    for pair in pairs:
+        pair_id   = pair["pair_id"]
+        evaluator = MODEL_LABELS.get(pair["evaluator"], pair["evaluator"])
+        evaluatee = MODEL_LABELS.get(pair["evaluatee"], pair["evaluatee"])
+
+        for q_id in ["I1_Q1", "I1_Q2", "I1_Q3", "I2_S1", "I2_S2", "I2_S3"]:
+            q_label = I4_QUESTION_LABELS.get(q_id, q_id)
+            scores  = peer_scores.get(pair_id, {}).get(q_id, {})
+
+            row_labels.append(f"{evaluator}→{evaluatee}<br>{q_label}")
+            row, row_text = [], []
+            for dim in dims:
+                val = scores.get(dim)
+                row.append(val)
+                row_text.append(str(int(val)) if val is not None else "—")
+            z.append(row)
+            text.append(row_text)
+
+    fig = go.Figure(go.Heatmap(
+        z=z, x=dim_labels, y=row_labels,
+        text=text, texttemplate="%{text}", textfont=dict(size=11, color=TEXT_PRI),
+        colorscale=COLORSCALE_GREEN, zmin=1, zmax=10,
+        colorbar=dict(title="Score", 
+                      tickfont=dict(color=TEXT_SEC)),
+        hovertemplate="<b>%{y}</b><br>%{x}: %{z}<extra></extra>",
+    ))
+    fig.update_layout(
+        title=dict(
+            text="I4 Raw Peer Evaluation Scores<br>"
+                 "<sup>Per pair × question × dimension</sup>",
+            font=dict(family=SERIF, size=17, color=TEXT_PRI),
+            x=0.5, xanchor="center",
+        ),
+        paper_bgcolor=BG, plot_bgcolor=BG,
+        font=dict(family=MONO, color=TEXT_SEC),
+        xaxis=dict(tickfont=dict(color=TEXT_PRI, size=11)),
+        yaxis=dict(tickfont=dict(color=TEXT_PRI, size=9), autorange="reversed"),
+        margin=dict(l=260, r=60, t=100, b=60),
+        height=max(500, len(row_labels) * 28 + 160),
+        width=820,
+    )
     return fig
 
 
@@ -1306,36 +1477,89 @@ if __name__ == "__main__":
             print("\nLoading instrument_3.json...")
             with open(i3_path, "r", encoding="utf-8") as f:
                 i3_data = json.load(f)
-            models = list(i3_data.keys())
-            out    = RESULTS_DIR / "instrument_3"
+            models   = list(i3_data.keys())
+            out      = RESULTS_DIR / "instrument_3"
+            i3_scores = extract_i3_scores(i3_data, models)
 
-            print("Extracting I3 scores...")
-            scores = extract_i3_scores(i3_data, models)
-
-            print("Building I3 grouped bar charts (per dimension)...")
+            print("Building I3 grouped bar charts...")
             for dim, dim_label in I3_DIMENSIONS.items():
-                slug = dim.lower().replace(" ", "_")
-                save_fig(i3_grouped_bar(scores, models, dim, dim_label),
-                         out / f"scores_grouped_bar_{slug}")
+                save_fig(i3_grouped_bar(i3_scores, models, dim, dim_label),
+                         out / f"scores_grouped_bar_{dim}")
 
-            print("Building I3 heatmaps (per dimension)...")
+            print("Building I3 heatmaps...")
             for dim, dim_label in I3_DIMENSIONS.items():
-                slug = dim.lower().replace(" ", "_")
-                save_fig(i3_heatmap(scores, models, dim, dim_label),
-                         out / f"scores_heatmap_{slug}")
+                save_fig(i3_heatmap(i3_scores, models, dim, dim_label),
+                         out / f"scores_heatmap_{dim}")
 
-            print("Building I3 radar charts (per scenario)...")
+            print("Building I3 radar charts...")
             for s_id, s_label in I3_SCENARIOS.items():
-                slug = s_id.lower()
-                save_fig(i3_radar(scores, models, s_id, s_label),
-                         out / f"scores_radar_{slug}")
+                save_fig(i3_radar(i3_scores, models, s_id, s_label),
+                         out / f"scores_radar_{s_id.lower()}")
 
             print("Building I3 condition delta heatmap...")
-            save_fig(i3_delta_heatmap(scores, models),
+            save_fig(i3_delta_heatmap(i3_scores, models),
                      out / "condition_delta_heatmap")
 
             print("Building I3 condition side-by-side bars...")
-            save_fig(i3_condition_bars(scores, models),
+            save_fig(i3_condition_bars(i3_scores, models),
                      out / "condition_side_by_side")
+
+    # -------------------------------------------------------------------------
+    # Instrument 4 + ELP
+    # -------------------------------------------------------------------------
+    if "instrument_4" in ACTIVE_INSTRUMENTS:
+        i4_path = RAW_DIR / "instrument_4.json"
+        if not i4_path.exists():
+            print(f"[skip] instrument_4.json not found at {i4_path}")
+        elif not PEER_EVAL_FILE.exists():
+            print(f"[skip] peer_eval_pairs.json not found at {PEER_EVAL_FILE}")
+        else:
+            # I3 scores required for ELP — load if not already in memory
+            i3_path = RAW_DIR / "instrument_3.json"
+            if not i3_path.exists():
+                print("[skip] instrument_4 ELP requires instrument_3.json — not found")
+            else:
+                print("\nLoading instrument_4.json...")
+                with open(i4_path, "r", encoding="utf-8") as f:
+                    i4_data = json.load(f)
+
+                if "i3_scores" not in dir():
+                    with open(i3_path, "r", encoding="utf-8") as f:
+                        _i3 = json.load(f)
+                    models    = list(_i3.keys())
+                    i3_scores = extract_i3_scores(_i3, models)
+                else:
+                    models = list(i3_data.keys())
+
+                with open(PEER_EVAL_FILE, "r", encoding="utf-8") as f:
+                    peer_eval_meta = json.load(f)
+                pairs = peer_eval_meta["pairs"]
+
+                out = RESULTS_DIR / "instrument_4"
+
+                print("Extracting I4 peer scores...")
+                peer_scores = extract_i4_scores(i4_data, pairs)
+
+                print("Building ELP profiles...")
+                elp = build_elp(i3_scores, peer_scores, pairs, models)
+
+                # Save ELP as JSON for use in paper / coding integration later
+                elp_out = out / "elp_profiles.json"
+                elp_out.parent.mkdir(parents=True, exist_ok=True)
+                with open(elp_out, "w", encoding="utf-8") as f:
+                    json.dump(elp, f, indent=2, ensure_ascii=False)
+                print(f"  Saved ELP profiles: {elp_out}")
+
+                print("Building ELP radar (all models)...")
+                save_fig(i4_elp_radar(elp, models),
+                         out / "elp_radar_all_models")
+
+                print("Building I4 asymmetry heatmap...")
+                save_fig(i4_asymmetry_heatmap(elp, models),
+                         out / "asymmetry_heatmap")
+
+                print("Building I4 raw peer scores heatmap...")
+                save_fig(i4_peer_scores_heatmap(peer_scores, pairs),
+                         out / "peer_scores_heatmap")
 
     print("\nAll plots complete.")

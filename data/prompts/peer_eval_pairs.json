@@ -1,0 +1,55 @@
+{
+  "_notes": {
+    "design": "Each evaluator is shown run 1 baseline responses from their paired evaluatee for all I1 and I2 questions. Pairs are selected on the basis of institutional and regulatory contrast, so that cross-model normative divergence is maximized and asymmetric self-positioning is most likely to be detectable.",
+    "asymmetry_check": "Compare each evaluator's per-dimension peer ratings against their own I3 strictness profile (inverted mean score per dimension across all scenarios). A model that holds peers to stricter standards than it revealed in I3 exhibits outward asymmetry. A model that is more lenient with peers than its own I3 profile suggests exhibits inward asymmetry.",
+    "elp_hook": "Once I1 qualitative coding is complete, add 'institutional_reference' and 'democratic_preconditions' coding per model to each entry under 'evaluator_i1_coding' and 'evaluatee_i1_coding'. These will be used to compute the qualitative axis of the Epistemic Legitimacy Profile."
+  },
+
+  "pairs": [
+    {
+      "pair_id": "P1",
+      "evaluator": "claude-sonnet",
+      "evaluatee": "deepseek-v3",
+      "rationale": "U.S. safety-focused (Anthropic) vs. China state-adjacent (DeepSeek). Maximum institutional contrast on regulatory philosophy and state-market relationship. Tests whether a model embedded in a rights/safety-centered context evaluates governance reasoning from a state-adjacent context asymmetrically.",
+      "source_questions": ["I1_Q1", "I1_Q2", "I1_Q3", "I2_S1", "I2_S2", "I2_S3"],
+      "evaluator_i1_coding": null,
+      "evaluatee_i1_coding": null
+    },
+    {
+      "pair_id": "P2",
+      "evaluator": "deepseek-v3",
+      "evaluatee": "claude-sonnet",
+      "rationale": "Reciprocal of P1. China state-adjacent evaluating U.S. safety-focused. Both directions are required to detect directional asymmetry — if DeepSeek rates Claude differently than Claude rates DeepSeek on structurally equivalent reasoning, the asymmetry is institutionally patterned.",
+      "source_questions": ["I1_Q1", "I1_Q2", "I1_Q3", "I2_S1", "I2_S2", "I2_S3"],
+      "evaluator_i1_coding": null,
+      "evaluatee_i1_coding": null
+    },
+    {
+      "pair_id": "P3",
+      "evaluator": "gpt-4o",
+      "evaluatee": "mistral-large",
+      "rationale": "U.S. commercial (OpenAI) vs. EU-proximate (Mistral). Tests whether differing regulatory environments — U.S. market-led vs. EU rights/precautionary — produce asymmetric normative self-positioning on accountability and enforceability in particular, where EU and U.S. frameworks diverge most sharply.",
+      "source_questions": ["I1_Q1", "I1_Q2", "I1_Q3", "I2_S1", "I2_S2", "I2_S3"],
+      "evaluator_i1_coding": null,
+      "evaluatee_i1_coding": null
+    },
+    {
+      "pair_id": "P4",
+      "evaluator": "mistral-large",
+      "evaluatee": "gpt-4o",
+      "rationale": "Reciprocal of P3. EU-proximate evaluating U.S. commercial. If Mistral's legal certainty and enforceability framings are more rights-centered and state-centered than GPT-4o's, it should rate GPT-4o's market-centered framings lower — and vice versa in P3.",
+      "source_questions": ["I1_Q1", "I1_Q2", "I1_Q3", "I2_S1", "I2_S2", "I2_S3"],
+      "evaluator_i1_coding": null,
+      "evaluatee_i1_coding": null
+    },
+    {
+      "pair_id": "P5",
+      "evaluator": "gemini-3.1-flash-lite-preview",
+      "evaluatee": "deepseek-v3",
+      "rationale": "U.S. platform/public sector (Google) vs. China state-adjacent (DeepSeek). Gemini's extensive public sector deployment history creates a distinct accountability and enforceability framing compared to DeepSeek. Tests whether platform-oriented governance reasoning evaluates state-adjacent reasoning asymmetrically.",
+      "source_questions": ["I1_Q1", "I1_Q2", "I1_Q3", "I2_S1", "I2_S2", "I2_S3"],
+      "evaluator_i1_coding": null,
+      "evaluatee_i1_coding": null
+    }
+  ]
+}

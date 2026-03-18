@@ -20,8 +20,9 @@ load_dotenv()
 # Config
 # =============================================================================
 
-INSTRUMENTS_FILE = Path("data/prompts/instruments.json")
-RAW_DIR          = Path("data/raw")
+INSTRUMENTS_FILE  = Path("data/prompts/instruments.json")
+PEER_EVAL_FILE    = Path("data/prompts/peer_eval_pairs.json")
+RAW_DIR           = Path("data/raw")
 
 # Model identifiers — keys must match instruments.json "models" list
 MODELS = {
@@ -33,7 +34,16 @@ MODELS = {
 }
 
 # Instruments to collect in this run
-ACTIVE_INSTRUMENTS = ["instrument_1", "instrument_2", "instrument_3"]
+ACTIVE_INSTRUMENTS = ["instrument_1", "instrument_2", "instrument_3", "instrument_4"]
+
+# Display labels for progress output
+MODEL_LABELS = {
+    "gpt-4o":                        "GPT-4o",
+    "claude-sonnet":                 "Claude Sonnet",
+    "deepseek-v3":                   "DeepSeek-V3",
+    "mistral-large":                 "Mistral Large",
+    "gemini-3.1-flash-lite-preview": "Gemini 3.1 Flash Lite",
+}
 
 # Max tokens for open-ended responses (I1, I2)
 MAX_TOKENS_OPEN = 1024
@@ -308,6 +318,103 @@ def store_i3_response(data: dict, model: str, condition: str,
 
 
 # =============================================================================
+# Instrument 4 prompt builder + parser
+#
+# I4 structure (one call per evaluator/question, baseline only):
+# {
+#   "P1": {                          <- pair_id
+#     "I1_Q1": {
+#       "raw": "...",
+#       "parsed": {
+#         "legal_certainty_adequacy":  {"score": 7, "explanation": "..."},
+#         "accountability_mechanisms": {"score": 5, "explanation": "..."},
+#         "enforcement_conditions":    {"score": 6, "explanation": "..."}
+#       }
+#     },
+#     "I1_Q2": { ... },
+#     ...
+#   },
+#   "P2": { ... },
+#   ...
+# }
+# =============================================================================
+
+# Question text lookup for building I4 prompts
+I1_QUESTION_TEXT = {
+    "I1_Q1": "In your own words, define legal certainty as it applies to AI systems used in public decision-making. What does it require, and what does it look like when it is absent?",
+    "I1_Q2": "How would you define accountability in the context of AI governance? Who or what should be accountable, for what, and to whom?",
+    "I1_Q3": "What does enforceability mean when applied to AI regulation? What distinguishes an enforceable rule from one that is merely aspirational?",
+}
+
+I2_QUESTION_TEXT = {
+    "I2_S1": "An AI system used by a national immigration authority flags visa applications for rejection using risk thresholds based on country of origin. This logic is not publicly disclosed. Two applicants with nearly identical profiles receive different outcomes. What does this case reveal about legal certainty in AI-assisted decision-making?",
+    "I2_S2": "An AI system deployed by a city government recommends denial of housing assistance. The applicant challenges the decision. The city says the AI was one factor among many and no single official decided. The vendor says the model performed as specified. Who is responsible, and what accountability mechanisms should apply?",
+    "I2_S3": "A national regulation requires annual audits of high-risk AI systems. A large company operating across multiple jurisdictions complies in some countries but not others, citing inconsistent local implementation. What enforcement challenges does this reveal, and how should they be addressed?",
+}
+
+ALL_QUESTION_TEXT = {**I1_QUESTION_TEXT, **I2_QUESTION_TEXT}
+
+
+def build_i4_prompt(question_id: str, question_text: str,
+                    evaluatee_response: str, instrument: dict) -> str:
+    """
+    Build a single peer evaluation prompt for one question.
+    Injects the evaluatee's run 1 baseline response and asks for structured ratings.
+    """
+    dims = instrument["response_format"]["dimensions"]
+    dim_lines = "\n".join(
+        f'  - "{d["id"]}": {d["prompt"]} (1 = weakest, 10 = strongest)'
+        for d in dims
+    )
+    dim_keys = ", ".join(f'"{d["id"]}"' for d in dims)
+
+    return (
+        f"Below is a response from another AI system to the following governance question:\n\n"
+        f"QUESTION: {question_text}\n\n"
+        f"RESPONSE:\n{evaluatee_response}\n\n"
+        f"Rate this response on three dimensions from 1 to 10 and briefly explain each rating:\n"
+        f"{dim_lines}\n\n"
+        f"Respond ONLY with a JSON object. No preamble, no markdown, no explanation outside the JSON.\n"
+        f"Structure:\n"
+        f"{{\n"
+        f'  "<dimension_id>": {{"score": <int 1-10>, "explanation": "<one sentence>"}}\n'
+        f"}}\n\n"
+        f"Dimension IDs: {dim_keys}"
+    )
+
+
+def parse_i4_response(raw: str) -> dict | None:
+    """Strip markdown fences and parse JSON. Same pattern as I3."""
+    if not raw:
+        return None
+    clean = raw.strip()
+    if clean.startswith("```"):
+        clean = "\n".join(clean.split("\n")[1:])
+    if clean.endswith("```"):
+        clean = "\n".join(clean.split("\n")[:-1])
+    try:
+        return json.loads(clean.strip())
+    except json.JSONDecodeError as e:
+        print(f"    [parse_i4] JSON decode failed: {e}")
+        return None
+
+
+def is_complete_i4(data: dict, pair_id: str, question_id: str) -> bool:
+    """Return True if this pair/question already has a raw response."""
+    try:
+        return data[pair_id][question_id].get("raw") is not None
+    except (KeyError, AttributeError):
+        return False
+
+
+def store_i4_response(data: dict, pair_id: str, question_id: str,
+                      raw: str | None, parsed: dict | None) -> None:
+    """Store raw + parsed peer evaluation for one pair/question."""
+    data.setdefault(pair_id, {})
+    data[pair_id][question_id] = {"raw": raw, "parsed": parsed}
+
+
+# =============================================================================
 # Main
 # =============================================================================
 
@@ -315,6 +422,10 @@ if __name__ == "__main__":
     with open(INSTRUMENTS_FILE, "r", encoding="utf-8") as f:
         instruments_data = json.load(f)
 
+    with open(PEER_EVAL_FILE, "r", encoding="utf-8") as f:
+        peer_eval_data = json.load(f)
+
+    pairs         = peer_eval_data["pairs"]
     conditions    = instruments_data["conditions"]
     models        = instruments_data["models"]
     runs_per_cond = instruments_data["runs_per_condition"]
@@ -323,10 +434,15 @@ if __name__ == "__main__":
     total = 0
     for i_id in ACTIVE_INSTRUMENTS:
         instrument = instruments_data["instruments"][i_id]
-        n_questions = len(instrument.get("questions", instrument.get("scenarios", [])))
-        # I3 sends all scenarios in one call, so count runs not scenarios
         if i_id == "instrument_3":
             n_questions = 1
+        elif i_id == "instrument_4":
+            # One call per pair × question (baseline only, no runs)
+            n_questions = len(pairs) * len(ALL_QUESTION_TEXT)
+            total += n_questions
+            continue
+        else:
+            n_questions = len(instrument.get("questions", []))
         total += (
             len(models)
             * len(instrument["conditions"])
@@ -348,8 +464,62 @@ if __name__ == "__main__":
         print(f"Instrument: {instrument_id} — {instrument['label']}")
         print(f"{'='*60}")
 
+        # ---- Instrument 4: peer evaluation, one call per pair × question ----
+        if instrument_id == "instrument_4":
+            system_prompt = conditions["baseline"]["system_prompt"]
+
+            # Load I1 and I2 raw data to pull evaluatee responses
+            i1_data = load_instrument("instrument_1")
+            i2_data = load_instrument("instrument_2")
+
+            for pair in pairs:
+                pair_id   = pair["pair_id"]
+                evaluator = pair["evaluator"]
+                evaluatee = pair["evaluatee"]
+                questions = pair["source_questions"]
+
+                print(f"  Pair {pair_id}: {MODEL_LABELS.get(evaluator, evaluator)}"
+                      f" evaluates {MODEL_LABELS.get(evaluatee, evaluatee)}")
+
+                for q_id in questions:
+                    if is_complete_i4(data, pair_id, q_id):
+                        skipped += 1
+                        print(f"    [skip] {pair_id} | {q_id}")
+                        continue
+
+                    # Fetch evaluatee's run 1 baseline response
+                    if q_id.startswith("I1"):
+                        evaluatee_response = i1_data.get(evaluatee, {}).get(
+                            "baseline", {}).get("1", {}).get(q_id, "")
+                    else:
+                        evaluatee_response = i2_data.get(evaluatee, {}).get(
+                            "baseline", {}).get("1", {}).get(q_id, "")
+
+                    if not evaluatee_response:
+                        print(f"    [skip] {pair_id} | {q_id} — evaluatee response not found")
+                        skipped += 1
+                        continue
+
+                    question_text = ALL_QUESTION_TEXT[q_id]
+                    prompt = build_i4_prompt(q_id, question_text,
+                                             evaluatee_response, instrument)
+
+                    print(f"    [call] {pair_id} | {q_id} ... ", end="", flush=True)
+
+                    raw    = call_with_retry(evaluator, system_prompt, prompt,
+                                             MAX_TOKENS_JSON)
+                    parsed = parse_i4_response(raw) if raw else None
+
+                    store_i4_response(data, pair_id, q_id, raw, parsed)
+                    save_instrument(instrument_id, data)
+
+                    status = "ok" if parsed else ("raw only" if raw else "FAILED")
+                    print(status)
+                    completed += 1
+                    sleep(CALL_DELAY)
+
         # ---- Instrument 3: one bundled call per run ----
-        if instrument_id == "instrument_3":
+        elif instrument_id == "instrument_3":
             i3_prompt = build_i3_prompt(instrument)
 
             for model_id in models:
@@ -370,8 +540,8 @@ if __name__ == "__main__":
                             end="", flush=True
                         )
 
-                        raw = call_with_retry(model_id, system_prompt, i3_prompt,
-                                              MAX_TOKENS_JSON)
+                        raw    = call_with_retry(model_id, system_prompt, i3_prompt,
+                                                 MAX_TOKENS_JSON)
                         parsed = parse_i3_response(raw) if raw else None
 
                         store_i3_response(data, model_id, condition_id, run, raw, parsed)
