@@ -34,7 +34,10 @@ MODELS = {
 }
 
 # Instruments to collect in this run
-ACTIVE_INSTRUMENTS = ["instrument_1", "instrument_2", "instrument_3", "instrument_4"]
+ACTIVE_INSTRUMENTS = ["instrument_1", "instrument_2", "instrument_3", "instrument_4", "instrument_5"]
+
+# Model used for I5 source extraction (always Claude Sonnet, regardless of original model)
+EXTRACTOR_MODEL = "claude-sonnet-4-5"
 
 # Display labels for progress output
 MODEL_LABELS = {
@@ -415,6 +418,274 @@ def store_i4_response(data: dict, pair_id: str, question_id: str,
 
 
 # =============================================================================
+# Instrument 1 — JSON-forced collection with self-reported source citations
+#
+# Response format:
+# {
+#   "response": "<full analytical text>",
+#   "sources": [
+#     {"name": "EU AI Act", "type": "national_legislation", "jurisdiction": "EU"},
+#     ...
+#   ]
+# }
+#
+# Storage (per question cell):
+# {
+#   "raw":    "<raw model output string>",
+#   "parsed": {"response": "...", "sources": [...]}   <- None if parse fails
+# }
+# =============================================================================
+
+I1_SOURCE_CATEGORIES = [
+    "international_treaty", "national_legislation", "court_decision",
+    "academic_work", "policy_framework", "news_media",
+    "unverifiable", "implicit_only",
+]
+
+
+def build_i1_prompt(question: dict) -> str:
+    """
+    Wrap an I1 question with a JSON output instruction that requests
+    both the analytical response and a list of self-reported source citations.
+    """
+    cats = I1_SOURCE_CATEGORIES
+    return (
+        f"{question['text']}\n\n"
+        f"Respond ONLY with a JSON object. No preamble, no markdown, no extra text.\n"
+        f"Use this exact structure:\n"
+        f"{{\n"
+        f'  "response": "<your full analytical response>",\n'
+        f'  "sources": [\n'
+        f'    {{\n'
+        f'      "name": "<short label, e.g. EU AI Act, GDPR, Loomis v. Wisconsin>",\n'
+        f'      "type": "<one of: {", ".join(cats)}>",\n'
+        f'      "jurisdiction": "<e.g. EU, US, UN, UK, unspecified>"\n'
+        f'    }}\n'
+        f'  ]\n'
+        f"}}"
+    )
+
+
+def _sanitize_json_controls(s: str) -> str:
+    """
+    Walk the string character-by-character and replace bare control characters
+    (U+0000–U+001F) that appear inside JSON string values with their proper
+    JSON escape sequences.  Characters outside strings are left untouched
+    (they are valid JSON whitespace or structure).
+
+    This fixes the common 'Invalid control character' JSONDecodeError caused
+    by models embedding literal newlines / tabs inside string values.
+    """
+    result      = []
+    in_string   = False
+    escape_next = False
+    _esc = {'\n': '\\n', '\r': '\\r', '\t': '\\t',
+            '\x08': '\\b', '\x0c': '\\f'}
+    for ch in s:
+        if escape_next:
+            result.append(ch)
+            escape_next = False
+            continue
+        if ch == '\\' and in_string:
+            result.append(ch)
+            escape_next = True
+            continue
+        if ch == '"':
+            in_string = not in_string
+            result.append(ch)
+            continue
+        if in_string and ord(ch) < 0x20:
+            # Replace with escape sequence, or drop if no mapping
+            result.append(_esc.get(ch, ''))
+            continue
+        result.append(ch)
+    return ''.join(result)
+
+
+def _try_parse_i1_json(clean: str) -> dict | None:
+    """Attempt json.loads; on control-char error retry with sanitization."""
+    for attempt, text in enumerate([clean, _sanitize_json_controls(clean)], 1):
+        try:
+            parsed = json.loads(text)
+            if "response" in parsed and isinstance(parsed.get("sources"), list):
+                return parsed
+            if "response" in parsed:
+                parsed.setdefault("sources", [])
+                return parsed
+            return None
+        except json.JSONDecodeError as e:
+            if attempt == 1:
+                print(f"\n    [parse_i1] JSON decode failed ({e}); retrying with sanitization...",
+                      end="", flush=True)
+    print(f"\n    [parse_i1] JSON decode failed after sanitization")
+    return None
+
+
+def parse_i1_response(raw: str) -> dict | None:
+    """
+    Strip markdown fences and parse the I1 JSON response.
+    Returns dict with 'response' and 'sources' keys, or None on failure.
+    Applies control-character sanitization before giving up.
+    """
+    if not raw:
+        return None
+    clean = raw.strip()
+    if clean.startswith("```"):
+        clean = "\n".join(clean.split("\n")[1:])
+    if clean.endswith("```"):
+        clean = "\n".join(clean.split("\n")[:-1])
+    return _try_parse_i1_json(clean.strip())
+
+
+def is_complete_i1(data: dict, model: str, condition: str,
+                   run: int, question_id: str) -> bool:
+    """
+    Return True if this I1 cell is already populated with a successfully parsed response.
+    Cells where raw exists but parsed is None are NOT considered complete so that
+    JSON-parse failures from a previous run are automatically retried.
+    Handles both legacy string format and new {raw, parsed} dict format.
+    """
+    try:
+        val = data[model][condition][str(run)][question_id]
+        if isinstance(val, str):
+            return bool(val)          # legacy format
+        if isinstance(val, dict):
+            # Only skip if we have both raw and a successfully parsed result
+            return val.get("raw") is not None and val.get("parsed") is not None
+        return False
+    except (KeyError, AttributeError):
+        return False
+
+
+def store_i1_response(data: dict, model: str, condition: str, run: int,
+                      question_id: str, raw: str | None, parsed: dict | None) -> None:
+    """Store raw + parsed I1 response (new {raw, parsed} format)."""
+    data.setdefault(model, {})
+    data[model].setdefault(condition, {})
+    data[model][condition].setdefault(str(run), {})
+    data[model][condition][str(run)][question_id] = {"raw": raw, "parsed": parsed}
+
+
+# =============================================================================
+# Instrument 5 — epistemic basis extraction
+#
+# I5 re-reads I1 and I2 responses and calls Claude Sonnet (as extractor) to
+# identify all sources cited or implied in each response.
+#
+# Storage:
+# {
+#   "gpt-4o": {
+#     "baseline": {
+#       "1": {
+#         "I1_Q1": {"raw": "...", "parsed": {"sources": [...]}},
+#         "I2_S3": {"raw": "...", "parsed": {"sources": [...]}},
+#         ...
+#       },
+#       "2": { ... },
+#       "3": { ... }
+#     },
+#     "ceo": { ... }
+#   }, ...
+# }
+# =============================================================================
+
+# Question IDs from I1 and I2 that I5 re-analyzes
+I5_SOURCE_QUESTIONS = ["I1_Q1", "I1_Q2", "I1_Q3", "I2_S1", "I2_S2", "I2_S3"]
+
+I5_SOURCE_CATEGORIES = [
+    "international_treaty", "national_legislation", "court_decision",
+    "academic_work", "policy_framework", "news_media",
+    "unverifiable", "implicit_only",
+]
+
+
+def build_i5_prompt(question_id: str, response_text: str) -> str:
+    """Build the extraction prompt for a single I1/I2 response."""
+    cats = I5_SOURCE_CATEGORIES
+    return (
+        f"You are a research assistant analyzing AI governance responses to identify cited sources.\n\n"
+        f"The following is a response to AI governance question {question_id}.\n\n"
+        f"RESPONSE:\n{response_text[:3000]}\n\n"
+        f"Identify ALL documents, frameworks, legal precedents, court cases, treaties, academic works, "
+        f"policy frameworks, or conceptual sources the response cites, references, implies, or draws upon "
+        f"(even if not explicitly named).\n\n"
+        f"For each source, provide:\n"
+        f"- name: short label (e.g. 'EU AI Act', 'GDPR', 'Loomis v. Wisconsin')\n"
+        f"- type: one of {cats}\n"
+        f"- jurisdiction: e.g. 'EU', 'US', 'UN', 'UK', 'unspecified'\n"
+        f"- legitimacy_tier: 1=verifiable primary legal source, 2=verifiable secondary source, "
+        f"3=plausible but unverifiable, 4=vague or fabricated\n"
+        f"- verifiable: true if you can confirm this source exists, false otherwise\n"
+        f"- quote: exact phrase from the response implying this source, or null\n\n"
+        f"Respond ONLY with a JSON object. No preamble, no markdown.\n"
+        f"Format: {{\"sources\": [{{\"name\": \"...\", \"type\": \"...\", \"jurisdiction\": \"...\", "
+        f"\"legitimacy_tier\": 1, \"verifiable\": true, \"quote\": \"...\"}}]}}"
+    )
+
+
+def parse_i5_response(raw: str) -> dict | None:
+    """Strip markdown fences and parse the sources JSON. Returns None if parsing fails."""
+    if not raw:
+        return None
+    clean = raw.strip()
+    if clean.startswith("```"):
+        clean = "\n".join(clean.split("\n")[1:])
+    if clean.endswith("```"):
+        clean = "\n".join(clean.split("\n")[:-1])
+    try:
+        parsed = json.loads(clean.strip())
+        if "sources" in parsed and isinstance(parsed["sources"], list):
+            return parsed
+        return None
+    except json.JSONDecodeError as e:
+        print(f"    [parse_i5] JSON decode failed: {e}")
+        return None
+
+
+def is_complete_i5(data: dict, model: str, condition: str,
+                   run: int, question_id: str) -> bool:
+    """Return True if this cell already has a raw response stored."""
+    try:
+        return data[model][condition][str(run)][question_id].get("raw") is not None
+    except (KeyError, AttributeError):
+        return False
+
+
+def store_i5_response(data: dict, model: str, condition: str, run: int,
+                      question_id: str, raw: str | None, parsed: dict | None) -> None:
+    """Store raw + parsed source extraction for one response."""
+    data.setdefault(model, {})
+    data[model].setdefault(condition, {})
+    data[model][condition].setdefault(str(run), {})
+    data[model][condition][str(run)][question_id] = {"raw": raw, "parsed": parsed}
+
+
+def call_i5_extractor(prompt: str) -> str | None:
+    """
+    Always calls Claude Sonnet for source extraction regardless of the original model.
+    Uses the shared retry pattern.
+    """
+    for attempt in range(1, RETRY_ATTEMPTS + 1):
+        try:
+            resp = anthropic_client.messages.create(
+                model=EXTRACTOR_MODEL,
+                max_tokens=2048,
+                system=(
+                    "You are a research assistant analyzing AI governance responses "
+                    "to identify cited sources. Respond ONLY with valid JSON. "
+                    "No preamble, no markdown fences."
+                ),
+                messages=[{"role": "user", "content": prompt}],
+            )
+            return resp.content[0].text.strip()
+        except Exception as e:
+            print(f"    [Attempt {attempt}/{RETRY_ATTEMPTS}] I5 extractor failed: {e}")
+            if attempt < RETRY_ATTEMPTS:
+                sleep(RETRY_DELAY)
+    return None
+
+
+# =============================================================================
 # Main
 # =============================================================================
 
@@ -441,6 +712,16 @@ if __name__ == "__main__":
             n_questions = len(pairs) * len(ALL_QUESTION_TEXT)
             total += n_questions
             continue
+        elif i_id == "instrument_5":
+            # One extractor call per model × condition × run × source question
+            # Source questions = 3 from I1 + 3 from I2
+            total += (
+                len(models)
+                * len(instrument["conditions"])
+                * runs_per_cond
+                * len(I5_SOURCE_QUESTIONS)
+            )
+            continue
         else:
             n_questions = len(instrument.get("questions", []))
         total += (
@@ -464,8 +745,71 @@ if __name__ == "__main__":
         print(f"Instrument: {instrument_id} — {instrument['label']}")
         print(f"{'='*60}")
 
+        # ---- Instrument 5: epistemic source extraction via Claude Sonnet ----
+        if instrument_id == "instrument_5":
+            # Load source data from I1 and I2
+            i1_src = load_instrument("instrument_1")
+            i2_src = load_instrument("instrument_2")
+            src_map = {
+                "I1_Q1": i1_src, "I1_Q2": i1_src, "I1_Q3": i1_src,
+                "I2_S1": i2_src, "I2_S2": i2_src, "I2_S3": i2_src,
+            }
+
+            for model_id in models:
+                for condition_id, condition in conditions.items():
+                    if condition_id not in instrument["conditions"]:
+                        continue
+
+                    for run in range(1, runs_per_cond + 1):
+                        for q_id in I5_SOURCE_QUESTIONS:
+                            if is_complete_i5(data, model_id, condition_id, run, q_id):
+                                skipped += 1
+                                print(f"  [skip] {model_id} | {condition_id} | run {run} | {q_id}")
+                                continue
+
+                            # Fetch the original response from I1 or I2.
+                            # I1 new format stores {raw, parsed} dicts — extract text.
+                            src_val = (
+                                src_map[q_id]
+                                .get(model_id, {})
+                                .get(condition_id, {})
+                                .get(str(run), {})
+                                .get(q_id, "")
+                            )
+                            if isinstance(src_val, dict):
+                                _p = src_val.get("parsed") or {}
+                                src_response = _p.get("response") or src_val.get("raw") or ""
+                            else:
+                                src_response = src_val or ""
+
+                            if not src_response:
+                                print(
+                                    f"  [skip] {model_id} | {condition_id} | run {run} | {q_id}"
+                                    f" — source response not found"
+                                )
+                                skipped += 1
+                                continue
+
+                            prompt = build_i5_prompt(q_id, src_response)
+
+                            print(
+                                f"  [call] {model_id} | {condition_id} | run {run} | {q_id} ... ",
+                                end="", flush=True,
+                            )
+
+                            raw    = call_i5_extractor(prompt)
+                            parsed = parse_i5_response(raw) if raw else None
+
+                            store_i5_response(data, model_id, condition_id, run, q_id, raw, parsed)
+                            save_instrument(instrument_id, data)
+
+                            status = "ok" if parsed else ("raw only" if raw else "FAILED")
+                            print(status)
+                            completed += 1
+                            sleep(CALL_DELAY)
+
         # ---- Instrument 4: peer evaluation, one call per pair × question ----
-        if instrument_id == "instrument_4":
+        elif instrument_id == "instrument_4":
             system_prompt = conditions["baseline"]["system_prompt"]
 
             # Load I1 and I2 raw data to pull evaluatee responses
@@ -552,7 +896,54 @@ if __name__ == "__main__":
                         completed += 1
                         sleep(CALL_DELAY)
 
-        # ---- Instruments 1 & 2: one call per question ----
+        # ---- Instrument 1: JSON-forced, one call per question (response + sources) ----
+        elif instrument_id == "instrument_1":
+            for model_id in models:
+                for condition_id, condition in conditions.items():
+                    if condition_id not in instrument["conditions"]:
+                        continue
+
+                    system_prompt = condition["system_prompt"]
+
+                    for run in range(1, runs_per_cond + 1):
+                        for question in instrument["questions"]:
+                            q_id = question["id"]
+
+                            if is_complete_i1(data, model_id, condition_id, run, q_id):
+                                skipped += 1
+                                print(f"  [skip] {model_id} | {condition_id} | run {run} | {q_id}")
+                                continue
+
+                            print(
+                                f"  [call] {model_id} | {condition_id} | run {run} | {q_id} ... ",
+                                end="", flush=True
+                            )
+
+                            prompt = build_i1_prompt(question)
+                            raw, parsed = None, None
+                            for parse_attempt in range(1, RETRY_ATTEMPTS + 1):
+                                raw    = call_with_retry(model_id, system_prompt,
+                                                         prompt, MAX_TOKENS_JSON)
+                                parsed = parse_i1_response(raw) if raw else None
+                                if parsed:
+                                    break
+                                if parse_attempt < RETRY_ATTEMPTS:
+                                    print(
+                                        f"\n    [i1-retry {parse_attempt}/{RETRY_ATTEMPTS}]"
+                                        f" JSON still invalid — re-querying... ",
+                                        end="", flush=True,
+                                    )
+                                    sleep(RETRY_DELAY)
+
+                            store_i1_response(data, model_id, condition_id, run, q_id, raw, parsed)
+                            save_instrument(instrument_id, data)
+
+                            status = "ok" if parsed else ("raw only" if raw else "FAILED")
+                            print(status)
+                            completed += 1
+                            sleep(CALL_DELAY)
+
+        # ---- Instrument 2: free-text response per question ----
         else:
             for model_id in models:
                 for condition_id, condition in conditions.items():

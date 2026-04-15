@@ -2,95 +2,95 @@
   "gpt-4o": {
     "label": "GPT-4o",
     "i3_strictness": {
-      "legal_certainty": 4.778,
+      "legal_certainty": 4.722,
       "accountability": 5.222,
-      "enforceability": 4.5
+      "enforceability": 4.333
     },
     "i4_peer_mean": {
-      "legal_certainty": 8.667,
-      "accountability": 8.333,
+      "legal_certainty": 8.833,
+      "accountability": 8.167,
       "enforceability": 7.833
     },
     "asymmetry": {
-      "legal_certainty": 3.445,
-      "accountability": 3.555,
-      "enforceability": 2.333
+      "legal_certainty": 3.555,
+      "accountability": 3.389,
+      "enforceability": 2.166
     },
     "i1_coding": null
   },
   "claude-sonnet": {
     "label": "Claude Sonnet",
     "i3_strictness": {
-      "legal_certainty": 5.167,
-      "accountability": 4.889,
-      "enforceability": 4.944
+      "legal_certainty": 5.0,
+      "accountability": 4.944,
+      "enforceability": 4.611
     },
     "i4_peer_mean": {
-      "legal_certainty": 7.833,
-      "accountability": 7.5,
-      "enforceability": 5.833
+      "legal_certainty": 8.333,
+      "accountability": 8.167,
+      "enforceability": 6.667
     },
     "asymmetry": {
-      "legal_certainty": 3.0,
-      "accountability": 2.389,
-      "enforceability": 0.777
+      "legal_certainty": 3.333,
+      "accountability": 3.111,
+      "enforceability": 1.278
     },
     "i1_coding": null
   },
   "deepseek-v3": {
     "label": "DeepSeek-V3",
     "i3_strictness": {
-      "legal_certainty": 6.278,
-      "accountability": 5.444,
-      "enforceability": 5.0
+      "legal_certainty": 6.333,
+      "accountability": 5.5,
+      "enforceability": 4.889
     },
     "i4_peer_mean": {
-      "legal_certainty": 8.167,
-      "accountability": 8.333,
-      "enforceability": 7.167
+      "legal_certainty": 8.833,
+      "accountability": 9.167,
+      "enforceability": 7.333
     },
     "asymmetry": {
-      "legal_certainty": 4.445,
-      "accountability": 3.777,
-      "enforceability": 2.167
+      "legal_certainty": 5.166,
+      "accountability": 4.667,
+      "enforceability": 2.222
     },
     "i1_coding": null
   },
   "mistral-large": {
     "label": "Mistral Large",
     "i3_strictness": {
-      "legal_certainty": 5.833,
-      "accountability": 5.333,
-      "enforceability": 4.5
+      "legal_certainty": 5.882,
+      "accountability": 5.278,
+      "enforceability": 4.833
     },
     "i4_peer_mean": {
-      "legal_certainty": 8.167,
+      "legal_certainty": 8.5,
       "accountability": 8.5,
-      "enforceability": 7.5
+      "enforceability": 7.667
     },
     "asymmetry": {
-      "legal_certainty": 4.0,
-      "accountability": 3.833,
-      "enforceability": 2.0
+      "legal_certainty": 4.382,
+      "accountability": 3.778,
+      "enforceability": 2.5
     },
     "i1_coding": null
   },
   "gemini-3.1-flash-lite-preview": {
     "label": "Gemini 3.1 Flash Lite",
     "i3_strictness": {
-      "legal_certainty": 5.333,
-      "accountability": 5.5,
-      "enforceability": 4.5
+      "legal_certainty": 5.5,
+      "accountability": 6.333,
+      "enforceability": 6.0
     },
     "i4_peer_mean": {
-      "legal_certainty": 8.0,
-      "accountability": 8.167,
-      "enforceability": 6.833
+      "legal_certainty": 8.333,
+      "accountability": 8.5,
+      "enforceability": 7.167
     },
     "asymmetry": {
-      "legal_certainty": 3.333,
-      "accountability": 3.667,
-      "enforceability": 1.333
+      "legal_certainty": 3.833,
+      "accountability": 4.833,
+      "enforceability": 3.167
     },
     "i1_coding": null
   }

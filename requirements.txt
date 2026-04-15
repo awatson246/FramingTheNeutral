@@ -7,3 +7,5 @@ sentence-transformers>=3.0.0
 plotly>=5.0.0
 kaleido
 nltk
+scipy>=1.13.0
+pandas>=2.0.0

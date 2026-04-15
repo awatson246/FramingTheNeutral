@@ -1,0 +1,34 @@
+HYPOTHESIS TEST RESULTS
+============================================================
+
+H1 — Surface competence vs scenario divergence
+----------------------------------------
+  Within-model I1 similarity (mean):       0.9105
+  I1→I2 cross-instrument similarity (mean): 0.6524
+  Paired t-test:  t=13.451,  p=0.0000  (n=15)
+  Supported:      True
+
+H2 — CEO shift largest for enforceability
+----------------------------------------
+  Legal Certainty         mean Δ=+0.100  t=0.479  p=0.6572
+  Accountability          mean Δ=+0.489  t=3.066  p=0.0375
+  Enforceability          mean Δ=+0.078  t=0.275  p=0.7971
+  Friedman χ²=2.800  p=0.2466
+
+H3 — Asymmetry smallest for enforceability
+----------------------------------------
+  Legal Certainty         mean=+4.054  Cohen's d=6.165  t=12.330  p=0.0002
+  Accountability          mean=+3.956  Cohen's d=5.780  t=11.560  p=0.0003
+  Enforceability          mean=+2.267  Cohen's d=3.722  t=7.443  p=0.0017
+
+H4 — Epistemic basis inconsistency
+----------------------------------------
+  Spearman ρ (tier vs enforceability mean): ρ=0.100  p=0.8729
+  Spearman ρ (tier vs enforceability var):  ρ=-0.600  p=0.2848
+
+  Per-model source legitimacy summary:
+    GPT-4o                        mean tier=2.243  enf=5.667
+    Claude Sonnet                 mean tier=1.648  enf=5.389
+    DeepSeek-V3                   mean tier=1.794  enf=5.111
+    Mistral Large                 mean tier=1.455  enf=5.167
+    Gemini 3.1 Flash Lite         mean tier=1.949  enf=4.0

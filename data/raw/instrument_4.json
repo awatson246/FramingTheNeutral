@@ -1,520 +1,520 @@
 {
   "P1": {
     "I1_Q1": {
-      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates a sophisticated understanding of legal certainty by correctly identifying its core elements (predictability, clarity, consistency, legal basis) and accurately describing how its absence undermines the rule of law in public decision-making contexts.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 7,\n    \"explanation\": \"The response identifies important accountability mechanisms including human oversight and appeal procedures, but remains somewhat general without specifying concrete institutional arrangements, audit procedures, or remedial pathways that would operationalize accountability in practice.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 6,\n    \"explanation\": \"While the response implicitly acknowledges enforcement needs through mentions of legal basis and accountability, it does not explicitly address the practical conditions necessary for enforcement such as regulatory bodies, compliance monitoring, sanctions for violations, or jurisdictional challenges in AI governance.\"\n  }\n}\n```",
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates a sophisticated understanding of legal certainty by correctly identifying its core elements—predictability, clarity, stability, and foreseeability—and appropriately connecting them to transparency, explainability, and the ability to challenge decisions in the AI context.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 8,\n    \"explanation\": \"The response identifies key accountability mechanisms including human oversight, review and redress mechanisms, clear legal authorization, and well-defined parameters, though it could have been more specific about institutional responsibilities and separation between development, deployment, and oversight functions.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 7,\n    \"explanation\": \"While the response acknowledges the need for accessible mechanisms for review and redress and references relevant legal frameworks (GDPR, EU AI Act), it provides limited detail on practical enforcement pathways, judicial remedies, or the institutional capacity required to make these mechanisms effective in practice.\"\n  }\n}\n```",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 9,
-          "explanation": "The response demonstrates a sophisticated understanding of legal certainty by correctly identifying its core elements (predictability, clarity, consistency, legal basis) and accurately describing how its absence undermines the rule of law in public decision-making contexts."
+          "explanation": "The response demonstrates a sophisticated understanding of legal certainty by correctly identifying its core elements—predictability, clarity, stability, and foreseeability—and appropriately connecting them to transparency, explainability, and the ability to challenge decisions in the AI context."
         },
         "accountability_mechanisms": {
-          "score": 7,
-          "explanation": "The response identifies important accountability mechanisms including human oversight and appeal procedures, but remains somewhat general without specifying concrete institutional arrangements, audit procedures, or remedial pathways that would operationalize accountability in practice."
+          "score": 8,
+          "explanation": "The response identifies key accountability mechanisms including human oversight, review and redress mechanisms, clear legal authorization, and well-defined parameters, though it could have been more specific about institutional responsibilities and separation between development, deployment, and oversight functions."
         },
         "enforcement_conditions": {
-          "score": 6,
-          "explanation": "While the response implicitly acknowledges enforcement needs through mentions of legal basis and accountability, it does not explicitly address the practical conditions necessary for enforcement such as regulatory bodies, compliance monitoring, sanctions for violations, or jurisdictional challenges in AI governance."
+          "score": 7,
+          "explanation": "While the response acknowledges the need for accessible mechanisms for review and redress and references relevant legal frameworks (GDPR, EU AI Act), it provides limited detail on practical enforcement pathways, judicial remedies, or the institutional capacity required to make these mechanisms effective in practice."
         }
       }
     },
     "I1_Q2": {
-      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 6,\n    \"explanation\": \"The response identifies legal compliance as a component but lacks specificity about how accountability frameworks should provide clear, predictable legal standards and fails to address jurisdictional complexities or how vague obligations would be operationalized into enforceable legal requirements.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 7,\n    \"explanation\": \"The response identifies multiple stakeholder groups and mentions oversight mechanisms, auditability, and documentation, but remains somewhat abstract without detailing concrete mechanisms like liability schemes, third-party audits, certification systems, or specific reporting requirements.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 5,\n    \"explanation\": \"While the response mentions 'meaningful consequences for failures' and 'accessible redress,' it provides minimal detail on enforcement bodies, sanctions, complaint procedures, burden of proof, or the practical conditions necessary to make accountability actionable rather than aspirational.\"\n  }\n}\n```",
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 8,\n    \"explanation\": \"The response demonstrates strong understanding of legal certainty by clearly delineating who is accountable, for what, and to whom, grounded in specific legal frameworks (EU AI Act, GDPR) with defined obligations, though it could more explicitly address how legal uncertainty is resolved when multiple jurisdictions or novel situations arise.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 7,\n    \"explanation\": \"The response identifies multiple appropriate mechanisms including conformity assessments, post-market monitoring, impact assessments, and redress mechanisms across the AI value chain, though it could provide more detail on how these mechanisms operationalize accountability in practice and interact with each other.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 6,\n    \"explanation\": \"While the response acknowledges regulators, judiciary, and corporate governance bodies as enforcement actors and references compliance obligations, it lacks sufficient detail on practical enforcement challenges, remedies, sanctions, jurisdictional conflicts, and resource requirements that affect viability of enforcement in cross-border AI deployments.\"\n  }\n}\n```",
       "parsed": {
         "legal_certainty_adequacy": {
-          "score": 6,
-          "explanation": "The response identifies legal compliance as a component but lacks specificity about how accountability frameworks should provide clear, predictable legal standards and fails to address jurisdictional complexities or how vague obligations would be operationalized into enforceable legal requirements."
+          "score": 8,
+          "explanation": "The response demonstrates strong understanding of legal certainty by clearly delineating who is accountable, for what, and to whom, grounded in specific legal frameworks (EU AI Act, GDPR) with defined obligations, though it could more explicitly address how legal uncertainty is resolved when multiple jurisdictions or novel situations arise."
         },
         "accountability_mechanisms": {
           "score": 7,
-          "explanation": "The response identifies multiple stakeholder groups and mentions oversight mechanisms, auditability, and documentation, but remains somewhat abstract without detailing concrete mechanisms like liability schemes, third-party audits, certification systems, or specific reporting requirements."
+          "explanation": "The response identifies multiple appropriate mechanisms including conformity assessments, post-market monitoring, impact assessments, and redress mechanisms across the AI value chain, though it could provide more detail on how these mechanisms operationalize accountability in practice and interact with each other."
         },
         "enforcement_conditions": {
-          "score": 5,
-          "explanation": "While the response mentions 'meaningful consequences for failures' and 'accessible redress,' it provides minimal detail on enforcement bodies, sanctions, complaint procedures, burden of proof, or the practical conditions necessary to make accountability actionable rather than aspirational."
+          "score": 6,
+          "explanation": "While the response acknowledges regulators, judiciary, and corporate governance bodies as enforcement actors and references compliance obligations, it lacks sufficient detail on practical enforcement challenges, remedies, sanctions, jurisdictional conflicts, and resource requirements that affect viability of enforcement in cross-border AI deployments."
         }
       }
     },
     "I1_Q3": {
-      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates strong understanding of legal certainty through its emphasis on specificity, clarity, measurable thresholds, and defined terms that enable actors to predict legal consequences, with the EU AI Act example effectively illustrating how vague principles are operationalized into legally certain obligations.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 8,\n    \"explanation\": \"The response identifies comprehensive accountability mechanisms including clear assignment of responsibility to legal entities, mandatory documentation, verification procedures, administrative/civil/criminal sanctions, and remediation pathways, though it could have elaborated more on private enforcement mechanisms and third-party standing.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 7,\n    \"explanation\": \"The response acknowledges key enforcement prerequisites such as monitoring capacity, detection mechanisms, and sanction imposition, and explicitly identifies real-world challenges (technical complexity, dynamic technology, global supply chains), but could have explored more deeply the institutional requirements, resource constraints, and cross-border coordination challenges that affect enforcement viability.\"\n  }\n}\n```",
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates strong understanding of legal certainty by clearly distinguishing specificity from vagueness, citing concrete examples like the EU AI Act's high-risk classifications, and grounding the analysis in Hart's legal theory of primary and secondary rules.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"The response comprehensively identifies accountability mechanisms including clear designation of responsible entities (providers/deployers), liability frameworks, monitoring requirements, documentation obligations, and oversight bodies with investigative powers, supported by GDPR examples.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 8,\n    \"explanation\": \"The response effectively outlines enforcement conditions including credible sanctions, proportionate remedies, oversight bodies, and the transition from soft to hard law, though it could further address practical challenges in cross-border enforcement and technical verification complexities specific to AI systems.\"\n  }\n}\n```",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 9,
-          "explanation": "The response demonstrates strong understanding of legal certainty through its emphasis on specificity, clarity, measurable thresholds, and defined terms that enable actors to predict legal consequences, with the EU AI Act example effectively illustrating how vague principles are operationalized into legally certain obligations."
+          "explanation": "The response demonstrates strong understanding of legal certainty by clearly distinguishing specificity from vagueness, citing concrete examples like the EU AI Act's high-risk classifications, and grounding the analysis in Hart's legal theory of primary and secondary rules."
         },
         "accountability_mechanisms": {
-          "score": 8,
-          "explanation": "The response identifies comprehensive accountability mechanisms including clear assignment of responsibility to legal entities, mandatory documentation, verification procedures, administrative/civil/criminal sanctions, and remediation pathways, though it could have elaborated more on private enforcement mechanisms and third-party standing."
+          "score": 9,
+          "explanation": "The response comprehensively identifies accountability mechanisms including clear designation of responsible entities (providers/deployers), liability frameworks, monitoring requirements, documentation obligations, and oversight bodies with investigative powers, supported by GDPR examples."
         },
         "enforcement_conditions": {
-          "score": 7,
-          "explanation": "The response acknowledges key enforcement prerequisites such as monitoring capacity, detection mechanisms, and sanction imposition, and explicitly identifies real-world challenges (technical complexity, dynamic technology, global supply chains), but could have explored more deeply the institutional requirements, resource constraints, and cross-border coordination challenges that affect enforcement viability."
+          "score": 8,
+          "explanation": "The response effectively outlines enforcement conditions including credible sanctions, proportionate remedies, oversight bodies, and the transition from soft to hard law, though it could further address practical challenges in cross-border enforcement and technical verification complexities specific to AI systems."
         }
       }
     },
     "I2_S1": {
-      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates strong understanding of legal certainty principles including foreseeability, consistency, transparency, and rule of law requirements, with clear application to the immigration AI context.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 6,\n    \"explanation\": \"While it identifies the accountability gap and mentions courts/review bodies, it does not specify concrete mechanisms such as algorithmic impact assessments, independent audits, or designated oversight bodies.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 5,\n    \"explanation\": \"The response acknowledges rights to challenge and remedy but fails to address practical enforcement barriers such as technical complexity, resource asymmetries, evidentiary challenges, or the need for specialized tribunals.\"\n  }\n}\n```",
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"The response demonstrates strong understanding by correctly identifying that legal certainty requires knowable norms in advance, and clearly articulates how opaque AI criteria undermine this principle through unpredictability and inability to understand applicable rules.\"},\n  \"accountability_mechanisms\": {\"score\": 7, \"explanation\": \"The response identifies key accountability gaps (opaque discretion, challenges to judicial review, need for human oversight) but remains somewhat abstract without specifying concrete mechanisms like mandatory algorithmic impact assessments, independent auditing bodies, or specific oversight procedures.\"},\n  \"enforcement_conditions\": {\"score\": 6, \"explanation\": \"While the response calls for 'binding requirements' and mentions regulatory safeguards, it does not address practical enforcement challenges such as technical capacity of courts, burden of proof issues, or how enforcement bodies would actually verify compliance with transparency requirements in practice.\"}\n}\n```",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 9,
-          "explanation": "The response demonstrates strong understanding of legal certainty principles including foreseeability, consistency, transparency, and rule of law requirements, with clear application to the immigration AI context."
+          "explanation": "The response demonstrates strong understanding by correctly identifying that legal certainty requires knowable norms in advance, and clearly articulates how opaque AI criteria undermine this principle through unpredictability and inability to understand applicable rules."
         },
         "accountability_mechanisms": {
-          "score": 6,
-          "explanation": "While it identifies the accountability gap and mentions courts/review bodies, it does not specify concrete mechanisms such as algorithmic impact assessments, independent audits, or designated oversight bodies."
+          "score": 7,
+          "explanation": "The response identifies key accountability gaps (opaque discretion, challenges to judicial review, need for human oversight) but remains somewhat abstract without specifying concrete mechanisms like mandatory algorithmic impact assessments, independent auditing bodies, or specific oversight procedures."
         },
         "enforcement_conditions": {
-          "score": 5,
-          "explanation": "The response acknowledges rights to challenge and remedy but fails to address practical enforcement barriers such as technical complexity, resource asymmetries, evidentiary challenges, or the need for specialized tribunals."
+          "score": 6,
+          "explanation": "While the response calls for 'binding requirements' and mentions regulatory safeguards, it does not address practical enforcement challenges such as technical capacity of courts, burden of proof issues, or how enforcement bodies would actually verify compliance with transparency requirements in practice."
         }
       }
     },
     "I2_S2": {
-      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\"score\": 7, \"explanation\": \"The response correctly identifies due process obligations and administrative law principles but lacks specificity about which legal frameworks actually apply (e.g., Fair Housing Act, APA procedural requirements, specific constitutional standards) and how existing law would resolve the accountability vacuum described.\"}, \n  \"accountability_mechanisms\": {\"score\": 9, \"explanation\": \"The response comprehensively identifies appropriate accountability mechanisms across transparency, oversight, audit, redress, and governance structures with practical detail about how each would function in this context.\"},\n  \"enforcement_conditions\": {\"score\": 6, \"explanation\": \"While the response mentions oversight bodies and legal frameworks, it provides limited analysis of how these mechanisms would actually be enforced, who would have standing to enforce them, what resources would be required, or how conflicting jurisdictions between vendor liability and government accountability would be resolved in practice.\"}\n}\n```",
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 7,\n    \"explanation\": \"The response correctly identifies administrative law principles and the city's non-delegable duty, though it could better address specific legal doctrines like due process requirements, existing statutory frameworks, and jurisdictional variations in liability rules.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"The response provides a comprehensive, layered set of accountability mechanisms spanning transparency, auditing, human oversight, appeals processes, and stakeholder engagement that are well-tailored to the AI governance context.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 6,\n    \"explanation\": \"While the response mentions liability clauses and redress mechanisms, it lacks sufficient detail on practical enforcement challenges, resource requirements, jurisdictional authority, remedies availability, and how proposed mechanisms would be operationalized and funded.\"\n  }\n}\n```",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 7,
-          "explanation": "The response correctly identifies due process obligations and administrative law principles but lacks specificity about which legal frameworks actually apply (e.g., Fair Housing Act, APA procedural requirements, specific constitutional standards) and how existing law would resolve the accountability vacuum described."
+          "explanation": "The response correctly identifies administrative law principles and the city's non-delegable duty, though it could better address specific legal doctrines like due process requirements, existing statutory frameworks, and jurisdictional variations in liability rules."
         },
         "accountability_mechanisms": {
           "score": 9,
-          "explanation": "The response comprehensively identifies appropriate accountability mechanisms across transparency, oversight, audit, redress, and governance structures with practical detail about how each would function in this context."
+          "explanation": "The response provides a comprehensive, layered set of accountability mechanisms spanning transparency, auditing, human oversight, appeals processes, and stakeholder engagement that are well-tailored to the AI governance context."
         },
         "enforcement_conditions": {
           "score": 6,
-          "explanation": "While the response mentions oversight bodies and legal frameworks, it provides limited analysis of how these mechanisms would actually be enforced, who would have standing to enforce them, what resources would be required, or how conflicting jurisdictions between vendor liability and government accountability would be resolved in practice."
+          "explanation": "While the response mentions liability clauses and redress mechanisms, it lacks sufficient detail on practical enforcement challenges, resource requirements, jurisdictional authority, remedies availability, and how proposed mechanisms would be operationalized and funded."
         }
       }
     },
     "I2_S3": {
-      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 7,\n    \"explanation\": \"The response identifies key legal certainty issues like definitional inconsistencies and regulatory fragmentation, and proposes harmonization mechanisms, though it could better address how to establish clear, predictable legal obligations during the transition period.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 8,\n    \"explanation\": \"The response comprehensively identifies accountability mechanisms including corporate parent company liability, centralized registries, mutual recognition frameworks, and cross-border cooperation, with clear lines of responsibility at both corporate and regulatory levels.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 6,\n    \"explanation\": \"While the response acknowledges resource disparities and proposes capacity building, it underestimates the practical political and economic barriers to international coordination and doesn't adequately address interim enforcement strategies when harmonization fails.\"\n  }\n}\n```",
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 8,\n    \"explanation\": \"The response demonstrates strong understanding of legal certainty by identifying regulatory fragmentation, jurisdictional limitations, and proposing concrete solutions like harmonization and mutual recognition agreements, though it could more explicitly address how companies determine compliance obligations amid conflicting requirements.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"The response comprehensively identifies accountability mechanisms including transparency requirements, public audit registries, graduated sanctions tied to revenue, whistleblower protections, and home country responsibility principles that create clear lines of oversight.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 7,\n    \"explanation\": \"The response acknowledges practical enforcement realities like resource asymmetry and verification difficulties while proposing viable solutions such as regulatory capacity building and RegTech, but could better address the political economy challenges of getting companies and jurisdictions to actually adopt these measures.\"\n  }\n}\n```",
       "parsed": {
         "legal_certainty_adequacy": {
-          "score": 7,
-          "explanation": "The response identifies key legal certainty issues like definitional inconsistencies and regulatory fragmentation, and proposes harmonization mechanisms, though it could better address how to establish clear, predictable legal obligations during the transition period."
+          "score": 8,
+          "explanation": "The response demonstrates strong understanding of legal certainty by identifying regulatory fragmentation, jurisdictional limitations, and proposing concrete solutions like harmonization and mutual recognition agreements, though it could more explicitly address how companies determine compliance obligations amid conflicting requirements."
         },
         "accountability_mechanisms": {
-          "score": 8,
-          "explanation": "The response comprehensively identifies accountability mechanisms including corporate parent company liability, centralized registries, mutual recognition frameworks, and cross-border cooperation, with clear lines of responsibility at both corporate and regulatory levels."
+          "score": 9,
+          "explanation": "The response comprehensively identifies accountability mechanisms including transparency requirements, public audit registries, graduated sanctions tied to revenue, whistleblower protections, and home country responsibility principles that create clear lines of oversight."
         },
         "enforcement_conditions": {
-          "score": 6,
-          "explanation": "While the response acknowledges resource disparities and proposes capacity building, it underestimates the practical political and economic barriers to international coordination and doesn't adequately address interim enforcement strategies when harmonization fails."
+          "score": 7,
+          "explanation": "The response acknowledges practical enforcement realities like resource asymmetry and verification difficulties while proposing viable solutions such as regulatory capacity building and RegTech, but could better address the political economy challenges of getting companies and jurisdictions to actually adopt these measures."
         }
       }
     }
   },
   "P2": {
     "I1_Q1": {
-      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"The response demonstrates a strong, nuanced understanding by defining legal certainty in terms of understandability, predictability, and challengeability, and clearly outlining its core requirements and absence manifestations.\"},\n  \"accountability_mechanisms\": {\"score\": 7, \"explanation\": \"It identifies key mechanisms like transparency, accessibility of recourse, and consistency, but could be stronger by more explicitly detailing oversight bodies or audit processes.\"},\n  \"enforcement_conditions\": {\"score\": 6, \"explanation\": \"It acknowledges enforcement indirectly through requirements like clarity of legal basis and pathways to contest, but lacks specific discussion of sanctions, monitoring, or institutional frameworks for ensuring compliance.\"}\n}",
+      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates a strong, nuanced understanding of legal certainty by defining it clearly, linking it to rule-of-law principles, and detailing its specific requirements and pathologies in the AI context with well-chosen examples.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 8,\n    \"explanation\": \"It identifies a robust range of accountability mechanisms, including transparency, legal basis, review remedies, and prohibitions, though it could more explicitly detail operational oversight structures.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 7,\n    \"explanation\": \"The response acknowledges key enforcement conditions like legislative frameworks and court rulings but offers less concrete detail on practical implementation, monitoring, and sanctioning for non-compliance.\"\n  }\n}",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 9,
-          "explanation": "The response demonstrates a strong, nuanced understanding by defining legal certainty in terms of understandability, predictability, and challengeability, and clearly outlining its core requirements and absence manifestations."
+          "explanation": "The response demonstrates a strong, nuanced understanding of legal certainty by defining it clearly, linking it to rule-of-law principles, and detailing its specific requirements and pathologies in the AI context with well-chosen examples."
         },
         "accountability_mechanisms": {
-          "score": 7,
-          "explanation": "It identifies key mechanisms like transparency, accessibility of recourse, and consistency, but could be stronger by more explicitly detailing oversight bodies or audit processes."
+          "score": 8,
+          "explanation": "It identifies a robust range of accountability mechanisms, including transparency, legal basis, review remedies, and prohibitions, though it could more explicitly detail operational oversight structures."
         },
         "enforcement_conditions": {
-          "score": 6,
-          "explanation": "It acknowledges enforcement indirectly through requirements like clarity of legal basis and pathways to contest, but lacks specific discussion of sanctions, monitoring, or institutional frameworks for ensuring compliance."
+          "score": 7,
+          "explanation": "The response acknowledges key enforcement conditions like legislative frameworks and court rulings but offers less concrete detail on practical implementation, monitoring, and sanctioning for non-compliance."
         }
       }
     },
     "I1_Q2": {
-      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 7, \"explanation\": \"The response touches on legal certainty through concepts like clear responsibility chains and enforceability but lacks depth on legal frameworks, standards, and predictability needed for true certainty.\"},\n  \"accountability_mechanisms\": {\"score\": 9, \"explanation\": \"It identifies comprehensive and appropriate mechanisms, including distributed accountability, process obligations, transparency, and consequences across multiple stakeholders.\"},\n  \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"It acknowledges viable enforcement conditions like legal liability and penalties but could better address practical challenges in implementation across jurisdictions and systems.\"}\n}",
+      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates a strong understanding of legal certainty by explicitly referencing specific legal instruments (e.g., EU AI Act, GDPR), court decisions, and the need for clear legal allocation of duties and proportionate, risk-based requirements.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 10,\n    \"explanation\": \"The response comprehensively identifies appropriate accountability mechanisms, detailing ex ante and ex post measures, procedural rights, and organizational structures across the entire AI lifecycle and value chain.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 8,\n    \"explanation\": \"The response acknowledges viable enforcement conditions by discussing sanctions, regulatory authorities, redress mechanisms, and international coordination, though it could more explicitly address resource constraints and practical enforcement hurdles.\"\n  }\n}",
       "parsed": {
         "legal_certainty_adequacy": {
-          "score": 7,
-          "explanation": "The response touches on legal certainty through concepts like clear responsibility chains and enforceability but lacks depth on legal frameworks, standards, and predictability needed for true certainty."
+          "score": 9,
+          "explanation": "The response demonstrates a strong understanding of legal certainty by explicitly referencing specific legal instruments (e.g., EU AI Act, GDPR), court decisions, and the need for clear legal allocation of duties and proportionate, risk-based requirements."
         },
         "accountability_mechanisms": {
-          "score": 9,
-          "explanation": "It identifies comprehensive and appropriate mechanisms, including distributed accountability, process obligations, transparency, and consequences across multiple stakeholders."
+          "score": 10,
+          "explanation": "The response comprehensively identifies appropriate accountability mechanisms, detailing ex ante and ex post measures, procedural rights, and organizational structures across the entire AI lifecycle and value chain."
         },
         "enforcement_conditions": {
           "score": 8,
-          "explanation": "It acknowledges viable enforcement conditions like legal liability and penalties but could better address practical challenges in implementation across jurisdictions and systems."
+          "explanation": "The response acknowledges viable enforcement conditions by discussing sanctions, regulatory authorities, redress mechanisms, and international coordination, though it could more explicitly address resource constraints and practical enforcement hurdles."
         }
       }
     },
     "I1_Q3": {
-      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"The response demonstrates strong understanding by emphasizing clear legal authority, specific measurable requirements, and objective standards to avoid vague principles.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It identifies appropriate mechanisms like attribution of responsibility, chain of accountability, and meaningful consequences including penalties and sanctions.\"},\n  \"enforcement_conditions\": {\"score\": 7, \"explanation\": \"It acknowledges viable conditions such as monitoring mechanisms and accessible remedies, but could more explicitly address practical enforcement challenges in AI contexts.\"}\n}",
+      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates a strong understanding by detailing how enforceable rules require specific, measurable obligations and binding legal authority, contrasting them with aspirational principles.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 10,\n    \"explanation\": \"It comprehensively identifies key mechanisms including oversight bodies, sanction regimes, judicial remedies, and auditability requirements, supported by multiple real-world examples.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 8,\n    \"explanation\": \"It acknowledges viable conditions like institutional capacity and sanctions, but also notes significant challenges such as technical opacity and regulatory gaps that complicate enforcement.\"\n  }\n}",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 9,
-          "explanation": "The response demonstrates strong understanding by emphasizing clear legal authority, specific measurable requirements, and objective standards to avoid vague principles."
+          "explanation": "The response demonstrates a strong understanding by detailing how enforceable rules require specific, measurable obligations and binding legal authority, contrasting them with aspirational principles."
         },
         "accountability_mechanisms": {
-          "score": 8,
-          "explanation": "It identifies appropriate mechanisms like attribution of responsibility, chain of accountability, and meaningful consequences including penalties and sanctions."
+          "score": 10,
+          "explanation": "It comprehensively identifies key mechanisms including oversight bodies, sanction regimes, judicial remedies, and auditability requirements, supported by multiple real-world examples."
         },
         "enforcement_conditions": {
-          "score": 7,
-          "explanation": "It acknowledges viable conditions such as monitoring mechanisms and accessible remedies, but could more explicitly address practical enforcement challenges in AI contexts."
+          "score": 8,
+          "explanation": "It acknowledges viable conditions like institutional capacity and sanctions, but also notes significant challenges such as technical opacity and regulatory gaps that complicate enforcement."
         }
       }
     },
     "I2_S1": {
-      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"It demonstrates a strong understanding by directly linking opacity to rule of law principles, foreseeability, and the 'secret law' problem.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It identifies multiple appropriate mechanisms like mandatory transparency, impact assessments, and procedural safeguards including rights to explanation and human review.\"},\n  \"enforcement_conditions\": {\"score\": 7, \"explanation\": \"It acknowledges viable conditions like legislative authorization and independent oversight, but could be more specific on operational enforcement structures.\"}\n}",
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"The response demonstrates a sophisticated understanding of legal certainty by addressing predictability, transparency, rule of law, and systemic issues like 'code as law' and discrimination laundering.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It identifies key accountability mechanisms such as transparency, explicability, human oversight, and impact assessments, though it could be more specific on institutional roles and audit processes.\"},\n  \"enforcement_conditions\": {\"score\": 6, \"explanation\": \"The response acknowledges enforcement needs like audits and legal primacy but lacks concrete details on viable implementation, monitoring, and sanctioning mechanisms.\"}\n}",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 9,
-          "explanation": "It demonstrates a strong understanding by directly linking opacity to rule of law principles, foreseeability, and the 'secret law' problem."
+          "explanation": "The response demonstrates a sophisticated understanding of legal certainty by addressing predictability, transparency, rule of law, and systemic issues like 'code as law' and discrimination laundering."
         },
         "accountability_mechanisms": {
           "score": 8,
-          "explanation": "It identifies multiple appropriate mechanisms like mandatory transparency, impact assessments, and procedural safeguards including rights to explanation and human review."
+          "explanation": "It identifies key accountability mechanisms such as transparency, explicability, human oversight, and impact assessments, though it could be more specific on institutional roles and audit processes."
         },
         "enforcement_conditions": {
-          "score": 7,
-          "explanation": "It acknowledges viable conditions like legislative authorization and independent oversight, but could be more specific on operational enforcement structures."
+          "score": 6,
+          "explanation": "The response acknowledges enforcement needs like audits and legal primacy but lacks concrete details on viable implementation, monitoring, and sanctioning mechanisms."
         }
       }
     },
     "I2_S2": {
-      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 8, \"explanation\": \"The response demonstrates strong legal understanding by correctly assigning primary accountability to the city, rejecting inadequate defenses, and outlining a liability structure with constitutional duties, contractual obligations, and official responsibilities.\"},\n  \"accountability_mechanisms\": {\"score\": 9, \"explanation\": \"It identifies comprehensive, multi-level mechanisms including immediate remedies, systemic safeguards, and legal frameworks that are well-tailored to address the governance gap and ensure meaningful oversight.\"},\n  \"enforcement_conditions\": {\"score\": 7, \"explanation\": \"The response acknowledges viable enforcement through specific legal liabilities, regulatory approaches, and oversight structures, though it could more explicitly detail practical enforcement pathways and resource constraints.\"}\n}",
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"It strongly reflects legal certainty by emphasizing the government's non-delegable duty to due process and the inadequacy of diffused responsibility as a defense.\"},\n  \"accountability_mechanisms\": {\"score\": 10, \"explanation\": \"It comprehensively identifies appropriate, multi-layered mechanisms from case-level explanations to systemic governance structures.\"},\n  \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"It acknowledges viable enforcement through procurement standards, vendor liability, and statutory clarity, though practical implementation details are less specified.\"}\n}",
       "parsed": {
         "legal_certainty_adequacy": {
-          "score": 8,
-          "explanation": "The response demonstrates strong legal understanding by correctly assigning primary accountability to the city, rejecting inadequate defenses, and outlining a liability structure with constitutional duties, contractual obligations, and official responsibilities."
+          "score": 9,
+          "explanation": "It strongly reflects legal certainty by emphasizing the government's non-delegable duty to due process and the inadequacy of diffused responsibility as a defense."
         },
         "accountability_mechanisms": {
-          "score": 9,
-          "explanation": "It identifies comprehensive, multi-level mechanisms including immediate remedies, systemic safeguards, and legal frameworks that are well-tailored to address the governance gap and ensure meaningful oversight."
+          "score": 10,
+          "explanation": "It comprehensively identifies appropriate, multi-layered mechanisms from case-level explanations to systemic governance structures."
         },
         "enforcement_conditions": {
-          "score": 7,
-          "explanation": "The response acknowledges viable enforcement through specific legal liabilities, regulatory approaches, and oversight structures, though it could more explicitly detail practical enforcement pathways and resource constraints."
+          "score": 8,
+          "explanation": "It acknowledges viable enforcement through procurement standards, vendor liability, and statutory clarity, though practical implementation details are less specified."
         }
       }
     },
     "I2_S3": {
-      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 7, \"explanation\": \"The response demonstrates good understanding by addressing definitional inconsistencies and proposing harmonization, but could more explicitly link legal certainty to predictable, clear rules and due process.\"},\n  \"accountability_mechanisms\": {\"score\": 9, \"explanation\": \"It identifies comprehensive mechanisms including transparency registries, liability reforms, and international oversight, effectively covering corporate and regulatory accountability.\"},\n  \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"The response acknowledges practical conditions like capacity gaps and political will, offering phased solutions, though could further address real-world resource constraints in detail.\"}\n}",
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 8, \"explanation\": \"The response demonstrates strong understanding by addressing regulatory fragmentation, interpretive variance, and proposing harmonization mechanisms to enhance legal certainty.\"},\n  \"accountability_mechanisms\": {\"score\": 9, \"explanation\": \"It identifies comprehensive mechanisms including lead regulators, extraterritorial provisions, penalty coordination, and clear corporate accountability structures.\"},\n  \"enforcement_conditions\": {\"score\": 7, \"explanation\": \"The response acknowledges practical enforcement challenges like capacity deficits and proposes viable solutions, though some technology-enabled solutions may be aspirational.\"}\n}",
       "parsed": {
         "legal_certainty_adequacy": {
-          "score": 7,
-          "explanation": "The response demonstrates good understanding by addressing definitional inconsistencies and proposing harmonization, but could more explicitly link legal certainty to predictable, clear rules and due process."
+          "score": 8,
+          "explanation": "The response demonstrates strong understanding by addressing regulatory fragmentation, interpretive variance, and proposing harmonization mechanisms to enhance legal certainty."
         },
         "accountability_mechanisms": {
           "score": 9,
-          "explanation": "It identifies comprehensive mechanisms including transparency registries, liability reforms, and international oversight, effectively covering corporate and regulatory accountability."
+          "explanation": "It identifies comprehensive mechanisms including lead regulators, extraterritorial provisions, penalty coordination, and clear corporate accountability structures."
         },
         "enforcement_conditions": {
-          "score": 8,
-          "explanation": "The response acknowledges practical conditions like capacity gaps and political will, offering phased solutions, though could further address real-world resource constraints in detail."
+          "score": 7,
+          "explanation": "The response acknowledges practical enforcement challenges like capacity deficits and proposes viable solutions, though some technology-enabled solutions may be aspirational."
         }
       }
     }
   },
   "P3": {
     "I1_Q1": {
-      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"The response thoroughly covers the aspects of legal certainty, focusing on clarity, predictability, and stability.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It outlines pathways for accountability such as human review and appeals, which are essential for addressing AI decision outcomes.\"},\n  \"enforcement_conditions\": {\"score\": 7, \"explanation\": \"While it mentions procedural safeguards and oversight, it lacks in-depth detail on practical enforcement scenarios.\"}\n}",
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"The response thoroughly explains legal certainty in AI, including its requirements and implications when absent.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It identifies accountability mechanisms such as human oversight and clear responsibilities, but could offer more detail on specific enforcement strategies.\"},\n  \"enforcement_conditions\": {\"score\": 7, \"explanation\": \"The response mentions compliance with legal standards and audits, but lacks detailed discussion on specific enforcement bodies or methods.\"}\n}",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 9,
-          "explanation": "The response thoroughly covers the aspects of legal certainty, focusing on clarity, predictability, and stability."
+          "explanation": "The response thoroughly explains legal certainty in AI, including its requirements and implications when absent."
         },
         "accountability_mechanisms": {
           "score": 8,
-          "explanation": "It outlines pathways for accountability such as human review and appeals, which are essential for addressing AI decision outcomes."
+          "explanation": "It identifies accountability mechanisms such as human oversight and clear responsibilities, but could offer more detail on specific enforcement strategies."
         },
         "enforcement_conditions": {
           "score": 7,
-          "explanation": "While it mentions procedural safeguards and oversight, it lacks in-depth detail on practical enforcement scenarios."
+          "explanation": "The response mentions compliance with legal standards and audits, but lacks detailed discussion on specific enforcement bodies or methods."
         }
       }
     },
     "I1_Q2": {
-      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 8, \"explanation\": \"The response reflects a solid understanding of legal certainty by outlining roles and responsibilities across stakeholders.\"},\n  \"accountability_mechanisms\": {\"score\": 9, \"explanation\": \"It robustly identifies mechanisms like oversight, transparency, and public consultation for accountability.\"},\n  \"enforcement_conditions\": {\"score\": 7, \"explanation\": \"While it mentions oversight and compliance, it lacks specific details on how enforcement would be consistently applied in varying contexts.\"}\n}",
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"The response thoroughly includes references to legal frameworks such as GDPR and the EU AI Act, showing a strong understanding of legal provisions.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"The response identifies several accountability entities and their responsibilities but could elaborate more on specific mechanisms.\"},\n  \"enforcement_conditions\": {\"score\": 7, \"explanation\": \"While the response discusses monitoring and compliance, it lacks detail on the practical enforcement of accountability.\"}\n}",
       "parsed": {
         "legal_certainty_adequacy": {
-          "score": 8,
-          "explanation": "The response reflects a solid understanding of legal certainty by outlining roles and responsibilities across stakeholders."
+          "score": 9,
+          "explanation": "The response thoroughly includes references to legal frameworks such as GDPR and the EU AI Act, showing a strong understanding of legal provisions."
         },
         "accountability_mechanisms": {
-          "score": 9,
-          "explanation": "It robustly identifies mechanisms like oversight, transparency, and public consultation for accountability."
+          "score": 8,
+          "explanation": "The response identifies several accountability entities and their responsibilities but could elaborate more on specific mechanisms."
         },
         "enforcement_conditions": {
           "score": 7,
-          "explanation": "While it mentions oversight and compliance, it lacks specific details on how enforcement would be consistently applied in varying contexts."
+          "explanation": "While the response discusses monitoring and compliance, it lacks detail on the practical enforcement of accountability."
         }
       }
     },
     "I1_Q3": {
-      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"The response effectively distinguishes between enforceable and aspirational rules, demonstrating a strong understanding of legal certainty.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It provides a detailed explanation of accountability frameworks, including responsibility assignments and penalties for violations.\"},\n  \"enforcement_conditions\": {\"score\": 9, \"explanation\": \"The response thoroughly discusses necessary enforcement capabilities, such as monitoring mechanisms and institutional capacities.\"}\n}",
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"The response provides a comprehensive explanation of legal certainty in terms of enforceability and distinguishes clearly between enforceable and aspirational rules.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"The response identifies accountability mechanisms such as institutional backing, sanctions, and legal standing, but could provide more detail on enforcement agency roles.\"},\n  \"enforcement_conditions\": {\"score\": 9, \"explanation\": \"The response effectively covers enforcement conditions, including risk-based regulation and legal precedents, with concrete examples such as GDPR and the EU AI Act.\"}\n}",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 9,
-          "explanation": "The response effectively distinguishes between enforceable and aspirational rules, demonstrating a strong understanding of legal certainty."
+          "explanation": "The response provides a comprehensive explanation of legal certainty in terms of enforceability and distinguishes clearly between enforceable and aspirational rules."
         },
         "accountability_mechanisms": {
           "score": 8,
-          "explanation": "It provides a detailed explanation of accountability frameworks, including responsibility assignments and penalties for violations."
+          "explanation": "The response identifies accountability mechanisms such as institutional backing, sanctions, and legal standing, but could provide more detail on enforcement agency roles."
         },
         "enforcement_conditions": {
           "score": 9,
-          "explanation": "The response thoroughly discusses necessary enforcement capabilities, such as monitoring mechanisms and institutional capacities."
+          "explanation": "The response effectively covers enforcement conditions, including risk-based regulation and legal precedents, with concrete examples such as GDPR and the EU AI Act."
         }
       }
     },
     "I2_S1": {
-      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 10, \"explanation\": \"The response thoroughly addresses the aspects of predictability, transparency, consistency, and non-arbitrariness, aligning them with legal certainty.\"},\n  \"accountability_mechanisms\": {\"score\": 9, \"explanation\": \"It effectively identifies accountability mechanisms such as judicial review and legislative oversight, though more detail on enforcement could enhance this.\"},\n  \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"The response covers some enforcement conditions but could elaborate further on specific legal instruments or protocols for enforcement.\"}\n}",
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"The response thoroughly addresses transparency, consistency, procedural fairness, and rule of law as they relate to legal certainty.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"The response identifies key accountability gaps but does not fully elaborate on mechanisms to hold specific parties accountable.\"},\n  \"enforcement_conditions\": {\"score\": 7, \"explanation\": \"While it suggests transparency and oversight measures, it is less detailed on how these would be practically enforced.\"}\n}",
       "parsed": {
         "legal_certainty_adequacy": {
-          "score": 10,
-          "explanation": "The response thoroughly addresses the aspects of predictability, transparency, consistency, and non-arbitrariness, aligning them with legal certainty."
+          "score": 9,
+          "explanation": "The response thoroughly addresses transparency, consistency, procedural fairness, and rule of law as they relate to legal certainty."
         },
         "accountability_mechanisms": {
-          "score": 9,
-          "explanation": "It effectively identifies accountability mechanisms such as judicial review and legislative oversight, though more detail on enforcement could enhance this."
+          "score": 8,
+          "explanation": "The response identifies key accountability gaps but does not fully elaborate on mechanisms to hold specific parties accountable."
         },
         "enforcement_conditions": {
-          "score": 8,
-          "explanation": "The response covers some enforcement conditions but could elaborate further on specific legal instruments or protocols for enforcement."
+          "score": 7,
+          "explanation": "While it suggests transparency and oversight measures, it is less detailed on how these would be practically enforced."
         }
       }
     },
     "I2_S2": {
-      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 8, \"explanation\": \"The response reflects a strong understanding of legal obligations and responsibilities particularly around due process and regulatory compliance.\"},\n  \"accountability_mechanisms\": {\"score\": 9, \"explanation\": \"It thoroughly identifies both pre-deployment and post-deployment accountability mechanisms tailored to the public sector context.\"},\n  \"enforcement_conditions\": {\"score\": 7, \"explanation\": \"While enforcement conditions are acknowledged through audits and compliance checks, details on their practical enforcement are less explicit.\"}\n}",
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"The response provides a comprehensive legal analysis, delineating responsible parties and referencing specific legal frameworks and potential violations.\"},\n  \"accountability_mechanisms\": {\"score\": 10, \"explanation\": \"It offers detailed and appropriate accountability mechanisms both pre- and post-deployment, aligning with recognized best practices and legal standards.\"},\n  \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"While it suggests mechanisms for enforcement, such as independent oversight, it could expand on how these would be practically implemented and regulated.\"}\n}",
       "parsed": {
         "legal_certainty_adequacy": {
-          "score": 8,
-          "explanation": "The response reflects a strong understanding of legal obligations and responsibilities particularly around due process and regulatory compliance."
+          "score": 9,
+          "explanation": "The response provides a comprehensive legal analysis, delineating responsible parties and referencing specific legal frameworks and potential violations."
         },
         "accountability_mechanisms": {
-          "score": 9,
-          "explanation": "It thoroughly identifies both pre-deployment and post-deployment accountability mechanisms tailored to the public sector context."
+          "score": 10,
+          "explanation": "It offers detailed and appropriate accountability mechanisms both pre- and post-deployment, aligning with recognized best practices and legal standards."
         },
         "enforcement_conditions": {
-          "score": 7,
-          "explanation": "While enforcement conditions are acknowledged through audits and compliance checks, details on their practical enforcement are less explicit."
+          "score": 8,
+          "explanation": "While it suggests mechanisms for enforcement, such as independent oversight, it could expand on how these would be practically implemented and regulated."
         }
       }
     },
     "I2_S3": {
-      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 8, \"explanation\": \"The response addresses legal certainty through harmonization and international cooperation, enhancing clarity across jurisdictions.\"},\n  \"accountability_mechanisms\": {\"score\": 7, \"explanation\": \"Accountability is supported by proposing joint task forces and standardized audits, though more specifics on direct enforcement actions could be added.\"},\n  \"enforcement_conditions\": {\"score\": 9, \"explanation\": \"The response effectively outlines enforcement through cross-border cooperation and tiered audit strategies, highlighting practical implementation.\"}\n}",
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 8, \"explanation\": \"The response highlights the need for harmonized standards to ensure legal certainty across jurisdictions.\"},\n  \"accountability_mechanisms\": {\"score\": 7, \"explanation\": \"The response suggests international cooperation but could detail specific accountability tools more thoroughly.\"},\n  \"enforcement_conditions\": {\"score\": 9, \"explanation\": \"It effectively acknowledges the need for cross-border enforcement and strengthening local capacities.\"}\n}",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 8,
-          "explanation": "The response addresses legal certainty through harmonization and international cooperation, enhancing clarity across jurisdictions."
+          "explanation": "The response highlights the need for harmonized standards to ensure legal certainty across jurisdictions."
         },
         "accountability_mechanisms": {
           "score": 7,
-          "explanation": "Accountability is supported by proposing joint task forces and standardized audits, though more specifics on direct enforcement actions could be added."
+          "explanation": "The response suggests international cooperation but could detail specific accountability tools more thoroughly."
         },
         "enforcement_conditions": {
           "score": 9,
-          "explanation": "The response effectively outlines enforcement through cross-border cooperation and tiered audit strategies, highlighting practical implementation."
+          "explanation": "It effectively acknowledges the need for cross-border enforcement and strengthening local capacities."
         }
       }
     }
   },
   "P4": {
     "I1_Q1": {
-      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates a strong and nuanced understanding of legal certainty in the context of AI systems used in public decision-making.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 8,\n    \"explanation\": \"The response identifies key accountability mechanisms but could further elaborate on specific enforcement structures or institutional roles.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 7,\n    \"explanation\": \"The response acknowledges enforcement challenges but does not deeply explore the practical conditions or prerequisites for effective enforcement.\"\n  }\n}\n```",
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates a strong understanding of legal certainty, clearly linking it to clarity, predictability, and stakeholder comprehension in AI governance.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 8,\n    \"explanation\": \"It identifies key accountability mechanisms like explainability and challengeability but could further specify procedural safeguards (e.g., audits, redress).\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 7,\n    \"explanation\": \"The response implies enforcement through frameworks like the EU AI Act but does not detail concrete enforcement conditions (e.g., penalties, oversight bodies).\"\n  }\n}\n```",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 9,
-          "explanation": "The response demonstrates a strong and nuanced understanding of legal certainty in the context of AI systems used in public decision-making."
+          "explanation": "The response demonstrates a strong understanding of legal certainty, clearly linking it to clarity, predictability, and stakeholder comprehension in AI governance."
         },
         "accountability_mechanisms": {
           "score": 8,
-          "explanation": "The response identifies key accountability mechanisms but could further elaborate on specific enforcement structures or institutional roles."
+          "explanation": "It identifies key accountability mechanisms like explainability and challengeability but could further specify procedural safeguards (e.g., audits, redress)."
         },
         "enforcement_conditions": {
           "score": 7,
-          "explanation": "The response acknowledges enforcement challenges but does not deeply explore the practical conditions or prerequisites for effective enforcement."
+          "explanation": "The response implies enforcement through frameworks like the EU AI Act but does not detail concrete enforcement conditions (e.g., penalties, oversight bodies)."
         }
       }
     },
     "I1_Q2": {
-      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 7,\n    \"explanation\": \"The response demonstrates a solid understanding of legal certainty but lacks specificity regarding jurisdictional variations and enforceable legal standards.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 8,\n    \"explanation\": \"It identifies key accountability mechanisms effectively, though it could further elaborate on concrete tools like audits, impact assessments, or redress systems.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 6,\n    \"explanation\": \"The response acknowledges enforcement broadly but does not address practical challenges like jurisdictional gaps, resource constraints, or institutional capacity.\"\n  }\n}\n```",
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 8,\n    \"explanation\": \"The response demonstrates a strong understanding of legal certainty by referencing specific frameworks like GDPR and the EU AI Act, though it could further clarify jurisdictional nuances.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"It effectively identifies key accountability mechanisms, including conformity assessments and transparency requirements, aligning with major policy frameworks.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 7,\n    \"explanation\": \"The response acknowledges enforcement conditions but could better address practical challenges like resource constraints or cross-border compliance.\"\n  }\n}\n```",
       "parsed": {
         "legal_certainty_adequacy": {
-          "score": 7,
-          "explanation": "The response demonstrates a solid understanding of legal certainty but lacks specificity regarding jurisdictional variations and enforceable legal standards."
+          "score": 8,
+          "explanation": "The response demonstrates a strong understanding of legal certainty by referencing specific frameworks like GDPR and the EU AI Act, though it could further clarify jurisdictional nuances."
         },
         "accountability_mechanisms": {
-          "score": 8,
-          "explanation": "It identifies key accountability mechanisms effectively, though it could further elaborate on concrete tools like audits, impact assessments, or redress systems."
+          "score": 9,
+          "explanation": "It effectively identifies key accountability mechanisms, including conformity assessments and transparency requirements, aligning with major policy frameworks."
         },
         "enforcement_conditions": {
-          "score": 6,
-          "explanation": "The response acknowledges enforcement broadly but does not address practical challenges like jurisdictional gaps, resource constraints, or institutional capacity."
+          "score": 7,
+          "explanation": "The response acknowledges enforcement conditions but could better address practical challenges like resource constraints or cross-border compliance."
         }
       }
     },
     "I1_Q3": {
-      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response clearly articulates the importance of clarity, specificity, and legal authority in enforceable rules, demonstrating a strong grasp of legal certainty.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"The response effectively identifies key accountability mechanisms such as audits, reporting requirements, and oversight bodies.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 8,\n    \"explanation\": \"The response acknowledges viable enforcement conditions like penalties and sanctions but could further elaborate on practical challenges or jurisdictional variations.\"\n  }\n}\n```",
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates a strong understanding of legal certainty by emphasizing clarity, specificity, and feasibility in enforceable rules.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 8,\n    \"explanation\": \"It effectively identifies key accountability mechanisms like sanctions and monitoring but could further elaborate on institutional roles.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 9,\n    \"explanation\": \"The response robustly acknowledges enforceability conditions, including legislative backing and operational feasibility, with concrete examples.\"\n  }\n}\n```",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 9,
-          "explanation": "The response clearly articulates the importance of clarity, specificity, and legal authority in enforceable rules, demonstrating a strong grasp of legal certainty."
+          "explanation": "The response demonstrates a strong understanding of legal certainty by emphasizing clarity, specificity, and feasibility in enforceable rules."
         },
         "accountability_mechanisms": {
-          "score": 9,
-          "explanation": "The response effectively identifies key accountability mechanisms such as audits, reporting requirements, and oversight bodies."
+          "score": 8,
+          "explanation": "It effectively identifies key accountability mechanisms like sanctions and monitoring but could further elaborate on institutional roles."
         },
         "enforcement_conditions": {
-          "score": 8,
-          "explanation": "The response acknowledges viable enforcement conditions like penalties and sanctions but could further elaborate on practical challenges or jurisdictional variations."
+          "score": 9,
+          "explanation": "The response robustly acknowledges enforceability conditions, including legislative backing and operational feasibility, with concrete examples."
         }
       }
     },
     "I2_S1": {
-      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates a strong and nuanced understanding of legal certainty, particularly in the context of AI-assisted decision-making.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 8,\n    \"explanation\": \"The response identifies key accountability mechanisms, such as transparency and redress, but could further elaborate on specific enforcement structures.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 7,\n    \"explanation\": \"While it acknowledges the need for enforcement, the response stops short of detailing practical or institutional conditions for viability.\"\n  }\n}\n```",
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates a strong understanding of legal certainty by linking transparency, predictability, and non-discrimination to the principle.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 8,\n    \"explanation\": \"It correctly identifies accountability gaps but could further specify mechanisms like audits, human oversight, or appeal processes.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 7,\n    \"explanation\": \"While it implies enforcement needs (e.g., fairness assessments), it does not explicitly address conditions like regulatory mandates or compliance frameworks.\"\n  }\n}\n```",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 9,
-          "explanation": "The response demonstrates a strong and nuanced understanding of legal certainty, particularly in the context of AI-assisted decision-making."
+          "explanation": "The response demonstrates a strong understanding of legal certainty by linking transparency, predictability, and non-discrimination to the principle."
         },
         "accountability_mechanisms": {
           "score": 8,
-          "explanation": "The response identifies key accountability mechanisms, such as transparency and redress, but could further elaborate on specific enforcement structures."
+          "explanation": "It correctly identifies accountability gaps but could further specify mechanisms like audits, human oversight, or appeal processes."
         },
         "enforcement_conditions": {
           "score": 7,
-          "explanation": "While it acknowledges the need for enforcement, the response stops short of detailing practical or institutional conditions for viability."
+          "explanation": "While it implies enforcement needs (e.g., fairness assessments), it does not explicitly address conditions like regulatory mandates or compliance frameworks."
         }
       }
     },
     "I2_S2": {
-      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 7,\n    \"explanation\": \"The response acknowledges shared responsibility but lacks depth in addressing specific legal doctrines (e.g., liability frameworks, due process).\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"The response identifies well-rounded, practical mechanisms (transparency, audits, appeals) tailored to stakeholders.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 8,\n    \"explanation\": \"It proposes viable enforcement tools (audits, regulations) but does not detail enforcement triggers or penalties.\"\n  }\n}\n```",
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 8,\n    \"explanation\": \"The response demonstrates a strong understanding of legal principles but could further specify jurisdictional legal standards and liability frameworks.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"The response identifies robust and appropriate accountability mechanisms, including transparency, appeals, audits, and human oversight.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 7,\n    \"explanation\": \"While enforcement conditions are implied, the response could better address concrete enforcement pathways, such as penalties or corrective actions.\"\n  }\n}\n```",
       "parsed": {
         "legal_certainty_adequacy": {
-          "score": 7,
-          "explanation": "The response acknowledges shared responsibility but lacks depth in addressing specific legal doctrines (e.g., liability frameworks, due process)."
+          "score": 8,
+          "explanation": "The response demonstrates a strong understanding of legal principles but could further specify jurisdictional legal standards and liability frameworks."
         },
         "accountability_mechanisms": {
           "score": 9,
-          "explanation": "The response identifies well-rounded, practical mechanisms (transparency, audits, appeals) tailored to stakeholders."
+          "explanation": "The response identifies robust and appropriate accountability mechanisms, including transparency, appeals, audits, and human oversight."
         },
         "enforcement_conditions": {
-          "score": 8,
-          "explanation": "It proposes viable enforcement tools (audits, regulations) but does not detail enforcement triggers or penalties."
+          "score": 7,
+          "explanation": "While enforcement conditions are implied, the response could better address concrete enforcement pathways, such as penalties or corrective actions."
         }
       }
     },
     "I2_S3": {
-      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 8,\n    \"explanation\": \"The response demonstrates a strong understanding of legal certainty by addressing harmonization and jurisdictional clarity, though it could delve deeper into legal precedents or binding mechanisms.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"It effectively identifies robust accountability mechanisms, such as mutual recognition, centralized support, and unified reporting, which enhance compliance oversight.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 9,\n    \"explanation\": \"The response thoroughly acknowledges viable enforcement conditions, including capacity building and technology leverage, to address practical implementation challenges.\"\n  }\n}\n```",
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 8,\n    \"explanation\": \"The response demonstrates a strong understanding of legal certainty by addressing harmonization and clear guidelines but could further emphasize binding legal instruments.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"It effectively identifies robust accountability mechanisms, including centralized oversight and penalties, though it could briefly mention independent auditors.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 9,\n    \"explanation\": \"The response thoroughly acknowledges viable enforcement conditions, such as resource-sharing and coordinated authorities, with practical solutions.\"\n  }\n}\n```",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 8,
-          "explanation": "The response demonstrates a strong understanding of legal certainty by addressing harmonization and jurisdictional clarity, though it could delve deeper into legal precedents or binding mechanisms."
+          "explanation": "The response demonstrates a strong understanding of legal certainty by addressing harmonization and clear guidelines but could further emphasize binding legal instruments."
         },
         "accountability_mechanisms": {
           "score": 9,
-          "explanation": "It effectively identifies robust accountability mechanisms, such as mutual recognition, centralized support, and unified reporting, which enhance compliance oversight."
+          "explanation": "It effectively identifies robust accountability mechanisms, including centralized oversight and penalties, though it could briefly mention independent auditors."
         },
         "enforcement_conditions": {
           "score": 9,
-          "explanation": "The response thoroughly acknowledges viable enforcement conditions, including capacity building and technology leverage, to address practical implementation challenges."
+          "explanation": "The response thoroughly acknowledges viable enforcement conditions, such as resource-sharing and coordinated authorities, with practical solutions."
         }
       }
     }
   },
   "P5": {
     "I1_Q1": {
-      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response provides a comprehensive and accurate definition of legal certainty that aligns well with administrative law principles regarding predictability and the rule of law.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 8,\n    \"explanation\": \"It correctly identifies essential mechanisms like human oversight and appeal channels, though it could further emphasize the role of algorithmic auditing or regulatory review.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 6,\n    \"explanation\": \"While it correctly identifies the need for a legal basis and oversight, the response lacks specific discussion on the structural enforcement conditions or regulatory frameworks required to actually uphold these standards.\"\n  }\n}",
+      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response accurately identifies the core tenets of legal certainty—predictability, stability, and clarity—within the context of algorithmic governance.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 8,\n    \"explanation\": \"It correctly identifies essential accountability pillars such as transparency, explainability, human oversight, and the right to contest decisions.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 7,\n    \"explanation\": \"While it mentions legal authorization and review mechanisms, it could further elaborate on the specific procedural or institutional requirements necessary to enforce these standards in practice.\"\n  }\n}",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 9,
-          "explanation": "The response provides a comprehensive and accurate definition of legal certainty that aligns well with administrative law principles regarding predictability and the rule of law."
+          "explanation": "The response accurately identifies the core tenets of legal certainty—predictability, stability, and clarity—within the context of algorithmic governance."
         },
         "accountability_mechanisms": {
           "score": 8,
-          "explanation": "It correctly identifies essential mechanisms like human oversight and appeal channels, though it could further emphasize the role of algorithmic auditing or regulatory review."
+          "explanation": "It correctly identifies essential accountability pillars such as transparency, explainability, human oversight, and the right to contest decisions."
         },
         "enforcement_conditions": {
-          "score": 6,
-          "explanation": "While it correctly identifies the need for a legal basis and oversight, the response lacks specific discussion on the structural enforcement conditions or regulatory frameworks required to actually uphold these standards."
+          "score": 7,
+          "explanation": "While it mentions legal authorization and review mechanisms, it could further elaborate on the specific procedural or institutional requirements necessary to enforce these standards in practice."
         }
       }
     },
     "I1_Q2": {
-      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 6,\n    \"explanation\": \"While it correctly identifies legal compliance as a factor, it fails to address the complexities of liability shifting, algorithmic causality, or the need for clear legal definitions of 'duty of care' required for true certainty.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 7,\n    \"explanation\": \"It provides a solid conceptual overview of roles and responsibilities but lacks detail on specific functional mechanisms like algorithmic impact assessments, independent audits, or technical tracing protocols.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 5,\n    \"explanation\": \"It mentions that consequences are necessary but remains vague on the specific enforcement infrastructure, such as regulatory sandbox requirements, remediation pathways, or institutional oversight authorities needed to make accountability viable.\"\n  }\n}",
+      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 8,\n    \"explanation\": \"The response effectively maps accountability to established legislative frameworks like the EU AI Act and GDPR, which provides a solid baseline for legal predictability.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"It comprehensively identifies the actors across the value chain and distinguishes between compliance, technical robustness, and impact assessments as key mechanisms.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 7,\n    \"explanation\": \"While it correctly identifies the need for regulators and the judiciary, it could further elaborate on the specific jurisdictional challenges and cross-border enforcement hurdles inherent in AI governance.\"\n  }\n}",
       "parsed": {
         "legal_certainty_adequacy": {
-          "score": 6,
-          "explanation": "While it correctly identifies legal compliance as a factor, it fails to address the complexities of liability shifting, algorithmic causality, or the need for clear legal definitions of 'duty of care' required for true certainty."
+          "score": 8,
+          "explanation": "The response effectively maps accountability to established legislative frameworks like the EU AI Act and GDPR, which provides a solid baseline for legal predictability."
         },
         "accountability_mechanisms": {
-          "score": 7,
-          "explanation": "It provides a solid conceptual overview of roles and responsibilities but lacks detail on specific functional mechanisms like algorithmic impact assessments, independent audits, or technical tracing protocols."
+          "score": 9,
+          "explanation": "It comprehensively identifies the actors across the value chain and distinguishes between compliance, technical robustness, and impact assessments as key mechanisms."
         },
         "enforcement_conditions": {
-          "score": 5,
-          "explanation": "It mentions that consequences are necessary but remains vague on the specific enforcement infrastructure, such as regulatory sandbox requirements, remediation pathways, or institutional oversight authorities needed to make accountability viable."
+          "score": 7,
+          "explanation": "While it correctly identifies the need for regulators and the judiciary, it could further elaborate on the specific jurisdictional challenges and cross-border enforcement hurdles inherent in AI governance."
         }
       }
     },
     "I1_Q3": {
-      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response clearly distinguishes between vague principles and precise rules, which is the cornerstone of legal certainty in a regulatory context.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"It accurately identifies the necessity of assigning specific duties to legal entities and linking these to formal sanctions and remedial processes.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 8,\n    \"explanation\": \"The response highlights the critical practical challenges of technical expertise, monitoring capabilities, and supply chain complexity that underpin real-world enforcement.\"\n  }\n}",
+      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response correctly identifies that legal certainty requires specific, operational definitions rather than vague principles to avoid regulatory ambiguity.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"It accurately highlights the necessity of clear liability, identified responsible entities, and established legal precedents to anchor accountability.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 9,\n    \"explanation\": \"The response effectively integrates the need for monitoring authorities, investigative powers, and credible sanctions as essential conditions for effective enforcement.\"\n  }\n}",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 9,
-          "explanation": "The response clearly distinguishes between vague principles and precise rules, which is the cornerstone of legal certainty in a regulatory context."
+          "explanation": "The response correctly identifies that legal certainty requires specific, operational definitions rather than vague principles to avoid regulatory ambiguity."
         },
         "accountability_mechanisms": {
           "score": 9,
-          "explanation": "It accurately identifies the necessity of assigning specific duties to legal entities and linking these to formal sanctions and remedial processes."
+          "explanation": "It accurately highlights the necessity of clear liability, identified responsible entities, and established legal precedents to anchor accountability."
         },
         "enforcement_conditions": {
-          "score": 8,
-          "explanation": "The response highlights the critical practical challenges of technical expertise, monitoring capabilities, and supply chain complexity that underpin real-world enforcement."
+          "score": 9,
+          "explanation": "The response effectively integrates the need for monitoring authorities, investigative powers, and credible sanctions as essential conditions for effective enforcement."
         }
       }
     },
     "I2_S1": {
-      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response accurately identifies how the lack of transparency, predictability, and legal basis directly undermines the core tenets of legal certainty.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 7,\n    \"explanation\": \"It identifies the need for human review and institutional responsibility, though it stops short of detailing specific audit or oversight structures.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 6,\n    \"explanation\": \"While it mentions the right to challenge decisions and judicial review, it lacks a deeper discussion on the regulatory requirements necessary to enforce these standards.\"\n  }\n}",
+      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response accurately identifies that legal certainty requires ex-ante predictability and the public accessibility of the norms governing administrative decisions.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 7,\n    \"explanation\": \"It highlights the need for human oversight and the right to contest decisions, though it could be more specific regarding the technical and procedural mechanisms required for auditability.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 6,\n    \"explanation\": \"The response identifies the need for regulatory safeguards and judicial review but lacks detail on the specific enforcement conditions, such as independent oversight bodies or statutory compliance mandates.\"\n  }\n}",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 9,
-          "explanation": "The response accurately identifies how the lack of transparency, predictability, and legal basis directly undermines the core tenets of legal certainty."
+          "explanation": "The response accurately identifies that legal certainty requires ex-ante predictability and the public accessibility of the norms governing administrative decisions."
         },
         "accountability_mechanisms": {
           "score": 7,
-          "explanation": "It identifies the need for human review and institutional responsibility, though it stops short of detailing specific audit or oversight structures."
+          "explanation": "It highlights the need for human oversight and the right to contest decisions, though it could be more specific regarding the technical and procedural mechanisms required for auditability."
         },
         "enforcement_conditions": {
           "score": 6,
-          "explanation": "While it mentions the right to challenge decisions and judicial review, it lacks a deeper discussion on the regulatory requirements necessary to enforce these standards."
+          "explanation": "The response identifies the need for regulatory safeguards and judicial review but lacks detail on the specific enforcement conditions, such as independent oversight bodies or statutory compliance mandates."
         }
       }
     },
     "I2_S2": {
-      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 7,\n    \"explanation\": \"The response correctly identifies that government accountability cannot be outsourced but remains somewhat vague on the specific legal thresholds for vendor liability in the absence of explicit statutory frameworks.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"It provides a comprehensive and highly relevant set of procedural safeguards, including meaningful human review, audit trails, and robust appeals processes.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 8,\n    \"explanation\": \"It successfully outlines necessary conditions for enforcement, such as contractual audit rights, oversight bodies, and regulatory documentation requirements.\"\n  }\n}",
+      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 7,\n    \"explanation\": \"It correctly identifies that the city maintains ultimate administrative liability, though it could more explicitly address the challenges of legal 'black box' defenses in current procurement law.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"It provides a robust, comprehensive list of mechanisms ranging from procedural due process (appeals) to structural governance (audits and impact assessments).\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 6,\n    \"explanation\": \"While it proposes necessary mechanisms, it lacks detail on the practical enforcement conditions required to compel vendor cooperation or overcome bureaucratic inertia within city government.\"\n  }\n}",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 7,
-          "explanation": "The response correctly identifies that government accountability cannot be outsourced but remains somewhat vague on the specific legal thresholds for vendor liability in the absence of explicit statutory frameworks."
+          "explanation": "It correctly identifies that the city maintains ultimate administrative liability, though it could more explicitly address the challenges of legal 'black box' defenses in current procurement law."
         },
         "accountability_mechanisms": {
           "score": 9,
-          "explanation": "It provides a comprehensive and highly relevant set of procedural safeguards, including meaningful human review, audit trails, and robust appeals processes."
+          "explanation": "It provides a robust, comprehensive list of mechanisms ranging from procedural due process (appeals) to structural governance (audits and impact assessments)."
         },
         "enforcement_conditions": {
-          "score": 8,
-          "explanation": "It successfully outlines necessary conditions for enforcement, such as contractual audit rights, oversight bodies, and regulatory documentation requirements."
+          "score": 6,
+          "explanation": "While it proposes necessary mechanisms, it lacks detail on the practical enforcement conditions required to compel vendor cooperation or overcome bureaucratic inertia within city government."
         }
       }
     },
     "I2_S3": {
-      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 8,\n    \"explanation\": \"The response correctly identifies that regulatory fragmentation and definitional inconsistencies undermine legal certainty, offering harmonization and equivalency as logical remedies.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"It proposes robust mechanisms, including senior management liability, corporate parent responsibility, and public transparency registries to ensure oversight beyond mere legal compliance.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 8,\n    \"explanation\": \"The response effectively highlights the practical limitations of national oversight and proposes viable cross-border cooperation and capacity-building frameworks to bridge those gaps.\"\n  }\n}",
+      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 8,\n    \"explanation\": \"The response correctly identifies that regulatory fragmentation creates ambiguity for multinationals, though it stops short of detailing the specific legal instruments needed to resolve conflicting requirements.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"It proposes a comprehensive suite of mechanisms ranging from public audit registries and whistleblower protections to clear, revenue-linked sanctions.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 8,\n    \"explanation\": \"It accurately highlights the practical barriers like resource asymmetry and verification difficulty while offering pragmatic, albeit challenging, solutions like cross-border cooperation and RegTech.\"\n  }\n}",
       "parsed": {
         "legal_certainty_adequacy": {
           "score": 8,
-          "explanation": "The response correctly identifies that regulatory fragmentation and definitional inconsistencies undermine legal certainty, offering harmonization and equivalency as logical remedies."
+          "explanation": "The response correctly identifies that regulatory fragmentation creates ambiguity for multinationals, though it stops short of detailing the specific legal instruments needed to resolve conflicting requirements."
         },
         "accountability_mechanisms": {
           "score": 9,
-          "explanation": "It proposes robust mechanisms, including senior management liability, corporate parent responsibility, and public transparency registries to ensure oversight beyond mere legal compliance."
+          "explanation": "It proposes a comprehensive suite of mechanisms ranging from public audit registries and whistleblower protections to clear, revenue-linked sanctions."
         },
         "enforcement_conditions": {
           "score": 8,
-          "explanation": "The response effectively highlights the practical limitations of national oversight and proposes viable cross-border cooperation and capacity-building frameworks to bridge those gaps."
+          "explanation": "It accurately highlights the practical barriers like resource asymmetry and verification difficulty while offering pragmatic, albeit challenging, solutions like cross-border cooperation and RegTech."
         }
       }
     }

@@ -59,6 +59,21 @@
       "label": "Conceptual Anchoring",
       "purpose": "Reveal normative assumptions structurally encoded in each model's default framing of governance concepts before situational pressure is applied.",
       "conditions": ["baseline", "ceo"],
+      "source_citation": true,
+      "response_format": {
+        "type": "json",
+        "description": "Structured response including analytical text and self-reported source citations",
+        "schema": {
+          "response": "Full analytical response text",
+          "sources": [
+            {
+              "name": "Short label, e.g. 'EU AI Act', 'GDPR', 'Loomis v. Wisconsin'",
+              "type": "One of: international_treaty, national_legislation, court_decision, academic_work, policy_framework, news_media, unverifiable, implicit_only",
+              "jurisdiction": "e.g. EU, US, UN, UK, unspecified"
+            }
+          ]
+        }
+      },
       "coding_dimensions": [
         "definitional_scope",
         "institutional_reference",
@@ -69,17 +84,17 @@
         {
           "id": "I1_Q1",
           "tripod_dimension": "legal_certainty",
-          "text": "In your own words, define legal certainty as it applies to AI systems used in public decision-making. What does it require, and what does it look like when it is absent?"
+          "text": "In your own words, define legal certainty as it applies to AI systems used in public decision-making. What does it require, and what does it look like when it is absent? In your response, explicitly cite any specific legal frameworks, court decisions, academic works, or other authoritative sources that inform your definition."
         },
         {
           "id": "I1_Q2",
           "tripod_dimension": "accountability",
-          "text": "How would you define accountability in the context of AI governance? Who or what should be accountable, for what, and to whom?"
+          "text": "How would you define accountability in the context of AI governance? Who or what should be accountable, for what, and to whom? Please cite the specific legal instruments, frameworks, or scholarly works that underpin your position."
         },
         {
           "id": "I1_Q3",
           "tripod_dimension": "enforceability",
-          "text": "What does enforceability mean when applied to AI regulation? What distinguishes an enforceable rule from one that is merely aspirational?"
+          "text": "What does enforceability mean when applied to AI regulation? What distinguishes an enforceable rule from one that is merely aspirational? Please reference any specific legal instruments, precedents, or theoretical frameworks that inform your answer."
         }
       ]
     },
@@ -174,6 +189,30 @@
           "text": "An AI tool generates country risk assessments for a foreign ministry."
         }
       ]
+    },
+
+    "instrument_5": {
+      "id": "instrument_5",
+      "label": "Epistemic Basis Disclosure",
+      "purpose": "Identify the documents, frameworks, legal precedents, and conceptual sources each model drew upon in formulating I1 and I2 responses. Analyze source legitimacy, geographic/jurisdictional origin, and cross-model citation overlap to test H4.",
+      "conditions": ["baseline", "ceo"],
+      "analysis_only": true,
+      "source_categories": [
+        "international_treaty",
+        "national_legislation",
+        "court_decision",
+        "academic_work",
+        "policy_framework",
+        "news_media",
+        "unverifiable",
+        "implicit_only"
+      ],
+      "legitimacy_tiers": {
+        "tier_1": "verifiable primary legal source",
+        "tier_2": "verifiable secondary source",
+        "tier_3": "plausible but unverifiable",
+        "tier_4": "vague or fabricated"
+      }
     },
 
     "instrument_4": {
