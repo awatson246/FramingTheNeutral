@@ -189,27 +189,21 @@ TEXT_SEC = "#57606a"
 MONO     = "'Courier New', monospace"
 SERIF    = "Georgia, serif"
 
-COLORSCALE_BLUE = [
-    [0.0, "#f0f7ff"], [0.3, "#b6d4f7"],
-    [0.6, "#3b82f6"], [1.0, "#1d4ed8"],
+# Sequential: blue (low) → red (high)  — print-safe, red/blue convention
+COLORSCALE_REDBLUE = [
+    [0.0, "#053061"], [0.2, "#2166ac"],
+    [0.4, "#74add1"], [0.6, "#f4a582"],
+    [0.8, "#d6604d"], [1.0, "#67001f"],
 ]
-COLORSCALE_GREEN = [
-    [0.0, "#f0fdf4"], [0.4, "#86efac"],
-    [0.7, "#16a34a"], [1.0, "#14532d"],
-]
-COLORSCALE_AMBER = [
-    [0.0, "#fffbeb"], [0.3, "#fde68a"],
-    [0.6, "#f59e0b"], [1.0, "#92400e"],
-]
-# Diverging: negative=red, zero=near-white, positive=green
+# Diverging: blue (negative/low) → white (zero) → red (positive/high)
 COLORSCALE_DIVERGE = [
-    [0.0, "#dc2626"], [0.35, "#fca5a5"],
-    [0.5, "#f9fafb"], [0.65, "#86efac"], [1.0, "#16a34a"],
+    [0.0, "#2166ac"], [0.35, "#74add1"],
+    [0.5, "#f7f7f7"], [0.65, "#f4a582"], [1.0, "#d6604d"],
 ]
-# Legitimacy: tier-1 green → tier-4 red
+# Legitimacy: tier-1 blue (authoritative) → tier-4 red (vague/fabricated)
 COLORSCALE_LEGITIMACY = [
-    [0.0, "#16a34a"], [0.33, "#86efac"],
-    [0.67, "#fde68a"], [1.0, "#dc2626"],
+    [0.0, "#2166ac"], [0.33, "#74add1"],
+    [0.67, "#f4a582"], [1.0, "#d6604d"],
 ]
 
 # One color per model, consistent across all plots
@@ -222,6 +216,54 @@ MODEL_COLORS = {
 }
 
 CONDITION_DASH = {"baseline": "solid", "ceo": "dash"}
+
+# Second B&W distinguisher: line dash per model (for radar/line charts)
+MODEL_DASH = {
+    "gpt-4o":                        "solid",
+    "claude-sonnet":                 "dash",
+    "deepseek-v3":                   "dot",
+    "mistral-large":                 "dashdot",
+    "gemini-3.1-flash-lite-preview": "longdash",
+}
+
+# Second B&W distinguisher: marker symbol per model (for scatter/radar)
+MODEL_SYMBOLS = {
+    "gpt-4o":                        "circle",
+    "claude-sonnet":                 "square",
+    "deepseek-v3":                   "diamond",
+    "mistral-large":                 "triangle-up",
+    "gemini-3.1-flash-lite-preview": "cross",
+}
+
+# Second B&W distinguisher: fill pattern per model (for bar charts)
+MODEL_PATTERNS = {
+    "gpt-4o":                        "",
+    "claude-sonnet":                 "/",
+    "deepseek-v3":                   "\\",
+    "mistral-large":                 "x",
+    "gemini-3.1-flash-lite-preview": "+",
+}
+
+# Condition fill pattern (for condition-split bar charts)
+CONDITION_PATTERNS = {"baseline": "", "ceo": "\\"}
+
+# Source-type fill pattern (for stacked source-type bars)
+SOURCE_TYPE_PATTERNS = {
+    "international_treaty": "",
+    "national_legislation": "/",
+    "court_decision":       "\\",
+    "academic_work":        "+",
+    "policy_framework":     "x",
+    "news_media":           "-",
+    "unverifiable":         "|",
+    "implicit_only":        ".",
+}
+
+# Jurisdiction fill pattern
+JURIS_PATTERNS = {
+    "EU": "", "US": "/", "UN": "\\",
+    "UK": "x", "unspecified": "+", "other": "-",
+}
 
 
 def base_layout(title: str, height: int = 560, width: int = 1100) -> dict:
@@ -494,7 +536,7 @@ def i1_wordfreq_heatmap(data: dict, q_id: str, q_label: str,
 
     fig = go.Figure(go.Heatmap(
         z=z, x=col_labels, y=top_words,
-        colorscale=COLORSCALE_BLUE,
+        colorscale=COLORSCALE_REDBLUE,
         colorbar=dict(title="Norm. Freq", tickfont=dict(color=TEXT_SEC)),
         hovertemplate="<b>%{y}</b><br>%{x}<br>Freq: %{z:.4f}<extra></extra>",
     ))
@@ -527,7 +569,7 @@ def i1_cross_model_similarity(data: dict, models: list[str],
     mat = (sim_sum / max(count, 1)).tolist()
     fig = go.Figure(go.Heatmap(
         z=mat, x=labels, y=labels,
-        colorscale=COLORSCALE_GREEN, zmin=0.5, zmax=1.0,
+        colorscale=COLORSCALE_REDBLUE, zmin=0.5, zmax=1.0,
         text=[[f"{v:.3f}" for v in row] for row in mat],
         texttemplate="%{text}", textfont=dict(size=12, color=TEXT_PRI),
         colorbar=dict(title="Cosine Sim", tickfont=dict(color=TEXT_SEC)),
@@ -563,7 +605,7 @@ def i1_baseline_vs_ceo(data: dict, models: list[str],
     text = [[f"{v:.3f}" if v is not None else "N/A" for v in row] for row in z]
     fig  = go.Figure(go.Heatmap(
         z=z, x=labels, y=q_labels,
-        colorscale=COLORSCALE_AMBER, zmin=0.5, zmax=1.0,
+        colorscale=COLORSCALE_REDBLUE, zmin=0.5, zmax=1.0,
         text=text, texttemplate="%{text}", textfont=dict(size=13, color=TEXT_PRI),
         colorbar=dict(title="Cosine Sim", tickfont=dict(color=TEXT_SEC)),
         hovertemplate="<b>%{y}</b> — <b>%{x}</b><br>Baseline↔CEO: %{z:.3f}<extra></extra>",
@@ -606,7 +648,7 @@ def i2_s1_wordfreq_cross_model(data: dict, models: list[str]) -> go.Figure:
 
     fig = go.Figure(go.Heatmap(
         z=z, x=col_labels, y=top_words,
-        colorscale=COLORSCALE_BLUE,
+        colorscale=COLORSCALE_REDBLUE,
         colorbar=dict(title="Norm. Freq", tickfont=dict(color=TEXT_SEC)),
         hovertemplate="<b>%{y}</b><br>%{x}<br>Freq: %{z:.4f}<extra></extra>",
     ))
@@ -649,7 +691,11 @@ def i2_s1_wordfreq_baseline_vs_ceo(data: dict, models: list[str]) -> go.Figure:
                     name=CONDITION_LABELS[cond],
                     x=vals, y=top_words,
                     orientation="h",
-                    marker_color=bar_colors[cond],
+                    marker=dict(
+                        color=bar_colors[cond],
+                        pattern=dict(shape=CONDITION_PATTERNS[cond], fillmode="overlay",
+                                     fgcolor="rgba(0,0,0,0.35)", size=8),
+                    ),
                     opacity=0.85,
                     showlegend=(col_idx == 1),
                     hovertemplate=f"<b>%{{y}}</b><br>{CONDITION_LABELS[cond]}: %{{x:.4f}}<extra></extra>",
@@ -717,7 +763,7 @@ def i2_s2_responsibility_radar(data: dict, models: list[str]) -> go.Figure:
                 mode="lines+markers",
                 name=f"{label} ({CONDITION_LABELS[cond]})",
                 line=dict(color=color, width=2, dash=CONDITION_DASH[cond]),
-                marker=dict(size=5, color=color),
+                marker=dict(size=6, color=color, symbol=MODEL_SYMBOLS.get(model, "circle")),
                 opacity=0.85,
                 hovertemplate=(
                     f"<b>{label}</b> — {CONDITION_LABELS[cond]}<br>"
@@ -1090,7 +1136,12 @@ def i3_grouped_bar(scores: dict, models: list[str], dimension: str,
             name=label, x=scenario_labels, y=means,
             error_y=dict(type="data", array=errors, visible=True,
                          color=color, thickness=1.5, width=4),
-            marker_color=color, opacity=0.85,
+            marker=dict(
+                color=color,
+                pattern=dict(shape=MODEL_PATTERNS.get(model, ""), fillmode="overlay",
+                             fgcolor="rgba(0,0,0,0.35)", size=8),
+            ),
+            opacity=0.85,
             hovertemplate=f"<b>{label}</b><br>%{{x}}<br>{dim_label}: %{{y:.2f}}<extra></extra>",
         ))
     fig.update_layout(
@@ -1127,7 +1178,7 @@ def i3_heatmap(scores: dict, models: list[str], dimension: str,
     fig = go.Figure(go.Heatmap(
         z=z, x=scenario_labels, y=model_labels,
         text=text, texttemplate="%{text}", textfont=dict(size=12, color=TEXT_PRI),
-        colorscale=COLORSCALE_BLUE, zmin=1, zmax=10,
+        colorscale=COLORSCALE_REDBLUE, zmin=1, zmax=10,
         colorbar=dict(title="Score", tickfont=dict(color=TEXT_SEC)),
         hovertemplate="<b>%{y}</b><br>%{x}<br>Score: %{z:.2f}<extra></extra>",
     ))
@@ -1159,8 +1210,10 @@ def i3_radar(scores: dict, models: list[str], scenario_id: str,
             vals.append(m if m is not None else 0)
         fig.add_trace(go.Scatterpolar(
             r=vals + [vals[0]], theta=closed, mode="lines+markers",
-            name=label, line=dict(color=color, width=2),
-            marker=dict(size=6, color=color), opacity=0.85,
+            name=label,
+            line=dict(color=color, width=2, dash=MODEL_DASH.get(model, "solid")),
+            marker=dict(size=6, color=color, symbol=MODEL_SYMBOLS.get(model, "circle")),
+            opacity=0.85,
             hovertemplate=f"<b>{label}</b><br>%{{theta}}: %{{r:.2f}}<extra></extra>",
         ))
     fig.update_layout(
@@ -1255,7 +1308,12 @@ def i3_condition_bars(scores: dict, models: list[str]) -> go.Figure:
                 means.append(float(np.mean(dim_means)) if dim_means else None)
             fig.add_trace(
                 go.Bar(name=CONDITION_LABELS[cond], x=scenario_labels, y=means,
-                       marker_color=cond_colors[cond], opacity=0.85,
+                       marker=dict(
+                           color=cond_colors[cond],
+                           pattern=dict(shape=CONDITION_PATTERNS[cond], fillmode="overlay",
+                                        fgcolor="rgba(0,0,0,0.35)", size=8),
+                       ),
+                       opacity=0.85,
                        showlegend=(col_idx == 1),
                        hovertemplate=f"<b>{CONDITION_LABELS[cond]}</b><br>%{{x}}<br>Avg: %{{y:.2f}}<extra></extra>"),
                 row=1, col=col_idx,
@@ -1387,8 +1445,8 @@ def i4_elp_radar(elp: dict, models: list[str]) -> go.Figure:
         fig.add_trace(go.Scatterpolar(
             r=vals_closed, theta=axes_closed,
             mode="lines+markers", name=label,
-            line=dict(color=color, width=2.5),
-            marker=dict(size=7, color=color),
+            line=dict(color=color, width=2.5, dash=MODEL_DASH.get(model, "solid")),
+            marker=dict(size=7, color=color, symbol=MODEL_SYMBOLS.get(model, "circle")),
             opacity=0.9,
             hovertemplate=f"<b>{label}</b><br>%{{theta}}: %{{r:.2f}}<extra></extra>",
         ))
@@ -1495,7 +1553,7 @@ def i4_peer_scores_heatmap(peer_scores: dict, pairs: list[dict]) -> go.Figure:
     fig = go.Figure(go.Heatmap(
         z=z, x=dim_labels, y=row_labels,
         text=text, texttemplate="%{text}", textfont=dict(size=11, color=TEXT_PRI),
-        colorscale=COLORSCALE_GREEN, zmin=1, zmax=10,
+        colorscale=COLORSCALE_REDBLUE, zmin=1, zmax=10,
         colorbar=dict(title="Score", tickfont=dict(color=TEXT_SEC)),
         hovertemplate="<b>%{y}</b><br>%{x}: %{z}<extra></extra>",
     ))
@@ -1571,7 +1629,11 @@ def i1_source_type_stacked_bar(data: dict, models: list[str]) -> go.Figure:
             name=SOURCE_TYPE_LABELS.get(stype, stype),
             x=model_labels,
             y=vals,
-            marker_color=SOURCE_TYPE_COLORS.get(stype, "#9ca3af"),
+            marker=dict(
+                color=SOURCE_TYPE_COLORS.get(stype, "#9ca3af"),
+                pattern=dict(shape=SOURCE_TYPE_PATTERNS.get(stype, ""), fillmode="overlay",
+                             fgcolor="rgba(0,0,0,0.35)", size=8),
+            ),
             hovertemplate=(
                 f"<b>{SOURCE_TYPE_LABELS.get(stype, stype)}</b><br>"
                 "%{x}: %{y:.1f}%<extra></extra>"
@@ -1676,7 +1738,7 @@ def i1_source_overlap_heatmap(data: dict, models: list[str]) -> go.Figure:
     fig = go.Figure(go.Heatmap(
         z=z, x=model_labels, y=model_labels,
         text=text, texttemplate="%{text}", textfont=dict(size=13, color=TEXT_PRI),
-        colorscale=COLORSCALE_BLUE, zmin=0, zmax=1,
+        colorscale=COLORSCALE_REDBLUE, zmin=0, zmax=1,
         colorbar=dict(title="Jaccard Sim.", tickfont=dict(color=TEXT_SEC)),
         hovertemplate="<b>%{y}</b> vs <b>%{x}</b><br>Jaccard: %{z:.3f}<extra></extra>",
     ))
@@ -1723,7 +1785,11 @@ def i1_jurisdiction_breakdown(data: dict, models: list[str]) -> go.Figure:
             name=j,
             x=model_labels,
             y=vals,
-            marker_color=juris_colors.get(j, "#9ca3af"),
+            marker=dict(
+                color=juris_colors.get(j, "#9ca3af"),
+                pattern=dict(shape=JURIS_PATTERNS.get(j, ""), fillmode="overlay",
+                             fgcolor="rgba(0,0,0,0.35)", size=8),
+            ),
             hovertemplate=f"<b>{j}</b><br>%{{x}}: %{{y:.1f}}%<extra></extra>",
         ))
 
@@ -1886,7 +1952,7 @@ def run_hypothesis_tests(
             for i1_qid, i2_sid in dim_pairs:
                 # Within-I1 pairwise similarity across 3 runs
                 run_texts = [
-                    i1_data.get(model, {}).get("baseline", {}).get(str(r), {}).get(i1_qid, "")
+                    _extract_text(i1_data.get(model, {}).get("baseline", {}).get(str(r), {}).get(i1_qid, ""))
                     for r in [1, 2, 3]
                 ]
                 run_texts = [t for t in run_texts if t]
@@ -1898,8 +1964,8 @@ def run_hypothesis_tests(
                 w_sim = float(np.mean(pair_sims))
 
                 # I1→I2 cross-instrument similarity
-                i1_text = i1_data.get(model, {}).get("baseline", {}).get("1", {}).get(i1_qid, "")
-                i2_text = i2_data.get(model, {}).get("baseline", {}).get("1", {}).get(i2_sid, "")
+                i1_text = _extract_text(i1_data.get(model, {}).get("baseline", {}).get("1", {}).get(i1_qid, ""))
+                i2_text = _extract_text(i2_data.get(model, {}).get("baseline", {}).get("1", {}).get(i2_sid, ""))
                 if not i1_text or not i2_text:
                     continue
                 e1 = embed_model.encode([i1_text], show_progress_bar=False)[0]
@@ -2326,7 +2392,7 @@ def i5_citation_overlap_heatmap(data: dict, models: list[str]) -> go.Figure:
     fig = go.Figure(go.Heatmap(
         z=z, x=model_labels, y=model_labels,
         text=text, texttemplate="%{text}", textfont=dict(size=13, color=TEXT_PRI),
-        colorscale=COLORSCALE_BLUE, zmin=0, zmax=1,
+        colorscale=COLORSCALE_REDBLUE, zmin=0, zmax=1,
         colorbar=dict(title="Jaccard Sim.", tickfont=dict(color=TEXT_SEC)),
         hovertemplate="<b>%{y}</b> vs <b>%{x}</b><br>Jaccard: %{z:.3f}<extra></extra>",
     ))
@@ -2382,8 +2448,8 @@ def i5_jurisdiction_radar(data: dict, models: list[str],
             theta=axes_closed,
             mode="lines+markers",
             name=label,
-            line=dict(color=color, width=2),
-            marker=dict(size=5, color=color),
+            line=dict(color=color, width=2, dash=MODEL_DASH.get(model, "solid")),
+            marker=dict(size=6, color=color, symbol=MODEL_SYMBOLS.get(model, "circle")),
             opacity=0.85,
             hovertemplate=f"<b>{label}</b><br>%{{theta}}: %{{r:.1f}}%<extra></extra>",
         ))

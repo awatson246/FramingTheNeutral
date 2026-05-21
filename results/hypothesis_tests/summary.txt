@@ -3,9 +3,9 @@ HYPOTHESIS TEST RESULTS
 
 H1 — Surface competence vs scenario divergence
 ----------------------------------------
-  Within-model I1 similarity (mean):       0.9105
-  I1→I2 cross-instrument similarity (mean): 0.6524
-  Paired t-test:  t=13.451,  p=0.0000  (n=15)
+  Within-model I1 similarity (mean):       0.9111
+  I1→I2 cross-instrument similarity (mean): 0.6970
+  Paired t-test:  t=10.469,  p=0.0000  (n=15)
   Supported:      True
 
 H2 — CEO shift largest for enforceability
