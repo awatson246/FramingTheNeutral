@@ -36,7 +36,35 @@ def test_unparsed_raw_json():
     assert "GDPR" not in text
 
 
+# v2 records: response text + metadata (see collect_llm_responses.make_record)
+META = {"model_version": "gpt-6.1-sol", "finish_reason": "stop",
+        "timestamp": "2026-10-20T20:00:00+00:00",
+        "answer_tokens": 12, "reasoning_tokens": 40, "input_tokens": 90}
+
+
+def test_v2_free_text_record():
+    # I2: no "parsed" key, text is the answer
+    assert get_answer_text({"text": ANSWER, **META}) == ANSWER
+
+
+def test_v2_json_record_parsed():
+    # I1: text is the raw JSON output, parsed holds response + sources
+    cell = {"text": json.dumps({"response": ANSWER, "sources": SOURCES}), **META,
+            "parsed": {"response": ANSWER, "sources": SOURCES}}
+    text = get_answer_text(cell)
+    assert text == ANSWER
+    assert "EU AI Act" not in text and "gpt-6.1-sol" not in text
+
+
+def test_v2_json_record_unparsed():
+    cell = {"text": '{"response": "Line one.\nLine two.", "sources": []}', **META,
+            "parsed": None}
+    assert get_answer_text(cell) == "Line one.\nLine two."
+
+
 @pytest.mark.parametrize("cell", [
+    {**dict.fromkeys(META), "text": None},                          # v2 failed I2 call
+    {**dict.fromkeys(META), "text": None, "parsed": None},          # v2 failed I1 call
     {"raw": "Sorry, I can't answer that as JSON.", "parsed": None},  # raw not JSON
     {"raw": '{"answer": "wrong key"}', "parsed": None},              # no "response"
     {"raw": None, "parsed": None},                                   # nothing stored

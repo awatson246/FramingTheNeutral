@@ -1,10 +1,13 @@
 """
 Shared helper for reading stored I1 / I2 answers as plain text.
 
-I2 cells (and legacy I1 cells) are plain strings. I1 cells are now
-{"raw": "<model output>", "parsed": {"response": "...", "sources": [...]}}.
+Stored formats:
+  v1 I2 (and legacy I1):  "<answer>"
+  v1 I1:                  {"raw": "<model output>", "parsed": {"response": ..., "sources": [...]}}
+  v2 I2:                  {"text": "<answer>", "model_version": ..., ...}        (no "parsed")
+  v2 I1:                  {"text": "<model output>", ..., "parsed": {...} | None}
 Anything that analyzes or re-prompts with an answer should go through
-get_answer_text() so it never sees the dict or the sources list.
+get_answer_text() so it never sees the dict, its metadata or the sources list.
 """
 
 import json
@@ -27,10 +30,11 @@ def get_answer_text(cell) -> str:
     """
     Return the plain answer text for a stored I1 / I2 response cell.
 
-    - str                               -> returned as-is
-    - {"parsed": {"response": str}}     -> parsed["response"]
-    - {"parsed": None, "raw": "<json>"} -> json.loads(raw)["response"]
-    Sources are never included. Raises AnswerTextError otherwise.
+    - str                                      -> returned as-is
+    - {"parsed": {"response": str}}            -> parsed["response"]
+    - {"text": str} with no "parsed" key       -> text (v2 free-text record)
+    - {"parsed": None, "raw" | "text": "<json>"} -> json.loads(...)["response"]
+    Sources and metadata are never included. Raises AnswerTextError otherwise.
     """
     if isinstance(cell, str):
         return cell
@@ -40,7 +44,12 @@ def get_answer_text(cell) -> str:
         if isinstance(parsed, dict) and isinstance(parsed.get("response"), str):
             return parsed["response"]
 
-        raw = cell.get("raw")
+        # v2 free-text record (I2): the model output is the answer itself
+        if "parsed" not in cell and isinstance(cell.get("text"), str):
+            return cell["text"]
+
+        # JSON output that wasn't parsed at collection time (v1 "raw", v2 "text")
+        raw = cell.get("raw", cell.get("text"))
         if isinstance(raw, str) and raw.strip():
             try:
                 # strict=False tolerates literal newlines/tabs inside strings,

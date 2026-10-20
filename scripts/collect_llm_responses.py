@@ -3,6 +3,7 @@ import json
 import os
 import random
 from dataclasses import dataclass, field
+from datetime import datetime, timezone
 from functools import cache, partial
 from pathlib import Path
 from time import sleep
@@ -17,7 +18,7 @@ from google import genai
 from google.genai import types as genai_types
 from dotenv import load_dotenv
 
-from answer_text import get_answer_text
+from answer_text import AnswerTextError, get_answer_text
 from model_registry import MODELS, MODEL_HEADROOM, MODEL_LABELS, MODEL_PROVIDERS
 
 load_dotenv()
@@ -28,12 +29,13 @@ load_dotenv()
 
 INSTRUMENTS_FILE  = Path("data/prompts/instruments.json")
 PEER_EVAL_FILE    = Path("data/prompts/peer_eval_pairs.json")
-RAW_DIR           = Path("data/raw")
+V1_RAW_DIR        = Path("data/raw")      # v1 data: never written to
+RAW_DIR           = Path("data/raw/v2")   # default; overridden by --raw-dir
 
 # MODELS, MODEL_LABELS, MODEL_PROVIDERS and MODEL_HEADROOM come from
 # config/models.yaml via model_registry. Keys must match instruments.json "models".
 
-# Instruments to collect in this run
+# Instruments to collect in this run; overridden by instruments.json "active_instruments"
 ACTIVE_INSTRUMENTS = ["instrument_1", "instrument_2", "instrument_3", "instrument_4", "instrument_5"]
 
 # Model used for I5 source extraction (always Claude Sonnet, regardless of original model)
@@ -131,17 +133,41 @@ def get_client(provider: str):
 TRUNCATION_REASONS = {"length", "max_tokens"}
 
 
+# Whether a provider's completion/output token count includes reasoning tokens.
+# answer_tokens is normalized to exclude reasoning either way.
+#   openai, deepseek: included (DeepSeek smoke test: 18 output incl. 15 reasoning)
+#   xai, google:      reported separately (total = input + output + reasoning)
+#   mistral:          assumed OpenAI semantics; it reports no reasoning tokens so far
+REASONING_IN_OUTPUT = {"openai": True, "deepseek": True, "mistral": True,
+                       "xai": False, "google": False}
+
+
+def _utc_now() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
 @dataclass
 class CallResult:
     text:             str
-    model_version:    str | None              # model string the API reports back
+    model_version:    str | None         # model string the API reports back
     finish_reason:    str | None
-    usage:            dict = field(default_factory=dict)  # input/output/total tokens
-    reasoning_tokens: int | None = None       # None when the provider doesn't report it
+    input_tokens:     int | None = None
+    answer_tokens:    int | None = None  # visible output only; never includes reasoning
+    reasoning_tokens: int | None = None  # None when the provider doesn't report it
+    timestamp:        str = field(default_factory=_utc_now)
 
     @property
     def truncated(self) -> bool:
         return (self.finish_reason or "").lower() in TRUNCATION_REASONS
+
+
+def _answer_tokens(provider: str, output_tokens: int | None,
+                   reasoning_tokens: int | None) -> int | None:
+    if output_tokens is None:
+        return None
+    if reasoning_tokens and REASONING_IN_OUTPUT[provider]:
+        return max(0, output_tokens - reasoning_tokens)
+    return output_tokens
 
 
 def call_openai_compat(provider: str, api_id: str, system_prompt: str,
@@ -154,17 +180,18 @@ def call_openai_compat(provider: str, api_id: str, system_prompt: str,
         ],
         **{OPENAI_COMPAT[provider]["token_param"]: max_tokens},
     )
-    choice  = resp.choices[0]
-    usage   = resp.usage
-    details = getattr(usage, "completion_tokens_details", None) if usage else None
+    choice    = resp.choices[0]
+    usage     = resp.usage
+    details   = getattr(usage, "completion_tokens_details", None) if usage else None
+    reasoning = getattr(details, "reasoning_tokens", None)
     return CallResult(
         text=(choice.message.content or "").strip(),
         model_version=resp.model,
         finish_reason=choice.finish_reason,
-        usage={"input_tokens":  usage.prompt_tokens,
-               "output_tokens": usage.completion_tokens,
-               "total_tokens":  usage.total_tokens} if usage else {},
-        reasoning_tokens=getattr(details, "reasoning_tokens", None),
+        input_tokens=usage.prompt_tokens if usage else None,
+        answer_tokens=_answer_tokens(provider, usage.completion_tokens if usage else None,
+                                     reasoning),
+        reasoning_tokens=reasoning,
     )
 
 
@@ -177,15 +204,14 @@ def call_anthropic(api_id: str, system_prompt: str, user_prompt: str,
         messages=[{"role": "user", "content": user_prompt}],
     )
     # Only text blocks form the answer; thinking blocks (if any) are skipped.
-    # Anthropic doesn't report thinking tokens separately from output_tokens.
-    usage = resp.usage
+    # Anthropic doesn't report thinking tokens separately: if the model thinks,
+    # they are inside output_tokens and can't be subtracted out of answer_tokens.
     return CallResult(
         text="".join(b.text for b in resp.content if b.type == "text").strip(),
         model_version=resp.model,
         finish_reason=resp.stop_reason,
-        usage={"input_tokens":  usage.input_tokens,
-               "output_tokens": usage.output_tokens,
-               "total_tokens":  usage.input_tokens + usage.output_tokens},
+        input_tokens=resp.usage.input_tokens,
+        answer_tokens=resp.usage.output_tokens,
     )
 
 
@@ -205,9 +231,8 @@ def call_gemini(api_id: str, system_prompt: str, user_prompt: str,
         text=(resp.text or "").strip(),
         model_version=resp.model_version,
         finish_reason=cand.finish_reason.name if cand and cand.finish_reason else None,
-        usage={"input_tokens":  usage.prompt_token_count,
-               "output_tokens": usage.candidates_token_count,
-               "total_tokens":  usage.total_token_count} if usage else {},
+        input_tokens=usage.prompt_token_count if usage else None,
+        answer_tokens=usage.candidates_token_count if usage else None,  # excludes thoughts
         reasoning_tokens=usage.thoughts_token_count if usage else None,
     )
 
@@ -295,6 +320,27 @@ def call_text(model_id: str, system_prompt: str, user_prompt: str,
     """Text-only view of call_with_retry for storage; None on failure or empty output."""
     result = call_with_retry(model_id, system_prompt, user_prompt, max_tokens)
     return result.text if result is not None and result.text else None
+
+
+# v2 storage: every response is stored as one of these records. JSON-format
+# instruments (I1, I3, I5) add a "parsed" key alongside.
+RECORD_FIELDS = ("text", "model_version", "finish_reason", "timestamp",
+                 "answer_tokens", "reasoning_tokens", "input_tokens")
+
+
+def make_record(result: CallResult | None) -> dict:
+    """Storage record for a call. Failed or empty calls get text=None (retried next run)."""
+    if result is None:
+        return {**dict.fromkeys(RECORD_FIELDS), "timestamp": _utc_now()}
+    return {
+        "text":             result.text or None,
+        "model_version":    result.model_version,
+        "finish_reason":    result.finish_reason,
+        "timestamp":        result.timestamp,
+        "answer_tokens":    result.answer_tokens,
+        "reasoning_tokens": result.reasoning_tokens,
+        "input_tokens":     result.input_tokens,
+    }
 
 
 # =============================================================================
@@ -417,44 +463,59 @@ def load_instrument(instrument_id: str) -> dict:
     return {}
 
 
+def is_v1_raw_dir(path: Path) -> bool:
+    return path.resolve() == V1_RAW_DIR.resolve()
+
+
 def save_instrument(instrument_id: str, data: dict) -> None:
+    if is_v1_raw_dir(RAW_DIR):
+        raise RuntimeError(f"Refusing to write to {V1_RAW_DIR} (v1 data); use --raw-dir")
     RAW_DIR.mkdir(parents=True, exist_ok=True)
     with open(instrument_path(instrument_id), "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
+def stored_text(val) -> str | None:
+    """Model output stored in a cell: legacy str, v1 {raw, ...} or v2 {text, ...}."""
+    if isinstance(val, str):
+        return val
+    if isinstance(val, dict):
+        return val.get("text", val.get("raw"))
+    return None
+
+
 def is_complete(data: dict, model: str, condition: str,
                 run: int, question_id: str) -> bool:
-    """Return True if this cell already has a non-None response. (I1/I2)"""
+    """Return True if this cell already has a non-empty response. (I2)"""
     try:
-        return data[model][condition][str(run)][question_id] is not None
+        return bool(stored_text(data[model][condition][str(run)][question_id]))
     except KeyError:
         return False
 
 
 def is_complete_i3(data: dict, model: str, condition: str, run: int) -> bool:
-    """Return True if this run already has a raw response stored. (I3)"""
+    """Return True if this run already has a model output stored. (I3)"""
     try:
-        return data[model][condition][str(run)].get("raw") is not None
+        return stored_text(data[model][condition][str(run)]) is not None
     except (KeyError, AttributeError):
         return False
 
 
 def store_response(data: dict, model: str, condition: str,
-                   run: int, question_id: str, response: str | None) -> None:
-    """Store a single question response. (I1/I2)"""
+                   run: int, question_id: str, record: dict) -> None:
+    """Store a single question's response record. (I2)"""
     data.setdefault(model, {})
     data[model].setdefault(condition, {})
     data[model][condition].setdefault(str(run), {})
-    data[model][condition][str(run)][question_id] = response
+    data[model][condition][str(run)][question_id] = record
 
 
 def store_i3_response(data: dict, model: str, condition: str,
-                      run: int, raw: str | None, parsed: dict | None) -> None:
-    """Store raw + parsed ratings for one I3 run."""
+                      run: int, record: dict, parsed: dict | None) -> None:
+    """Store the response record + parsed ratings for one I3 run."""
     data.setdefault(model, {})
     data[model].setdefault(condition, {})
-    data[model][condition][str(run)] = {"raw": raw, "parsed": parsed}
+    data[model][condition][str(run)] = {**record, "parsed": parsed}
 
 
 # =============================================================================
@@ -681,29 +742,29 @@ def is_complete_i1(data: dict, model: str, condition: str,
                    run: int, question_id: str) -> bool:
     """
     Return True if this I1 cell is already populated with a successfully parsed response.
-    Cells where raw exists but parsed is None are NOT considered complete so that
-    JSON-parse failures from a previous run are automatically retried.
-    Handles both legacy string format and new {raw, parsed} dict format.
+    Cells where the output exists but parsed is None are NOT considered complete so
+    that JSON-parse failures from a previous run are automatically retried.
+    Handles legacy strings, v1 {raw, parsed} and v2 {text, ..., parsed} cells.
     """
     try:
         val = data[model][condition][str(run)][question_id]
         if isinstance(val, str):
             return bool(val)          # legacy format
         if isinstance(val, dict):
-            # Only skip if we have both raw and a successfully parsed result
-            return val.get("raw") is not None and val.get("parsed") is not None
+            # Only skip if we have both an output and a successfully parsed result
+            return stored_text(val) is not None and val.get("parsed") is not None
         return False
     except (KeyError, AttributeError):
         return False
 
 
 def store_i1_response(data: dict, model: str, condition: str, run: int,
-                      question_id: str, raw: str | None, parsed: dict | None) -> None:
-    """Store raw + parsed I1 response (new {raw, parsed} format)."""
+                      question_id: str, record: dict, parsed: dict | None) -> None:
+    """Store the response record + parsed I1 response."""
     data.setdefault(model, {})
     data[model].setdefault(condition, {})
     data[model][condition].setdefault(str(run), {})
-    data[model][condition][str(run)][question_id] = {"raw": raw, "parsed": parsed}
+    data[model][condition][str(run)][question_id] = {**record, "parsed": parsed}
 
 
 # =============================================================================
@@ -784,20 +845,20 @@ def parse_i5_response(raw: str) -> dict | None:
 
 def is_complete_i5(data: dict, model: str, condition: str,
                    run: int, question_id: str) -> bool:
-    """Return True if this cell already has a raw response stored."""
+    """Return True if this cell already has an extractor output stored."""
     try:
-        return data[model][condition][str(run)][question_id].get("raw") is not None
+        return stored_text(data[model][condition][str(run)][question_id]) is not None
     except (KeyError, AttributeError):
         return False
 
 
 def store_i5_response(data: dict, model: str, condition: str, run: int,
-                      question_id: str, raw: str | None, parsed: dict | None) -> None:
-    """Store raw + parsed source extraction for one response."""
+                      question_id: str, record: dict, parsed: dict | None) -> None:
+    """Store the extractor's response record + parsed sources for one response."""
     data.setdefault(model, {})
     data[model].setdefault(condition, {})
     data[model][condition].setdefault(str(run), {})
-    data[model][condition][str(run)][question_id] = {"raw": raw, "parsed": parsed}
+    data[model][condition][str(run)][question_id] = {**record, "parsed": parsed}
 
 
 I5_EXTRACTOR_SYSTEM = (
@@ -808,16 +869,15 @@ I5_EXTRACTOR_SYSTEM = (
 I5_MAX_TOKENS = 2048
 
 
-def call_i5_extractor(prompt: str) -> str | None:
+def call_i5_extractor(prompt: str) -> CallResult | None:
     """
     Always calls Claude Sonnet for source extraction regardless of the original model.
     Uses the shared retry pattern.
     """
-    result = with_retry(
+    return with_retry(
         lambda: call_anthropic(EXTRACTOR_MODEL, I5_EXTRACTOR_SYSTEM, prompt, I5_MAX_TOKENS),
         "I5 extractor",
     )
-    return result.text if result is not None and result.text else None
 
 
 # =============================================================================
@@ -969,19 +1029,17 @@ def smoke_test() -> None:
         rows.append((model_id, ok, r))
 
     header = (f"{'Model':<20} {'Result':<6} {'Returned version':<28} {'finish_reason':<14} "
-              f"{'In':>6} {'Out':>6} {'Reason':>7} {'Total':>7}  Text")
+              f"{'In':>6} {'Answer':>6} {'Reason':>7}  Text")
     print("\n" + header)
     print("-" * len(header))
     for model_id, ok, r in rows:
         if r is None:
-            print(f"{model_id:<20} {'fail':<6} {'-':<28} {'-':<14} {'-':>6} {'-':>6} {'-':>7} {'-':>7}")
+            print(f"{model_id:<20} {'fail':<6} {'-':<28} {'-':<14} {'-':>6} {'-':>6} {'-':>7}")
             continue
-        u = r.usage
-        reason = "n/a" if r.reasoning_tokens is None else r.reasoning_tokens
+        fmt = lambda v: "n/a" if v is None else v
         print(f"{model_id:<20} {'OK' if ok else 'fail':<6} {str(r.model_version):<28} "
-              f"{str(r.finish_reason):<14} {u.get('input_tokens', '-'):>6} "
-              f"{u.get('output_tokens', '-'):>6} {reason:>7} {u.get('total_tokens', '-'):>7}  "
-              f"{r.text[:30]!r}")
+              f"{str(r.finish_reason):<14} {fmt(r.input_tokens):>6} "
+              f"{fmt(r.answer_tokens):>6} {fmt(r.reasoning_tokens):>7}  {r.text[:30]!r}")
 
 
 # =============================================================================
@@ -1000,7 +1058,14 @@ if __name__ == "__main__":
     parser.add_argument("--smoke-test", action="store_true",
                         help="Send one short real call to each model in config/models.yaml "
                              "and print a summary table. Stores nothing.")
+    parser.add_argument("--raw-dir", type=Path, default=RAW_DIR,
+                        help=f"Directory for instrument JSON files (default: {RAW_DIR}). "
+                             f"{V1_RAW_DIR} itself (v1 data) is refused.")
     args = parser.parse_args()
+
+    if is_v1_raw_dir(args.raw_dir):
+        sys.exit(f"--raw-dir {args.raw_dir} is the v1 data directory; refusing to write there.")
+    RAW_DIR = args.raw_dir   # module scope: rebinds the global used by the storage helpers
 
     if args.smoke_test:
         smoke_test()
@@ -1012,6 +1077,9 @@ if __name__ == "__main__":
     with open(PEER_EVAL_FILE, "r", encoding="utf-8") as f:
         peer_eval_data = json.load(f)
 
+    # Module scope: rebinds the global that dry_run() and the loops below read
+    ACTIVE_INSTRUMENTS = instruments_data.get("active_instruments", ACTIVE_INSTRUMENTS)
+
     if args.dry_run:
         dry_run(instruments_data, peer_eval_data,
                 args.models or instruments_data["models"], args.runs)
@@ -1022,11 +1090,16 @@ if __name__ == "__main__":
     models        = instruments_data["models"]
     runs_per_cond = instruments_data["runs_per_condition"]
 
-    unknown = sorted({*models, *(p["evaluator"] for p in pairs)} - set(MODEL_CALLERS))
+    needed = set(models)
+    if "instrument_4" in ACTIVE_INSTRUMENTS:
+        needed |= {p["evaluator"] for p in pairs}
+    unknown = sorted(needed - set(MODEL_CALLERS))
     if unknown:
         sys.exit(f"Not in config/models.yaml: {', '.join(unknown)}. "
-                 f"Update the 'models' list in {INSTRUMENTS_FILE} and the evaluators "
-                 f"in {PEER_EVAL_FILE} to registry keys: {', '.join(MODEL_CALLERS)}")
+                 f"Update the 'models' list in {INSTRUMENTS_FILE}"
+                 + (f" and the evaluators in {PEER_EVAL_FILE}"
+                    if "instrument_4" in ACTIVE_INSTRUMENTS else "")
+                 + f" to registry keys: {', '.join(MODEL_CALLERS)}")
 
     # Count total calls for progress reporting
     total = 0
@@ -1102,7 +1175,10 @@ if __name__ == "__main__":
                                 .get(str(run), {})
                                 .get(q_id)
                             )
-                            src_response = get_answer_text(src_val) if src_val is not None else ""
+                            try:
+                                src_response = get_answer_text(src_val) if src_val is not None else ""
+                            except AnswerTextError:
+                                src_response = ""   # failed I1/I2 call stored with text=None
 
                             if not src_response:
                                 print(
@@ -1119,10 +1195,11 @@ if __name__ == "__main__":
                                 end="", flush=True,
                             )
 
-                            raw    = call_i5_extractor(prompt)
+                            record = make_record(call_i5_extractor(prompt))
+                            raw    = record["text"]
                             parsed = parse_i5_response(raw) if raw else None
 
-                            store_i5_response(data, model_id, condition_id, run, q_id, raw, parsed)
+                            store_i5_response(data, model_id, condition_id, run, q_id, record, parsed)
                             save_instrument(instrument_id, data)
 
                             status = "ok" if parsed else ("raw only" if raw else "FAILED")
@@ -1203,11 +1280,12 @@ if __name__ == "__main__":
                             end="", flush=True
                         )
 
-                        raw    = call_text(model_id, system_prompt, i3_prompt,
-                                           MAX_TOKENS_JSON)
+                        record = make_record(call_with_retry(model_id, system_prompt,
+                                                             i3_prompt, MAX_TOKENS_JSON))
+                        raw    = record["text"]
                         parsed = parse_i3_response(raw) if raw else None
 
-                        store_i3_response(data, model_id, condition_id, run, raw, parsed)
+                        store_i3_response(data, model_id, condition_id, run, record, parsed)
                         save_instrument(instrument_id, data)
 
                         status = "ok" if parsed else ("raw only" if raw else "FAILED")
@@ -1241,8 +1319,9 @@ if __name__ == "__main__":
                             prompt = build_i1_prompt(question)
                             raw, parsed = None, None
                             for parse_attempt in range(1, RETRY_ATTEMPTS + 1):
-                                raw    = call_text(model_id, system_prompt,
-                                                   prompt, MAX_TOKENS_JSON)
+                                record = make_record(call_with_retry(model_id, system_prompt,
+                                                                     prompt, MAX_TOKENS_JSON))
+                                raw    = record["text"]
                                 parsed = parse_i1_response(raw) if raw else None
                                 if parsed:
                                     break
@@ -1254,7 +1333,7 @@ if __name__ == "__main__":
                                     )
                                     sleep(RETRY_DELAY)
 
-                            store_i1_response(data, model_id, condition_id, run, q_id, raw, parsed)
+                            store_i1_response(data, model_id, condition_id, run, q_id, record, parsed)
                             save_instrument(instrument_id, data)
 
                             status = "ok" if parsed else ("raw only" if raw else "FAILED")
@@ -1285,13 +1364,13 @@ if __name__ == "__main__":
                                 end="", flush=True
                             )
 
-                            response = call_text(model_id, system_prompt,
-                                                 question["text"], MAX_TOKENS_OPEN)
+                            record = make_record(call_with_retry(model_id, system_prompt,
+                                                                 question["text"], MAX_TOKENS_OPEN))
 
-                            store_response(data, model_id, condition_id, run, q_id, response)
+                            store_response(data, model_id, condition_id, run, q_id, record)
                             save_instrument(instrument_id, data)
 
-                            print("ok" if response else "FAILED")
+                            print("ok" if record["text"] else "FAILED")
                             completed += 1
                             sleep(CALL_DELAY)
 
