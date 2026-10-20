@@ -1941,10 +1941,9 @@ def run_hypothesis_tests(
         for model in models:
             for i1_qid, i2_sid in dim_pairs:
                 # Within-I1 pairwise similarity across 3 runs
-                run_texts = [
-                    i1_data.get(model, {}).get("baseline", {}).get(str(r), {}).get(i1_qid, "")
-                    for r in [1, 2, 3]
-                ]
+                runs = i1_data.get(model, {}).get("baseline", {})
+                cells = [runs.get(str(r), {}).get(i1_qid) for r in [1, 2, 3]]
+                run_texts = [get_answer_text(c) for c in cells if c is not None]
                 run_texts = [t for t in run_texts if t]
                 if len(run_texts) < 2:
                     continue
@@ -1954,8 +1953,8 @@ def run_hypothesis_tests(
                 w_sim = float(np.mean(pair_sims))
 
                 # I1→I2 cross-instrument similarity
-                i1_text = i1_data.get(model, {}).get("baseline", {}).get("1", {}).get(i1_qid, "")
-                i2_text = i2_data.get(model, {}).get("baseline", {}).get("1", {}).get(i2_sid, "")
+                i1_text = get_run1(i1_data, model, "baseline", i1_qid)
+                i2_text = get_run1(i2_data, model, "baseline", i2_sid)
                 if not i1_text or not i2_text:
                     continue
                 e1 = embed_model.encode([i1_text], show_progress_bar=False)[0]
