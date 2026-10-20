@@ -19,6 +19,8 @@ import json
 from collections import Counter
 from pathlib import Path
 
+from answer_text import get_answer_text
+
 RAW_DIR    = Path("data/raw")
 RESULTS_DIR = Path("results")
 
@@ -53,11 +55,8 @@ def load_json(name: str) -> dict | None:
 
 
 def get_run1_response(i1_data: dict, model: str, condition: str, q_id: str) -> str:
-    val = i1_data.get(model, {}).get(condition, {}).get("1", {}).get(q_id, {})
-    if isinstance(val, dict):
-        parsed = val.get("parsed") or {}
-        return parsed.get("response") or val.get("raw") or ""
-    return str(val) if val else ""
+    val = i1_data.get(model, {}).get(condition, {}).get("1", {}).get(q_id)
+    return get_answer_text(val) if val is not None else ""
 
 
 def get_i1_sources(i1_data: dict, model: str, condition: str = "baseline") -> list[dict]:
