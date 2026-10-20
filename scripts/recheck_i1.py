@@ -10,8 +10,14 @@ Usage:
 """
 
 import os
+import sys
 
 os.environ.setdefault("HF_HUB_OFFLINE", "1")   # embedding model from local cache only
+
+# The installed torchvision (0.27.1) doesn't match torch (2.7.1+cpu) and breaks
+# `import transformers`. Text embeddings don't use torchvision, so hide it from
+# this process only (transformers then treats it as not installed).
+sys.modules["torchvision"] = None
 
 import json
 import re
