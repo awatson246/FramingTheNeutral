@@ -1,3 +1,4 @@
+import argparse
 import json
 import os
 from pathlib import Path
@@ -13,6 +14,8 @@ import google.generativeai as genai
 from mistralai.client import Mistral
 from openai import OpenAI as DeepSeekClient  # DeepSeek is OpenAI-compatible
 from dotenv import load_dotenv
+
+from answer_text import get_answer_text
 
 load_dotenv()
 
@@ -56,6 +59,23 @@ MAX_TOKENS_JSON = 2048
 RETRY_ATTEMPTS = 3
 RETRY_DELAY    = 5   # seconds between retries
 CALL_DELAY     = 1   # seconds between normal calls
+
+# =============================================================================
+# Dry-run cost estimation (--dry-run)
+# =============================================================================
+
+# USD per 1M tokens, keyed by API model ID (the values in MODELS, plus
+# EXTRACTOR_MODEL). Fill in before relying on the cost column; None prints "-".
+PRICES = {
+    "gpt-4o":                        {"input": None, "output": None},
+    "claude-sonnet-4-5":             {"input": None, "output": None},
+    "deepseek-chat":                 {"input": None, "output": None},
+    "mistral-large-latest":          {"input": None, "output": None},
+    "gemini-3.1-flash-lite-preview": {"input": None, "output": None},
+}
+
+DRY_RUN_RUNS    = 10  # default runs_per_condition for --dry-run
+CHARS_PER_TOKEN = 4   # rough heuristic; no tokenizer is used
 
 # =============================================================================
 # Client setup
@@ -359,11 +379,14 @@ ALL_QUESTION_TEXT = {**I1_QUESTION_TEXT, **I2_QUESTION_TEXT}
 
 
 def build_i4_prompt(question_id: str, question_text: str,
-                    evaluatee_response: str, instrument: dict) -> str:
+                    evaluatee_response: str | dict, instrument: dict) -> str:
     """
     Build a single peer evaluation prompt for one question.
     Injects the evaluatee's run 1 baseline response and asks for structured ratings.
+    evaluatee_response may be a stored cell (str or I1 {raw, parsed} dict);
+    only its plain answer text is injected, never the dict or its sources.
     """
+    evaluatee_response = get_answer_text(evaluatee_response)
     dims = instrument["response_format"]["dimensions"]
     dim_lines = "\n".join(
         f'  - "{d["id"]}": {d["prompt"]} (1 = weakest, 10 = strongest)'
@@ -660,6 +683,14 @@ def store_i5_response(data: dict, model: str, condition: str, run: int,
     data[model][condition][str(run)][question_id] = {"raw": raw, "parsed": parsed}
 
 
+I5_EXTRACTOR_SYSTEM = (
+    "You are a research assistant analyzing AI governance responses "
+    "to identify cited sources. Respond ONLY with valid JSON. "
+    "No preamble, no markdown fences."
+)
+I5_MAX_TOKENS = 2048
+
+
 def call_i5_extractor(prompt: str) -> str | None:
     """
     Always calls Claude Sonnet for source extraction regardless of the original model.
@@ -669,12 +700,8 @@ def call_i5_extractor(prompt: str) -> str | None:
         try:
             resp = anthropic_client.messages.create(
                 model=EXTRACTOR_MODEL,
-                max_tokens=2048,
-                system=(
-                    "You are a research assistant analyzing AI governance responses "
-                    "to identify cited sources. Respond ONLY with valid JSON. "
-                    "No preamble, no markdown fences."
-                ),
+                max_tokens=I5_MAX_TOKENS,
+                system=I5_EXTRACTOR_SYSTEM,
                 messages=[{"role": "user", "content": prompt}],
             )
             return resp.content[0].text.strip()
@@ -686,15 +713,159 @@ def call_i5_extractor(prompt: str) -> str | None:
 
 
 # =============================================================================
+# Dry run — counts calls and estimates tokens/cost without any API calls.
+#
+# Input tokens  = len(system prompt + user prompt) / CHARS_PER_TOKEN.
+# Output tokens = the MAX_TOKENS setting for that call (an upper bound).
+# I4 and I5 prompts embed earlier responses, which don't exist yet, so those
+# are padded to the source instrument's max output length.
+# Not counted: I1 JSON-parse re-queries and API-error retries.
+# =============================================================================
+
+def estimate_tokens(text: str) -> int:
+    return max(1, round(len(text) / CHARS_PER_TOKEN))
+
+
+def placeholder_response(q_id: str) -> str:
+    """Stand-in for an I1/I2 response at its max output length."""
+    max_tokens = MAX_TOKENS_JSON if q_id.startswith("I1") else MAX_TOKENS_OPEN
+    return "x" * (max_tokens * CHARS_PER_TOKEN)
+
+
+def dry_run(instruments_data: dict, peer_eval_data: dict,
+            models: list[str], runs_per_cond: int) -> None:
+    conditions = instruments_data["conditions"]
+    pairs      = peer_eval_data["pairs"]
+
+    # Rows: (instrument_id, requested model, billed API model ID, calls, in_tok, out_tok)
+    rows = []
+
+    for i_id in ACTIVE_INSTRUMENTS:
+        instrument = instruments_data["instruments"][i_id]
+        conds = [c for c in conditions if c in instrument["conditions"]]
+
+        if i_id == "instrument_4":
+            # One call per pair × question, billed to the evaluator; no runs
+            system_prompt = conditions["baseline"]["system_prompt"]
+            for model_id in models:
+                calls = in_tok = out_tok = 0
+                for pair in pairs:
+                    if pair["evaluator"] != model_id:
+                        continue
+                    for q_id in pair["source_questions"]:
+                        prompt = build_i4_prompt(q_id, ALL_QUESTION_TEXT[q_id],
+                                                 placeholder_response(q_id), instrument)
+                        calls   += 1
+                        in_tok  += estimate_tokens(system_prompt + prompt)
+                        out_tok += MAX_TOKENS_JSON
+                rows.append((i_id, model_id, MODELS.get(model_id, model_id),
+                             calls, in_tok, out_tok))
+            continue
+
+        if i_id == "instrument_5":
+            # Extractor calls on each model's I1/I2 responses, billed to EXTRACTOR_MODEL
+            per_cell = sum(
+                estimate_tokens(I5_EXTRACTOR_SYSTEM
+                                + build_i5_prompt(q_id, placeholder_response(q_id)))
+                for q_id in I5_SOURCE_QUESTIONS
+            )
+            n = len(conds) * runs_per_cond
+            for model_id in models:
+                rows.append((i_id, model_id, EXTRACTOR_MODEL,
+                             n * len(I5_SOURCE_QUESTIONS), n * per_cell,
+                             n * len(I5_SOURCE_QUESTIONS) * I5_MAX_TOKENS))
+            continue
+
+        # I1 / I2 / I3: (user prompt, max_tokens) per call within one condition × run
+        if i_id == "instrument_1":
+            prompts = [(build_i1_prompt(q), MAX_TOKENS_JSON) for q in instrument["questions"]]
+        elif i_id == "instrument_3":
+            prompts = [(build_i3_prompt(instrument), MAX_TOKENS_JSON)]
+        else:
+            prompts = [(q["text"], MAX_TOKENS_OPEN) for q in instrument["questions"]]
+
+        calls = in_tok = out_tok = 0
+        for c in conds:
+            system_prompt = conditions[c]["system_prompt"]
+            for prompt, max_tokens in prompts:
+                calls   += runs_per_cond
+                in_tok  += runs_per_cond * estimate_tokens(system_prompt + prompt)
+                out_tok += runs_per_cond * max_tokens
+        for model_id in models:
+            rows.append((i_id, model_id, MODELS.get(model_id, model_id),
+                         calls, in_tok, out_tok))
+
+    print("DRY RUN - no API calls made.")
+    print(f"Models: {', '.join(models)}")
+    print(f"runs_per_condition: {runs_per_cond}")
+    print(f"Token estimate: {CHARS_PER_TOKEN} chars/token; output = MAX_TOKENS (upper bound)\n")
+
+    # ---- Calls / tokens per instrument × model ----
+    header = f"{'Instrument':<14} {'Model':<32} {'Billed to':<32} {'Calls':>7} {'In tok':>11} {'Out tok':>11}"
+    print(header)
+    print("-" * len(header))
+    for i_id, model_id, billed, calls, in_tok, out_tok in rows:
+        if calls:
+            print(f"{i_id:<14} {model_id:<32} {billed:<32} {calls:>7,} {in_tok:>11,} {out_tok:>11,}")
+    total_calls = sum(r[3] for r in rows)
+    print("-" * len(header))
+    print(f"{'TOTAL':<80} {total_calls:>7,}\n")
+
+    # ---- Cost per billed model ----
+    totals: dict[str, list[int]] = {}
+    for _, _, billed, calls, in_tok, out_tok in rows:
+        t = totals.setdefault(billed, [0, 0, 0])
+        t[0] += calls
+        t[1] += in_tok
+        t[2] += out_tok
+
+    header = f"{'Billed model':<32} {'Calls':>7} {'In tok':>11} {'Out tok':>11} {'$/1M in':>9} {'$/1M out':>9} {'Est. cost':>11}"
+    print(header)
+    print("-" * len(header))
+    grand_total = 0.0
+    missing     = []
+    for billed, (calls, in_tok, out_tok) in totals.items():
+        price = PRICES.get(billed, {})
+        p_in, p_out = price.get("input"), price.get("output")
+        if p_in is None or p_out is None:
+            missing.append(billed)
+            cost_str, p_in_str, p_out_str = "-", "-", "-"
+        else:
+            cost = (in_tok * p_in + out_tok * p_out) / 1_000_000
+            grand_total += cost
+            cost_str, p_in_str, p_out_str = f"${cost:,.2f}", f"{p_in:.2f}", f"{p_out:.2f}"
+        print(f"{billed:<32} {calls:>7,} {in_tok:>11,} {out_tok:>11,} {p_in_str:>9} {p_out_str:>9} {cost_str:>11}")
+    print("-" * len(header))
+    print(f"{'TOTAL (priced models only)':<85}${grand_total:>10,.2f}")
+    if missing:
+        print(f"\nNo price in PRICES for: {', '.join(missing)}")
+
+
+# =============================================================================
 # Main
 # =============================================================================
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Collect LLM responses for all active instruments.")
+    parser.add_argument("--dry-run", action="store_true",
+                        help="Count calls and estimate tokens/cost; make no API calls.")
+    parser.add_argument("--models", nargs="+",
+                        help="Model keys for --dry-run (default: instruments.json models). "
+                             "Keys not in MODELS are treated as API model IDs.")
+    parser.add_argument("--runs", type=int, default=DRY_RUN_RUNS,
+                        help=f"runs_per_condition for --dry-run (default: {DRY_RUN_RUNS}).")
+    args = parser.parse_args()
+
     with open(INSTRUMENTS_FILE, "r", encoding="utf-8") as f:
         instruments_data = json.load(f)
 
     with open(PEER_EVAL_FILE, "r", encoding="utf-8") as f:
         peer_eval_data = json.load(f)
+
+    if args.dry_run:
+        dry_run(instruments_data, peer_eval_data,
+                args.models or instruments_data["models"], args.runs)
+        sys.exit(0)
 
     pairs         = peer_eval_data["pairs"]
     conditions    = instruments_data["conditions"]
@@ -767,20 +938,15 @@ if __name__ == "__main__":
                                 print(f"  [skip] {model_id} | {condition_id} | run {run} | {q_id}")
                                 continue
 
-                            # Fetch the original response from I1 or I2.
-                            # I1 new format stores {raw, parsed} dicts — extract text.
+                            # Fetch the original response from I1 or I2 as plain text.
                             src_val = (
                                 src_map[q_id]
                                 .get(model_id, {})
                                 .get(condition_id, {})
                                 .get(str(run), {})
-                                .get(q_id, "")
+                                .get(q_id)
                             )
-                            if isinstance(src_val, dict):
-                                _p = src_val.get("parsed") or {}
-                                src_response = _p.get("response") or src_val.get("raw") or ""
-                            else:
-                                src_response = src_val or ""
+                            src_response = get_answer_text(src_val) if src_val is not None else ""
 
                             if not src_response:
                                 print(
@@ -831,13 +997,10 @@ if __name__ == "__main__":
                         print(f"    [skip] {pair_id} | {q_id}")
                         continue
 
-                    # Fetch evaluatee's run 1 baseline response
-                    if q_id.startswith("I1"):
-                        evaluatee_response = i1_data.get(evaluatee, {}).get(
-                            "baseline", {}).get("1", {}).get(q_id, "")
-                    else:
-                        evaluatee_response = i2_data.get(evaluatee, {}).get(
-                            "baseline", {}).get("1", {}).get(q_id, "")
+                    # Fetch evaluatee's run 1 baseline response as plain text
+                    src_data = i1_data if q_id.startswith("I1") else i2_data
+                    cell = src_data.get(evaluatee, {}).get("baseline", {}).get("1", {}).get(q_id)
+                    evaluatee_response = get_answer_text(cell) if cell is not None else ""
 
                     if not evaluatee_response:
                         print(f"    [skip] {pair_id} | {q_id} — evaluatee response not found")
