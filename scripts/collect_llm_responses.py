@@ -1,6 +1,9 @@
 import argparse
 import json
 import os
+import random
+from dataclasses import dataclass, field
+from functools import cache, partial
 from pathlib import Path
 from time import sleep
 
@@ -10,12 +13,12 @@ sys.path.insert(0, "C:\\libs")
 
 import openai
 import anthropic
-import google.generativeai as genai
-from mistralai.client import Mistral
-from openai import OpenAI as DeepSeekClient  # DeepSeek is OpenAI-compatible
+from google import genai
+from google.genai import types as genai_types
 from dotenv import load_dotenv
 
 from answer_text import get_answer_text
+from model_registry import MODELS, MODEL_HEADROOM, MODEL_LABELS, MODEL_PROVIDERS
 
 load_dotenv()
 
@@ -27,14 +30,8 @@ INSTRUMENTS_FILE  = Path("data/prompts/instruments.json")
 PEER_EVAL_FILE    = Path("data/prompts/peer_eval_pairs.json")
 RAW_DIR           = Path("data/raw")
 
-# Model identifiers — keys must match instruments.json "models" list
-MODELS = {
-    "gpt-4o":                        "gpt-4o",
-    "claude-sonnet":                 "claude-sonnet-4-5",
-    "deepseek-v3":                   "deepseek-chat",
-    "mistral-large":                 "mistral-large-latest",
-    "gemini-3.1-flash-lite-preview": "gemini-3.1-flash-lite-preview",
-}
+# MODELS, MODEL_LABELS, MODEL_PROVIDERS and MODEL_HEADROOM come from
+# config/models.yaml via model_registry. Keys must match instruments.json "models".
 
 # Instruments to collect in this run
 ACTIVE_INSTRUMENTS = ["instrument_1", "instrument_2", "instrument_3", "instrument_4", "instrument_5"]
@@ -42,23 +39,25 @@ ACTIVE_INSTRUMENTS = ["instrument_1", "instrument_2", "instrument_3", "instrumen
 # Model used for I5 source extraction (always Claude Sonnet, regardless of original model)
 EXTRACTOR_MODEL = "claude-sonnet-4-5"
 
-# Display labels for progress output
-MODEL_LABELS = {
-    "gpt-4o":                        "GPT-4o",
-    "claude-sonnet":                 "Claude Sonnet",
-    "deepseek-v3":                   "DeepSeek-V3",
-    "mistral-large":                 "Mistral Large",
-    "gemini-3.1-flash-lite-preview": "Gemini 3.1 Flash Lite",
-}
-
+# Answer budgets. Each model's request limit is this plus its reasoning_headroom
+# from config/models.yaml, since reasoning tokens count against the same limit.
 # Max tokens for open-ended responses (I1, I2)
 MAX_TOKENS_OPEN = 1024
 # Max tokens for structured JSON responses (I3)
 MAX_TOKENS_JSON = 2048
 
-RETRY_ATTEMPTS = 3
-RETRY_DELAY    = 5   # seconds between retries
+RETRY_ATTEMPTS = 3   # attempts for non-transient errors
+RETRY_DELAY    = 5   # seconds between those retries
 CALL_DELAY     = 1   # seconds between normal calls
+
+# Rate-limit / overload errors get exponential backoff instead.
+# 529 is Anthropic's "overloaded" (its equivalent of 503).
+TRANSIENT_STATUS   = {429, 503, 529}
+TRANSIENT_ATTEMPTS = 6
+BACKOFF_BASE       = 5    # seconds; doubles each attempt, ±20% jitter
+BACKOFF_MAX        = 120
+
+REQUEST_TIMEOUT = 600  # seconds; reasoning calls can be slow
 
 # =============================================================================
 # Dry-run cost estimation (--dry-run)
@@ -67,11 +66,13 @@ CALL_DELAY     = 1   # seconds between normal calls
 # USD per 1M tokens, keyed by API model ID (the values in MODELS, plus
 # EXTRACTOR_MODEL). Fill in before relying on the cost column; None prints "-".
 PRICES = {
-    "gpt-4o":                        {"input": None, "output": None},
-    "claude-sonnet-4-5":             {"input": None, "output": None},
-    "deepseek-chat":                 {"input": None, "output": None},
-    "mistral-large-latest":          {"input": None, "output": None},
-    "gemini-3.1-flash-lite-preview": {"input": None, "output": None},
+    "gpt-6.1-sol":        {"input": None, "output": None},
+    "claude-sonnet-5-5":  {"input": None, "output": None},
+    "gemini-3.8-flash":   {"input": None, "output": None},
+    "deepseek-flash":     {"input": None, "output": None},
+    "mistral-medium-3.5": {"input": None, "output": None},
+    "grok-4.7":           {"input": None, "output": None},
+    "claude-sonnet-4-5":  {"input": None, "output": None},  # EXTRACTOR_MODEL
 }
 
 DRY_RUN_RUNS    = 10  # default runs_per_condition for --dry-run
@@ -81,103 +82,219 @@ CHARS_PER_TOKEN = 4   # rough heuristic; no tokenizer is used
 # Client setup
 # =============================================================================
 
-openai_client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# OpenAI-compatible providers. Token parameter per docs/models_available.md:
+# OpenAI rejects max_tokens; xAI accepts both, and max_completion_tokens is the
+# one defined to include reasoning tokens; DeepSeek and Mistral use max_tokens.
+OPENAI_COMPAT = {
+    "openai":   {"base_url": None,                          "env": "OPENAI_API_KEY",
+                 "token_param": "max_completion_tokens"},
+    "deepseek": {"base_url": "https://api.deepseek.com/v1", "env": "DEEPSEEK_API_KEY",
+                 "token_param": "max_tokens"},
+    "mistral":  {"base_url": "https://api.mistral.ai/v1",   "env": "MISTRAL_API_KEY",
+                 "token_param": "max_tokens"},
+    "xai":      {"base_url": "https://api.x.ai/v1",         "env": "XAI_API_KEY",
+                 "token_param": "max_completion_tokens"},
+}
 
-anthropic_client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
-deepseek_client = DeepSeekClient(
-    api_key=os.getenv("DEEPSEEK_API_KEY"),
-    base_url="https://api.deepseek.com/v1",
-)
+def _require_key(env: str) -> str:
+    key = os.getenv(env)
+    if not key:
+        raise RuntimeError(f"{env} is not set (check .env)")
+    return key
 
-mistral_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY"))
 
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+@cache
+def get_client(provider: str):
+    """
+    Create each provider's client on first use, so a missing key only fails
+    calls to that provider. SDK-level retries are off; call_with_retry owns them.
+    """
+    if provider == "anthropic":
+        return anthropic.Anthropic(api_key=_require_key("ANTHROPIC_API_KEY"),
+                                   max_retries=0, timeout=REQUEST_TIMEOUT)
+    if provider == "google":
+        return genai.Client(api_key=_require_key("GOOGLE_API_KEY"),
+                            http_options=genai_types.HttpOptions(timeout=REQUEST_TIMEOUT * 1000))
+    cfg = OPENAI_COMPAT[provider]
+    return openai.OpenAI(api_key=_require_key(cfg["env"]), base_url=cfg["base_url"],
+                         max_retries=0, timeout=REQUEST_TIMEOUT)
 
 # =============================================================================
 # Model callers
-# Each accepts (system_prompt, user_prompt, max_tokens) and returns str | None.
+# Each accepts (api_id, system_prompt, user_prompt, max_tokens) and returns a
+# CallResult. No temperature or reasoning-effort parameters are sent: every
+# model runs at its provider defaults.
 # =============================================================================
 
-def call_openai(system_prompt: str, user_prompt: str, max_tokens: int) -> str | None:
-    resp = openai_client.chat.completions.create(
-        model=MODELS["gpt-4o"],
+# finish_reason values (lowercased) that mean the output limit was hit
+TRUNCATION_REASONS = {"length", "max_tokens"}
+
+
+@dataclass
+class CallResult:
+    text:             str
+    model_version:    str | None              # model string the API reports back
+    finish_reason:    str | None
+    usage:            dict = field(default_factory=dict)  # input/output/total tokens
+    reasoning_tokens: int | None = None       # None when the provider doesn't report it
+
+    @property
+    def truncated(self) -> bool:
+        return (self.finish_reason or "").lower() in TRUNCATION_REASONS
+
+
+def call_openai_compat(provider: str, api_id: str, system_prompt: str,
+                       user_prompt: str, max_tokens: int) -> CallResult:
+    resp = get_client(provider).chat.completions.create(
+        model=api_id,
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user",   "content": user_prompt},
         ],
-        max_tokens=max_tokens,
-        temperature=1,
+        **{OPENAI_COMPAT[provider]["token_param"]: max_tokens},
     )
-    return resp.choices[0].message.content.strip()
+    choice  = resp.choices[0]
+    usage   = resp.usage
+    details = getattr(usage, "completion_tokens_details", None) if usage else None
+    return CallResult(
+        text=(choice.message.content or "").strip(),
+        model_version=resp.model,
+        finish_reason=choice.finish_reason,
+        usage={"input_tokens":  usage.prompt_tokens,
+               "output_tokens": usage.completion_tokens,
+               "total_tokens":  usage.total_tokens} if usage else {},
+        reasoning_tokens=getattr(details, "reasoning_tokens", None),
+    )
 
 
-def call_anthropic(system_prompt: str, user_prompt: str, max_tokens: int) -> str | None:
-    resp = anthropic_client.messages.create(
-        model=MODELS["claude-sonnet"],
+def call_anthropic(api_id: str, system_prompt: str, user_prompt: str,
+                   max_tokens: int) -> CallResult:
+    resp = get_client("anthropic").messages.create(
+        model=api_id,
         max_tokens=max_tokens,
         system=system_prompt,
         messages=[{"role": "user", "content": user_prompt}],
     )
-    return resp.content[0].text.strip()
-
-
-def call_deepseek(system_prompt: str, user_prompt: str, max_tokens: int) -> str | None:
-    resp = deepseek_client.chat.completions.create(
-        model=MODELS["deepseek-v3"],
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user",   "content": user_prompt},
-        ],
-        max_tokens=max_tokens,
+    # Only text blocks form the answer; thinking blocks (if any) are skipped.
+    # Anthropic doesn't report thinking tokens separately from output_tokens.
+    usage = resp.usage
+    return CallResult(
+        text="".join(b.text for b in resp.content if b.type == "text").strip(),
+        model_version=resp.model,
+        finish_reason=resp.stop_reason,
+        usage={"input_tokens":  usage.input_tokens,
+               "output_tokens": usage.output_tokens,
+               "total_tokens":  usage.input_tokens + usage.output_tokens},
     )
-    return resp.choices[0].message.content.strip()
 
 
-def call_mistral(system_prompt: str, user_prompt: str, max_tokens: int) -> str | None:
-    resp = mistral_client.chat.complete(
-        model=MODELS["mistral-large"],
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user",   "content": user_prompt},
-        ],
-        max_tokens=max_tokens,
+def call_gemini(api_id: str, system_prompt: str, user_prompt: str,
+                max_tokens: int) -> CallResult:
+    resp = get_client("google").models.generate_content(
+        model=api_id,
+        contents=user_prompt,
+        config=genai_types.GenerateContentConfig(
+            system_instruction=system_prompt,
+            max_output_tokens=max_tokens,
+        ),
     )
-    return resp.choices[0].message.content.strip()
-
-
-def call_gemini(system_prompt: str, user_prompt: str, max_tokens: int) -> str | None:
-    model = genai.GenerativeModel(
-        model_name=MODELS["gemini-3.1-flash-lite-preview"],
-        system_instruction=system_prompt,
+    cand  = resp.candidates[0] if resp.candidates else None
+    usage = resp.usage_metadata
+    return CallResult(
+        text=(resp.text or "").strip(),
+        model_version=resp.model_version,
+        finish_reason=cand.finish_reason.name if cand and cand.finish_reason else None,
+        usage={"input_tokens":  usage.prompt_token_count,
+               "output_tokens": usage.candidates_token_count,
+               "total_tokens":  usage.total_token_count} if usage else {},
+        reasoning_tokens=usage.thoughts_token_count if usage else None,
     )
-    resp = model.generate_content(user_prompt)
-    return resp.text.strip()
 
 
-MODEL_CALLERS = {
-    "gpt-4o":                        call_openai,
-    "claude-sonnet":                 call_anthropic,
-    "deepseek-v3":                   call_deepseek,
-    "mistral-large":                 call_mistral,
-    "gemini-3.1-flash-lite-preview": call_gemini,
-}
+def make_caller(provider: str, api_id: str):
+    if provider == "anthropic":
+        return partial(call_anthropic, api_id)
+    if provider == "google":
+        return partial(call_gemini, api_id)
+    return partial(call_openai_compat, provider, api_id)
+
+
+MODEL_CALLERS = {key: make_caller(MODEL_PROVIDERS[key], api_id)
+                 for key, api_id in MODELS.items()}
 
 # =============================================================================
 # Retry wrapper
 # =============================================================================
 
-def call_with_retry(model_id: str, system_prompt: str, user_prompt: str,
-                    max_tokens: int) -> str | None:
-    caller = MODEL_CALLERS[model_id]
-    for attempt in range(1, RETRY_ATTEMPTS + 1):
-        try:
-            return caller(system_prompt, user_prompt, max_tokens)
-        except Exception as e:
-            print(f"    [Attempt {attempt}/{RETRY_ATTEMPTS}] {model_id} failed: {e}")
-            if attempt < RETRY_ATTEMPTS:
-                sleep(RETRY_DELAY)
+def _status_code(e: Exception) -> int | None:
+    # openai / anthropic: .status_code; google-genai: .code
+    for attr in ("status_code", "code"):
+        val = getattr(e, attr, None)
+        if isinstance(val, int):
+            return val
     return None
+
+
+def _retry_after(e: Exception) -> float | None:
+    headers = getattr(getattr(e, "response", None), "headers", None)
+    try:
+        return float(headers.get("retry-after")) if headers else None
+    except (TypeError, ValueError):
+        return None
+
+
+def with_retry(fn, label: str):
+    """
+    Call fn() until it succeeds. 429/503/529 get exponential backoff (honoring
+    Retry-After) up to TRANSIENT_ATTEMPTS; other errors get RETRY_ATTEMPTS with
+    a fixed RETRY_DELAY. Returns None if every attempt fails.
+    """
+    transient = other = 0
+    while True:
+        try:
+            return fn()
+        except Exception as e:
+            status = _status_code(e)
+            if status in TRANSIENT_STATUS:
+                transient += 1
+                if transient >= TRANSIENT_ATTEMPTS:
+                    print(f"    [{status} {transient}/{TRANSIENT_ATTEMPTS}] {label} giving up: {e}")
+                    return None
+                delay = min(BACKOFF_MAX, BACKOFF_BASE * 2 ** (transient - 1))
+                delay *= random.uniform(0.8, 1.2)
+                delay = max(delay, _retry_after(e) or 0)
+                print(f"    [{status} {transient}/{TRANSIENT_ATTEMPTS}] {label}: "
+                      f"retrying in {delay:.0f}s")
+                sleep(delay)
+            else:
+                other += 1
+                print(f"    [Attempt {other}/{RETRY_ATTEMPTS}] {label} failed: {e}")
+                if other >= RETRY_ATTEMPTS:
+                    return None
+                sleep(RETRY_DELAY)
+
+
+def call_with_retry(model_id: str, system_prompt: str, user_prompt: str,
+                    max_tokens: int) -> CallResult | None:
+    """
+    Call a registered model. max_tokens is the answer budget; the request limit
+    adds the model's reasoning_headroom. Warns when output was still truncated.
+    """
+    caller = MODEL_CALLERS[model_id]
+    limit  = max_tokens + MODEL_HEADROOM[model_id]
+    result = with_retry(lambda: caller(system_prompt, user_prompt, limit), model_id)
+    if result is not None and result.truncated:
+        print(f"    [warn] {model_id} hit its output limit ({limit} tokens; "
+              f"finish_reason={result.finish_reason}, reasoning={result.reasoning_tokens})")
+    return result
+
+
+def call_text(model_id: str, system_prompt: str, user_prompt: str,
+              max_tokens: int) -> str | None:
+    """Text-only view of call_with_retry for storage; None on failure or empty output."""
+    result = call_with_retry(model_id, system_prompt, user_prompt, max_tokens)
+    return result.text if result is not None and result.text else None
 
 
 # =============================================================================
@@ -696,20 +813,11 @@ def call_i5_extractor(prompt: str) -> str | None:
     Always calls Claude Sonnet for source extraction regardless of the original model.
     Uses the shared retry pattern.
     """
-    for attempt in range(1, RETRY_ATTEMPTS + 1):
-        try:
-            resp = anthropic_client.messages.create(
-                model=EXTRACTOR_MODEL,
-                max_tokens=I5_MAX_TOKENS,
-                system=I5_EXTRACTOR_SYSTEM,
-                messages=[{"role": "user", "content": prompt}],
-            )
-            return resp.content[0].text.strip()
-        except Exception as e:
-            print(f"    [Attempt {attempt}/{RETRY_ATTEMPTS}] I5 extractor failed: {e}")
-            if attempt < RETRY_ATTEMPTS:
-                sleep(RETRY_DELAY)
-    return None
+    result = with_retry(
+        lambda: call_anthropic(EXTRACTOR_MODEL, I5_EXTRACTOR_SYSTEM, prompt, I5_MAX_TOKENS),
+        "I5 extractor",
+    )
+    return result.text if result is not None and result.text else None
 
 
 # =============================================================================
@@ -842,6 +950,41 @@ def dry_run(instruments_data: dict, peer_eval_data: dict,
 
 
 # =============================================================================
+# Smoke test (--smoke-test) — one short real call per registered model.
+# Uses the I1/I2 answer budget, so each model's real request limit
+# (MAX_TOKENS_OPEN + reasoning_headroom) is exercised too. Stores nothing.
+# =============================================================================
+
+SMOKE_SYSTEM = "You are a helpful assistant."
+SMOKE_PROMPT = "Say OK."
+
+
+def smoke_test() -> None:
+    rows = []
+    for model_id in MODELS:
+        print(f"  {model_id} ... ", end="", flush=True)
+        r = call_with_retry(model_id, SMOKE_SYSTEM, SMOKE_PROMPT, MAX_TOKENS_OPEN)
+        ok = r is not None and bool(r.text)
+        print("ok" if ok else "FAILED")
+        rows.append((model_id, ok, r))
+
+    header = (f"{'Model':<20} {'Result':<6} {'Returned version':<28} {'finish_reason':<14} "
+              f"{'In':>6} {'Out':>6} {'Reason':>7} {'Total':>7}  Text")
+    print("\n" + header)
+    print("-" * len(header))
+    for model_id, ok, r in rows:
+        if r is None:
+            print(f"{model_id:<20} {'fail':<6} {'-':<28} {'-':<14} {'-':>6} {'-':>6} {'-':>7} {'-':>7}")
+            continue
+        u = r.usage
+        reason = "n/a" if r.reasoning_tokens is None else r.reasoning_tokens
+        print(f"{model_id:<20} {'OK' if ok else 'fail':<6} {str(r.model_version):<28} "
+              f"{str(r.finish_reason):<14} {u.get('input_tokens', '-'):>6} "
+              f"{u.get('output_tokens', '-'):>6} {reason:>7} {u.get('total_tokens', '-'):>7}  "
+              f"{r.text[:30]!r}")
+
+
+# =============================================================================
 # Main
 # =============================================================================
 
@@ -854,7 +997,14 @@ if __name__ == "__main__":
                              "Keys not in MODELS are treated as API model IDs.")
     parser.add_argument("--runs", type=int, default=DRY_RUN_RUNS,
                         help=f"runs_per_condition for --dry-run (default: {DRY_RUN_RUNS}).")
+    parser.add_argument("--smoke-test", action="store_true",
+                        help="Send one short real call to each model in config/models.yaml "
+                             "and print a summary table. Stores nothing.")
     args = parser.parse_args()
+
+    if args.smoke_test:
+        smoke_test()
+        sys.exit(0)
 
     with open(INSTRUMENTS_FILE, "r", encoding="utf-8") as f:
         instruments_data = json.load(f)
@@ -871,6 +1021,12 @@ if __name__ == "__main__":
     conditions    = instruments_data["conditions"]
     models        = instruments_data["models"]
     runs_per_cond = instruments_data["runs_per_condition"]
+
+    unknown = sorted({*models, *(p["evaluator"] for p in pairs)} - set(MODEL_CALLERS))
+    if unknown:
+        sys.exit(f"Not in config/models.yaml: {', '.join(unknown)}. "
+                 f"Update the 'models' list in {INSTRUMENTS_FILE} and the evaluators "
+                 f"in {PEER_EVAL_FILE} to registry keys: {', '.join(MODEL_CALLERS)}")
 
     # Count total calls for progress reporting
     total = 0
@@ -1013,8 +1169,8 @@ if __name__ == "__main__":
 
                     print(f"    [call] {pair_id} | {q_id} ... ", end="", flush=True)
 
-                    raw    = call_with_retry(evaluator, system_prompt, prompt,
-                                             MAX_TOKENS_JSON)
+                    raw    = call_text(evaluator, system_prompt, prompt,
+                                       MAX_TOKENS_JSON)
                     parsed = parse_i4_response(raw) if raw else None
 
                     store_i4_response(data, pair_id, q_id, raw, parsed)
@@ -1047,8 +1203,8 @@ if __name__ == "__main__":
                             end="", flush=True
                         )
 
-                        raw    = call_with_retry(model_id, system_prompt, i3_prompt,
-                                                 MAX_TOKENS_JSON)
+                        raw    = call_text(model_id, system_prompt, i3_prompt,
+                                           MAX_TOKENS_JSON)
                         parsed = parse_i3_response(raw) if raw else None
 
                         store_i3_response(data, model_id, condition_id, run, raw, parsed)
@@ -1085,8 +1241,8 @@ if __name__ == "__main__":
                             prompt = build_i1_prompt(question)
                             raw, parsed = None, None
                             for parse_attempt in range(1, RETRY_ATTEMPTS + 1):
-                                raw    = call_with_retry(model_id, system_prompt,
-                                                         prompt, MAX_TOKENS_JSON)
+                                raw    = call_text(model_id, system_prompt,
+                                                   prompt, MAX_TOKENS_JSON)
                                 parsed = parse_i1_response(raw) if raw else None
                                 if parsed:
                                     break
@@ -1129,8 +1285,8 @@ if __name__ == "__main__":
                                 end="", flush=True
                             )
 
-                            response = call_with_retry(model_id, system_prompt,
-                                                       question["text"], MAX_TOKENS_OPEN)
+                            response = call_text(model_id, system_prompt,
+                                                 question["text"], MAX_TOKENS_OPEN)
 
                             store_response(data, model_id, condition_id, run, q_id, response)
                             save_instrument(instrument_id, data)

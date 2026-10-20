@@ -58,6 +58,7 @@ from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
 
 from answer_text import get_answer_text
+from model_registry import MODEL_COLORS, MODEL_LABELS  # from config/models.yaml
 
 load_dotenv()
 
@@ -75,14 +76,6 @@ PEER_EVAL_FILE = Path("data/prompts/peer_eval_pairs.json")
 
 CONDITIONS       = ["baseline", "ceo"]
 CONDITION_LABELS = {"baseline": "Baseline", "ceo": "CEO Role"}
-
-MODEL_LABELS = {
-    "gpt-4o":                        "GPT-4o",
-    "claude-sonnet":                 "Claude Sonnet",
-    "deepseek-v3":                   "DeepSeek-V3",
-    "mistral-large":                 "Mistral Large",
-    "gemini-3.1-flash-lite-preview": "Gemini 3.1 Flash Lite",
-}
 
 I1_QUESTIONS = {
     "I1_Q1": "Legal Certainty",
@@ -208,14 +201,7 @@ COLORSCALE_LEGITIMACY = [
     [0.67, "#f4a582"], [1.0, "#d6604d"],
 ]
 
-# One color per model, consistent across all plots
-MODEL_COLORS = {
-    "gpt-4o":                        "#2176ae",
-    "claude-sonnet":                 "#16a34a",
-    "deepseek-v3":                   "#dc2626",
-    "mistral-large":                 "#d97706",
-    "gemini-3.1-flash-lite-preview": "#7c3aed",
-}
+# MODEL_COLORS (one color per model) comes from config/models.yaml
 
 CONDITION_DASH = {"baseline": "solid", "ceo": "dash"}
 
