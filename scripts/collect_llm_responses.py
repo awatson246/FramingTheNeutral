@@ -39,7 +39,8 @@ RAW_DIR           = Path("data/raw/v2")   # default; overridden by --raw-dir
 ACTIVE_INSTRUMENTS = ["instrument_1", "instrument_2", "instrument_3", "instrument_4", "instrument_5"]
 
 # Model used for I5 source extraction (always Claude Sonnet, regardless of original model)
-EXTRACTOR_MODEL = "claude-sonnet-4-5"
+# Pinned snapshot (the "claude-sonnet-4-5" alias resolved to this on 2026-10-20)
+EXTRACTOR_MODEL = "claude-sonnet-4-5-20250929"
 
 # Answer budgets. Each model's request limit is this plus its reasoning_headroom
 # from config/models.yaml, since reasoning tokens count against the same limit.
@@ -74,7 +75,7 @@ PRICES = {
     "deepseek-flash":     {"input": None, "output": None},
     "mistral-medium-3.5": {"input": None, "output": None},
     "grok-4.7":           {"input": None, "output": None},
-    "claude-sonnet-4-5":  {"input": None, "output": None},  # EXTRACTOR_MODEL
+    "claude-sonnet-4-5-20250929": {"input": None, "output": None},  # EXTRACTOR_MODEL
 }
 
 DRY_RUN_RUNS    = 10  # default runs_per_condition for --dry-run
@@ -1051,10 +1052,11 @@ if __name__ == "__main__":
     parser.add_argument("--dry-run", action="store_true",
                         help="Count calls and estimate tokens/cost; make no API calls.")
     parser.add_argument("--models", nargs="+",
-                        help="Model keys for --dry-run (default: instruments.json models). "
-                             "Keys not in MODELS are treated as API model IDs.")
-    parser.add_argument("--runs", type=int, default=DRY_RUN_RUNS,
-                        help=f"runs_per_condition for --dry-run (default: {DRY_RUN_RUNS}).")
+                        help="Model keys to run (default: instruments.json models). "
+                             "For --dry-run, keys not in MODELS are treated as API model IDs.")
+    parser.add_argument("--runs", type=int,
+                        help="runs_per_condition override (default: instruments.json value; "
+                             f"{DRY_RUN_RUNS} for --dry-run).")
     parser.add_argument("--smoke-test", action="store_true",
                         help="Send one short real call to each model in config/models.yaml "
                              "and print a summary table. Stores nothing.")
@@ -1082,13 +1084,13 @@ if __name__ == "__main__":
 
     if args.dry_run:
         dry_run(instruments_data, peer_eval_data,
-                args.models or instruments_data["models"], args.runs)
+                args.models or instruments_data["models"], args.runs or DRY_RUN_RUNS)
         sys.exit(0)
 
     pairs         = peer_eval_data["pairs"]
     conditions    = instruments_data["conditions"]
-    models        = instruments_data["models"]
-    runs_per_cond = instruments_data["runs_per_condition"]
+    models        = args.models or instruments_data["models"]
+    runs_per_cond = args.runs or instruments_data["runs_per_condition"]
 
     needed = set(models)
     if "instrument_4" in ACTIVE_INSTRUMENTS:
