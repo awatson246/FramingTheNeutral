@@ -57,6 +57,8 @@ from scipy import stats
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
 
+from answer_text import get_answer_text
+
 load_dotenv()
 
 # =============================================================================
@@ -322,25 +324,13 @@ def tokenize(text: str) -> list[str]:
     ]
 
 
-def _extract_text(val) -> str:
-    """
-    Extract response text from either legacy string or new {raw, parsed} dict.
-    Used to maintain backward compatibility with old I1 plain-string data.
-    """
-    if isinstance(val, str):
-        return val
-    if isinstance(val, dict):
-        parsed = val.get("parsed") or {}
-        return parsed.get("response") or val.get("raw") or ""
-    return ""
-
-
 def get_responses(data: dict, model: str, condition: str,
                   question_id: str) -> list[str]:
     runs = data.get(model, {}).get(condition, {})
     out  = []
     for r in sorted(runs.keys(), key=int):
-        text = _extract_text(runs[r].get(question_id))
+        val  = runs[r].get(question_id)
+        text = get_answer_text(val) if val is not None else ""
         if text:
             out.append(text)
     return out
@@ -348,7 +338,7 @@ def get_responses(data: dict, model: str, condition: str,
 
 def get_run1(data: dict, model: str, condition: str, question_id: str) -> str:
     val = data.get(model, {}).get(condition, {}).get("1", {}).get(question_id)
-    return _extract_text(val) if val is not None else ""
+    return get_answer_text(val) if val is not None else ""
 
 
 def avg_embedding(texts: list[str], model: SentenceTransformer) -> np.ndarray:
@@ -1951,10 +1941,9 @@ def run_hypothesis_tests(
         for model in models:
             for i1_qid, i2_sid in dim_pairs:
                 # Within-I1 pairwise similarity across 3 runs
-                run_texts = [
-                    _extract_text(i1_data.get(model, {}).get("baseline", {}).get(str(r), {}).get(i1_qid, ""))
-                    for r in [1, 2, 3]
-                ]
+                runs = i1_data.get(model, {}).get("baseline", {})
+                cells = [runs.get(str(r), {}).get(i1_qid) for r in [1, 2, 3]]
+                run_texts = [get_answer_text(c) for c in cells if c is not None]
                 run_texts = [t for t in run_texts if t]
                 if len(run_texts) < 2:
                     continue
@@ -1964,8 +1953,8 @@ def run_hypothesis_tests(
                 w_sim = float(np.mean(pair_sims))
 
                 # I1→I2 cross-instrument similarity
-                i1_text = _extract_text(i1_data.get(model, {}).get("baseline", {}).get("1", {}).get(i1_qid, ""))
-                i2_text = _extract_text(i2_data.get(model, {}).get("baseline", {}).get("1", {}).get(i2_sid, ""))
+                i1_text = get_run1(i1_data, model, "baseline", i1_qid)
+                i2_text = get_run1(i2_data, model, "baseline", i2_sid)
                 if not i1_text or not i2_text:
                     continue
                 e1 = embed_model.encode([i1_text], show_progress_bar=False)[0]

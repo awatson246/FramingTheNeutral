@@ -14,6 +14,8 @@ from mistralai.client import Mistral
 from openai import OpenAI as DeepSeekClient  # DeepSeek is OpenAI-compatible
 from dotenv import load_dotenv
 
+from answer_text import get_answer_text
+
 load_dotenv()
 
 # =============================================================================
@@ -359,11 +361,14 @@ ALL_QUESTION_TEXT = {**I1_QUESTION_TEXT, **I2_QUESTION_TEXT}
 
 
 def build_i4_prompt(question_id: str, question_text: str,
-                    evaluatee_response: str, instrument: dict) -> str:
+                    evaluatee_response: str | dict, instrument: dict) -> str:
     """
     Build a single peer evaluation prompt for one question.
     Injects the evaluatee's run 1 baseline response and asks for structured ratings.
+    evaluatee_response may be a stored cell (str or I1 {raw, parsed} dict);
+    only its plain answer text is injected, never the dict or its sources.
     """
+    evaluatee_response = get_answer_text(evaluatee_response)
     dims = instrument["response_format"]["dimensions"]
     dim_lines = "\n".join(
         f'  - "{d["id"]}": {d["prompt"]} (1 = weakest, 10 = strongest)'
@@ -767,20 +772,15 @@ if __name__ == "__main__":
                                 print(f"  [skip] {model_id} | {condition_id} | run {run} | {q_id}")
                                 continue
 
-                            # Fetch the original response from I1 or I2.
-                            # I1 new format stores {raw, parsed} dicts — extract text.
+                            # Fetch the original response from I1 or I2 as plain text.
                             src_val = (
                                 src_map[q_id]
                                 .get(model_id, {})
                                 .get(condition_id, {})
                                 .get(str(run), {})
-                                .get(q_id, "")
+                                .get(q_id)
                             )
-                            if isinstance(src_val, dict):
-                                _p = src_val.get("parsed") or {}
-                                src_response = _p.get("response") or src_val.get("raw") or ""
-                            else:
-                                src_response = src_val or ""
+                            src_response = get_answer_text(src_val) if src_val is not None else ""
 
                             if not src_response:
                                 print(
@@ -831,13 +831,10 @@ if __name__ == "__main__":
                         print(f"    [skip] {pair_id} | {q_id}")
                         continue
 
-                    # Fetch evaluatee's run 1 baseline response
-                    if q_id.startswith("I1"):
-                        evaluatee_response = i1_data.get(evaluatee, {}).get(
-                            "baseline", {}).get("1", {}).get(q_id, "")
-                    else:
-                        evaluatee_response = i2_data.get(evaluatee, {}).get(
-                            "baseline", {}).get("1", {}).get(q_id, "")
+                    # Fetch evaluatee's run 1 baseline response as plain text
+                    src_data = i1_data if q_id.startswith("I1") else i2_data
+                    cell = src_data.get(evaluatee, {}).get("baseline", {}).get("1", {}).get(q_id)
+                    evaluatee_response = get_answer_text(cell) if cell is not None else ""
 
                     if not evaluatee_response:
                         print(f"    [skip] {pair_id} | {q_id} — evaluatee response not found")
