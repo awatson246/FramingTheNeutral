@@ -1,0 +1,204 @@
+{
+  "model": "mistral-large-2512",
+  "max_tokens": 4096,
+  "calls": [
+    {
+      "condition": "baseline",
+      "run": 1,
+      "question": "I2_S1",
+      "ok": true,
+      "timestamp": "2026-10-22T14:53:29+00:00",
+      "model_version": "mistral-large-2512",
+      "finish_reason": "stop",
+      "answer_tokens": 1318,
+      "input_tokens": 79
+    },
+    {
+      "condition": "baseline",
+      "run": 1,
+      "question": "I2_S2",
+      "ok": true,
+      "timestamp": "2026-10-22T14:53:57+00:00",
+      "model_version": "mistral-large-2512",
+      "finish_reason": "stop",
+      "answer_tokens": 1825,
+      "input_tokens": 81
+    },
+    {
+      "condition": "baseline",
+      "run": 1,
+      "question": "I2_S3",
+      "ok": true,
+      "timestamp": "2026-10-22T14:54:32+00:00",
+      "model_version": "mistral-large-2512",
+      "finish_reason": "stop",
+      "answer_tokens": 2083,
+      "input_tokens": 73
+    },
+    {
+      "condition": "baseline",
+      "run": 2,
+      "question": "I2_S1",
+      "ok": true,
+      "timestamp": "2026-10-22T14:54:56+00:00",
+      "model_version": "mistral-large-2512",
+      "finish_reason": "stop",
+      "answer_tokens": 1458,
+      "input_tokens": 79
+    },
+    {
+      "condition": "baseline",
+      "run": 2,
+      "question": "I2_S2",
+      "ok": true,
+      "timestamp": "2026-10-22T14:55:31+00:00",
+      "model_version": "mistral-large-2512",
+      "finish_reason": "stop",
+      "answer_tokens": 2320,
+      "input_tokens": 81
+    },
+    {
+      "condition": "baseline",
+      "run": 2,
+      "question": "I2_S3",
+      "ok": true,
+      "timestamp": "2026-10-22T14:56:13+00:00",
+      "model_version": "mistral-large-2512",
+      "finish_reason": "stop",
+      "answer_tokens": 2328,
+      "input_tokens": 73
+    },
+    {
+      "condition": "baseline",
+      "run": 3,
+      "question": "I2_S1",
+      "ok": true,
+      "timestamp": "2026-10-22T14:56:26+00:00",
+      "model_version": "mistral-large-2512",
+      "finish_reason": "stop",
+      "answer_tokens": 791,
+      "input_tokens": 79
+    },
+    {
+      "condition": "baseline",
+      "run": 3,
+      "question": "I2_S2",
+      "ok": true,
+      "timestamp": "2026-10-22T14:57:01+00:00",
+      "model_version": "mistral-large-2512",
+      "finish_reason": "stop",
+      "answer_tokens": 2282,
+      "input_tokens": 81
+    },
+    {
+      "condition": "baseline",
+      "run": 3,
+      "question": "I2_S3",
+      "ok": true,
+      "timestamp": "2026-10-22T14:57:33+00:00",
+      "model_version": "mistral-large-2512",
+      "finish_reason": "stop",
+      "answer_tokens": 1973,
+      "input_tokens": 73
+    },
+    {
+      "condition": "ceo",
+      "run": 1,
+      "question": "I2_S1",
+      "ok": true,
+      "timestamp": "2026-10-22T14:57:52+00:00",
+      "model_version": "mistral-large-2512",
+      "finish_reason": "stop",
+      "answer_tokens": 1171,
+      "input_tokens": 88
+    },
+    {
+      "condition": "ceo",
+      "run": 1,
+      "question": "I2_S2",
+      "ok": true,
+      "timestamp": "2026-10-22T14:58:14+00:00",
+      "model_version": "mistral-large-2512",
+      "finish_reason": "stop",
+      "answer_tokens": 1094,
+      "input_tokens": 90
+    },
+    {
+      "condition": "ceo",
+      "run": 1,
+      "question": "I2_S3",
+      "ok": true,
+      "timestamp": "2026-10-22T14:58:49+00:00",
+      "model_version": "mistral-large-2512",
+      "finish_reason": "stop",
+      "answer_tokens": 1408,
+      "input_tokens": 82
+    },
+    {
+      "condition": "ceo",
+      "run": 2,
+      "question": "I2_S1",
+      "ok": true,
+      "timestamp": "2026-10-22T14:59:06+00:00",
+      "model_version": "mistral-large-2512",
+      "finish_reason": "stop",
+      "answer_tokens": 1048,
+      "input_tokens": 88
+    },
+    {
+      "condition": "ceo",
+      "run": 2,
+      "question": "I2_S2",
+      "ok": true,
+      "timestamp": "2026-10-22T14:59:43+00:00",
+      "model_version": "mistral-large-2512",
+      "finish_reason": "stop",
+      "answer_tokens": 1876,
+      "input_tokens": 90
+    },
+    {
+      "condition": "ceo",
+      "run": 2,
+      "question": "I2_S3",
+      "ok": true,
+      "timestamp": "2026-10-22T15:00:14+00:00",
+      "model_version": "mistral-large-2512",
+      "finish_reason": "stop",
+      "answer_tokens": 1621,
+      "input_tokens": 82
+    },
+    {
+      "condition": "ceo",
+      "run": 3,
+      "question": "I2_S1",
+      "ok": true,
+      "timestamp": "2026-10-22T15:00:33+00:00",
+      "model_version": "mistral-large-2512",
+      "finish_reason": "stop",
+      "answer_tokens": 1158,
+      "input_tokens": 88
+    },
+    {
+      "condition": "ceo",
+      "run": 3,
+      "question": "I2_S2",
+      "ok": true,
+      "timestamp": "2026-10-22T15:00:47+00:00",
+      "model_version": "mistral-large-2512",
+      "finish_reason": "stop",
+      "answer_tokens": 718,
+      "input_tokens": 90
+    },
+    {
+      "condition": "ceo",
+      "run": 3,
+      "question": "I2_S3",
+      "ok": true,
+      "timestamp": "2026-10-22T15:01:09+00:00",
+      "model_version": "mistral-large-2512",
+      "finish_reason": "stop",
+      "answer_tokens": 1254,
+      "input_tokens": 82
+    }
+  ]
+}
