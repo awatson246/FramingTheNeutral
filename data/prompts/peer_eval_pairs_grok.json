@@ -1,0 +1,29 @@
+{
+  "_notes": {
+    "design": "Grok pairs for Instrument 4, same format as peer_eval_pairs.json. G1-G5: grok-4.7 evaluates each original model; G6-G10: each original model evaluates grok-4.7. All six I1/I2 questions, run 1 baseline answers, same I4 prompt.",
+    "mistral_i2": "Where mistral-large is the evaluatee (G4), its I2 answers are scored twice: the original (truncated at 1,024 tokens) under G4, and the untruncated re-collection (data/raw/mistral_i2_recollect.json) under G4__mistral_i2_recollect in instrument_4_grok.json."
+  },
+
+  "pairs": [
+    {"pair_id": "G1",  "evaluator": "grok-4.7",      "evaluatee": "gpt-4o",
+     "source_questions": ["I1_Q1", "I1_Q2", "I1_Q3", "I2_S1", "I2_S2", "I2_S3"]},
+    {"pair_id": "G2",  "evaluator": "grok-4.7",      "evaluatee": "claude-sonnet",
+     "source_questions": ["I1_Q1", "I1_Q2", "I1_Q3", "I2_S1", "I2_S2", "I2_S3"]},
+    {"pair_id": "G3",  "evaluator": "grok-4.7",      "evaluatee": "deepseek-v3",
+     "source_questions": ["I1_Q1", "I1_Q2", "I1_Q3", "I2_S1", "I2_S2", "I2_S3"]},
+    {"pair_id": "G4",  "evaluator": "grok-4.7",      "evaluatee": "mistral-large",
+     "source_questions": ["I1_Q1", "I1_Q2", "I1_Q3", "I2_S1", "I2_S2", "I2_S3"]},
+    {"pair_id": "G5",  "evaluator": "grok-4.7",      "evaluatee": "gemini-3.1-flash-lite-preview",
+     "source_questions": ["I1_Q1", "I1_Q2", "I1_Q3", "I2_S1", "I2_S2", "I2_S3"]},
+    {"pair_id": "G6",  "evaluator": "gpt-4o",        "evaluatee": "grok-4.7",
+     "source_questions": ["I1_Q1", "I1_Q2", "I1_Q3", "I2_S1", "I2_S2", "I2_S3"]},
+    {"pair_id": "G7",  "evaluator": "claude-sonnet", "evaluatee": "grok-4.7",
+     "source_questions": ["I1_Q1", "I1_Q2", "I1_Q3", "I2_S1", "I2_S2", "I2_S3"]},
+    {"pair_id": "G8",  "evaluator": "deepseek-v3",   "evaluatee": "grok-4.7",
+     "source_questions": ["I1_Q1", "I1_Q2", "I1_Q3", "I2_S1", "I2_S2", "I2_S3"]},
+    {"pair_id": "G9",  "evaluator": "mistral-large", "evaluatee": "grok-4.7",
+     "source_questions": ["I1_Q1", "I1_Q2", "I1_Q3", "I2_S1", "I2_S2", "I2_S3"]},
+    {"pair_id": "G10", "evaluator": "gemini-3.1-flash-lite-preview", "evaluatee": "grok-4.7",
+     "source_questions": ["I1_Q1", "I1_Q2", "I1_Q3", "I2_S1", "I2_S2", "I2_S3"]}
+  ]
+}
