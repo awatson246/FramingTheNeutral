@@ -17,7 +17,8 @@
     "claude-sonnet",
     "deepseek-v3",
     "mistral-large",
-    "gemini-3.1-flash-lite-preview"
+    "gemini-3.1-flash-lite-preview",
+    "grok-4.7"
   ],
 
   "runs_per_condition": 3,

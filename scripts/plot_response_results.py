@@ -82,6 +82,7 @@ MODEL_LABELS = {
     "deepseek-v3":                   "DeepSeek-V3",
     "mistral-large":                 "Mistral Large",
     "gemini-3.1-flash-lite-preview": "Gemini 3.1 Flash Lite",
+    "grok-4.7":                      "Grok 4.7",
 }
 
 I1_QUESTIONS = {
@@ -215,6 +216,7 @@ MODEL_COLORS = {
     "deepseek-v3":                   "#dc2626",
     "mistral-large":                 "#d97706",
     "gemini-3.1-flash-lite-preview": "#7c3aed",
+    "grok-4.7":                      "#0d9488",
 }
 
 CONDITION_DASH = {"baseline": "solid", "ceo": "dash"}
@@ -226,6 +228,7 @@ MODEL_DASH = {
     "deepseek-v3":                   "dot",
     "mistral-large":                 "dashdot",
     "gemini-3.1-flash-lite-preview": "longdash",
+    "grok-4.7":                      "longdashdot",
 }
 
 # Second B&W distinguisher: marker symbol per model (for scatter/radar)
@@ -235,6 +238,7 @@ MODEL_SYMBOLS = {
     "deepseek-v3":                   "diamond",
     "mistral-large":                 "triangle-up",
     "gemini-3.1-flash-lite-preview": "cross",
+    "grok-4.7":                      "star",
 }
 
 # Second B&W distinguisher: fill pattern per model (for bar charts)
@@ -244,6 +248,7 @@ MODEL_PATTERNS = {
     "deepseek-v3":                   "\\",
     "mistral-large":                 "x",
     "gemini-3.1-flash-lite-preview": "+",
+    "grok-4.7":                      ".",
 }
 
 # Condition fill pattern (for condition-split bar charts)

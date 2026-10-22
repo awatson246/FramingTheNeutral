@@ -1,5 +1,7 @@
+import argparse
 import json
 import os
+from datetime import datetime, timezone
 from pathlib import Path
 from time import sleep
 
@@ -33,10 +35,19 @@ MODELS = {
     "deepseek-v3":                   "deepseek-chat",
     "mistral-large":                 "mistral-large-latest",
     "gemini-3.1-flash-lite-preview": "gemini-3.1-flash-lite-preview",
+    "grok-4.7":                      "grok-4.7",
 }
 
-# Instruments to collect in this run
-ACTIVE_INSTRUMENTS = ["instrument_1", "instrument_2", "instrument_3", "instrument_4", "instrument_5"]
+# The five original (AIES) models: their data is final. Collection never calls
+# them, so it can't re-call or overwrite their cells; only other models are filled in.
+FROZEN_MODELS = {"gpt-4o", "claude-sonnet", "deepseek-v3", "mistral-large",
+                 "gemini-3.1-flash-lite-preview"}
+
+# Instruments to collect in this run (I4 inactive while Grok is added)
+ACTIVE_INSTRUMENTS = ["instrument_1", "instrument_2", "instrument_3", "instrument_5"]
+
+# Per-call metadata and per-instrument timings for added models
+RUN_LOG_FILE = RAW_DIR / "run_log_grok.json"
 
 # Model used for I5 source extraction (always Claude Sonnet, regardless of original model)
 EXTRACTOR_MODEL = "claude-sonnet-4-5"
@@ -48,6 +59,7 @@ MODEL_LABELS = {
     "deepseek-v3":                   "DeepSeek-V3",
     "mistral-large":                 "Mistral Large",
     "gemini-3.1-flash-lite-preview": "Gemini 3.1 Flash Lite",
+    "grok-4.7":                      "Grok 4.7",
 }
 
 # Max tokens for open-ended responses (I1, I2)
@@ -58,6 +70,10 @@ MAX_TOKENS_JSON = 2048
 RETRY_ATTEMPTS = 3
 RETRY_DELAY    = 5   # seconds between retries
 CALL_DELAY     = 1   # seconds between normal calls
+
+# Grok reasons, and reasoning tokens count against max_completion_tokens, so its
+# limit is the instrument's answer budget plus this headroom.
+GROK_REASONING_HEADROOM = 16384
 
 # =============================================================================
 # Client setup
@@ -75,6 +91,21 @@ deepseek_client = DeepSeekClient(
 mistral_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY"))
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+
+_xai_client = None
+
+
+def get_xai_client() -> openai.OpenAI:
+    """xAI is OpenAI-compatible; created on first use so a missing key only affects Grok."""
+    global _xai_client
+    if _xai_client is None:
+        _xai_client = openai.OpenAI(api_key=os.getenv("XAI_API_KEY"),
+                                    base_url="https://api.x.ai/v1")
+    return _xai_client
+
+# Metadata from the most recent call by call_xai / call_i5_extractor, read by
+# the run log. Storage of responses is unchanged.
+LAST_CALL_META: dict = {}
 
 # =============================================================================
 # Model callers
@@ -137,12 +168,50 @@ def call_gemini(system_prompt: str, user_prompt: str, max_tokens: int) -> str | 
     return resp.text.strip()
 
 
+def call_xai(system_prompt: str, user_prompt: str, max_tokens: int) -> str | None:
+    """
+    Grok via xAI's OpenAI-compatible API. No temperature (provider default).
+    max_tokens is the instrument's answer budget; reasoning headroom is added.
+    finish_reason, token counts and the returned model version go to LAST_CALL_META.
+    """
+    limit = max_tokens + GROK_REASONING_HEADROOM
+    resp = get_xai_client().chat.completions.create(
+        model=MODELS["grok-4.7"],
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user",   "content": user_prompt},
+        ],
+        max_completion_tokens=limit,
+    )
+    choice  = resp.choices[0]
+    usage   = resp.usage
+    details = getattr(usage, "completion_tokens_details", None) if usage else None
+    LAST_CALL_META.clear()
+    LAST_CALL_META.update({
+        "model_version":     resp.model,
+        "finish_reason":     choice.finish_reason,
+        "max_completion_tokens": limit,
+        "input_tokens":      usage.prompt_tokens if usage else None,
+        # xAI reports reasoning separately: completion_tokens is the answer only
+        "answer_tokens":     usage.completion_tokens if usage else None,
+        "reasoning_tokens":  getattr(details, "reasoning_tokens", None),
+    })
+    if choice.finish_reason == "length":
+        print(f"    [warn] grok-4.7 hit max_completion_tokens={limit} "
+              f"(reasoning={LAST_CALL_META['reasoning_tokens']})")
+    if not choice.message.content:
+        # Same as the other callers, whose .strip() on None raises: lets call_with_retry retry
+        raise RuntimeError(f"empty content (finish_reason={choice.finish_reason})")
+    return choice.message.content.strip()
+
+
 MODEL_CALLERS = {
     "gpt-4o":                        call_openai,
     "claude-sonnet":                 call_anthropic,
     "deepseek-v3":                   call_deepseek,
     "mistral-large":                 call_mistral,
     "gemini-3.1-flash-lite-preview": call_gemini,
+    "grok-4.7":                      call_xai,
 }
 
 # =============================================================================
@@ -682,6 +751,13 @@ def call_i5_extractor(prompt: str) -> str | None:
                 ),
                 messages=[{"role": "user", "content": prompt}],
             )
+            LAST_CALL_META.clear()
+            LAST_CALL_META.update({
+                "model_version": resp.model,
+                "finish_reason": resp.stop_reason,
+                "input_tokens":  resp.usage.input_tokens,
+                "answer_tokens": resp.usage.output_tokens,
+            })
             return resp.content[0].text.strip()
         except Exception as e:
             print(f"    [Attempt {attempt}/{RETRY_ATTEMPTS}] I5 extractor failed: {e}")
@@ -691,10 +767,101 @@ def call_i5_extractor(prompt: str) -> str | None:
 
 
 # =============================================================================
+# Run log (data/raw/run_log_grok.json)
+#
+# One entry per invocation; per instrument: model IDs, returned versions,
+# start/end timestamps, and per-call metadata (finish_reason, token counts).
+# =============================================================================
+
+def utc_now() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def load_run_log() -> dict:
+    if RUN_LOG_FILE.exists():
+        with open(RUN_LOG_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {"runs": []}
+
+
+def save_run_log(log: dict) -> None:
+    with open(RUN_LOG_FILE, "w", encoding="utf-8") as f:
+        json.dump(log, f, indent=2, ensure_ascii=False)
+
+
+def log_call(entry: dict, model_id: str, condition: str, run: int,
+             question_id: str, ok: bool, **extra) -> None:
+    """Append the last call's metadata to an instrument entry and refresh its version list."""
+    meta = dict(LAST_CALL_META)
+    LAST_CALL_META.clear()
+    entry["calls"].append({"model": model_id, "condition": condition, "run": run,
+                           "question": question_id, "ok": ok, "timestamp": utc_now(),
+                           **extra, **meta})
+    entry["returned_versions"] = sorted({c["model_version"] for c in entry["calls"]
+                                         if c.get("model_version")})
+
+# =============================================================================
+# Dry run (--dry-run): count the calls a real run would make, no API calls.
+# Counts only cells that are still missing, i.e. exactly what would be called.
+# =============================================================================
+
+def count_missing(instruments_data: dict, models: list[str], runs_per_cond: int) -> dict:
+    conditions = instruments_data["conditions"]
+    counts = {}
+    for i_id in ACTIVE_INSTRUMENTS:
+        instrument = instruments_data["instruments"][i_id]
+        data  = load_instrument(i_id)
+        conds = [c for c in conditions if c in instrument["conditions"]]
+        counts[i_id] = {}
+        for m in models:
+            n = 0
+            for c in conds:
+                for run in range(1, runs_per_cond + 1):
+                    if i_id == "instrument_3":
+                        n += not is_complete_i3(data, m, c, run)
+                    elif i_id == "instrument_5":
+                        n += sum(not is_complete_i5(data, m, c, run, q) for q in I5_SOURCE_QUESTIONS)
+                    elif i_id == "instrument_1":
+                        n += sum(not is_complete_i1(data, m, c, run, q["id"])
+                                 for q in instrument["questions"])
+                    else:
+                        n += sum(not is_complete(data, m, c, run, q["id"])
+                                 for q in instrument["questions"])
+            counts[i_id][m] = n
+    return counts
+
+
+def dry_run(instruments_data: dict, models: list[str], frozen: list[str],
+            runs_per_cond: int) -> None:
+    print("DRY RUN - no API calls made.")
+    print(f"Models to collect: {', '.join(models)} | runs_per_condition: {runs_per_cond}")
+    print(f"Active instruments: {', '.join(ACTIVE_INSTRUMENTS)}\n")
+    counts = count_missing(instruments_data, models, runs_per_cond)
+    frozen_missing = count_missing(instruments_data, frozen, runs_per_cond)
+    print(f"{'Instrument':<14} {'Model':<16} {'Calls':>6}  Billed to")
+    print("-" * 60)
+    for i_id, per_model in counts.items():
+        for m, n in per_model.items():
+            billed = EXTRACTOR_MODEL if i_id == "instrument_5" else MODELS[m]
+            print(f"{i_id:<14} {m:<16} {n:>6}  {billed}")
+    total = sum(n for pm in counts.values() for n in pm.values())
+    print("-" * 60)
+    print(f"{'TOTAL':<31} {total:>6}")
+    fm = sum(n for pm in frozen_missing.values() for n in pm.values())
+    print(f"\nFrozen models ({', '.join(frozen)}): 0 calls "
+          f"({fm} of their cells are incomplete and stay untouched)")
+
+
+# =============================================================================
 # Main
 # =============================================================================
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Collect LLM responses for all active instruments.")
+    parser.add_argument("--dry-run", action="store_true",
+                        help="Count the calls a real run would make; make no API calls.")
+    args = parser.parse_args()
+
     with open(INSTRUMENTS_FILE, "r", encoding="utf-8") as f:
         instruments_data = json.load(f)
 
@@ -703,8 +870,23 @@ if __name__ == "__main__":
 
     pairs         = peer_eval_data["pairs"]
     conditions    = instruments_data["conditions"]
-    models        = instruments_data["models"]
     runs_per_cond = instruments_data["runs_per_condition"]
+
+    # Never call the frozen original models (see FROZEN_MODELS)
+    frozen = [m for m in instruments_data["models"] if m in FROZEN_MODELS]
+    models = [m for m in instruments_data["models"] if m not in FROZEN_MODELS]
+    print(f"Collecting for: {', '.join(models) or '(none)'} "
+          f"| frozen, not called: {', '.join(frozen)}\n")
+
+    if args.dry_run:
+        dry_run(instruments_data, models, frozen, runs_per_cond)
+        sys.exit(0)
+
+    run_log = load_run_log()
+    session = {"started": utc_now(), "finished": None,
+               "models": {m: MODELS[m] for m in models},
+               "extractor": EXTRACTOR_MODEL, "instruments": []}
+    run_log["runs"].append(session)
 
     # Count total calls for progress reporting
     total = 0
@@ -745,6 +927,14 @@ if __name__ == "__main__":
     for instrument_id in ACTIVE_INSTRUMENTS:
         instrument = instruments_data["instruments"][instrument_id]
         data = load_instrument(instrument_id)
+
+        entry = {"instrument": instrument_id, "started": utc_now(), "finished": None,
+                 "model_ids": ({m: EXTRACTOR_MODEL for m in models}
+                               if instrument_id == "instrument_5"
+                               else {m: MODELS[m] for m in models}),
+                 "returned_versions": [], "calls": []}
+        session["instruments"].append(entry)
+        save_run_log(run_log)
 
         print(f"{'='*60}")
         print(f"Instrument: {instrument_id} — {instrument['label']}")
@@ -802,6 +992,9 @@ if __name__ == "__main__":
 
                             store_i5_response(data, model_id, condition_id, run, q_id, raw, parsed)
                             save_instrument(instrument_id, data)
+                            log_call(entry, model_id, condition_id, run, q_id, bool(parsed),
+                                     extractor=EXTRACTOR_MODEL)
+                            save_run_log(run_log)
 
                             status = "ok" if parsed else ("raw only" if raw else "FAILED")
                             print(status)
@@ -887,6 +1080,8 @@ if __name__ == "__main__":
 
                         store_i3_response(data, model_id, condition_id, run, raw, parsed)
                         save_instrument(instrument_id, data)
+                        log_call(entry, model_id, condition_id, run, "all", bool(parsed))
+                        save_run_log(run_log)
 
                         status = "ok" if parsed else ("raw only" if raw else "FAILED")
                         print(status)
@@ -934,6 +1129,9 @@ if __name__ == "__main__":
 
                             store_i1_response(data, model_id, condition_id, run, q_id, raw, parsed)
                             save_instrument(instrument_id, data)
+                            log_call(entry, model_id, condition_id, run, q_id, bool(parsed),
+                                     parse_attempts=parse_attempt)
+                            save_run_log(run_log)
 
                             status = "ok" if parsed else ("raw only" if raw else "FAILED")
                             print(status)
@@ -968,10 +1166,18 @@ if __name__ == "__main__":
 
                             store_response(data, model_id, condition_id, run, q_id, response)
                             save_instrument(instrument_id, data)
+                            log_call(entry, model_id, condition_id, run, q_id, bool(response))
+                            save_run_log(run_log)
 
                             print("ok" if response else "FAILED")
                             completed += 1
                             sleep(CALL_DELAY)
+
+        entry["finished"] = utc_now()
+        save_run_log(run_log)
+
+    session["finished"] = utc_now()
+    save_run_log(run_log)
 
     print(f"\nDone. {completed} new responses collected, {skipped} already complete.")
     print(f"Files saved to {RAW_DIR}/")
