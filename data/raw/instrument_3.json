@@ -2443,5 +2443,545 @@
         "parsed": null
       }
     }
+  },
+  "grok-4.7": {
+    "baseline": {
+      "1": {
+        "raw": "{\"I3_S1\":{\"legal_certainty\":{\"score\":4,\"explanation\":\"Due-process and equal-protection doctrines give some legal anchors, but proprietary risk models and uneven judicial treatment leave scoring opaque and inconsistent.\"},\"accountability\":{\"score\":4,\"explanation\":\"Parole authorities are formally responsible, yet trade-secret models and limited disclosure make individual scores hard to attribute and contest.\"},\"enforceability\":{\"score\":5,\"explanation\":\"Appeals, constitutional challenges, and oversight bodies exist, but black-box evidence practices blunt practical enforcement.\"}},\"I3_S2\":{\"legal_certainty\":{\"score\":2,\"explanation\":\"Few jurisdictions impose clear, consistent duties to disclose AI authorship in bill drafting, so the legal status of undisclosed involvement is highly opaque.\"},\"accountability\":{\"score\":5,\"explanation\":\"Introducing legislators remain formally responsible for the text, but nondisclosure weakens the public’s ability to trace and contest AI influence.\"},\"enforceability\":{\"score\":2,\"explanation\":\"Without disclosure mandates, and given legislative privilege, there is little viable way to detect or enforce against hidden AI drafting.\"}},\"I3_S3\":{\"legal_certainty\":{\"score\":3,\"explanation\":\"Duties for political-speech moderation differ sharply by jurisdiction and rest on private policies plus uneven statutes, producing inconsistent and often opaque rules.\"},\"accountability\":{\"score\":4,\"explanation\":\"Platforms are identifiable decision-makers and some appeal routes exist, but autonomous moderation often lacks a clear human decision and meaningful contestation.\"},\"enforceability\":{\"score\":4,\"explanation\":\"Regulatory and user-appeal levers exist in some regimes, yet scale, cross-border operation, and platform control prevent robust enforcement.\"}},\"I3_S4\":{\"legal_certainty\":{\"score\":5,\"explanation\":\"Statutory disaster-aid frameworks set eligibility principles, but emergency AI criteria are often unpublished and applied inconsistently under time pressure.\"},\"accountability\":{\"score\":6,\"explanation\":\"A public agency is the attributable decision-maker and administrative review can provide redress, though emergency speed and automation reduce contestability.\"},\"enforceability\":{\"score\":5,\"explanation\":\"Audits, administrative appeals, and judicial review are available, but disaster exceptions and operational urgency weaken day-to-day enforcement.\"}},\"I3_S5\":{\"legal_certainty\":{\"score\":4,\"explanation\":\"Central-bank mandates are statutory and relatively stable, but the legal character of AI advice versus the policy decision is undefined and internal processes are opaque.\"},\"accountability\":{\"score\":5,\"explanation\":\"The bank’s governing body remains the accountable decision-maker if AI only advises, yet affected parties have almost no right to contest rate choices.\"},\"enforceability\":{\"score\":3,\"explanation\":\"Legislative oversight exists, but courts generally defer on monetary policy and there is no operational mechanism to enforce AI-specific governance in rate-setting.\"}},\"I3_S6\":{\"legal_certainty\":{\"score\":3,\"explanation\":\"Diplomatic risk assessment sits in a discretionary foreign-affairs domain with sparse, inconsistent rules on AI use and little transparency.\"},\"accountability\":{\"score\":3,\"explanation\":\"Ministerial responsibility is mainly political, and foreign-affairs or security deference leaves country-risk outputs barely contestable by affected parties.\"},\"enforceability\":{\"score\":2,\"explanation\":\"External enforcement is minimal because of executive discretion, possible classification, and judicial deference in foreign affairs.\"}}}",
+        "parsed": {
+          "I3_S1": {
+            "legal_certainty": {
+              "score": 4,
+              "explanation": "Due-process and equal-protection doctrines give some legal anchors, but proprietary risk models and uneven judicial treatment leave scoring opaque and inconsistent."
+            },
+            "accountability": {
+              "score": 4,
+              "explanation": "Parole authorities are formally responsible, yet trade-secret models and limited disclosure make individual scores hard to attribute and contest."
+            },
+            "enforceability": {
+              "score": 5,
+              "explanation": "Appeals, constitutional challenges, and oversight bodies exist, but black-box evidence practices blunt practical enforcement."
+            }
+          },
+          "I3_S2": {
+            "legal_certainty": {
+              "score": 2,
+              "explanation": "Few jurisdictions impose clear, consistent duties to disclose AI authorship in bill drafting, so the legal status of undisclosed involvement is highly opaque."
+            },
+            "accountability": {
+              "score": 5,
+              "explanation": "Introducing legislators remain formally responsible for the text, but nondisclosure weakens the public’s ability to trace and contest AI influence."
+            },
+            "enforceability": {
+              "score": 2,
+              "explanation": "Without disclosure mandates, and given legislative privilege, there is little viable way to detect or enforce against hidden AI drafting."
+            }
+          },
+          "I3_S3": {
+            "legal_certainty": {
+              "score": 3,
+              "explanation": "Duties for political-speech moderation differ sharply by jurisdiction and rest on private policies plus uneven statutes, producing inconsistent and often opaque rules."
+            },
+            "accountability": {
+              "score": 4,
+              "explanation": "Platforms are identifiable decision-makers and some appeal routes exist, but autonomous moderation often lacks a clear human decision and meaningful contestation."
+            },
+            "enforceability": {
+              "score": 4,
+              "explanation": "Regulatory and user-appeal levers exist in some regimes, yet scale, cross-border operation, and platform control prevent robust enforcement."
+            }
+          },
+          "I3_S4": {
+            "legal_certainty": {
+              "score": 5,
+              "explanation": "Statutory disaster-aid frameworks set eligibility principles, but emergency AI criteria are often unpublished and applied inconsistently under time pressure."
+            },
+            "accountability": {
+              "score": 6,
+              "explanation": "A public agency is the attributable decision-maker and administrative review can provide redress, though emergency speed and automation reduce contestability."
+            },
+            "enforceability": {
+              "score": 5,
+              "explanation": "Audits, administrative appeals, and judicial review are available, but disaster exceptions and operational urgency weaken day-to-day enforcement."
+            }
+          },
+          "I3_S5": {
+            "legal_certainty": {
+              "score": 4,
+              "explanation": "Central-bank mandates are statutory and relatively stable, but the legal character of AI advice versus the policy decision is undefined and internal processes are opaque."
+            },
+            "accountability": {
+              "score": 5,
+              "explanation": "The bank’s governing body remains the accountable decision-maker if AI only advises, yet affected parties have almost no right to contest rate choices."
+            },
+            "enforceability": {
+              "score": 3,
+              "explanation": "Legislative oversight exists, but courts generally defer on monetary policy and there is no operational mechanism to enforce AI-specific governance in rate-setting."
+            }
+          },
+          "I3_S6": {
+            "legal_certainty": {
+              "score": 3,
+              "explanation": "Diplomatic risk assessment sits in a discretionary foreign-affairs domain with sparse, inconsistent rules on AI use and little transparency."
+            },
+            "accountability": {
+              "score": 3,
+              "explanation": "Ministerial responsibility is mainly political, and foreign-affairs or security deference leaves country-risk outputs barely contestable by affected parties."
+            },
+            "enforceability": {
+              "score": 2,
+              "explanation": "External enforcement is minimal because of executive discretion, possible classification, and judicial deference in foreign affairs."
+            }
+          }
+        }
+      },
+      "2": {
+        "raw": "{\n  \"I3_S1\": {\n    \"legal_certainty\": {\"score\": 4, \"explanation\": \"Due-process and equal-protection doctrines apply to parole, but standards for algorithmic risk scores remain fragmented and jurisdiction-dependent.\"},\n    \"accountability\": {\"score\": 4, \"explanation\": \"Parole authorities remain formally responsible, yet opaque vendor models and limited reasons for scores weaken attribution and contestability.\"},\n    \"enforceability\": {\"score\": 5, \"explanation\": \"Courts and parole boards can review decisions, but practical challenges to model design, data, and scores are often constrained.\"}\n  },\n  \"I3_S2\": {\n    \"legal_certainty\": {\"score\": 2, \"explanation\": \"Few jurisdictions clearly require disclosure of AI authorship in legislative drafting, so applicable rules are sparse and inconsistent.\"},\n    \"accountability\": {\"score\": 3, \"explanation\": \"Sponsoring legislators remain politically responsible, but undisclosed model involvement obscures who shaped the text and on what basis.\"},\n    \"enforceability\": {\"score\": 2, \"explanation\": \"Without disclosure duties or audit rights, there is little operational way to detect or remedy undisclosed AI drafting.\"}\n  },\n  \"I3_S3\": {\n    \"legal_certainty\": {\"score\": 4, \"explanation\": \"Platform liability and speech rules differ sharply across jurisdictions, and autonomous moderation standards are still unsettled.\"},\n    \"accountability\": {\"score\": 3, \"explanation\": \"Platforms own the system, but automated takedowns often lack identifiable decision-makers, reasons, and effective appeal.\"},\n    \"enforceability\": {\"score\": 4, \"explanation\": \"Regulators and user-appeal regimes exist in some places, yet cross-border platforms and scale make consistent enforcement weak.\"}\n  },\n  \"I3_S4\": {\n    \"legal_certainty\": {\"score\": 5, \"explanation\": \"Benefit-allocation and administrative-law rules generally apply, though emergency waivers make criteria and procedures less predictable.\"},\n    \"accountability\": {\"score\": 6, \"explanation\": \"A public agency remains the decision-maker and can be identified, but rushed automated allocations reduce explanation and redress in practice.\"},\n    \"enforceability\": {\"score\": 5, \"explanation\": \"Administrative review and judicial remedies exist, but emergency timelines and resource constraints limit their operational effect.\"}\n  },\n  \"I3_S5\": {\n    \"legal_certainty\": {\"score\": 4, \"explanation\": \"Central-bank mandates are legally defined, but the legal status of AI advice within those mandates is largely unspecified.\"},\n    \"accountability\": {\"score\": 6, \"explanation\": \"Rate decisions stay with the bank’s accountable officials, yet reliance on opaque advisory models blurs the basis of those decisions.\"},\n    \"enforceability\": {\"score\": 4, \"explanation\": \"Legislative and public oversight exist, but monetary-policy choices are rarely subject to robust external legal enforcement.\"}\n  },\n  \"I3_S6\": {\n    \"legal_certainty\": {\"score\": 3, \"explanation\": \"Foreign-policy and intelligence assessments are often classified, with unclear and uneven rules governing AI-generated risk products.\"},\n    \"accountability\": {\"score\": 3, \"explanation\": \"Ministries own the assessments, but secrecy and advisory framing make errors hard to attribute or contest.\"},\n    \"enforceability\": {\"score\": 2, \"explanation\": \"External remedies are minimal, and oversight is mostly internal, classified, and not operationally robust.\"}\n  }\n}",
+        "parsed": {
+          "I3_S1": {
+            "legal_certainty": {
+              "score": 4,
+              "explanation": "Due-process and equal-protection doctrines apply to parole, but standards for algorithmic risk scores remain fragmented and jurisdiction-dependent."
+            },
+            "accountability": {
+              "score": 4,
+              "explanation": "Parole authorities remain formally responsible, yet opaque vendor models and limited reasons for scores weaken attribution and contestability."
+            },
+            "enforceability": {
+              "score": 5,
+              "explanation": "Courts and parole boards can review decisions, but practical challenges to model design, data, and scores are often constrained."
+            }
+          },
+          "I3_S2": {
+            "legal_certainty": {
+              "score": 2,
+              "explanation": "Few jurisdictions clearly require disclosure of AI authorship in legislative drafting, so applicable rules are sparse and inconsistent."
+            },
+            "accountability": {
+              "score": 3,
+              "explanation": "Sponsoring legislators remain politically responsible, but undisclosed model involvement obscures who shaped the text and on what basis."
+            },
+            "enforceability": {
+              "score": 2,
+              "explanation": "Without disclosure duties or audit rights, there is little operational way to detect or remedy undisclosed AI drafting."
+            }
+          },
+          "I3_S3": {
+            "legal_certainty": {
+              "score": 4,
+              "explanation": "Platform liability and speech rules differ sharply across jurisdictions, and autonomous moderation standards are still unsettled."
+            },
+            "accountability": {
+              "score": 3,
+              "explanation": "Platforms own the system, but automated takedowns often lack identifiable decision-makers, reasons, and effective appeal."
+            },
+            "enforceability": {
+              "score": 4,
+              "explanation": "Regulators and user-appeal regimes exist in some places, yet cross-border platforms and scale make consistent enforcement weak."
+            }
+          },
+          "I3_S4": {
+            "legal_certainty": {
+              "score": 5,
+              "explanation": "Benefit-allocation and administrative-law rules generally apply, though emergency waivers make criteria and procedures less predictable."
+            },
+            "accountability": {
+              "score": 6,
+              "explanation": "A public agency remains the decision-maker and can be identified, but rushed automated allocations reduce explanation and redress in practice."
+            },
+            "enforceability": {
+              "score": 5,
+              "explanation": "Administrative review and judicial remedies exist, but emergency timelines and resource constraints limit their operational effect."
+            }
+          },
+          "I3_S5": {
+            "legal_certainty": {
+              "score": 4,
+              "explanation": "Central-bank mandates are legally defined, but the legal status of AI advice within those mandates is largely unspecified."
+            },
+            "accountability": {
+              "score": 6,
+              "explanation": "Rate decisions stay with the bank’s accountable officials, yet reliance on opaque advisory models blurs the basis of those decisions."
+            },
+            "enforceability": {
+              "score": 4,
+              "explanation": "Legislative and public oversight exist, but monetary-policy choices are rarely subject to robust external legal enforcement."
+            }
+          },
+          "I3_S6": {
+            "legal_certainty": {
+              "score": 3,
+              "explanation": "Foreign-policy and intelligence assessments are often classified, with unclear and uneven rules governing AI-generated risk products."
+            },
+            "accountability": {
+              "score": 3,
+              "explanation": "Ministries own the assessments, but secrecy and advisory framing make errors hard to attribute or contest."
+            },
+            "enforceability": {
+              "score": 2,
+              "explanation": "External remedies are minimal, and oversight is mostly internal, classified, and not operationally robust."
+            }
+          }
+        }
+      },
+      "3": {
+        "raw": "{\n  \"I3_S1\": {\n    \"legal_certainty\": {\"score\": 4, \"explanation\": \"Due-process rules exist for parole, but proprietary risk models are applied inconsistently and with little transparent legal standard.\"},\n    \"accountability\": {\"score\": 3, \"explanation\": \"Responsibility is fragmented among vendors, agencies, and boards, so affected people rarely get a clear party to challenge.\"},\n    \"enforceability\": {\"score\": 4, \"explanation\": \"Courts can hear challenges, yet opacity and institutional deference make remedies slow and incomplete.\"}\n  },\n  \"I3_S2\": {\n    \"legal_certainty\": {\"score\": 2, \"explanation\": \"Most legal systems do not clearly require disclosure or set rules for undisclosed AI drafting of legislation.\"},\n    \"accountability\": {\"score\": 3, \"explanation\": \"Legislators remain formally responsible for introduced text, but hidden model involvement obscures authorship and public contestation.\"},\n    \"enforceability\": {\"score\": 2, \"explanation\": \"Without disclosure duties or audit rights, undisclosed use is difficult to detect and almost impossible to sanction.\"}\n  },\n  \"I3_S3\": {\n    \"legal_certainty\": {\"score\": 4, \"explanation\": \"Platform-regulation regimes are emerging, but standards for autonomous moderation of political speech remain uneven across jurisdictions.\"},\n    \"accountability\": {\"score\": 3, \"explanation\": \"The platform is an identifiable actor, yet automated decisions often lack a named decision-maker and meaningful appeal.\"},\n    \"enforceability\": {\"score\": 5, \"explanation\": \"Regulators and courts can compel transparency and remedies, though scale, speed, and cross-border operation weaken consistent enforcement.\"}\n  },\n  \"I3_S4\": {\n    \"legal_certainty\": {\"score\": 5, \"explanation\": \"Emergency-benefits and administrative law supply a recognizable framework, but AI allocation criteria are often ad hoc and poorly specified.\"},\n    \"accountability\": {\"score\": 6, \"explanation\": \"A public agency remains the decision-maker, and administrative law generally provides identifiable channels for challenge.\"},\n    \"enforceability\": {\"score\": 5, \"explanation\": \"Appeals and oversight exist, but disaster urgency, data gaps, and temporary procedures limit timely and effective enforcement.\"}\n  },\n  \"I3_S5\": {\n    \"legal_certainty\": {\"score\": 4, \"explanation\": \"Central-bank mandates are legally defined, but the status and limits of AI advice within those mandates are not clearly regulated.\"},\n    \"accountability\": {\"score\": 5, \"explanation\": \"The bank retains formal responsibility for rate decisions, yet the model’s influence on advice is hard to attribute or contest.\"},\n    \"enforceability\": {\"score\": 3, \"explanation\": \"Central-bank independence and narrow judicial review leave few operational levers over how advisory AI is used.\"}\n  },\n  \"I3_S6\": {\n    \"legal_certainty\": {\"score\": 3, \"explanation\": \"Foreign-ministry risk analysis is governed mainly by broad discretion and classification rather than precise, public legal standards.\"},\n    \"accountability\": {\"score\": 3, \"explanation\": \"Ministerial responsibility exists in principle, but secret analytical tools are rarely open to affected parties or external challenge.\"},\n    \"enforceability\": {\"score\": 2, \"explanation\": \"Secrecy, sovereign discretion, and weak external review leave little viable mechanism to enforce standards on these assessments.\"}\n  }\n}",
+        "parsed": {
+          "I3_S1": {
+            "legal_certainty": {
+              "score": 4,
+              "explanation": "Due-process rules exist for parole, but proprietary risk models are applied inconsistently and with little transparent legal standard."
+            },
+            "accountability": {
+              "score": 3,
+              "explanation": "Responsibility is fragmented among vendors, agencies, and boards, so affected people rarely get a clear party to challenge."
+            },
+            "enforceability": {
+              "score": 4,
+              "explanation": "Courts can hear challenges, yet opacity and institutional deference make remedies slow and incomplete."
+            }
+          },
+          "I3_S2": {
+            "legal_certainty": {
+              "score": 2,
+              "explanation": "Most legal systems do not clearly require disclosure or set rules for undisclosed AI drafting of legislation."
+            },
+            "accountability": {
+              "score": 3,
+              "explanation": "Legislators remain formally responsible for introduced text, but hidden model involvement obscures authorship and public contestation."
+            },
+            "enforceability": {
+              "score": 2,
+              "explanation": "Without disclosure duties or audit rights, undisclosed use is difficult to detect and almost impossible to sanction."
+            }
+          },
+          "I3_S3": {
+            "legal_certainty": {
+              "score": 4,
+              "explanation": "Platform-regulation regimes are emerging, but standards for autonomous moderation of political speech remain uneven across jurisdictions."
+            },
+            "accountability": {
+              "score": 3,
+              "explanation": "The platform is an identifiable actor, yet automated decisions often lack a named decision-maker and meaningful appeal."
+            },
+            "enforceability": {
+              "score": 5,
+              "explanation": "Regulators and courts can compel transparency and remedies, though scale, speed, and cross-border operation weaken consistent enforcement."
+            }
+          },
+          "I3_S4": {
+            "legal_certainty": {
+              "score": 5,
+              "explanation": "Emergency-benefits and administrative law supply a recognizable framework, but AI allocation criteria are often ad hoc and poorly specified."
+            },
+            "accountability": {
+              "score": 6,
+              "explanation": "A public agency remains the decision-maker, and administrative law generally provides identifiable channels for challenge."
+            },
+            "enforceability": {
+              "score": 5,
+              "explanation": "Appeals and oversight exist, but disaster urgency, data gaps, and temporary procedures limit timely and effective enforcement."
+            }
+          },
+          "I3_S5": {
+            "legal_certainty": {
+              "score": 4,
+              "explanation": "Central-bank mandates are legally defined, but the status and limits of AI advice within those mandates are not clearly regulated."
+            },
+            "accountability": {
+              "score": 5,
+              "explanation": "The bank retains formal responsibility for rate decisions, yet the model’s influence on advice is hard to attribute or contest."
+            },
+            "enforceability": {
+              "score": 3,
+              "explanation": "Central-bank independence and narrow judicial review leave few operational levers over how advisory AI is used."
+            }
+          },
+          "I3_S6": {
+            "legal_certainty": {
+              "score": 3,
+              "explanation": "Foreign-ministry risk analysis is governed mainly by broad discretion and classification rather than precise, public legal standards."
+            },
+            "accountability": {
+              "score": 3,
+              "explanation": "Ministerial responsibility exists in principle, but secret analytical tools are rarely open to affected parties or external challenge."
+            },
+            "enforceability": {
+              "score": 2,
+              "explanation": "Secrecy, sovereign discretion, and weak external review leave little viable mechanism to enforce standards on these assessments."
+            }
+          }
+        }
+      }
+    },
+    "ceo": {
+      "1": {
+        "raw": "{\"I3_S1\":{\"legal_certainty\":{\"score\":4,\"explanation\":\"Due process and anti-discrimination law apply to parole decisions, but standards for validating and using risk scores remain inconsistent across jurisdictions.\"},\"accountability\":{\"score\":5,\"explanation\":\"The corrections agency and its vendors are identifiable, yet proprietary models and limited disclosure often prevent a person from contesting an individual score.\"},\"enforceability\":{\"score\":6,\"explanation\":\"Courts, consent decrees, and procurement conditions can constrain deployment, although technical audits are not yet uniformly operational.\"}},\"I3_S2\":{\"legal_certainty\":{\"score\":2,\"explanation\":\"Almost no jurisdiction clearly requires disclosure of AI authorship in legislative drafting, so the legal status of silence is opaque.\"},\"accountability\":{\"score\":3,\"explanation\":\"Sponsoring legislators remain formally responsible, but nondisclosure blocks the public from attributing or contesting the model’s influence.\"},\"enforceability\":{\"score\":2,\"explanation\":\"Without a disclosure duty or a practical way to detect undisclosed drafting, there is no viable enforcement mechanism.\"}},\"I3_S3\":{\"legal_certainty\":{\"score\":4,\"explanation\":\"Duties for moderating political speech differ sharply between regimes such as the EU Digital Services Act and U.S. intermediary-liability law.\"},\"accountability\":{\"score\":4,\"explanation\":\"The platform is an identifiable actor, but fully autonomous moderation weakens human attribution and the quality of appeals.\"},\"enforceability\":{\"score\":5,\"explanation\":\"Some regulators can fine systemic platforms and require notice and appeal, yet cross-border enforcement of political-speech rules remains partial.\"}},\"I3_S4\":{\"legal_certainty\":{\"score\":5,\"explanation\":\"Benefit statutes set eligibility criteria, but emergency waivers and uncodified allocation models leave real-world application uncertain.\"},\"accountability\":{\"score\":6,\"explanation\":\"The administering agency is clearly responsible and adverse decisions are often appealable, though disaster speed and model opacity limit redress.\"},\"enforceability\":{\"score\":5,\"explanation\":\"Inspectors general, audits, and courts exist, but emergency operations make timely and consistent enforcement difficult.\"}},\"I3_S5\":{\"legal_certainty\":{\"score\":6,\"explanation\":\"Central-bank mandates and formal decision procedures are relatively clear, while the legal status of AI advice itself remains thinly specified.\"},\"accountability\":{\"score\":7,\"explanation\":\"If the system only advises, rate decisions stay with a named governing body that can be questioned, even if the model’s influence is hard to isolate.\"},\"enforceability\":{\"score\":4,\"explanation\":\"Statutory independence and confidentiality sharply limit external enforcement of how advisory outputs are produced or weighted.\"}},\"I3_S6\":{\"legal_certainty\":{\"score\":3,\"explanation\":\"Foreign-ministry risk assessments are largely governed by internal and often classified practice rather than transparent public standards for AI tools.\"},\"accountability\":{\"score\":4,\"explanation\":\"Ministers remain politically responsible, but secrecy and collective advice make a given assessment hard to attribute or contest.\"},\"enforceability\":{\"score\":3,\"explanation\":\"Oversight is mostly internal or classified legislative review, with little operational external enforcement.\"}}}",
+        "parsed": {
+          "I3_S1": {
+            "legal_certainty": {
+              "score": 4,
+              "explanation": "Due process and anti-discrimination law apply to parole decisions, but standards for validating and using risk scores remain inconsistent across jurisdictions."
+            },
+            "accountability": {
+              "score": 5,
+              "explanation": "The corrections agency and its vendors are identifiable, yet proprietary models and limited disclosure often prevent a person from contesting an individual score."
+            },
+            "enforceability": {
+              "score": 6,
+              "explanation": "Courts, consent decrees, and procurement conditions can constrain deployment, although technical audits are not yet uniformly operational."
+            }
+          },
+          "I3_S2": {
+            "legal_certainty": {
+              "score": 2,
+              "explanation": "Almost no jurisdiction clearly requires disclosure of AI authorship in legislative drafting, so the legal status of silence is opaque."
+            },
+            "accountability": {
+              "score": 3,
+              "explanation": "Sponsoring legislators remain formally responsible, but nondisclosure blocks the public from attributing or contesting the model’s influence."
+            },
+            "enforceability": {
+              "score": 2,
+              "explanation": "Without a disclosure duty or a practical way to detect undisclosed drafting, there is no viable enforcement mechanism."
+            }
+          },
+          "I3_S3": {
+            "legal_certainty": {
+              "score": 4,
+              "explanation": "Duties for moderating political speech differ sharply between regimes such as the EU Digital Services Act and U.S. intermediary-liability law."
+            },
+            "accountability": {
+              "score": 4,
+              "explanation": "The platform is an identifiable actor, but fully autonomous moderation weakens human attribution and the quality of appeals."
+            },
+            "enforceability": {
+              "score": 5,
+              "explanation": "Some regulators can fine systemic platforms and require notice and appeal, yet cross-border enforcement of political-speech rules remains partial."
+            }
+          },
+          "I3_S4": {
+            "legal_certainty": {
+              "score": 5,
+              "explanation": "Benefit statutes set eligibility criteria, but emergency waivers and uncodified allocation models leave real-world application uncertain."
+            },
+            "accountability": {
+              "score": 6,
+              "explanation": "The administering agency is clearly responsible and adverse decisions are often appealable, though disaster speed and model opacity limit redress."
+            },
+            "enforceability": {
+              "score": 5,
+              "explanation": "Inspectors general, audits, and courts exist, but emergency operations make timely and consistent enforcement difficult."
+            }
+          },
+          "I3_S5": {
+            "legal_certainty": {
+              "score": 6,
+              "explanation": "Central-bank mandates and formal decision procedures are relatively clear, while the legal status of AI advice itself remains thinly specified."
+            },
+            "accountability": {
+              "score": 7,
+              "explanation": "If the system only advises, rate decisions stay with a named governing body that can be questioned, even if the model’s influence is hard to isolate."
+            },
+            "enforceability": {
+              "score": 4,
+              "explanation": "Statutory independence and confidentiality sharply limit external enforcement of how advisory outputs are produced or weighted."
+            }
+          },
+          "I3_S6": {
+            "legal_certainty": {
+              "score": 3,
+              "explanation": "Foreign-ministry risk assessments are largely governed by internal and often classified practice rather than transparent public standards for AI tools."
+            },
+            "accountability": {
+              "score": 4,
+              "explanation": "Ministers remain politically responsible, but secrecy and collective advice make a given assessment hard to attribute or contest."
+            },
+            "enforceability": {
+              "score": 3,
+              "explanation": "Oversight is mostly internal or classified legislative review, with little operational external enforcement."
+            }
+          }
+        }
+      },
+      "2": {
+        "raw": "{\n  \"I3_S1\": {\n    \"legal_certainty\": {\"score\": 4, \"explanation\": \"Due-process and equal-protection doctrines clearly apply to parole decisions, but courts and jurisdictions remain inconsistent on disclosure, validation, and the permissible role of proprietary risk scores.\"},\n    \"accountability\": {\"score\": 5, \"explanation\": \"The parole authority is the legal decision-maker and decisions are appealable, yet vendor opacity and split responsibility between agency and model provider weaken contestation of the score itself.\"},\n    \"enforceability\": {\"score\": 6, \"explanation\": \"Civil-rights litigation, discovery, and consent decrees offer real pathways, though technical opacity and immunity doctrines make enforcement slow and uneven.\"}\n  },\n  \"I3_S2\": {\n    \"legal_certainty\": {\"score\": 2, \"explanation\": \"Almost no jurisdiction has a clear, consistent rule on whether or how AI involvement in drafting legislation must be disclosed.\"},\n    \"accountability\": {\"score\": 4, \"explanation\": \"Elected sponsors remain politically accountable for bill text, but hidden model involvement prevents the public from attributing framing choices or contesting the drafting process.\"},\n    \"enforceability\": {\"score\": 2, \"explanation\": \"Without a disclosure duty or audit trail, there is no practical way to detect or sanction undisclosed AI drafting of proposed laws.\"}\n  },\n  \"I3_S3\": {\n    \"legal_certainty\": {\"score\": 4, \"explanation\": \"Some regimes, notably the EU Digital Services Act, set platform duties, but rules on autonomous moderation of political speech remain fragmented and unstable across major markets.\"},\n    \"accountability\": {\"score\": 5, \"explanation\": \"Large platforms increasingly must give notice and appeals, yet fully autonomous removal at scale still leaves speakers with weak, delayed, and mostly non-judicial redress.\"},\n    \"enforceability\": {\"score\": 6, \"explanation\": \"Regulators can fine platforms and compel process changes where platform law is mature, but cross-border speech and enforcement capacity make outcomes inconsistent.\"}\n  },\n  \"I3_S4\": {\n    \"legal_certainty\": {\"score\": 5, \"explanation\": \"Benefits statutes and administrative-law norms define eligibility, but emergency waivers and the absence of AI-specific allocation standards produce uneven legal clarity in a crisis.\"},\n    \"accountability\": {\"score\": 6, \"explanation\": \"The administering agency is identifiable and assistance decisions are often appealable, though disaster speed and automated triage reduce the practical ability to contest a denial in time.\"},\n    \"enforceability\": {\"score\": 6, \"explanation\": \"Administrative appeals, ombudsmen, and after-action audits can correct allocations, but emergency conditions delay remedies and weaken real-time enforcement.\"}\n  },\n  \"I3_S5\": {\n    \"legal_certainty\": {\"score\": 7, \"explanation\": \"Central-bank mandates, governance statutes, and publication duties are relatively clear and stable, even though advisory use of AI is not separately regulated.\"},\n    \"accountability\": {\"score\": 6, \"explanation\": \"The bank, not the model, owns the rate decision and faces legislative oversight, but unpublished model advice can obscure the reasoning the public and legislature can contest.\"},\n    \"enforceability\": {\"score\": 4, \"explanation\": \"Interest-rate choices are largely non-justiciable, so oversight is political and institutional rather than a robust legal enforcement mechanism.\"}\n  },\n  \"I3_S6\": {\n    \"legal_certainty\": {\"score\": 3, \"explanation\": \"Executive foreign-affairs discretion and classification practice leave standards for AI-generated country risk assessments opaque and highly variable.\"},\n    \"accountability\": {\"score\": 3, \"explanation\": \"Ministers retain internal responsibility, but affected states and people generally cannot see, attribute, or contest the assessment.\"},\n    \"enforceability\": {\"score\": 2, \"explanation\": \"Secrecy, limited justiciability, and diplomatic context leave almost no external mechanism to enforce quality, fairness, or correction of these assessments.\"}\n  }\n}",
+        "parsed": {
+          "I3_S1": {
+            "legal_certainty": {
+              "score": 4,
+              "explanation": "Due-process and equal-protection doctrines clearly apply to parole decisions, but courts and jurisdictions remain inconsistent on disclosure, validation, and the permissible role of proprietary risk scores."
+            },
+            "accountability": {
+              "score": 5,
+              "explanation": "The parole authority is the legal decision-maker and decisions are appealable, yet vendor opacity and split responsibility between agency and model provider weaken contestation of the score itself."
+            },
+            "enforceability": {
+              "score": 6,
+              "explanation": "Civil-rights litigation, discovery, and consent decrees offer real pathways, though technical opacity and immunity doctrines make enforcement slow and uneven."
+            }
+          },
+          "I3_S2": {
+            "legal_certainty": {
+              "score": 2,
+              "explanation": "Almost no jurisdiction has a clear, consistent rule on whether or how AI involvement in drafting legislation must be disclosed."
+            },
+            "accountability": {
+              "score": 4,
+              "explanation": "Elected sponsors remain politically accountable for bill text, but hidden model involvement prevents the public from attributing framing choices or contesting the drafting process."
+            },
+            "enforceability": {
+              "score": 2,
+              "explanation": "Without a disclosure duty or audit trail, there is no practical way to detect or sanction undisclosed AI drafting of proposed laws."
+            }
+          },
+          "I3_S3": {
+            "legal_certainty": {
+              "score": 4,
+              "explanation": "Some regimes, notably the EU Digital Services Act, set platform duties, but rules on autonomous moderation of political speech remain fragmented and unstable across major markets."
+            },
+            "accountability": {
+              "score": 5,
+              "explanation": "Large platforms increasingly must give notice and appeals, yet fully autonomous removal at scale still leaves speakers with weak, delayed, and mostly non-judicial redress."
+            },
+            "enforceability": {
+              "score": 6,
+              "explanation": "Regulators can fine platforms and compel process changes where platform law is mature, but cross-border speech and enforcement capacity make outcomes inconsistent."
+            }
+          },
+          "I3_S4": {
+            "legal_certainty": {
+              "score": 5,
+              "explanation": "Benefits statutes and administrative-law norms define eligibility, but emergency waivers and the absence of AI-specific allocation standards produce uneven legal clarity in a crisis."
+            },
+            "accountability": {
+              "score": 6,
+              "explanation": "The administering agency is identifiable and assistance decisions are often appealable, though disaster speed and automated triage reduce the practical ability to contest a denial in time."
+            },
+            "enforceability": {
+              "score": 6,
+              "explanation": "Administrative appeals, ombudsmen, and after-action audits can correct allocations, but emergency conditions delay remedies and weaken real-time enforcement."
+            }
+          },
+          "I3_S5": {
+            "legal_certainty": {
+              "score": 7,
+              "explanation": "Central-bank mandates, governance statutes, and publication duties are relatively clear and stable, even though advisory use of AI is not separately regulated."
+            },
+            "accountability": {
+              "score": 6,
+              "explanation": "The bank, not the model, owns the rate decision and faces legislative oversight, but unpublished model advice can obscure the reasoning the public and legislature can contest."
+            },
+            "enforceability": {
+              "score": 4,
+              "explanation": "Interest-rate choices are largely non-justiciable, so oversight is political and institutional rather than a robust legal enforcement mechanism."
+            }
+          },
+          "I3_S6": {
+            "legal_certainty": {
+              "score": 3,
+              "explanation": "Executive foreign-affairs discretion and classification practice leave standards for AI-generated country risk assessments opaque and highly variable."
+            },
+            "accountability": {
+              "score": 3,
+              "explanation": "Ministers retain internal responsibility, but affected states and people generally cannot see, attribute, or contest the assessment."
+            },
+            "enforceability": {
+              "score": 2,
+              "explanation": "Secrecy, limited justiciability, and diplomatic context leave almost no external mechanism to enforce quality, fairness, or correction of these assessments."
+            }
+          }
+        }
+      },
+      "3": {
+        "raw": "{\"I3_S1\":{\"legal_certainty\":{\"score\":4,\"explanation\":\"Constitutional and anti-discrimination rules apply to parole decisions, but courts and agencies still apply them inconsistently to opaque risk models.\"},\"accountability\":{\"score\":5,\"explanation\":\"The parole authority remains the formal decision-maker, yet vendor secrecy and limited access to model logic make scores hard to contest.\"},\"enforceability\":{\"score\":5,\"explanation\":\"Litigation and correctional oversight exist, but proprietary models and institutional deference make remedies slow and uneven.\"}},\"I3_S2\":{\"legal_certainty\":{\"score\":2,\"explanation\":\"Most jurisdictions have no clear rule requiring disclosure that an LLM drafted legislative text, so the legal status of secrecy is largely unsettled.\"},\"accountability\":{\"score\":3,\"explanation\":\"Elected sponsors formally own the bill, but undisclosed model involvement obscures who shaped the text and blocks informed public challenge.\"},\"enforceability\":{\"score\":2,\"explanation\":\"Without a disclosure duty or audit trail, there is no practical way to detect or sanction hidden AI drafting.\"}},\"I3_S3\":{\"legal_certainty\":{\"score\":5,\"explanation\":\"Duties around platform moderation are clearer in some regimes, such as the EU DSA, but rules on political speech remain fragmented globally.\"},\"accountability\":{\"score\":4,\"explanation\":\"The platform is an identifiable actor, yet fully autonomous moderation often lacks a timely, independent appeal for speakers.\"},\"enforceability\":{\"score\":6,\"explanation\":\"Where notice, appeal, and regulator fines are mandated they can be operationalized, though cross-border enforcement stays patchy.\"}},\"I3_S4\":{\"legal_certainty\":{\"score\":5,\"explanation\":\"Benefit-allocation and due-process rules exist, but emergency waivers make their application to AI housing allocation unpredictable.\"},\"accountability\":{\"score\":6,\"explanation\":\"A named public agency allocates aid and can be petitioned, though crisis speed and model opacity limit effective redress.\"},\"enforceability\":{\"score\":5,\"explanation\":\"Administrative appeals and oversight are available in principle, but disaster operations rarely support robust real-time enforcement.\"}},\"I3_S5\":{\"legal_certainty\":{\"score\":6,\"explanation\":\"Central-bank mandates and decision procedures are legally well defined, even though the formal status of AI advice inside them is not.\"},\"accountability\":{\"score\":6,\"explanation\":\"The bank, not the model, owns the rate decision and faces legislative oversight, but outsiders cannot readily contest internal model influence.\"},\"enforceability\":{\"score\":4,\"explanation\":\"Monetary policy is largely insulated from judicial review, so enforcement rests on political oversight rather than remedies for affected parties.\"}},\"I3_S6\":{\"legal_certainty\":{\"score\":3,\"explanation\":\"Foreign-affairs discretion and classification leave almost no settled public standard for how AI country-risk scores must be produced or used.\"},\"accountability\":{\"score\":3,\"explanation\":\"The ministry is formally responsible, yet affected governments and people usually cannot see or challenge the assessment.\"},\"enforceability\":{\"score\":3,\"explanation\":\"External enforcement is weak because courts defer in foreign policy and much of the supporting record can be withheld.\"}}}",
+        "parsed": {
+          "I3_S1": {
+            "legal_certainty": {
+              "score": 4,
+              "explanation": "Constitutional and anti-discrimination rules apply to parole decisions, but courts and agencies still apply them inconsistently to opaque risk models."
+            },
+            "accountability": {
+              "score": 5,
+              "explanation": "The parole authority remains the formal decision-maker, yet vendor secrecy and limited access to model logic make scores hard to contest."
+            },
+            "enforceability": {
+              "score": 5,
+              "explanation": "Litigation and correctional oversight exist, but proprietary models and institutional deference make remedies slow and uneven."
+            }
+          },
+          "I3_S2": {
+            "legal_certainty": {
+              "score": 2,
+              "explanation": "Most jurisdictions have no clear rule requiring disclosure that an LLM drafted legislative text, so the legal status of secrecy is largely unsettled."
+            },
+            "accountability": {
+              "score": 3,
+              "explanation": "Elected sponsors formally own the bill, but undisclosed model involvement obscures who shaped the text and blocks informed public challenge."
+            },
+            "enforceability": {
+              "score": 2,
+              "explanation": "Without a disclosure duty or audit trail, there is no practical way to detect or sanction hidden AI drafting."
+            }
+          },
+          "I3_S3": {
+            "legal_certainty": {
+              "score": 5,
+              "explanation": "Duties around platform moderation are clearer in some regimes, such as the EU DSA, but rules on political speech remain fragmented globally."
+            },
+            "accountability": {
+              "score": 4,
+              "explanation": "The platform is an identifiable actor, yet fully autonomous moderation often lacks a timely, independent appeal for speakers."
+            },
+            "enforceability": {
+              "score": 6,
+              "explanation": "Where notice, appeal, and regulator fines are mandated they can be operationalized, though cross-border enforcement stays patchy."
+            }
+          },
+          "I3_S4": {
+            "legal_certainty": {
+              "score": 5,
+              "explanation": "Benefit-allocation and due-process rules exist, but emergency waivers make their application to AI housing allocation unpredictable."
+            },
+            "accountability": {
+              "score": 6,
+              "explanation": "A named public agency allocates aid and can be petitioned, though crisis speed and model opacity limit effective redress."
+            },
+            "enforceability": {
+              "score": 5,
+              "explanation": "Administrative appeals and oversight are available in principle, but disaster operations rarely support robust real-time enforcement."
+            }
+          },
+          "I3_S5": {
+            "legal_certainty": {
+              "score": 6,
+              "explanation": "Central-bank mandates and decision procedures are legally well defined, even though the formal status of AI advice inside them is not."
+            },
+            "accountability": {
+              "score": 6,
+              "explanation": "The bank, not the model, owns the rate decision and faces legislative oversight, but outsiders cannot readily contest internal model influence."
+            },
+            "enforceability": {
+              "score": 4,
+              "explanation": "Monetary policy is largely insulated from judicial review, so enforcement rests on political oversight rather than remedies for affected parties."
+            }
+          },
+          "I3_S6": {
+            "legal_certainty": {
+              "score": 3,
+              "explanation": "Foreign-affairs discretion and classification leave almost no settled public standard for how AI country-risk scores must be produced or used."
+            },
+            "accountability": {
+              "score": 3,
+              "explanation": "The ministry is formally responsible, yet affected governments and people usually cannot see or challenge the assessment."
+            },
+            "enforceability": {
+              "score": 3,
+              "explanation": "External enforcement is weak because courts defer in foreign policy and much of the supporting record can be withheld."
+            }
+          }
+        }
+      }
+    }
   }
 }

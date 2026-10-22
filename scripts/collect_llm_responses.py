@@ -50,7 +50,7 @@ ACTIVE_INSTRUMENTS = ["instrument_1", "instrument_2", "instrument_3", "instrumen
 RUN_LOG_FILE = RAW_DIR / "run_log_grok.json"
 
 # Model used for I5 source extraction (always Claude Sonnet, regardless of original model)
-EXTRACTOR_MODEL = "claude-sonnet-4-5"
+EXTRACTOR_MODEL = "claude-sonnet-4-5-20250929"
 
 # Display labels for progress output
 MODEL_LABELS = {
