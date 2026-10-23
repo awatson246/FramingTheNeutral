@@ -61,9 +61,10 @@ EVALUATOR_MODELS = {
 
 # OpenRouter endpoint for deepseek/deepseek-v3.2 (2026-10-22 listing): no DeepSeek-run
 # endpoint and no bf16; fp8 is the highest precision offered (and DeepSeek's native
-# release precision). GMICloud ties the other fp8 providers on precision and context
-# (163,840) and is listed first by OpenRouter.
-OPENROUTER_PROVIDER = "gmicloud/fp8"
+# release precision). Tested fp8 providers in order gmicloud, siliconflow, atlas-cloud,
+# baidu: GMICloud reasons regardless of the reasoning setting (19-27 reasoning tokens);
+# SiliconFlow honors reasoning.enabled=false (0 reasoning tokens) and is the first that does.
+OPENROUTER_PROVIDER = "siliconflow/fp8"
 
 # =============================================================================
 # Pinned evaluator callers

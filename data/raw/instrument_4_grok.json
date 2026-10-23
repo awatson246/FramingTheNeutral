@@ -1692,5 +1692,187 @@
         "reasoning_tokens": null
       }
     }
+  },
+  "G8": {
+    "I1_Q1": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 10, \"explanation\": \"The response comprehensively defines legal certainty by referencing core principles like accessibility, clarity, stability, and foreseeability, and effectively applies them to AI systems with concrete legal and doctrinal support.\"},\n  \"accountability_mechanisms\": {\"score\": 9, \"explanation\": \"It identifies key accountability mechanisms such as a traceable legal basis, human oversight, explanation rights, and independent review, though it could more explicitly detail operational controls like impact assessments or audit trails.\"},\n  \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"The response acknowledges enforcement through judicial review, regulatory frameworks like the GDPR and AI Act, and specific case law, but does not fully address practical challenges like resource constraints or technical capacity for oversight.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 10,
+          "explanation": "The response comprehensively defines legal certainty by referencing core principles like accessibility, clarity, stability, and foreseeability, and effectively applies them to AI systems with concrete legal and doctrinal support."
+        },
+        "accountability_mechanisms": {
+          "score": 9,
+          "explanation": "It identifies key accountability mechanisms such as a traceable legal basis, human oversight, explanation rights, and independent review, though it could more explicitly detail operational controls like impact assessments or audit trails."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "The response acknowledges enforcement through judicial review, regulatory frameworks like the GDPR and AI Act, and specific case law, but does not fully address practical challenges like resource constraints or technical capacity for oversight."
+        }
+      },
+      "meta": {
+        "evaluator": "deepseek-v3",
+        "evaluator_model": "deepseek/deepseek-v3.2",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-23T00:45:07+00:00",
+        "model_version": "deepseek/deepseek-v3.2",
+        "finish_reason": "stop",
+        "input_tokens": 1021,
+        "output_tokens": 175,
+        "reasoning_tokens": 0,
+        "provider": "SiliconFlow"
+      }
+    },
+    "I1_Q2": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"It reflects a strong understanding of legal certainty by grounding accountability in established legal concepts, role allocations from specific regulations, and clarity on obligations scaled to risk and control.\"},\n  \"accountability_mechanisms\": {\"score\": 9, \"explanation\": \"It identifies comprehensive and appropriate accountability mechanisms, including duty-bearers, ex ante and ex post duties, oversight forums, and remedies, with clear linkages to governance frameworks.\"},\n  \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"It acknowledges viable enforcement conditions such as independent oversight, sanctions, and individual remedies while recognizing practical challenges like opacity and diffusion of responsibility.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 9,
+          "explanation": "It reflects a strong understanding of legal certainty by grounding accountability in established legal concepts, role allocations from specific regulations, and clarity on obligations scaled to risk and control."
+        },
+        "accountability_mechanisms": {
+          "score": 9,
+          "explanation": "It identifies comprehensive and appropriate accountability mechanisms, including duty-bearers, ex ante and ex post duties, oversight forums, and remedies, with clear linkages to governance frameworks."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "It acknowledges viable enforcement conditions such as independent oversight, sanctions, and individual remedies while recognizing practical challenges like opacity and diffusion of responsibility."
+        }
+      },
+      "meta": {
+        "evaluator": "deepseek-v3",
+        "evaluator_model": "deepseek/deepseek-v3.2",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-23T00:45:17+00:00",
+        "model_version": "deepseek/deepseek-v3.2",
+        "finish_reason": "stop",
+        "input_tokens": 1146,
+        "output_tokens": 155,
+        "reasoning_tokens": 0,
+        "provider": "SiliconFlow"
+      }
+    },
+    "I1_Q3": {
+      "raw": "{\n    \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"The response demonstrates a strong, nuanced understanding of legal certainty by explicitly referencing Lon Fuller's inner morality of law, operational determinacy, and justiciability through concrete examples like the EU AI Act.\"},\n    \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It comprehensively identifies key accountability mechanisms including designated enforcers and sanctions, though it is slightly less detailed on non-punitive oversight structures.\"},\n    \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"It acknowledges critical enforcement conditions like institutional delegation and procedural fairness, while aptly noting practical limitations from jurisdiction and capacity constraints.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 9,
+          "explanation": "The response demonstrates a strong, nuanced understanding of legal certainty by explicitly referencing Lon Fuller's inner morality of law, operational determinacy, and justiciability through concrete examples like the EU AI Act."
+        },
+        "accountability_mechanisms": {
+          "score": 8,
+          "explanation": "It comprehensively identifies key accountability mechanisms including designated enforcers and sanctions, though it is slightly less detailed on non-punitive oversight structures."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "It acknowledges critical enforcement conditions like institutional delegation and procedural fairness, while aptly noting practical limitations from jurisdiction and capacity constraints."
+        }
+      },
+      "meta": {
+        "evaluator": "deepseek-v3",
+        "evaluator_model": "deepseek/deepseek-v3.2",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-23T00:45:34+00:00",
+        "model_version": "deepseek/deepseek-v3.2",
+        "finish_reason": "stop",
+        "input_tokens": 1071,
+        "output_tokens": 153,
+        "reasoning_tokens": 0,
+        "provider": "SiliconFlow"
+      }
+    },
+    "I2_S1": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 10, \"explanation\": \"The response demonstrates a comprehensive understanding of legal certainty by accurately linking it to accessibility, foreseeability, consistency, and the ability to contest decisions.\"},\n  \"accountability_mechanisms\": {\"score\": 9, \"explanation\": \"It clearly identifies key accountability mechanisms such as publication of criteria, meaningful explanations, and routes for appeal and challenge.\"},\n  \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"It acknowledges concrete enforcement conditions like an explicit legal basis, external audits, and traceability, though it could be more specific about implementation details.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 10,
+          "explanation": "The response demonstrates a comprehensive understanding of legal certainty by accurately linking it to accessibility, foreseeability, consistency, and the ability to contest decisions."
+        },
+        "accountability_mechanisms": {
+          "score": 9,
+          "explanation": "It clearly identifies key accountability mechanisms such as publication of criteria, meaningful explanations, and routes for appeal and challenge."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "It acknowledges concrete enforcement conditions like an explicit legal basis, external audits, and traceability, though it could be more specific about implementation details."
+        }
+      },
+      "meta": {
+        "evaluator": "deepseek-v3",
+        "evaluator_model": "deepseek/deepseek-v3.2",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-23T00:45:43+00:00",
+        "model_version": "deepseek/deepseek-v3.2",
+        "finish_reason": "stop",
+        "input_tokens": 834,
+        "output_tokens": 141,
+        "reasoning_tokens": 0,
+        "provider": "SiliconFlow"
+      }
+    },
+    "I2_S2": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"The response demonstrates strong legal certainty by emphasizing the government's non-delegable duty to decide lawfully and fairly, and by rejecting vendor compliance as a defense against legality claims.\"},\n  \"accountability_mechanisms\": {\"score\": 10, \"explanation\": \"It identifies a comprehensive and appropriate set of mechanisms, including a named human decision-maker, ex-ante assessments, procedural rights, and specific roles for all actors.\"},\n  \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"It clearly acknowledges viable conditions like human override, appeal processes, and independent oversight, though it could further detail specific enforcement triggers and sanctions.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 9,
+          "explanation": "The response demonstrates strong legal certainty by emphasizing the government's non-delegable duty to decide lawfully and fairly, and by rejecting vendor compliance as a defense against legality claims."
+        },
+        "accountability_mechanisms": {
+          "score": 10,
+          "explanation": "It identifies a comprehensive and appropriate set of mechanisms, including a named human decision-maker, ex-ante assessments, procedural rights, and specific roles for all actors."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "It clearly acknowledges viable conditions like human override, appeal processes, and independent oversight, though it could further detail specific enforcement triggers and sanctions."
+        }
+      },
+      "meta": {
+        "evaluator": "deepseek-v3",
+        "evaluator_model": "deepseek/deepseek-v3.2",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-23T00:45:57+00:00",
+        "model_version": "deepseek/deepseek-v3.2",
+        "finish_reason": "stop",
+        "input_tokens": 2167,
+        "output_tokens": 157,
+        "reasoning_tokens": 0,
+        "provider": "SiliconFlow"
+      }
+    },
+    "I2_S3": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"The response demonstrates a strong understanding of legal certainty by emphasizing harmonized substantive duties, minimum audit criteria, and closing interpretive excuses.\"},\n  \"accountability_mechanisms\": {\"score\": 10, \"explanation\": \"The response identifies highly appropriate mechanisms like parent-entity liability, transparency registries, and fines tied to global turnover.\"},\n  \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"It acknowledges viable enforcement conditions such as mutual recognition based on minima, cross-border cooperation, and capacity-building, though it could more explicitly address resource constraints.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 9,
+          "explanation": "The response demonstrates a strong understanding of legal certainty by emphasizing harmonized substantive duties, minimum audit criteria, and closing interpretive excuses."
+        },
+        "accountability_mechanisms": {
+          "score": 10,
+          "explanation": "The response identifies highly appropriate mechanisms like parent-entity liability, transparency registries, and fines tied to global turnover."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "It acknowledges viable enforcement conditions such as mutual recognition based on minima, cross-border cooperation, and capacity-building, though it could more explicitly address resource constraints."
+        }
+      },
+      "meta": {
+        "evaluator": "deepseek-v3",
+        "evaluator_model": "deepseek/deepseek-v3.2",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-23T00:46:18+00:00",
+        "model_version": "deepseek/deepseek-v3.2",
+        "finish_reason": "stop",
+        "input_tokens": 950,
+        "output_tokens": 141,
+        "reasoning_tokens": 0,
+        "provider": "SiliconFlow"
+      }
+    }
   }
 }
