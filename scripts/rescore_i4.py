@@ -59,6 +59,12 @@ EVALUATOR_MODELS = {
     "grok-4.7":                      "grok-4.7",
 }
 
+# OpenRouter endpoint for deepseek/deepseek-v3.2 (2026-10-22 listing): no DeepSeek-run
+# endpoint and no bf16; fp8 is the highest precision offered (and DeepSeek's native
+# release precision). GMICloud ties the other fp8 providers on precision and context
+# (163,840) and is listed first by OpenRouter.
+OPENROUTER_PROVIDER = "gmicloud/fp8"
+
 # =============================================================================
 # Pinned evaluator callers
 # Same parameters as the original callers in collect_llm_responses.py; only the
@@ -116,8 +122,13 @@ def eval_deepseek_openrouter(system_prompt: str, user_prompt: str, max_tokens: i
         model=EVALUATOR_MODELS["deepseek-v3"],
         messages=_messages(system_prompt, user_prompt),
         max_tokens=max_tokens,
-        # Non-thinking mode, matching how deepseek-chat behaved
-        extra_body={"reasoning": {"enabled": False}},
+        extra_body={
+            # Non-thinking mode, matching how deepseek-chat behaved
+            "reasoning": {"enabled": False},
+            # Pinned endpoint, no fallbacks (see OPENROUTER_PROVIDER)
+            "provider": {"order": [OPENROUTER_PROVIDER], "quantizations": ["fp8"],
+                         "allow_fallbacks": False},
+        },
     )
     return _record_openai_style(resp, provider=(resp.model_extra or {}).get("provider"))
 
@@ -268,14 +279,16 @@ if __name__ == "__main__":
     parser.add_argument("--dry-run", action="store_true", help="Print call counts; no API calls.")
     parser.add_argument("--smoke-openrouter", action="store_true",
                         help="One tiny call to deepseek/deepseek-v3.2 via OpenRouter.")
+    parser.add_argument("--skip-evaluator", nargs="+", default=[], choices=list(EVALUATOR_MODELS),
+                        help="Evaluator keys to leave out of this run (their cells stay empty).")
     args = parser.parse_args()
 
     if args.smoke_openrouter:
         smoke_openrouter()
         raise SystemExit(0)
 
-    jobs    = build_jobs()
-    outputs = {RESCORE_FILE: load_json(RESCORE_FILE, {}), GROK_FILE: load_json(GROK_FILE, {})}
+    jobs    = [j for j in build_jobs() if j["evaluator"] not in args.skip_evaluator]
+    outputs ={RESCORE_FILE: load_json(RESCORE_FILE, {}), GROK_FILE: load_json(GROK_FILE, {})}
 
     if args.dry_run:
         dry_run(jobs, outputs)

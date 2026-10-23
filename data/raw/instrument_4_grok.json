@@ -1,0 +1,1696 @@
+{
+  "G1": {
+    "I1_Q1": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 7, \"explanation\": \"It correctly ties legal certainty to clear, predictable, consistently applied rules, foreseeable consequences, and the ability to challenge decisions, but blends that doctrine with general transparency and fairness aims and omits precision, accessibility, and non-retroactivity of the governing norms.\"},\n  \"accountability_mechanisms\": {\"score\": 4, \"explanation\": \"It gestures at challenge rights, explainability, and the EU AI Act, yet does not identify concrete mechanisms such as appeal procedures, judicial review, audit trails, human oversight, or allocated liability.\"},\n  \"enforcement_conditions\": {\"score\": 3, \"explanation\": \"It notes that regulation is needed but does not address viable enforcement conditions such as competent authorities, standing, remedies, sanctions, or the procedural capacity to contest AI decisions.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 7,
+          "explanation": "It correctly ties legal certainty to clear, predictable, consistently applied rules, foreseeable consequences, and the ability to challenge decisions, but blends that doctrine with general transparency and fairness aims and omits precision, accessibility, and non-retroactivity of the governing norms."
+        },
+        "accountability_mechanisms": {
+          "score": 4,
+          "explanation": "It gestures at challenge rights, explainability, and the EU AI Act, yet does not identify concrete mechanisms such as appeal procedures, judicial review, audit trails, human oversight, or allocated liability."
+        },
+        "enforcement_conditions": {
+          "score": 3,
+          "explanation": "It notes that regulation is needed but does not address viable enforcement conditions such as competent authorities, standing, remedies, sanctions, or the procedural capacity to contest AI decisions."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "gpt-4o",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:38:19+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 1694,
+        "answer_tokens": 183,
+        "reasoning_tokens": 659
+      }
+    },
+    "I1_Q2": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 5, \"explanation\": \"It cites GDPR, the EU AI Act, and OECD principles as legal anchors but never addresses legal certainty itself—clarity, predictability, and precise obligations—and loosely treats GDPR and non-binding principles as if they supplied a settled accountability regime.\"},\n  \"accountability_mechanisms\": {\"score\": 6, \"explanation\": \"It correctly names developers, deployers, and operators, their duties, and addressees, and mentions conformity assessments, but stays high-level and omits concrete mechanisms such as liability, redress, independent audit, logging, and human oversight.\"},\n  \"enforcement_conditions\": {\"score\": 4, \"explanation\": \"It gestures at regulators and ongoing compliance without discussing viable enforcement conditions—sanctions, supervisory powers, standing, resources, jurisdiction, or the gap between binding law and soft-law principles.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 5,
+          "explanation": "It cites GDPR, the EU AI Act, and OECD principles as legal anchors but never addresses legal certainty itself—clarity, predictability, and precise obligations—and loosely treats GDPR and non-binding principles as if they supplied a settled accountability regime."
+        },
+        "accountability_mechanisms": {
+          "score": 6,
+          "explanation": "It correctly names developers, deployers, and operators, their duties, and addressees, and mentions conformity assessments, but stays high-level and omits concrete mechanisms such as liability, redress, independent audit, logging, and human oversight."
+        },
+        "enforcement_conditions": {
+          "score": 4,
+          "explanation": "It gestures at regulators and ongoing compliance without discussing viable enforcement conditions—sanctions, supervisory powers, standing, resources, jurisdiction, or the gap between binding law and soft-law principles."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "gpt-4o",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:38:39+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 1714,
+        "answer_tokens": 194,
+        "reasoning_tokens": 879
+      }
+    },
+    "I1_Q3": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 7, \"explanation\": \"The response correctly ties legal certainty to clear, specific, transparent, and operable obligations, but it does not address predictability, consistent interpretation, or accessibility of the law.\"},\n  \"accountability_mechanisms\": {\"score\": 7, \"explanation\": \"It identifies monitoring, defined procedures, and sanctions such as GDPR penalties, yet it omits concrete mechanisms like independent oversight, audits, remedies, and allocation of responsibility among actors.\"},\n  \"enforcement_conditions\": {\"score\": 6, \"explanation\": \"It notes the need for legal authority, institutional capacity to monitor and sanction, and feasibility for obligated parties, but it does not address detection of non-compliance, resources, or cross-border enforceability.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 7,
+          "explanation": "The response correctly ties legal certainty to clear, specific, transparent, and operable obligations, but it does not address predictability, consistent interpretation, or accessibility of the law."
+        },
+        "accountability_mechanisms": {
+          "score": 7,
+          "explanation": "It identifies monitoring, defined procedures, and sanctions such as GDPR penalties, yet it omits concrete mechanisms like independent oversight, audits, remedies, and allocation of responsibility among actors."
+        },
+        "enforcement_conditions": {
+          "score": 6,
+          "explanation": "It notes the need for legal authority, institutional capacity to monitor and sanction, and feasibility for obligated parties, but it does not address detection of non-compliance, resources, or cross-border enforceability."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "gpt-4o",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:38:53+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 1722,
+        "answer_tokens": 169,
+        "reasoning_tokens": 612
+      }
+    },
+    "I2_S1": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 7, \"explanation\": \"It correctly ties legal certainty to clarity, precision, and predictability and applies that to secret origin-based thresholds and inconsistent outcomes, but dilutes the concept by folding in accountability and non-discrimination.\"},\n  \"accountability_mechanisms\": {\"score\": 4, \"explanation\": \"It notes the lack of recourse and calls for accountability in general, but does not identify concrete mechanisms such as a duty to give reasons, appeal rights, or independent oversight.\"},\n  \"enforcement_conditions\": {\"score\": 3, \"explanation\": \"It does not acknowledge viable enforcement conditions such as judicial review, a statutory disclosure duty, standing, or remedies, and instead stops at design recommendations.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 7,
+          "explanation": "It correctly ties legal certainty to clarity, precision, and predictability and applies that to secret origin-based thresholds and inconsistent outcomes, but dilutes the concept by folding in accountability and non-discrimination."
+        },
+        "accountability_mechanisms": {
+          "score": 4,
+          "explanation": "It notes the lack of recourse and calls for accountability in general, but does not identify concrete mechanisms such as a duty to give reasons, appeal rights, or independent oversight."
+        },
+        "enforcement_conditions": {
+          "score": 3,
+          "explanation": "It does not acknowledge viable enforcement conditions such as judicial review, a statutory disclosure duty, standing, or remedies, and instead stops at design recommendations."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "gpt-4o",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:39:10+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 1879,
+        "answer_tokens": 162,
+        "reasoning_tokens": 800
+      }
+    },
+    "I2_S2": {
+      "raw": "{\"legal_certainty_adequacy\": {\"score\": 5, \"explanation\": \"It invokes general legal compliance but never states clear, predictable duties or review standards that would resolve the city–vendor diffusion of responsibility.\"}, \"accountability_mechanisms\": {\"score\": 7, \"explanation\": \"It appropriately identifies transparency, human oversight, appeals, and independent audits, though it under-specifies liability allocation and individual remedies.\"}, \"enforcement_conditions\": {\"score\": 4, \"explanation\": \"It names appeals and audits without addressing standing, forums, sanctions, or remedies that would make enforcement viable when both parties disclaim responsibility.\"}}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 5,
+          "explanation": "It invokes general legal compliance but never states clear, predictable duties or review standards that would resolve the city–vendor diffusion of responsibility."
+        },
+        "accountability_mechanisms": {
+          "score": 7,
+          "explanation": "It appropriately identifies transparency, human oversight, appeals, and independent audits, though it under-specifies liability allocation and individual remedies."
+        },
+        "enforcement_conditions": {
+          "score": 4,
+          "explanation": "It names appeals and audits without addressing standing, forums, sanctions, or remedies that would make enforcement viable when both parties disclaim responsibility."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "gpt-4o",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:39:26+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2038,
+        "answer_tokens": 132,
+        "reasoning_tokens": 845
+      }
+    },
+    "I2_S3": {
+      "raw": "{\"legal_certainty_adequacy\": {\"score\": 6, \"explanation\": \"It links inconsistent local implementation to unpredictable obligations and calls for harmonization and clearer guidance, but it does not develop core legal-certainty ideas such as precise norms, conflict rules, or foreseeable duties under one national rule.\"}, \"accountability_mechanisms\": {\"score\": 6, \"explanation\": \"It identifies a coordinating authority, monitoring, incentives, and penalties, yet it omits concrete firm-level mechanisms such as independent auditors, disclosure, management liability, and parent-subsidiary responsibility.\"}, \"enforcement_conditions\": {\"score\": 5, \"explanation\": \"It notes resource gaps and selective compliance where enforcement is weak, but treats a cross-border central authority as readily viable and underplays sovereignty, extraterritorial limits, and detection constraints.\"}}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 6,
+          "explanation": "It links inconsistent local implementation to unpredictable obligations and calls for harmonization and clearer guidance, but it does not develop core legal-certainty ideas such as precise norms, conflict rules, or foreseeable duties under one national rule."
+        },
+        "accountability_mechanisms": {
+          "score": 6,
+          "explanation": "It identifies a coordinating authority, monitoring, incentives, and penalties, yet it omits concrete firm-level mechanisms such as independent auditors, disclosure, management liability, and parent-subsidiary responsibility."
+        },
+        "enforcement_conditions": {
+          "score": 5,
+          "explanation": "It notes resource gaps and selective compliance where enforcement is weak, but treats a cross-border central authority as readily viable and underplays sovereignty, extraterritorial limits, and detection constraints."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "gpt-4o",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:39:47+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 1921,
+        "answer_tokens": 171,
+        "reasoning_tokens": 1066
+      }
+    }
+  },
+  "G2": {
+    "I1_Q1": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 8, \"explanation\": \"It correctly frames legal certainty as clarity, precision, foreseeability, and reliance, and applies that core to public-sector AI, though it somewhat broadens the doctrine into adjacent transparency and due-process values.\"},\n  \"accountability_mechanisms\": {\"score\": 7, \"explanation\": \"It identifies appropriate mechanisms such as notice, human review, a legislative basis, impact assessments, transparency registers, reasoned-decision duties, and post-market monitoring, but lists them rather than explaining a coherent accountability structure.\"},\n  \"enforcement_conditions\": {\"score\": 6, \"explanation\": \"It recognizes that opacity, responsibility gaps, and adaptive systems hinder enforcement and gestures at remedies and monitoring, but does not specify viable conditions such as access rights, standing, review standards, or institutional enforcement powers.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 8,
+          "explanation": "It correctly frames legal certainty as clarity, precision, foreseeability, and reliance, and applies that core to public-sector AI, though it somewhat broadens the doctrine into adjacent transparency and due-process values."
+        },
+        "accountability_mechanisms": {
+          "score": 7,
+          "explanation": "It identifies appropriate mechanisms such as notice, human review, a legislative basis, impact assessments, transparency registers, reasoned-decision duties, and post-market monitoring, but lists them rather than explaining a coherent accountability structure."
+        },
+        "enforcement_conditions": {
+          "score": 6,
+          "explanation": "It recognizes that opacity, responsibility gaps, and adaptive systems hinder enforcement and gestures at remedies and monitoring, but does not specify viable conditions such as access rights, standing, review standards, or institutional enforcement powers."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "claude-sonnet",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:40:07+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2433,
+        "answer_tokens": 186,
+        "reasoning_tokens": 989
+      }
+    },
+    "I1_Q2": {
+      "raw": "{\"legal_certainty_adequacy\": {\"score\": 7, \"explanation\": \"The response cites specific legal provisions that can make duties predictable, but it blends binding rules with soft law and proposed instruments without clear qualification, which weakens legal certainty.\"}, \"accountability_mechanisms\": {\"score\": 9, \"explanation\": \"It identifies a well-distributed set of ex ante, ex post, procedural, and organizational mechanisms and maps who is accountable, for what, and to whom.\"}, \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"It acknowledges regulators, sanctions, redress, resourcing, and structural barriers such as opacity and causation, though practical conditions like standing and cross-border enforcement are only lightly addressed.\"}}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 7,
+          "explanation": "The response cites specific legal provisions that can make duties predictable, but it blends binding rules with soft law and proposed instruments without clear qualification, which weakens legal certainty."
+        },
+        "accountability_mechanisms": {
+          "score": 9,
+          "explanation": "It identifies a well-distributed set of ex ante, ex post, procedural, and organizational mechanisms and maps who is accountable, for what, and to whom."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "It acknowledges regulators, sanctions, redress, resourcing, and structural barriers such as opacity and causation, though practical conditions like standing and cross-border enforcement are only lightly addressed."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "claude-sonnet",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:40:26+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2638,
+        "answer_tokens": 153,
+        "reasoning_tokens": 933
+      }
+    },
+    "I1_Q3": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 6, \"explanation\": \"It ties enforceability to concrete, measurable duties and contrasts prescriptive rules with vague principles, but it never develops legal certainty itself—foreseeability, definitional precision, consistent interpretation, or legitimate expectations—so regulated parties’ ability to know their obligations in advance is only partly addressed.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It identifies appropriate mechanisms including competent authorities, investigative and audit powers, graduated sanctions, judicial review, private rights of action, conformity assessment, and post-market monitoring, with only thinner treatment of value-chain liability and independent audit.\"},\n  \"enforcement_conditions\": {\"score\": 7, \"explanation\": \"It acknowledges real conditions and limits—institutional capacity, sanction severity and probability, technical expertise, opacity, jurisdictional arbitrage, and political will—but overstates how readily the cited regimes are enforceable and under-specifies what would make enforcement operationally viable.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 6,
+          "explanation": "It ties enforceability to concrete, measurable duties and contrasts prescriptive rules with vague principles, but it never develops legal certainty itself—foreseeability, definitional precision, consistent interpretation, or legitimate expectations—so regulated parties’ ability to know their obligations in advance is only partly addressed."
+        },
+        "accountability_mechanisms": {
+          "score": 8,
+          "explanation": "It identifies appropriate mechanisms including competent authorities, investigative and audit powers, graduated sanctions, judicial review, private rights of action, conformity assessment, and post-market monitoring, with only thinner treatment of value-chain liability and independent audit."
+        },
+        "enforcement_conditions": {
+          "score": 7,
+          "explanation": "It acknowledges real conditions and limits—institutional capacity, sanction severity and probability, technical expertise, opacity, jurisdictional arbitrage, and political will—but overstates how readily the cited regimes are enforceable and under-specifies what would make enforcement operationally viable."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "claude-sonnet",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:40:58+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2695,
+        "answer_tokens": 214,
+        "reasoning_tokens": 1715
+      }
+    },
+    "I2_S1": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 8, \"explanation\": \"It accurately links undisclosed origin-based thresholds and inconsistent outcomes to foreseeability, accessibility, consistency, and legitimate expectations, though it somewhat blends legal certainty with transparency and non-discrimination.\"},\n  \"accountability_mechanisms\": {\"score\": 7, \"explanation\": \"It identifies appropriate mechanisms such as factor disclosure, individual and contrastive explanations, legal authorization, audits, impact assessments, and override-capable human review, but is thinner on liability, independent regulators, and concrete redress.\"},\n  \"enforcement_conditions\": {\"score\": 4, \"explanation\": \"It lists design mandates and notes appeal barriers, but does not acknowledge viable enforcement conditions such as standing, remedies, supervisory powers, sanctions, or institutional capacity against a national immigration authority.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 8,
+          "explanation": "It accurately links undisclosed origin-based thresholds and inconsistent outcomes to foreseeability, accessibility, consistency, and legitimate expectations, though it somewhat blends legal certainty with transparency and non-discrimination."
+        },
+        "accountability_mechanisms": {
+          "score": 7,
+          "explanation": "It identifies appropriate mechanisms such as factor disclosure, individual and contrastive explanations, legal authorization, audits, impact assessments, and override-capable human review, but is thinner on liability, independent regulators, and concrete redress."
+        },
+        "enforcement_conditions": {
+          "score": 4,
+          "explanation": "It lists design mandates and notes appeal barriers, but does not acknowledge viable enforcement conditions such as standing, remedies, supervisory powers, sanctions, or institutional capacity against a national immigration authority."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "claude-sonnet",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:41:17+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2396,
+        "answer_tokens": 176,
+        "reasoning_tokens": 1058
+      }
+    },
+    "I2_S2": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 7, \"explanation\": \"It correctly treats a named, explainable decision-maker and statutory clarity as necessary for predictable rights, but stays at principle level and does not specify review standards or how vague duties would be made legally determinate.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It identifies appropriate layered mechanisms—named authority, explanation, appeal with override, impact assessment, procurement and audit rights, and individual contest rights—without equating shared responsibility with no responsibility.\"},\n  \"enforcement_conditions\": {\"score\": 6, \"explanation\": \"It notes penalties, vendor liability, independent review, and audit rights, but does not address whether enforcement is viable given standing, remedies, resources, capacity, or conflicts in city-controlled appeals.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 7,
+          "explanation": "It correctly treats a named, explainable decision-maker and statutory clarity as necessary for predictable rights, but stays at principle level and does not specify review standards or how vague duties would be made legally determinate."
+        },
+        "accountability_mechanisms": {
+          "score": 8,
+          "explanation": "It identifies appropriate layered mechanisms—named authority, explanation, appeal with override, impact assessment, procurement and audit rights, and individual contest rights—without equating shared responsibility with no responsibility."
+        },
+        "enforcement_conditions": {
+          "score": 6,
+          "explanation": "It notes penalties, vendor liability, independent review, and audit rights, but does not address whether enforcement is viable given standing, remedies, resources, capacity, or conflicts in city-controlled appeals."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "claude-sonnet",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:41:32+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2409,
+        "answer_tokens": 177,
+        "reasoning_tokens": 664
+      }
+    },
+    "I2_S3": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 6, \"explanation\": \"It recognizes interpretive variance, staggered implementation, and the value of shared standards and advance rulings, but treats legal certainty mainly as harmonization and proposes effects-based jurisdiction and a strictest-standard default that can make obligations less predictable.\"},\n  \"accountability_mechanisms\": {\"score\": 7, \"explanation\": \"It identifies relevant mechanisms such as lead regulators, joint investigations, public compliance disclosure, parent-subsidiary liability issues, and market-access conditionality, though these remain high-level without clear duties, standing, or remedies.\"},\n  \"enforcement_conditions\": {\"score\": 6, \"explanation\": \"It acknowledges capacity gaps, data-localization limits, and uneven penalties and suggests cooperation and technical assistance, but does not show that ambitious tools like a global council or cross-border automated monitoring are practically or legally enforceable.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 6,
+          "explanation": "It recognizes interpretive variance, staggered implementation, and the value of shared standards and advance rulings, but treats legal certainty mainly as harmonization and proposes effects-based jurisdiction and a strictest-standard default that can make obligations less predictable."
+        },
+        "accountability_mechanisms": {
+          "score": 7,
+          "explanation": "It identifies relevant mechanisms such as lead regulators, joint investigations, public compliance disclosure, parent-subsidiary liability issues, and market-access conditionality, though these remain high-level without clear duties, standing, or remedies."
+        },
+        "enforcement_conditions": {
+          "score": 6,
+          "explanation": "It acknowledges capacity gaps, data-localization limits, and uneven penalties and suggests cooperation and technical assistance, but does not show that ambitious tools like a global council or cross-border automated monitoring are practically or legally enforceable."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "claude-sonnet",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:41:47+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2397,
+        "answer_tokens": 193,
+        "reasoning_tokens": 758
+      }
+    }
+  },
+  "G3": {
+    "I1_Q1": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 8, \"explanation\": \"The response correctly captures legal certainty as clarity, predictability, stability, and foreseeability of legal consequences, and accurately describes its absence as opacity and arbitrariness, though it somewhat conflates that doctrine with algorithmic transparency.\"},\n  \"accountability_mechanisms\": {\"score\": 7, \"explanation\": \"It identifies appropriate mechanisms—clear authorization, defined purposes, human oversight, and accessible review and redress—but does not develop concrete tools such as audit duties, independent oversight, or liability allocation.\"},\n  \"enforcement_conditions\": {\"score\": 5, \"explanation\": \"It invokes due process, fair hearing, and contestability, yet does not specify viable enforcement conditions such as standing, access to reasons or evidence, review standards, or institutional capacity to make those remedies effective.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 8,
+          "explanation": "The response correctly captures legal certainty as clarity, predictability, stability, and foreseeability of legal consequences, and accurately describes its absence as opacity and arbitrariness, though it somewhat conflates that doctrine with algorithmic transparency."
+        },
+        "accountability_mechanisms": {
+          "score": 7,
+          "explanation": "It identifies appropriate mechanisms—clear authorization, defined purposes, human oversight, and accessible review and redress—but does not develop concrete tools such as audit duties, independent oversight, or liability allocation."
+        },
+        "enforcement_conditions": {
+          "score": 5,
+          "explanation": "It invokes due process, fair hearing, and contestability, yet does not specify viable enforcement conditions such as standing, access to reasons or evidence, review standards, or institutional capacity to make those remedies effective."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "deepseek-v3",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:41:59+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 1709,
+        "answer_tokens": 182,
+        "reasoning_tokens": 670
+      }
+    },
+    "I1_Q2": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 6, \"explanation\": \"It maps roles and cites concrete instruments such as the EU AI Act and GDPR Article 5(2), but it blends binding duties with vague ethical principles without clarifying which obligations are precise, foreseeable, and legally enforceable.\"},\n  \"accountability_mechanisms\": {\"score\": 7, \"explanation\": \"It identifies appropriate mechanisms including conformity assessment, post-market monitoring, DPIAs, auditability, transparency, and redress, though it remains high-level on liability allocation, sanctions, and independent oversight.\"},\n  \"enforcement_conditions\": {\"score\": 5, \"explanation\": \"It names regulators, courts, and redress as accountability forums but does not address the conditions that make enforcement viable, such as investigative powers, standing, burden of proof, sanctions, institutional capacity, or opacity barriers.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 6,
+          "explanation": "It maps roles and cites concrete instruments such as the EU AI Act and GDPR Article 5(2), but it blends binding duties with vague ethical principles without clarifying which obligations are precise, foreseeable, and legally enforceable."
+        },
+        "accountability_mechanisms": {
+          "score": 7,
+          "explanation": "It identifies appropriate mechanisms including conformity assessment, post-market monitoring, DPIAs, auditability, transparency, and redress, though it remains high-level on liability allocation, sanctions, and independent oversight."
+        },
+        "enforcement_conditions": {
+          "score": 5,
+          "explanation": "It names regulators, courts, and redress as accountability forums but does not address the conditions that make enforcement viable, such as investigative powers, standing, burden of proof, sanctions, institutional capacity, or opacity barriers."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "deepseek-v3",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:42:16+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2102,
+        "answer_tokens": 185,
+        "reasoning_tokens": 1004
+      }
+    },
+    "I1_Q3": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 7, \"explanation\": \"It correctly ties enforceability to precise, operational obligations rather than vague principles, but it underdevelops core legal-certainty elements such as foreseeability, accessibility, and consistent application.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It appropriately identifies duty-holders, liability allocation, impact assessments, documentation duties, and credible sanctions, using GDPR and the EU AI Act as workable models.\"},\n  \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"It acknowledges viable conditions—oversight powers, auditability, adjudication, and proportionate remedies—and usefully links them to Hart’s secondary rules, though AI-specific capacity and cross-border constraints are only lightly treated.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 7,
+          "explanation": "It correctly ties enforceability to precise, operational obligations rather than vague principles, but it underdevelops core legal-certainty elements such as foreseeability, accessibility, and consistent application."
+        },
+        "accountability_mechanisms": {
+          "score": 8,
+          "explanation": "It appropriately identifies duty-holders, liability allocation, impact assessments, documentation duties, and credible sanctions, using GDPR and the EU AI Act as workable models."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "It acknowledges viable conditions—oversight powers, auditability, adjudication, and proportionate remedies—and usefully links them to Hart’s secondary rules, though AI-specific capacity and cross-border constraints are only lightly treated."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "deepseek-v3",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:42:28+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 1986,
+        "answer_tokens": 171,
+        "reasoning_tokens": 565
+      }
+    },
+    "I2_S1": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 7, \"explanation\": \"It correctly grounds legal certainty in advance knowability of norms and links secret, origin-based thresholds and inconsistent outcomes to arbitrariness and the rule of law, but it blends that principle with transparency, discrimination, and due process rather than treating foreseeability, precision, and consistency as distinct doctrinal requirements.\"},\n  \"accountability_mechanisms\": {\"score\": 5, \"explanation\": \"It flags accountability gaps and names high-level safeguards such as human oversight, impact assessments, and judicial review, without specifying who is accountable, on what record, or through which concrete review or audit procedures.\"},\n  \"enforcement_conditions\": {\"score\": 4, \"explanation\": \"It notes that opacity blocks meaningful contestation and calls for binding rules, but it does not identify viable conditions—such as compulsory disclosure, burden-shifting, standing, timely remedies, or institutional capacity—under which those rights could actually be enforced.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 7,
+          "explanation": "It correctly grounds legal certainty in advance knowability of norms and links secret, origin-based thresholds and inconsistent outcomes to arbitrariness and the rule of law, but it blends that principle with transparency, discrimination, and due process rather than treating foreseeability, precision, and consistency as distinct doctrinal requirements."
+        },
+        "accountability_mechanisms": {
+          "score": 5,
+          "explanation": "It flags accountability gaps and names high-level safeguards such as human oversight, impact assessments, and judicial review, without specifying who is accountable, on what record, or through which concrete review or audit procedures."
+        },
+        "enforcement_conditions": {
+          "score": 4,
+          "explanation": "It notes that opacity blocks meaningful contestation and calls for binding rules, but it does not identify viable conditions—such as compulsory disclosure, burden-shifting, standing, timely remedies, or institutional capacity—under which those rights could actually be enforced."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "deepseek-v3",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:42:59+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 1833,
+        "answer_tokens": 210,
+        "reasoning_tokens": 1824
+      }
+    },
+    "I2_S2": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 5, \"explanation\": \"It correctly rejects diffused responsibility but frames duties as design preferences rather than foreseeable legal rules, standards of liability, or justiciable tests that would make outcomes predictable.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It identifies appropriate mechanisms—explanation, human appeal, disclosure, independent audit, designated oversight, contractual liability, and redress—suited to a high-stakes public benefit decision.\"},\n  \"enforcement_conditions\": {\"score\": 4, \"explanation\": \"It lists what should exist but does not address standing, privity, access to evidence, sanctions, judicial standards, or institutional capacity that would make those mechanisms enforceable by the applicant.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 5,
+          "explanation": "It correctly rejects diffused responsibility but frames duties as design preferences rather than foreseeable legal rules, standards of liability, or justiciable tests that would make outcomes predictable."
+        },
+        "accountability_mechanisms": {
+          "score": 8,
+          "explanation": "It identifies appropriate mechanisms—explanation, human appeal, disclosure, independent audit, designated oversight, contractual liability, and redress—suited to a high-stakes public benefit decision."
+        },
+        "enforcement_conditions": {
+          "score": 4,
+          "explanation": "It lists what should exist but does not address standing, privity, access to evidence, sanctions, judicial standards, or institutional capacity that would make those mechanisms enforceable by the applicant."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "deepseek-v3",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:43:16+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2157,
+        "answer_tokens": 163,
+        "reasoning_tokens": 880
+      }
+    },
+    "I2_S3": {
+      "raw": "{\"legal_certainty_adequacy\": {\"score\": 7, \"explanation\": \"It correctly links inconsistent local implementation to compliance arbitrage and proposes harmonized minimum standards and mutual recognition that would improve predictability, but it does not address how precise, foreseeable legal obligations would be defined or applied.\"}, \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It identifies a solid mix of accountability tools including public audit registries, civil-society oversight, graduated sanctions, liability provisions, home-country responsibility, and whistleblower protections.\"}, \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"It acknowledges viable conditions such as jurisdictional reach, regulatory capacity, technical expertise, cross-border coordination, detection via RegTech, and proportionate sanctions, while noting that perfect harmonization is unlikely.\"}}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 7,
+          "explanation": "It correctly links inconsistent local implementation to compliance arbitrage and proposes harmonized minimum standards and mutual recognition that would improve predictability, but it does not address how precise, foreseeable legal obligations would be defined or applied."
+        },
+        "accountability_mechanisms": {
+          "score": 8,
+          "explanation": "It identifies a solid mix of accountability tools including public audit registries, civil-society oversight, graduated sanctions, liability provisions, home-country responsibility, and whistleblower protections."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "It acknowledges viable conditions such as jurisdictional reach, regulatory capacity, technical expertise, cross-border coordination, detection via RegTech, and proportionate sanctions, while noting that perfect harmonization is unlikely."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "deepseek-v3",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:43:28+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 1904,
+        "answer_tokens": 167,
+        "reasoning_tokens": 590
+      }
+    }
+  },
+  "G4": {
+    "I1_Q1": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 8, \"explanation\": \"The response correctly frames legal certainty as foreseeability, precision, accessibility, and non-arbitrariness under the rule of law, though it somewhat conflates that doctrine with transparency and explainability and misattributes the Kadi judgment to the ECtHR.\"},\n  \"accountability_mechanisms\": {\"score\": 7, \"explanation\": \"It identifies appropriate mechanisms—designated public responsibility, human oversight, rights to explanation and contestation, judicial review, and audits—but describes them at a general level without specifying how responsibility is allocated in practice.\"},\n  \"enforcement_conditions\": {\"score\": 6, \"explanation\": \"It notes remedies, judicial review, and instruments such as the GDPR and EU AI Act, but does not address the practical conditions that make enforcement viable, such as access to logs and evidence, standing, sanctions, and regulatory capacity.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 8,
+          "explanation": "The response correctly frames legal certainty as foreseeability, precision, accessibility, and non-arbitrariness under the rule of law, though it somewhat conflates that doctrine with transparency and explainability and misattributes the Kadi judgment to the ECtHR."
+        },
+        "accountability_mechanisms": {
+          "score": 7,
+          "explanation": "It identifies appropriate mechanisms—designated public responsibility, human oversight, rights to explanation and contestation, judicial review, and audits—but describes them at a general level without specifying how responsibility is allocated in practice."
+        },
+        "enforcement_conditions": {
+          "score": 6,
+          "explanation": "It notes remedies, judicial review, and instruments such as the GDPR and EU AI Act, but does not address the practical conditions that make enforcement viable, such as access to logs and evidence, standing, sanctions, and regulatory capacity."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "mistral-large",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:43:48+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2518,
+        "answer_tokens": 200,
+        "reasoning_tokens": 1132
+      }
+    },
+    "I1_Q2": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 5, \"explanation\": \"It recognizes the need for identifiable actors, legal compliance, and clear roles, but it does not address foreseeability, precision of duties, or how diffuse multi-actor responsibility undermines predictable legal consequences.\"},\n  \"accountability_mechanisms\": {\"score\": 7, \"explanation\": \"It appropriately identifies transparency, explainability, impact assessment, post-deployment audit, regulatory oversight, redress, and litigation, though these remain high-level rather than specified instruments.\"},\n  \"enforcement_conditions\": {\"score\": 4, \"explanation\": \"It names regulators, remedies, and public pressure as enforcement pathways but does not examine viability conditions such as regulatory capacity, evidence access, standing, jurisdiction, or deterrent sanctions.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 5,
+          "explanation": "It recognizes the need for identifiable actors, legal compliance, and clear roles, but it does not address foreseeability, precision of duties, or how diffuse multi-actor responsibility undermines predictable legal consequences."
+        },
+        "accountability_mechanisms": {
+          "score": 7,
+          "explanation": "It appropriately identifies transparency, explainability, impact assessment, post-deployment audit, regulatory oversight, redress, and litigation, though these remain high-level rather than specified instruments."
+        },
+        "enforcement_conditions": {
+          "score": 4,
+          "explanation": "It names regulators, remedies, and public pressure as enforcement pathways but does not examine viability conditions such as regulatory capacity, evidence access, standing, jurisdiction, or deterrent sanctions."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "mistral-large",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:44:14+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2280,
+        "answer_tokens": 169,
+        "reasoning_tokens": 1416
+      }
+    },
+    "I1_Q3": {
+      "raw": "{\"legal_certainty_adequacy\": {\"score\": 7, \"explanation\": \"It correctly ties enforceability to precise, low-ambiguity rules and judicial scrutiny of unclear standards, but only partially captures legal certainty’s requirements of foreseeability, accessibility, stability, and constrained discretion.\"}, \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It identifies appropriate mechanisms—designated authorities, sanctions, audits, third-party oversight, legal standing, judicial review, and post-market monitoring—though it underplays private rights of action and independent redress.\"}, \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"It acknowledges viable conditions such as mandate and resources, regulatory capacity, detection systems, graduated sanctions, and a spectrum from soft to hard law, including gaps when capacity or targeted statutes are lacking.\"}}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 7,
+          "explanation": "It correctly ties enforceability to precise, low-ambiguity rules and judicial scrutiny of unclear standards, but only partially captures legal certainty’s requirements of foreseeability, accessibility, stability, and constrained discretion."
+        },
+        "accountability_mechanisms": {
+          "score": 8,
+          "explanation": "It identifies appropriate mechanisms—designated authorities, sanctions, audits, third-party oversight, legal standing, judicial review, and post-market monitoring—though it underplays private rights of action and independent redress."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "It acknowledges viable conditions such as mandate and resources, regulatory capacity, detection systems, graduated sanctions, and a spectrum from soft to hard law, including gaps when capacity or targeted statutes are lacking."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "mistral-large",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:44:27+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2263,
+        "answer_tokens": 173,
+        "reasoning_tokens": 690
+      }
+    },
+    "I2_S1": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 7, \"explanation\": \"It correctly ties undisclosed country-of-origin thresholds and inconsistent outcomes to foreseeability, non-arbitrariness, and secret law, though it blurs legal certainty with equal protection, discrimination, and due process.\"},\n  \"accountability_mechanisms\": {\"score\": 6, \"explanation\": \"It identifies liability allocation, appeal and redress, explanation rights, human oversight, and bias audits, but these remain high-level questions rather than specified mechanisms, and the recommendations are cut off.\"},\n  \"enforcement_conditions\": {\"score\": 4, \"explanation\": \"It names hooks such as GDPR Article 22 and the duty to give reasons but does not address viable enforcement conditions, including remedies, sanctions, oversight capacity, standing, or immigration and security exceptions.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 7,
+          "explanation": "It correctly ties undisclosed country-of-origin thresholds and inconsistent outcomes to foreseeability, non-arbitrariness, and secret law, though it blurs legal certainty with equal protection, discrimination, and due process."
+        },
+        "accountability_mechanisms": {
+          "score": 6,
+          "explanation": "It identifies liability allocation, appeal and redress, explanation rights, human oversight, and bias audits, but these remain high-level questions rather than specified mechanisms, and the recommendations are cut off."
+        },
+        "enforcement_conditions": {
+          "score": 4,
+          "explanation": "It names hooks such as GDPR Article 22 and the duty to give reasons but does not address viable enforcement conditions, including remedies, sanctions, oversight capacity, standing, or immigration and security exceptions."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "mistral-large",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:44:45+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2546,
+        "answer_tokens": 182,
+        "reasoning_tokens": 1102
+      }
+    },
+    "I2_S2": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 5, \"explanation\": \"It cites relevant doctrines but treats soft guidance and contested claims as settled law and mixes jurisdictions without clarifying which rules actually bind, so predictability of legal obligations remains weak.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It identifies appropriate shared duties and concrete pre- and post-deployment mechanisms, including human review, impact assessments, contractual audit rights, appeals, and independent oversight.\"},\n  \"enforcement_conditions\": {\"score\": 5, \"explanation\": \"It names liability theories and oversight bodies but does not specify viable enforcement conditions such as standing, forum, remedies, sanctions, evidence burdens, or how diffused responsibility would actually be pierced.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 5,
+          "explanation": "It cites relevant doctrines but treats soft guidance and contested claims as settled law and mixes jurisdictions without clarifying which rules actually bind, so predictability of legal obligations remains weak."
+        },
+        "accountability_mechanisms": {
+          "score": 8,
+          "explanation": "It identifies appropriate shared duties and concrete pre- and post-deployment mechanisms, including human review, impact assessments, contractual audit rights, appeals, and independent oversight."
+        },
+        "enforcement_conditions": {
+          "score": 5,
+          "explanation": "It names liability theories and oversight bodies but does not specify viable enforcement conditions such as standing, forum, remedies, sanctions, evidence burdens, or how diffused responsibility would actually be pierced."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "mistral-large",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:45:21+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2514,
+        "answer_tokens": 160,
+        "reasoning_tokens": 693
+      }
+    },
+    "I2_S3": {
+      "raw": "{\"legal_certainty_adequacy\": {\"score\": 6, \"explanation\": \"It recognizes inconsistent and conflicting obligations as a source of selective compliance, but frames the issue mainly as arbitrage and capacity gaps rather than as legal certainty in the sense of clear, foreseeable, and uniformly applicable duties.\"}, \"accountability_mechanisms\": {\"score\": 7, \"explanation\": \"It identifies relevant mechanisms such as third-party audits, liability for cross-border harms, an audit registry, mutual recognition, and coordinated enforcement, though these remain high-level and incompletely specified.\"}, \"enforcement_conditions\": {\"score\": 7, \"explanation\": \"It acknowledges viable conditions including technical capacity, resources, political will, and cross-border access, and pairs them with capacity-building and cooperative enforcement rather than assuming uniform national enforcement.\"}}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 6,
+          "explanation": "It recognizes inconsistent and conflicting obligations as a source of selective compliance, but frames the issue mainly as arbitrage and capacity gaps rather than as legal certainty in the sense of clear, foreseeable, and uniformly applicable duties."
+        },
+        "accountability_mechanisms": {
+          "score": 7,
+          "explanation": "It identifies relevant mechanisms such as third-party audits, liability for cross-border harms, an audit registry, mutual recognition, and coordinated enforcement, though these remain high-level and incompletely specified."
+        },
+        "enforcement_conditions": {
+          "score": 7,
+          "explanation": "It acknowledges viable conditions including technical capacity, resources, political will, and cross-border access, and pairs them with capacity-building and cooperative enforcement rather than assuming uniform national enforcement."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "mistral-large",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:46:02+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2504,
+        "answer_tokens": 170,
+        "reasoning_tokens": 1083
+      }
+    }
+  },
+  "G4__mistral_i2_recollect": {
+    "I2_S1": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 8, \"explanation\": \"It correctly treats legal certainty as requiring accessible, foreseeable, consistent, and non-arbitrary rules, and applies those elements to opaque nationality-based thresholds, though it somewhat conflates certainty with due process and non-discrimination and slightly misstates GDPR Article 22.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It identifies appropriate mechanisms including authority liability, human review, appeals, individual explanations, bias audits, data-protection and ombuds oversight, and stakeholder participation, even if judicial standards and procurement controls are underdeveloped.\"},\n  \"enforcement_conditions\": {\"score\": 5, \"explanation\": \"It proposes enforcement tools but only lightly acknowledges viability conditions, barely addressing secrecy doctrines, immigration sovereignty, applicant standing and resources, evidentiary barriers, or what would make oversight legally binding.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 8,
+          "explanation": "It correctly treats legal certainty as requiring accessible, foreseeable, consistent, and non-arbitrary rules, and applies those elements to opaque nationality-based thresholds, though it somewhat conflates certainty with due process and non-discrimination and slightly misstates GDPR Article 22."
+        },
+        "accountability_mechanisms": {
+          "score": 8,
+          "explanation": "It identifies appropriate mechanisms including authority liability, human review, appeals, individual explanations, bias audits, data-protection and ombuds oversight, and stakeholder participation, even if judicial standards and procurement controls are underdeveloped."
+        },
+        "enforcement_conditions": {
+          "score": 5,
+          "explanation": "It proposes enforcement tools but only lightly acknowledges viability conditions, barely addressing secrecy doctrines, immigration sovereignty, applicant standing and resources, evidentiary barriers, or what would make oversight legally binding."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "mistral-large",
+        "evaluatee_answer": "mistral_i2_recollect.json run 1 baseline",
+        "timestamp": "2026-10-22T20:45:08+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2803,
+        "answer_tokens": 189,
+        "reasoning_tokens": 1254
+      }
+    },
+    "I2_S2": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 5, \"explanation\": \"The response mixes jurisdictions and existing duties with policy proposals, and it overstates contested rules such as a GDPR Article 22 right to explanation and the effect of a proposed U.S. statute, so legal obligations are not stated with predictable clarity.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It identifies an appropriate set of mechanisms, including impact assessments, contractual transparency and liability, human review, appeals, independent audits, public reporting, legal remedies, and institutional oversight, with only modest overreach.\"},\n  \"enforcement_conditions\": {\"score\": 5, \"explanation\": \"It names forums and remedies but largely ignores viability conditions such as sovereign immunity, standing, evidentiary access to proprietary models, causation burdens, resource asymmetries, and when audits or disparate-impact claims actually succeed.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 5,
+          "explanation": "The response mixes jurisdictions and existing duties with policy proposals, and it overstates contested rules such as a GDPR Article 22 right to explanation and the effect of a proposed U.S. statute, so legal obligations are not stated with predictable clarity."
+        },
+        "accountability_mechanisms": {
+          "score": 8,
+          "explanation": "It identifies an appropriate set of mechanisms, including impact assessments, contractual transparency and liability, human review, appeals, independent audits, public reporting, legal remedies, and institutional oversight, with only modest overreach."
+        },
+        "enforcement_conditions": {
+          "score": 5,
+          "explanation": "It names forums and remedies but largely ignores viability conditions such as sovereign immunity, standing, evidentiary access to proprietary models, causation burdens, resource asymmetries, and when audits or disparate-impact claims actually succeed."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "mistral-large",
+        "evaluatee_answer": "mistral_i2_recollect.json run 1 baseline",
+        "timestamp": "2026-10-22T20:45:43+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 3309,
+        "answer_tokens": 191,
+        "reasoning_tokens": 1199
+      }
+    },
+    "I2_S3": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 7, \"explanation\": \"It correctly ties fragmented and conflicting rules to unpredictable obligations and proposes harmonization, model laws, and common audit standards, but it does not treat legal certainty as a distinct constraint and some tools such as secondary sanctions and blocking access would themselves reduce foreseeability.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It identifies a solid set of mechanisms—independent audits, public registries, revenue-based fines, strict liability, whistleblower protections, procurement conditions, and multistakeholder oversight—though duties and remedies are not always clearly allocated among providers, deployers, and users.\"},\n  \"enforcement_conditions\": {\"score\": 7, \"explanation\": \"It acknowledges real conditions such as regulatory capacity, cross-border operations, remote SaaS deployment, and the need for cooperation and technical tools, but several proposed conditions remain aspirational and it underplays practical limits like model access, due process, and trade-law constraints.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 7,
+          "explanation": "It correctly ties fragmented and conflicting rules to unpredictable obligations and proposes harmonization, model laws, and common audit standards, but it does not treat legal certainty as a distinct constraint and some tools such as secondary sanctions and blocking access would themselves reduce foreseeability."
+        },
+        "accountability_mechanisms": {
+          "score": 8,
+          "explanation": "It identifies a solid set of mechanisms—independent audits, public registries, revenue-based fines, strict liability, whistleblower protections, procurement conditions, and multistakeholder oversight—though duties and remedies are not always clearly allocated among providers, deployers, and users."
+        },
+        "enforcement_conditions": {
+          "score": 7,
+          "explanation": "It acknowledges real conditions such as regulatory capacity, cross-border operations, remote SaaS deployment, and the need for cooperation and technical tools, but several proposed conditions remain aspirational and it underplays practical limits like model access, due process, and trade-law constraints."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "mistral-large",
+        "evaluatee_answer": "mistral_i2_recollect.json run 1 baseline",
+        "timestamp": "2026-10-22T20:46:18+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 3508,
+        "answer_tokens": 219,
+        "reasoning_tokens": 742
+      }
+    }
+  },
+  "G5": {
+    "I1_Q1": {
+      "raw": "{\"legal_certainty_adequacy\":{\"score\":7,\"explanation\":\"It correctly centers foreseeability, predictability, stability, and the rule of law, but partly conflates legal certainty with algorithmic explainability rather than clarity and accessibility of the governing legal rules.\"},\"accountability_mechanisms\":{\"score\":6,\"explanation\":\"It identifies explainability, human oversight, procedural fairness, and a right of challenge or appeal, but omits stronger institutional mechanisms such as audit, liability allocation, and independent oversight.\"},\"enforcement_conditions\":{\"score\":4,\"explanation\":\"Appeal is mentioned only in passing, without viable enforcement conditions such as judicial-review standards, regulatory powers, remedies, or institutional capacity to make those duties effective.\"}}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 7,
+          "explanation": "It correctly centers foreseeability, predictability, stability, and the rule of law, but partly conflates legal certainty with algorithmic explainability rather than clarity and accessibility of the governing legal rules."
+        },
+        "accountability_mechanisms": {
+          "score": 6,
+          "explanation": "It identifies explainability, human oversight, procedural fairness, and a right of challenge or appeal, but omits stronger institutional mechanisms such as audit, liability allocation, and independent oversight."
+        },
+        "enforcement_conditions": {
+          "score": 4,
+          "explanation": "Appeal is mentioned only in passing, without viable enforcement conditions such as judicial-review standards, regulatory powers, remedies, or institutional capacity to make those duties effective."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "gemini-3.1-flash-lite-preview",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:46:31+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 1622,
+        "answer_tokens": 150,
+        "reasoning_tokens": 626
+      }
+    },
+    "I1_Q2": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 5, \"explanation\": \"The response gestures at liability allocation but undermines legal certainty by pairing strict liability with foreseeability and proportionality without clear rules, standards, or conflict-resolution criteria.\"},\n  \"accountability_mechanisms\": {\"score\": 7, \"explanation\": \"It identifies appropriate mechanisms—oversight, redress, human-in-the-loop, auditing, documentation, and judicial and administrative recourse—though they remain high-level and incomplete.\"},\n  \"enforcement_conditions\": {\"score\": 4, \"explanation\": \"It notes regulators and recourse avenues but does not address practical enforcement conditions such as jurisdiction, evidence access, standing, remedies, regulatory capacity, or cross-border constraints.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 5,
+          "explanation": "The response gestures at liability allocation but undermines legal certainty by pairing strict liability with foreseeability and proportionality without clear rules, standards, or conflict-resolution criteria."
+        },
+        "accountability_mechanisms": {
+          "score": 7,
+          "explanation": "It identifies appropriate mechanisms—oversight, redress, human-in-the-loop, auditing, documentation, and judicial and administrative recourse—though they remain high-level and incomplete."
+        },
+        "enforcement_conditions": {
+          "score": 4,
+          "explanation": "It notes regulators and recourse avenues but does not address practical enforcement conditions such as jurisdiction, evidence access, standing, remedies, regulatory capacity, or cross-border constraints."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "gemini-3.1-flash-lite-preview",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:46:42+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 1647,
+        "answer_tokens": 162,
+        "reasoning_tokens": 597
+      }
+    },
+    "I1_Q3": {
+      "raw": "{\"legal_certainty_adequacy\": {\"score\": 6, \"explanation\": \"It ties enforceability to specific obligations and clearly defined prohibitions, but does not address core legal-certainty elements such as predictability, precision, accessibility, or stability of norms.\"}, \"accountability_mechanisms\": {\"score\": 7, \"explanation\": \"It identifies appropriate mechanisms including oversight authorities, audits, binding orders, fines, and injunctions, though it omits complementary tools such as judicial review and private remedies.\"}, \"enforcement_conditions\": {\"score\": 5, \"explanation\": \"It names detection, monitoring, and sanctions but does not acknowledge practical conditions for viable enforcement such as institutional capacity, technical auditability, resources, or jurisdiction.\"}}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 6,
+          "explanation": "It ties enforceability to specific obligations and clearly defined prohibitions, but does not address core legal-certainty elements such as predictability, precision, accessibility, or stability of norms."
+        },
+        "accountability_mechanisms": {
+          "score": 7,
+          "explanation": "It identifies appropriate mechanisms including oversight authorities, audits, binding orders, fines, and injunctions, though it omits complementary tools such as judicial review and private remedies."
+        },
+        "enforcement_conditions": {
+          "score": 5,
+          "explanation": "It names detection, monitoring, and sanctions but does not acknowledge practical conditions for viable enforcement such as institutional capacity, technical auditability, resources, or jurisdiction."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "gemini-3.1-flash-lite-preview",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:46:54+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 1709,
+        "answer_tokens": 152,
+        "reasoning_tokens": 689
+      }
+    },
+    "I2_S1": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 8, \"explanation\": \"It correctly grounds legal certainty in foreseeability, accessible rules, and consistent application, while somewhat blending it with equality and non-discrimination.\"},\n  \"accountability_mechanisms\": {\"score\": 7, \"explanation\": \"It identifies appropriate mechanisms—reasoned explanation, independent audit of sensitive thresholds, human review, and appeal—though they remain generic.\"},\n  \"enforcement_conditions\": {\"score\": 5, \"explanation\": \"It only gestures at court review and oversight and does not address viable enforcement conditions such as legal mandates, remedies, secrecy exceptions, or institutional capacity.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 8,
+          "explanation": "It correctly grounds legal certainty in foreseeability, accessible rules, and consistent application, while somewhat blending it with equality and non-discrimination."
+        },
+        "accountability_mechanisms": {
+          "score": 7,
+          "explanation": "It identifies appropriate mechanisms—reasoned explanation, independent audit of sensitive thresholds, human review, and appeal—though they remain generic."
+        },
+        "enforcement_conditions": {
+          "score": 5,
+          "explanation": "It only gestures at court review and oversight and does not address viable enforcement conditions such as legal mandates, remedies, secrecy exceptions, or institutional capacity."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "gemini-3.1-flash-lite-preview",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:47:17+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2285,
+        "answer_tokens": 142,
+        "reasoning_tokens": 1463
+      }
+    },
+    "I2_S2": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 6, \"explanation\": \"It supports certainty by locating non-delegable responsibility in the city and requiring explainable, contestable decisions, but it is only moderately adequate because it misuses concepts such as legal standing, omits the governing legal standard and ex ante decision criteria, and leaves the applicant’s rights largely aspirational.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It identifies appropriate high-stakes mechanisms, including meaningful human review, contestability and counterfactual explanation, impact assessment, audit rights, decision logging, indemnification, a stay of the denial, and remediation.\"},\n  \"enforcement_conditions\": {\"score\": 5, \"explanation\": \"It notes some enabling conditions such as override authority, contractual audit rights, logs for discovery, and a stay, but it does not adequately address what would make enforcement viable against a resistant city, including independent authority, justiciable remedies, resources, and sanctions.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 6,
+          "explanation": "It supports certainty by locating non-delegable responsibility in the city and requiring explainable, contestable decisions, but it is only moderately adequate because it misuses concepts such as legal standing, omits the governing legal standard and ex ante decision criteria, and leaves the applicant’s rights largely aspirational."
+        },
+        "accountability_mechanisms": {
+          "score": 8,
+          "explanation": "It identifies appropriate high-stakes mechanisms, including meaningful human review, contestability and counterfactual explanation, impact assessment, audit rights, decision logging, indemnification, a stay of the denial, and remediation."
+        },
+        "enforcement_conditions": {
+          "score": 5,
+          "explanation": "It notes some enabling conditions such as override authority, contractual audit rights, logs for discovery, and a stay, but it does not adequately address what would make enforcement viable against a resistant city, including independent authority, justiciable remedies, resources, and sanctions."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "gemini-3.1-flash-lite-preview",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:47:51+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2263,
+        "answer_tokens": 214,
+        "reasoning_tokens": 2169
+      }
+    },
+    "I2_S3": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 6, \"explanation\": \"It correctly links fragmented high-risk definitions and selective compliance to unpredictable obligations and proposes harmonized baselines and mutual recognition, but it does not address core legal-certainty requirements such as clear conflict rules, legitimate expectations, or how equivalency agreements would resolve clashes with local law.\"},\n  \"accountability_mechanisms\": {\"score\": 7, \"explanation\": \"It identifies appropriate mechanisms including third-party audits, joint supervisory authorities, transparency logs, burden-shifting, and a presumption of non-compliance, though it omits calibrated sanctions, private rights of action, personal liability, and independent appeal.\"},\n  \"enforcement_conditions\": {\"score\": 6, \"explanation\": \"It acknowledges information asymmetry, technical capacity gaps, extraterritorial limits, and conflicting secrecy rules, but its remedies assume treaty-level cooperation without specifying binding sanctions, compulsory information powers, or the institutional conditions needed to make enforcement viable.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 6,
+          "explanation": "It correctly links fragmented high-risk definitions and selective compliance to unpredictable obligations and proposes harmonized baselines and mutual recognition, but it does not address core legal-certainty requirements such as clear conflict rules, legitimate expectations, or how equivalency agreements would resolve clashes with local law."
+        },
+        "accountability_mechanisms": {
+          "score": 7,
+          "explanation": "It identifies appropriate mechanisms including third-party audits, joint supervisory authorities, transparency logs, burden-shifting, and a presumption of non-compliance, though it omits calibrated sanctions, private rights of action, personal liability, and independent appeal."
+        },
+        "enforcement_conditions": {
+          "score": 6,
+          "explanation": "It acknowledges information asymmetry, technical capacity gaps, extraterritorial limits, and conflicting secrecy rules, but its remedies assume treaty-level cooperation without specifying binding sanctions, compulsory information powers, or the institutional conditions needed to make enforcement viable."
+        }
+      },
+      "meta": {
+        "evaluator": "grok-4.7",
+        "evaluator_model": "grok-4.7",
+        "evaluatee": "gemini-3.1-flash-lite-preview",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:48:08+00:00",
+        "model_version": "grok-4.7",
+        "finish_reason": "stop",
+        "max_completion_tokens": 18432,
+        "input_tokens": 2402,
+        "answer_tokens": 208,
+        "reasoning_tokens": 916
+      }
+    }
+  },
+  "G6": {
+    "I1_Q1": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 10, \"explanation\": \"The response provides a detailed and well-rounded explanation of legal certainty, referencing relevant legal frameworks and principles.\"},\n  \"accountability_mechanisms\": {\"score\": 9, \"explanation\": \"It effectively identifies various accountability mechanisms, such as human oversight and the right to contest, although it could mention more examples.\"},\n  \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"The response acknowledges enforcement through citing case law and existing regulations, but could further detail implementing these in practice.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 10,
+          "explanation": "The response provides a detailed and well-rounded explanation of legal certainty, referencing relevant legal frameworks and principles."
+        },
+        "accountability_mechanisms": {
+          "score": 9,
+          "explanation": "It effectively identifies various accountability mechanisms, such as human oversight and the right to contest, although it could mention more examples."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "The response acknowledges enforcement through citing case law and existing regulations, but could further detail implementing these in practice."
+        }
+      },
+      "meta": {
+        "evaluator": "gpt-4o",
+        "evaluator_model": "gpt-4o-2024-08-06",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:48:11+00:00",
+        "model_version": "gpt-4o-2024-08-06",
+        "finish_reason": "stop",
+        "input_tokens": 1016,
+        "output_tokens": 126,
+        "reasoning_tokens": 0
+      }
+    },
+    "I1_Q2": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"The response shows a deep understanding of legal certainty through detailed references to laws and frameworks.\"},\n  \"accountability_mechanisms\": {\"score\": 10, \"explanation\": \"It identifies comprehensive accountability mechanisms for different stakeholders and contexts.\"},\n  \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"The response acknowledges enforcement challenges and proposes structured roles and duties, though may lack specifics on implementation.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 9,
+          "explanation": "The response shows a deep understanding of legal certainty through detailed references to laws and frameworks."
+        },
+        "accountability_mechanisms": {
+          "score": 10,
+          "explanation": "It identifies comprehensive accountability mechanisms for different stakeholders and contexts."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "The response acknowledges enforcement challenges and proposes structured roles and duties, though may lack specifics on implementation."
+        }
+      },
+      "meta": {
+        "evaluator": "gpt-4o",
+        "evaluator_model": "gpt-4o-2024-08-06",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:48:15+00:00",
+        "model_version": "gpt-4o-2024-08-06",
+        "finish_reason": "stop",
+        "input_tokens": 1147,
+        "output_tokens": 108,
+        "reasoning_tokens": 0
+      }
+    },
+    "I1_Q3": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"The response thoroughly elaborates on legal certainty through principles of determinacy and justiciability.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It identifies various accountability mechanisms such as institutional delegation and legal consequences effectively.\"},\n  \"enforcement_conditions\": {\"score\": 9, \"explanation\": \"It comprehensively outlines conditions for enforceability, including jurisdiction, capacity, and procedural fairness.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 9,
+          "explanation": "The response thoroughly elaborates on legal certainty through principles of determinacy and justiciability."
+        },
+        "accountability_mechanisms": {
+          "score": 8,
+          "explanation": "It identifies various accountability mechanisms such as institutional delegation and legal consequences effectively."
+        },
+        "enforcement_conditions": {
+          "score": 9,
+          "explanation": "It comprehensively outlines conditions for enforceability, including jurisdiction, capacity, and procedural fairness."
+        }
+      },
+      "meta": {
+        "evaluator": "gpt-4o",
+        "evaluator_model": "gpt-4o-2024-08-06",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:48:19+00:00",
+        "model_version": "gpt-4o-2024-08-06",
+        "finish_reason": "stop",
+        "input_tokens": 1081,
+        "output_tokens": 111,
+        "reasoning_tokens": 0
+      }
+    },
+    "I2_S1": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 10, \"explanation\": \"The response comprehensively explains the breakdown of legal certainty due to unforeseeable and undisclosed rules.\"},\n  \"accountability_mechanisms\": {\"score\": 9, \"explanation\": \"The response effectively identifies the need for published criteria, traceable differentiation, and explanation routes for accountability.\"},\n  \"enforcement_conditions\": {\"score\": 9, \"explanation\": \"It acknowledges conditions like explicit legal basis and external audits that are necessary for enforcement, though lacks detailed implementation steps.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 10,
+          "explanation": "The response comprehensively explains the breakdown of legal certainty due to unforeseeable and undisclosed rules."
+        },
+        "accountability_mechanisms": {
+          "score": 9,
+          "explanation": "The response effectively identifies the need for published criteria, traceable differentiation, and explanation routes for accountability."
+        },
+        "enforcement_conditions": {
+          "score": 9,
+          "explanation": "It acknowledges conditions like explicit legal basis and external audits that are necessary for enforcement, though lacks detailed implementation steps."
+        }
+      },
+      "meta": {
+        "evaluator": "gpt-4o",
+        "evaluator_model": "gpt-4o-2024-08-06",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:48:21+00:00",
+        "model_version": "gpt-4o-2024-08-06",
+        "finish_reason": "stop",
+        "input_tokens": 840,
+        "output_tokens": 123,
+        "reasoning_tokens": 0
+      }
+    },
+    "I2_S2": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"The response demonstrates a strong understanding of legal certainty by clearly articulating the city's non-delegable duties and legal principles guiding public benefit decisions.\"},\n  \"accountability_mechanisms\": {\"score\": 10, \"explanation\": \"It comprehensively identifies mechanisms across multiple levels, emphasizing shared responsibility, contractual obligations, and procedural safeguards.\"},\n  \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"The response acknowledges viable enforcement conditions, though further detail on the practical implementation of oversight and redress may enhance comprehensiveness.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 9,
+          "explanation": "The response demonstrates a strong understanding of legal certainty by clearly articulating the city's non-delegable duties and legal principles guiding public benefit decisions."
+        },
+        "accountability_mechanisms": {
+          "score": 10,
+          "explanation": "It comprehensively identifies mechanisms across multiple levels, emphasizing shared responsibility, contractual obligations, and procedural safeguards."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "The response acknowledges viable enforcement conditions, though further detail on the practical implementation of oversight and redress may enhance comprehensiveness."
+        }
+      },
+      "meta": {
+        "evaluator": "gpt-4o",
+        "evaluator_model": "gpt-4o-2024-08-06",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:48:24+00:00",
+        "model_version": "gpt-4o-2024-08-06",
+        "finish_reason": "stop",
+        "input_tokens": 2154,
+        "output_tokens": 134,
+        "reasoning_tokens": 0
+      }
+    },
+    "I2_S3": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\"score\": 9, \"explanation\": \"The response comprehensively identifies legal uncertainties and proposes harmonization of standards to enhance legal certainty.\"},\n  \"accountability_mechanisms\": {\"score\": 8, \"explanation\": \"It outlines several accountability measures, including tying sanctions to market access and global turnover, but could go further on specific enforcement processes.\"},\n  \"enforcement_conditions\": {\"score\": 10, \"explanation\": \"The response effectively addresses enforcement challenges with detailed proposals for cross-border cooperation and transparent sanctions.\"}\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 9,
+          "explanation": "The response comprehensively identifies legal uncertainties and proposes harmonization of standards to enhance legal certainty."
+        },
+        "accountability_mechanisms": {
+          "score": 8,
+          "explanation": "It outlines several accountability measures, including tying sanctions to market access and global turnover, but could go further on specific enforcement processes."
+        },
+        "enforcement_conditions": {
+          "score": 10,
+          "explanation": "The response effectively addresses enforcement challenges with detailed proposals for cross-border cooperation and transparent sanctions."
+        }
+      },
+      "meta": {
+        "evaluator": "gpt-4o",
+        "evaluator_model": "gpt-4o-2024-08-06",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:48:27+00:00",
+        "model_version": "gpt-4o-2024-08-06",
+        "finish_reason": "stop",
+        "input_tokens": 961,
+        "output_tokens": 121,
+        "reasoning_tokens": 0
+      }
+    }
+  },
+  "G7": {
+    "I1_Q1": {
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 10,\n    \"explanation\": \"The response demonstrates comprehensive understanding by grounding legal certainty in rule-of-law doctrine, correctly identifying its core elements (accessibility, foreseeability, stability, non-retroactivity), and expertly applying these principles to AI systems through extensive citation of ECHR jurisprudence, the Venice Commission framework, GDPR provisions, and the AI Act.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"The response identifies robust accountability mechanisms including human oversight requirements, rights to contest decisions, meaningful explanation obligations, independent review bodies with full examination powers, and the responsible human authority principle, though it could slightly strengthen discussion of institutional design for operationalizing these mechanisms in practice.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 8,\n    \"explanation\": \"The response acknowledges viable enforcement through case law examples (Loomis, SyRI, Bridges, SCHUFA) demonstrating judicial review pathways and references specific legal instruments with enforcement mechanisms, though it could more explicitly address practical challenges in resource availability, technical capacity of courts, and cross-border enforcement complexities.\"\n  }\n}\n```",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 10,
+          "explanation": "The response demonstrates comprehensive understanding by grounding legal certainty in rule-of-law doctrine, correctly identifying its core elements (accessibility, foreseeability, stability, non-retroactivity), and expertly applying these principles to AI systems through extensive citation of ECHR jurisprudence, the Venice Commission framework, GDPR provisions, and the AI Act."
+        },
+        "accountability_mechanisms": {
+          "score": 9,
+          "explanation": "The response identifies robust accountability mechanisms including human oversight requirements, rights to contest decisions, meaningful explanation obligations, independent review bodies with full examination powers, and the responsible human authority principle, though it could slightly strengthen discussion of institutional design for operationalizing these mechanisms in practice."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "The response acknowledges viable enforcement through case law examples (Loomis, SyRI, Bridges, SCHUFA) demonstrating judicial review pathways and references specific legal instruments with enforcement mechanisms, though it could more explicitly address practical challenges in resource availability, technical capacity of courts, and cross-border enforcement complexities."
+        }
+      },
+      "meta": {
+        "evaluator": "claude-sonnet",
+        "evaluator_model": "claude-sonnet-4-5-20250929",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:48:35+00:00",
+        "model_version": "claude-sonnet-4-5-20250929",
+        "finish_reason": "end_turn",
+        "input_tokens": 1121,
+        "output_tokens": 287
+      }
+    },
+    "I1_Q2": {
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates exceptional understanding of legal certainty by grounding accountability in specific legal instruments (EU AI Act, GDPR, Product Liability Directive), clearly delineating duty-bearers and their obligations, and distinguishing between ex ante and ex post requirements with risk-scaled precision.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 10,\n    \"explanation\": \"The response comprehensively identifies appropriate accountability mechanisms across the entire governance chain, including role-based duties, impact assessments, documentation, human oversight, contestation rights, independent regulators, court remedies, and organizational sanctions, while explicitly rejecting inadequate alternatives like treating AI systems as legal persons.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 8,\n    \"explanation\": \"The response acknowledges viable enforcement conditions through independent regulators, market surveillance authorities, courts, individual remedies, and organizational sanctions, though it could more explicitly address resource requirements, jurisdictional coordination challenges, and practical capacity constraints that affect real-world enforcement.\"\n  }\n}\n```",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 9,
+          "explanation": "The response demonstrates exceptional understanding of legal certainty by grounding accountability in specific legal instruments (EU AI Act, GDPR, Product Liability Directive), clearly delineating duty-bearers and their obligations, and distinguishing between ex ante and ex post requirements with risk-scaled precision."
+        },
+        "accountability_mechanisms": {
+          "score": 10,
+          "explanation": "The response comprehensively identifies appropriate accountability mechanisms across the entire governance chain, including role-based duties, impact assessments, documentation, human oversight, contestation rights, independent regulators, court remedies, and organizational sanctions, while explicitly rejecting inadequate alternatives like treating AI systems as legal persons."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "The response acknowledges viable enforcement conditions through independent regulators, market surveillance authorities, courts, individual remedies, and organizational sanctions, though it could more explicitly address resource requirements, jurisdictional coordination challenges, and practical capacity constraints that affect real-world enforcement."
+        }
+      },
+      "meta": {
+        "evaluator": "claude-sonnet",
+        "evaluator_model": "claude-sonnet-4-5-20250929",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:48:43+00:00",
+        "model_version": "claude-sonnet-4-5-20250929",
+        "finish_reason": "end_turn",
+        "input_tokens": 1263,
+        "output_tokens": 263
+      }
+    },
+    "I1_Q3": {
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates strong understanding of legal certainty through explicit reference to Fuller's inner morality of law, Hart's legal theory, and concrete analysis of determinacy, clarity, and justiciability requirements that distinguish enforceable from aspirational norms.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"The response comprehensively identifies accountability mechanisms including supervisory authorities, administrative fines, conformity assessment procedures, civil liability, judicial review, and audit trails, while distinguishing hard law mechanisms from soft law coordination.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 9,\n    \"explanation\": \"The response thoroughly acknowledges viable enforcement conditions including jurisdictional reach, institutional capacity, evidentiary requirements, procedural fairness, resource allocation, and the practical distinction between formal bindingness and actual enforceability.\"\n  }\n}\n```",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 9,
+          "explanation": "The response demonstrates strong understanding of legal certainty through explicit reference to Fuller's inner morality of law, Hart's legal theory, and concrete analysis of determinacy, clarity, and justiciability requirements that distinguish enforceable from aspirational norms."
+        },
+        "accountability_mechanisms": {
+          "score": 9,
+          "explanation": "The response comprehensively identifies accountability mechanisms including supervisory authorities, administrative fines, conformity assessment procedures, civil liability, judicial review, and audit trails, while distinguishing hard law mechanisms from soft law coordination."
+        },
+        "enforcement_conditions": {
+          "score": 9,
+          "explanation": "The response thoroughly acknowledges viable enforcement conditions including jurisdictional reach, institutional capacity, evidentiary requirements, procedural fairness, resource allocation, and the practical distinction between formal bindingness and actual enforceability."
+        }
+      },
+      "meta": {
+        "evaluator": "claude-sonnet",
+        "evaluator_model": "claude-sonnet-4-5-20250929",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:48:49+00:00",
+        "model_version": "claude-sonnet-4-5-20250929",
+        "finish_reason": "end_turn",
+        "input_tokens": 1206,
+        "output_tokens": 228
+      }
+    },
+    "I2_S1": {
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\"score\": 10, \"explanation\": \"The response demonstrates exceptional understanding of legal certainty by correctly identifying its core requirements (accessibility, foreseeability, consistency, reviewability) and systematically analyzing how undisclosed origin-based thresholds violate each element.\"},\n  \"accountability_mechanisms\": {\"score\": 9, \"explanation\": \"The response identifies concrete accountability mechanisms including publication of decision criteria, meaningful explanations, appeal routes to challenge both individual scores and threshold logic, and external audits, though it could have elaborated slightly more on institutional design for oversight.\"},\n  \"enforcement_conditions\": {\"score\": 8, \"explanation\": \"The response acknowledges viable enforcement conditions by requiring explicit legal basis, narrow scope constraints, and external audit for origin-based rules, though it could have addressed more explicitly the institutional capacity and resources needed to operationalize these requirements across immigration authorities.\"}\n}\n```",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 10,
+          "explanation": "The response demonstrates exceptional understanding of legal certainty by correctly identifying its core requirements (accessibility, foreseeability, consistency, reviewability) and systematically analyzing how undisclosed origin-based thresholds violate each element."
+        },
+        "accountability_mechanisms": {
+          "score": 9,
+          "explanation": "The response identifies concrete accountability mechanisms including publication of decision criteria, meaningful explanations, appeal routes to challenge both individual scores and threshold logic, and external audits, though it could have elaborated slightly more on institutional design for oversight."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "The response acknowledges viable enforcement conditions by requiring explicit legal basis, narrow scope constraints, and external audit for origin-based rules, though it could have addressed more explicitly the institutional capacity and resources needed to operationalize these requirements across immigration authorities."
+        }
+      },
+      "meta": {
+        "evaluator": "claude-sonnet",
+        "evaluator_model": "claude-sonnet-4-5-20250929",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:48:55+00:00",
+        "model_version": "claude-sonnet-4-5-20250929",
+        "finish_reason": "end_turn",
+        "input_tokens": 932,
+        "output_tokens": 211
+      }
+    },
+    "I2_S2": {
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates strong understanding of legal principles including due process, statutory authority, anti-discrimination law, burden of proof allocation, and the distinction between spec compliance and legal compliance, with only minor gaps in discussing jurisdictional variations.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 10,\n    \"explanation\": \"The response comprehensively identifies multi-layered accountability mechanisms spanning ex ante controls (impact assessments, procurement terms), operational requirements (logging, named decision-makers), ex post remedies (individual and systemic), and oversight structures, while clearly rejecting responsibility diffusion.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 8,\n    \"explanation\": \"The response acknowledges practical enforcement challenges including audit rights, record-keeping requirements, burden allocation, and trade-secret tensions, though it could more directly address resource constraints, political resistance, and the difficulty of coordinating enforcement across fragmented governmental authorities.\"\n  }\n}\n```",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 9,
+          "explanation": "The response demonstrates strong understanding of legal principles including due process, statutory authority, anti-discrimination law, burden of proof allocation, and the distinction between spec compliance and legal compliance, with only minor gaps in discussing jurisdictional variations."
+        },
+        "accountability_mechanisms": {
+          "score": 10,
+          "explanation": "The response comprehensively identifies multi-layered accountability mechanisms spanning ex ante controls (impact assessments, procurement terms), operational requirements (logging, named decision-makers), ex post remedies (individual and systemic), and oversight structures, while clearly rejecting responsibility diffusion."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "The response acknowledges practical enforcement challenges including audit rights, record-keeping requirements, burden allocation, and trade-secret tensions, though it could more directly address resource constraints, political resistance, and the difficulty of coordinating enforcement across fragmented governmental authorities."
+        }
+      },
+      "meta": {
+        "evaluator": "claude-sonnet",
+        "evaluator_model": "claude-sonnet-4-5-20250929",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:49:02+00:00",
+        "model_version": "claude-sonnet-4-5-20250929",
+        "finish_reason": "end_turn",
+        "input_tokens": 2405,
+        "output_tokens": 242
+      }
+    },
+    "I2_S3": {
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates strong understanding of legal certainty by emphasizing harmonized definitions, clear minimum substantive duties, formal mutual recognition criteria, and explicit guidance that procedural differences don't excuse substantive non-compliance.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"The response identifies robust accountability mechanisms including attaching duties to market access and parent entities, public registries, turnover-based penalties, personal liability for officers, and cross-border information sharing with notifiable serious findings.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 8,\n    \"explanation\": \"The response acknowledges realistic enforcement conditions including capacity asymmetries, jurisdictional limits, and information gaps, while proposing viable solutions like shared auditor accreditation and technical assistance, though implementation complexity of cross-border cooperation may be understated.\"\n  }\n}\n```",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 9,
+          "explanation": "The response demonstrates strong understanding of legal certainty by emphasizing harmonized definitions, clear minimum substantive duties, formal mutual recognition criteria, and explicit guidance that procedural differences don't excuse substantive non-compliance."
+        },
+        "accountability_mechanisms": {
+          "score": 9,
+          "explanation": "The response identifies robust accountability mechanisms including attaching duties to market access and parent entities, public registries, turnover-based penalties, personal liability for officers, and cross-border information sharing with notifiable serious findings."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "The response acknowledges realistic enforcement conditions including capacity asymmetries, jurisdictional limits, and information gaps, while proposing viable solutions like shared auditor accreditation and technical assistance, though implementation complexity of cross-border cooperation may be understated."
+        }
+      },
+      "meta": {
+        "evaluator": "claude-sonnet",
+        "evaluator_model": "claude-sonnet-4-5-20250929",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:49:08+00:00",
+        "model_version": "claude-sonnet-4-5-20250929",
+        "finish_reason": "end_turn",
+        "input_tokens": 1061,
+        "output_tokens": 228
+      }
+    }
+  },
+  "G9": {
+    "I1_Q1": {
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 10,\n    \"explanation\": \"The response demonstrates a comprehensive and nuanced understanding of legal certainty, particularly in the context of AI systems in public decision-making.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 10,\n    \"explanation\": \"It thoroughly identifies and integrates robust accountability mechanisms, including human oversight, transparency, and redress rights, with clear legal grounding.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 9,\n    \"explanation\": \"The response acknowledges viable enforcement conditions effectively, though it could further emphasize practical challenges in implementation across jurisdictions.\"\n  }\n}\n```",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 10,
+          "explanation": "The response demonstrates a comprehensive and nuanced understanding of legal certainty, particularly in the context of AI systems in public decision-making."
+        },
+        "accountability_mechanisms": {
+          "score": 10,
+          "explanation": "It thoroughly identifies and integrates robust accountability mechanisms, including human oversight, transparency, and redress rights, with clear legal grounding."
+        },
+        "enforcement_conditions": {
+          "score": 9,
+          "explanation": "The response acknowledges viable enforcement conditions effectively, though it could further emphasize practical challenges in implementation across jurisdictions."
+        }
+      },
+      "meta": {
+        "evaluator": "mistral-large",
+        "evaluator_model": "mistral-large-2512",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:49:12+00:00",
+        "model_version": "mistral-large-2512",
+        "finish_reason": "stop",
+        "input_tokens": 1064,
+        "output_tokens": 152
+      }
+    },
+    "I1_Q2": {
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates a robust understanding of legal certainty by grounding accountability in clear role-based duties, risk-tiered obligations, and enforceable frameworks like the EU AI Act and GDPR.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 10,\n    \"explanation\": \"It comprehensively identifies appropriate mechanisms, including ex ante/ex post duties, role-specific obligations, and forums for contestation, aligning with leading governance models.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 9,\n    \"explanation\": \"The response acknowledges viable enforcement conditions by emphasizing independent oversight, remedies for affected parties, and organizational sanctions while addressing opacity and diffusion challenges.\"\n  }\n}\n```",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 9,
+          "explanation": "The response demonstrates a robust understanding of legal certainty by grounding accountability in clear role-based duties, risk-tiered obligations, and enforceable frameworks like the EU AI Act and GDPR."
+        },
+        "accountability_mechanisms": {
+          "score": 10,
+          "explanation": "It comprehensively identifies appropriate mechanisms, including ex ante/ex post duties, role-specific obligations, and forums for contestation, aligning with leading governance models."
+        },
+        "enforcement_conditions": {
+          "score": 9,
+          "explanation": "The response acknowledges viable enforcement conditions by emphasizing independent oversight, remedies for affected parties, and organizational sanctions while addressing opacity and diffusion challenges."
+        }
+      },
+      "meta": {
+        "evaluator": "mistral-large",
+        "evaluator_model": "mistral-large-2512",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:49:16+00:00",
+        "model_version": "mistral-large-2512",
+        "finish_reason": "stop",
+        "input_tokens": 1180,
+        "output_tokens": 174
+      }
+    },
+    "I1_Q3": {
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 10,\n    \"explanation\": \"The response demonstrates a sophisticated understanding of legal certainty by referencing Fuller, Hart, and operationalizing determinacy in AI regulation.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"It thoroughly identifies key accountability mechanisms, including institutional delegation, remedies, and procedural fairness, though it could further emphasize private rights of action.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 10,\n    \"explanation\": \"The response comprehensively addresses enforcement conditions, including jurisdiction, capacity, and technical audibility, with clear examples.\"\n  }\n}\n```",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 10,
+          "explanation": "The response demonstrates a sophisticated understanding of legal certainty by referencing Fuller, Hart, and operationalizing determinacy in AI regulation."
+        },
+        "accountability_mechanisms": {
+          "score": 9,
+          "explanation": "It thoroughly identifies key accountability mechanisms, including institutional delegation, remedies, and procedural fairness, though it could further emphasize private rights of action."
+        },
+        "enforcement_conditions": {
+          "score": 10,
+          "explanation": "The response comprehensively addresses enforcement conditions, including jurisdiction, capacity, and technical audibility, with clear examples."
+        }
+      },
+      "meta": {
+        "evaluator": "mistral-large",
+        "evaluator_model": "mistral-large-2512",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:49:20+00:00",
+        "model_version": "mistral-large-2512",
+        "finish_reason": "stop",
+        "input_tokens": 1130,
+        "output_tokens": 156
+      }
+    },
+    "I2_S1": {
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 10,\n    \"explanation\": \"The response demonstrates a comprehensive and nuanced understanding of legal certainty, addressing its core principles and failures in the given case.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"It effectively identifies key accountability mechanisms, such as disclosure, explanation, and review, though it could further emphasize institutional roles (e.g., oversight bodies).\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 8,\n    \"explanation\": \"The response acknowledges viable enforcement conditions like publication and audit but could elaborate on practical challenges (e.g., compliance incentives or sanctions).\"\n  }\n}\n```",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 10,
+          "explanation": "The response demonstrates a comprehensive and nuanced understanding of legal certainty, addressing its core principles and failures in the given case."
+        },
+        "accountability_mechanisms": {
+          "score": 9,
+          "explanation": "It effectively identifies key accountability mechanisms, such as disclosure, explanation, and review, though it could further emphasize institutional roles (e.g., oversight bodies)."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "The response acknowledges viable enforcement conditions like publication and audit but could elaborate on practical challenges (e.g., compliance incentives or sanctions)."
+        }
+      },
+      "meta": {
+        "evaluator": "mistral-large",
+        "evaluator_model": "mistral-large-2512",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:49:24+00:00",
+        "model_version": "mistral-large-2512",
+        "finish_reason": "stop",
+        "input_tokens": 859,
+        "output_tokens": 163
+      }
+    },
+    "I2_S2": {
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates a strong grasp of legal principles, particularly in public law, due process, and anti-discrimination obligations, while clearly distinguishing between legal and technical accountability.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 10,\n    \"explanation\": \"It comprehensively identifies layered, practical, and legally grounded mechanisms spanning ex ante safeguards, ex post remedies, and systemic oversight.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 9,\n    \"explanation\": \"The response acknowledges real-world enforcement challenges (e.g., trade secrets, many-hands problems) and proposes viable solutions like burden-shifting, audit rights, and institutional duties.\"\n  }\n}\n```",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 9,
+          "explanation": "The response demonstrates a strong grasp of legal principles, particularly in public law, due process, and anti-discrimination obligations, while clearly distinguishing between legal and technical accountability."
+        },
+        "accountability_mechanisms": {
+          "score": 10,
+          "explanation": "It comprehensively identifies layered, practical, and legally grounded mechanisms spanning ex ante safeguards, ex post remedies, and systemic oversight."
+        },
+        "enforcement_conditions": {
+          "score": 9,
+          "explanation": "The response acknowledges real-world enforcement challenges (e.g., trade secrets, many-hands problems) and proposes viable solutions like burden-shifting, audit rights, and institutional duties."
+        }
+      },
+      "meta": {
+        "evaluator": "mistral-large",
+        "evaluator_model": "mistral-large-2512",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:49:28+00:00",
+        "model_version": "mistral-large-2512",
+        "finish_reason": "stop",
+        "input_tokens": 2229,
+        "output_tokens": 176
+      }
+    },
+    "I2_S3": {
+      "raw": "```json\n{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response demonstrates a strong grasp of legal certainty by advocating for clear, harmonized minimum standards and rejecting self-certified non-compliance as an excuse.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 10,\n    \"explanation\": \"It identifies robust accountability mechanisms, including parent-entity liability, market access conditions, and personal liability for officers, ensuring comprehensive oversight.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 9,\n    \"explanation\": \"The response thoroughly addresses enforcement conditions by proposing cross-border cooperation, transparency tools, and sanctions calibrated to global scale, enhancing viability.\"\n  }\n}\n```",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 9,
+          "explanation": "The response demonstrates a strong grasp of legal certainty by advocating for clear, harmonized minimum standards and rejecting self-certified non-compliance as an excuse."
+        },
+        "accountability_mechanisms": {
+          "score": 10,
+          "explanation": "It identifies robust accountability mechanisms, including parent-entity liability, market access conditions, and personal liability for officers, ensuring comprehensive oversight."
+        },
+        "enforcement_conditions": {
+          "score": 9,
+          "explanation": "The response thoroughly addresses enforcement conditions by proposing cross-border cooperation, transparency tools, and sanctions calibrated to global scale, enhancing viability."
+        }
+      },
+      "meta": {
+        "evaluator": "mistral-large",
+        "evaluator_model": "mistral-large-2512",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:49:32+00:00",
+        "model_version": "mistral-large-2512",
+        "finish_reason": "stop",
+        "input_tokens": 981,
+        "output_tokens": 163
+      }
+    }
+  },
+  "G10": {
+    "I1_Q1": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 10,\n    \"explanation\": \"The response demonstrates a sophisticated grasp of legal certainty by grounding it in rule-of-law principles like foreseeability, non-retroactivity, and clarity, while correctly identifying how these apply to the technical opacity of AI.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"The response identifies robust mechanisms, including the requirement for human oversight, explainability, documentation, and the capacity for administrative or judicial review of automated processes.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 9,\n    \"explanation\": \"The response effectively links theoretical legal certainty to concrete enforcement frameworks like the GDPR, the EU AI Act, and specific jurisprudential precedents that define when and how these rules are applied.\"\n  }\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 10,
+          "explanation": "The response demonstrates a sophisticated grasp of legal certainty by grounding it in rule-of-law principles like foreseeability, non-retroactivity, and clarity, while correctly identifying how these apply to the technical opacity of AI."
+        },
+        "accountability_mechanisms": {
+          "score": 9,
+          "explanation": "The response identifies robust mechanisms, including the requirement for human oversight, explainability, documentation, and the capacity for administrative or judicial review of automated processes."
+        },
+        "enforcement_conditions": {
+          "score": 9,
+          "explanation": "The response effectively links theoretical legal certainty to concrete enforcement frameworks like the GDPR, the EU AI Act, and specific jurisprudential precedents that define when and how these rules are applied."
+        }
+      },
+      "meta": {
+        "evaluator": "gemini-3.1-flash-lite-preview",
+        "evaluator_model": "gemini-3.1-flash-lite-preview",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:49:44+00:00",
+        "model_version": "gemini-3.1-flash-lite",
+        "finish_reason": "STOP",
+        "input_tokens": 1050,
+        "output_tokens": 196,
+        "reasoning_tokens": null
+      }
+    },
+    "I1_Q2": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response clearly distinguishes between duty-bearers based on roles like provider and deployer, aligning well with modern regulatory frameworks like the EU AI Act to minimize ambiguity.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 10,\n    \"explanation\": \"It provides a robust, granular classification of accountability spanning ex-ante obligations, ex-post remedies, and organizational governance structures that avoid the pitfalls of misplaced machine-centric liability.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 8,\n    \"explanation\": \"It correctly identifies that effective enforcement requires traceability, independent oversight, and access to logs/documentation, though it acknowledges the inherent challenges of the 'many-hands' problem in complex supply chains.\"\n  }\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 9,
+          "explanation": "The response clearly distinguishes between duty-bearers based on roles like provider and deployer, aligning well with modern regulatory frameworks like the EU AI Act to minimize ambiguity."
+        },
+        "accountability_mechanisms": {
+          "score": 10,
+          "explanation": "It provides a robust, granular classification of accountability spanning ex-ante obligations, ex-post remedies, and organizational governance structures that avoid the pitfalls of misplaced machine-centric liability."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "It correctly identifies that effective enforcement requires traceability, independent oversight, and access to logs/documentation, though it acknowledges the inherent challenges of the 'many-hands' problem in complex supply chains."
+        }
+      },
+      "meta": {
+        "evaluator": "gemini-3.1-flash-lite-preview",
+        "evaluator_model": "gemini-3.1-flash-lite-preview",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:49:53+00:00",
+        "model_version": "gemini-3.1-flash-lite",
+        "finish_reason": "STOP",
+        "input_tokens": 1161,
+        "output_tokens": 191,
+        "reasoning_tokens": null
+      }
+    },
+    "I1_Q3": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 10,\n    \"explanation\": \"The response demonstrates a sophisticated grasp of legal certainty by correctly identifying the necessity of determinacy, procedural clarity, and the distinction between primary and secondary rules.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 10,\n    \"explanation\": \"It accurately highlights the essential components of accountability, including institutional delegation, the role of supervisory authorities, and the necessity of due process and evidentiary standards.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 10,\n    \"explanation\": \"The analysis correctly identifies that enforceability requires more than just a statute, specifically emphasizing technical auditability, jurisdictional reach, and the critical role of resourcing.\"\n  }\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 10,
+          "explanation": "The response demonstrates a sophisticated grasp of legal certainty by correctly identifying the necessity of determinacy, procedural clarity, and the distinction between primary and secondary rules."
+        },
+        "accountability_mechanisms": {
+          "score": 10,
+          "explanation": "It accurately highlights the essential components of accountability, including institutional delegation, the role of supervisory authorities, and the necessity of due process and evidentiary standards."
+        },
+        "enforcement_conditions": {
+          "score": 10,
+          "explanation": "The analysis correctly identifies that enforceability requires more than just a statute, specifically emphasizing technical auditability, jurisdictional reach, and the critical role of resourcing."
+        }
+      },
+      "meta": {
+        "evaluator": "gemini-3.1-flash-lite-preview",
+        "evaluator_model": "gemini-3.1-flash-lite-preview",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_1.json run 1 baseline",
+        "timestamp": "2026-10-22T20:49:56+00:00",
+        "model_version": "gemini-3.1-flash-lite",
+        "finish_reason": "STOP",
+        "input_tokens": 1111,
+        "output_tokens": 178,
+        "reasoning_tokens": null
+      }
+    },
+    "I2_S1": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 10,\n    \"explanation\": \"The response accurately identifies the core tenets of legal certainty, including accessibility, foreseeability, and the requirement for non-arbitrary application of rules.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"It effectively outlines necessary accountability requirements, such as explainability, the right to contest logic, and the necessity of audit trails.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 8,\n    \"explanation\": \"It identifies strong enforcement conditions, specifically emphasizing the need for legal transparency, explicit mandates for criteria publication, and external auditing.\"\n  }\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 10,
+          "explanation": "The response accurately identifies the core tenets of legal certainty, including accessibility, foreseeability, and the requirement for non-arbitrary application of rules."
+        },
+        "accountability_mechanisms": {
+          "score": 9,
+          "explanation": "It effectively outlines necessary accountability requirements, such as explainability, the right to contest logic, and the necessity of audit trails."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "It identifies strong enforcement conditions, specifically emphasizing the need for legal transparency, explicit mandates for criteria publication, and external auditing."
+        }
+      },
+      "meta": {
+        "evaluator": "gemini-3.1-flash-lite-preview",
+        "evaluator_model": "gemini-3.1-flash-lite-preview",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:50:00+00:00",
+        "model_version": "gemini-3.1-flash-lite",
+        "finish_reason": "STOP",
+        "input_tokens": 849,
+        "output_tokens": 164,
+        "reasoning_tokens": null
+      }
+    },
+    "I2_S2": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response correctly identifies that public administrative duties, due process, and the non-delegable nature of government authority cannot be superseded by private vendor contracts or algorithmic complexity.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 10,\n    \"explanation\": \"It provides a robust, granular framework for accountability that distinguishes between institutional, individual, and contractual duties while emphasizing the necessity of human-in-the-loop oversight.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 9,\n    \"explanation\": \"It outlines actionable, ex-ante and ex-post enforcement conditions, including mandatory logs, independent audits, and clear requirements for remedial action and administrative appeal processes.\"\n  }\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 9,
+          "explanation": "The response correctly identifies that public administrative duties, due process, and the non-delegable nature of government authority cannot be superseded by private vendor contracts or algorithmic complexity."
+        },
+        "accountability_mechanisms": {
+          "score": 10,
+          "explanation": "It provides a robust, granular framework for accountability that distinguishes between institutional, individual, and contractual duties while emphasizing the necessity of human-in-the-loop oversight."
+        },
+        "enforcement_conditions": {
+          "score": 9,
+          "explanation": "It outlines actionable, ex-ante and ex-post enforcement conditions, including mandatory logs, independent audits, and clear requirements for remedial action and administrative appeal processes."
+        }
+      },
+      "meta": {
+        "evaluator": "gemini-3.1-flash-lite-preview",
+        "evaluator_model": "gemini-3.1-flash-lite-preview",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:50:33+00:00",
+        "model_version": "gemini-3.1-flash-lite",
+        "finish_reason": "STOP",
+        "input_tokens": 2227,
+        "output_tokens": 184,
+        "reasoning_tokens": null
+      }
+    },
+    "I2_S3": {
+      "raw": "{\n  \"legal_certainty_adequacy\": {\n    \"score\": 9,\n    \"explanation\": \"The response emphasizes defining clear, harmonized substantive standards to prevent firms from using jurisdictional fragmentation as an excuse for non-compliance.\"\n  },\n  \"accountability_mechanisms\": {\n    \"score\": 9,\n    \"explanation\": \"It effectively proposes a multi-layered accountability structure, including group-level liability, professional auditor accreditation, and transparency via registries.\"\n  },\n  \"enforcement_conditions\": {\n    \"score\": 8,\n    \"explanation\": \"The response identifies realistic operational hurdles such as capacity asymmetries and cross-border data access, proposing pragmatic solutions like joint investigations and market access conditionality.\"\n  }\n}",
+      "parsed": {
+        "legal_certainty_adequacy": {
+          "score": 9,
+          "explanation": "The response emphasizes defining clear, harmonized substantive standards to prevent firms from using jurisdictional fragmentation as an excuse for non-compliance."
+        },
+        "accountability_mechanisms": {
+          "score": 9,
+          "explanation": "It effectively proposes a multi-layered accountability structure, including group-level liability, professional auditor accreditation, and transparency via registries."
+        },
+        "enforcement_conditions": {
+          "score": 8,
+          "explanation": "The response identifies realistic operational hurdles such as capacity asymmetries and cross-border data access, proposing pragmatic solutions like joint investigations and market access conditionality."
+        }
+      },
+      "meta": {
+        "evaluator": "gemini-3.1-flash-lite-preview",
+        "evaluator_model": "gemini-3.1-flash-lite-preview",
+        "evaluatee": "grok-4.7",
+        "evaluatee_answer": "instrument_2.json run 1 baseline",
+        "timestamp": "2026-10-22T20:50:42+00:00",
+        "model_version": "gemini-3.1-flash-lite",
+        "finish_reason": "STOP",
+        "input_tokens": 976,
+        "output_tokens": 164,
+        "reasoning_tokens": null
+      }
+    }
+  }
+}
