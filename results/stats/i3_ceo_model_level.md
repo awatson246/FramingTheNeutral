@@ -27,12 +27,12 @@ delta = CEO - baseline (H2 estimator: mean over scenarios of per-scenario run me
 
 ## Across models: primary (model level, n = 6)
 
-| Dimension | mean delta | SD | 95% CI (models) | t | df | p (two-sided) |
-|---|---|---|---|---|---|---|
-| Legal certainty | +0.148 | 0.437 | [-0.213, +0.417] | 0.830 | 5 | 0.4441 |
-| Accountability | +0.463 | 0.285 | [+0.231, +0.639] | 3.983 | 5 | 0.0105 |
-| Enforceability | +0.102 | 0.569 | [-0.380, +0.435] | 0.438 | 5 | 0.6794 |
-| All three | +0.238 | 0.356 | [-0.056, +0.448] | 1.636 | 5 | 0.1628 |
+| Dimension | mean delta | SD | 95% CI (t) | 95% CI (models) | t | df | p (two-sided) |
+|---|---|---|---|---|---|---|---|
+| Legal certainty | +0.148 | 0.437 | [-0.310, +0.607] | [-0.213, +0.417] | 0.830 | 5 | 0.4441 |
+| Accountability | +0.463 | 0.285 | [+0.164, +0.762] | [+0.231, +0.639] | 3.983 | 5 | 0.0105 |
+| Enforceability | +0.102 | 0.569 | [-0.495, +0.699] | [-0.380, +0.435] | 0.438 | 5 | 0.6794 |
+| All three | +0.238 | 0.356 | [-0.136, +0.611] | [-0.056, +0.448] | 1.636 | 5 | 0.1628 |
 
 Model-only bootstrap: 462 distinct resamples possible.
 
@@ -57,7 +57,7 @@ Model-only bootstrap: 462 distinct resamples possible.
 | grok-4.7 | 4.167 | 4.722 | +0.556 | [+0.278, +0.833] | [-0.222, +1.333] |
 | **6 models (mean)** | 4.509 | 4.972 | +0.463 | [+0.194, +0.713] | [-0.028, +0.963] |
 
-**Primary:** mean delta = +0.463, SD = 0.285, 95% CI (models) = [+0.231, +0.639], t(5) = 3.983, p = 0.0105 (two-sided).
+**Primary:** mean delta = +0.463, SD = 0.285, 95% CI (t) = [+0.164, +0.762], 95% CI (models) = [+0.231, +0.639], t(5) = 3.983, p = 0.0105 (two-sided).
 
 Sensitivity: sign test 1 < 0, 5 > 0, 0 ties; two-sided p = 0.2188.
 

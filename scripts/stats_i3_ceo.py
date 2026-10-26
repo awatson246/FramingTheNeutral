@@ -251,7 +251,8 @@ if __name__ == "__main__":
     # ---- outputs ----
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     cols = ["analysis", "model", "dimension", "baseline_mean", "ceo_mean", "delta",
-            "n_models", "sd", "df", "model_ci_low", "model_ci_high", "model_resamples_possible",
+            "n_models", "sd", "df", "t_ci_low", "t_ci_high",
+            "model_ci_low", "model_ci_high", "model_resamples_possible",
             "ci_low", "ci_high", "delta_cells", "cell_ci_low", "cell_ci_high",
             "runs_baseline", "runs_ceo", "n_recovered_scores", "n_missing_scores",
             "strat_resamples_possible", "cell_resamples_possible", "strat_distinct_boot_values",
@@ -288,11 +289,11 @@ if __name__ == "__main__":
         md.append(f"| {m} | " + " | ".join(
             f"{f3(get(m, d)['delta'])} {iv(get(m, d)['ci_low'], get(m, d)['ci_high'])}" for d in LABELS) + " |")
     md += ["", "## Across models: primary (model level, n = 6)", "",
-           "| Dimension | mean delta | SD | 95% CI (models) | t | df | p (two-sided) |",
-           "|---|---|---|---|---|---|---|"]
+           "| Dimension | mean delta | SD | 95% CI (t) | 95% CI (models) | t | df | p (two-sided) |",
+           "|---|---|---|---|---|---|---|---|"]
     for d in LABELS:
         a = across[d]
-        md.append(f"| {LABEL[d]} | {f3(a['delta'])} | {a['sd']:.3f} | "
+        md.append(f"| {LABEL[d]} | {f3(a['delta'])} | {a['sd']:.3f} | {iv(a['t_ci_low'], a['t_ci_high'])} | "
                   f"{iv(a['model_ci_low'], a['model_ci_high'])} | {a['t']:.3f} | {a['df']} | {a['p_t']:.4f} |")
     md += ["", f"Model-only bootstrap: {across[ALL]['model_resamples_possible']} distinct resamples possible.",
            "", "## Across models: sensitivity", "",
@@ -312,7 +313,8 @@ if __name__ == "__main__":
     a = across["accountability"]
     md.append(f"| **{a['model']} (mean)** | {a['baseline_mean']:.3f} | {a['ceo_mean']:.3f} | "
               f"{f3(a['delta'])} | {iv(a['ci_low'], a['ci_high'])} | {iv(a['cell_ci_low'], a['cell_ci_high'])} |")
-    md += ["", f"**Primary:** mean delta = {f3(a['delta'])}, SD = {a['sd']:.3f}, 95% CI (models) = "
+    md += ["", f"**Primary:** mean delta = {f3(a['delta'])}, SD = {a['sd']:.3f}, 95% CI (t) = "
+               f"{iv(a['t_ci_low'], a['t_ci_high'])}, 95% CI (models) = "
                f"{iv(a['model_ci_low'], a['model_ci_high'])}, t({a['df']}) = {a['t']:.3f}, "
                f"p = {a['p_t']:.4f} (two-sided).", "",
            f"Sensitivity: sign test {a['sign_k_negative']} < 0, {a['sign_k_positive']} > 0, "

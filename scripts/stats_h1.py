@@ -164,7 +164,8 @@ def ttest_15(all_tables: dict) -> dict:
 def write_outputs(rows: list[dict]) -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     cols = ["analysis", "scenario", "model", "within", "cross", "diff", "diff_allruns",
-            "n_models", "sd", "t", "df", "p_t", "model_ci_low", "model_ci_high",
+            "n_models", "sd", "t", "df", "p_t", "t_ci_low", "t_ci_high",
+            "model_ci_low", "model_ci_high",
             "model_resamples_possible",
             "ci_low", "ci_high", "n_boot", "distinct_boot_values", "sign_k_positive", "sign_n",
             "sign_p_one_sided", "n_points"]
@@ -194,7 +195,8 @@ def write_outputs(rows: list[dict]) -> None:
                       f"{f4(r['diff_allruns'])} | [{f4(r['ci_low'])}, {f4(r['ci_high'])}] |")
         a = next(r for r in rows if r["scenario"] == scenario and r["analysis"] == "across_models")
         md += ["", f"**Primary (model level, n = {a['n_models']}):** mean diff = {f4(a['diff'])}, "
-                   f"SD = {f4(a['sd'])}, 95% CI (bootstrap over models, {a['model_resamples_possible']} "
+                   f"SD = {f4(a['sd'])}, 95% CI (t) = [{f4(a['t_ci_low'])}, {f4(a['t_ci_high'])}], "
+                   f"95% CI (bootstrap over models, {a['model_resamples_possible']} "
                    f"distinct resamples) = [{f4(a['model_ci_low'])}, {f4(a['model_ci_high'])}], "
                    f"t({a['df']}) = {a['t']:.3f}, p = {a['p_t']:.3g} (two-sided).", "",
                f"Sensitivity: cluster bootstrap (models, then runs) CI = "
