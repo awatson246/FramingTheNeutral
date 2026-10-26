@@ -1,0 +1,562 @@
+{
+  "source": "data\\raw\\instrument_3.json",
+  "methods": {
+    "tolerant_json": "fences and trailing commas removed, then json.loads",
+    "key_typo": "misspelled dimension key (similarity >= 0.8)"
+  },
+  "recovered": [
+    {
+      "model": "mistral-large",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S5",
+      "dimension": "legal_certainty",
+      "score": 5,
+      "method": "key_typo",
+      "raw_key": "legal_certurity",
+      "key_similarity": 0.867,
+      "raw_snippet": "\"legal_certurity\": {\"score\": 5"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 2,
+      "scenario": "I3_S1",
+      "dimension": "legal_certainty",
+      "score": 4,
+      "method": "tolerant_json",
+      "raw_snippet": "\"legal_certainty\": {\"score\": 4"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 2,
+      "scenario": "I3_S1",
+      "dimension": "accountability",
+      "score": 5,
+      "method": "tolerant_json",
+      "raw_snippet": "\"accountability\": {\"score\": 5"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 2,
+      "scenario": "I3_S1",
+      "dimension": "enforceability",
+      "score": 6,
+      "method": "tolerant_json",
+      "raw_snippet": "\"enforceability\": {\"score\": 6"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 2,
+      "scenario": "I3_S2",
+      "dimension": "legal_certainty",
+      "score": 2,
+      "method": "tolerant_json",
+      "raw_snippet": "\"legal_certainty\": {\"score\": 2"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 2,
+      "scenario": "I3_S2",
+      "dimension": "accountability",
+      "score": 3,
+      "method": "tolerant_json",
+      "raw_snippet": "\"accountability\": {\"score\": 3"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 2,
+      "scenario": "I3_S2",
+      "dimension": "enforceability",
+      "score": 2,
+      "method": "tolerant_json",
+      "raw_snippet": "\"enforceability\": {\"score\": 2"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 2,
+      "scenario": "I3_S3",
+      "dimension": "legal_certainty",
+      "score": 3,
+      "method": "tolerant_json",
+      "raw_snippet": "\"legal_certainty\": {\"score\": 3"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 2,
+      "scenario": "I3_S3",
+      "dimension": "accountability",
+      "score": 2,
+      "method": "tolerant_json",
+      "raw_snippet": "\"accountability\": {\"score\": 2"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 2,
+      "scenario": "I3_S3",
+      "dimension": "enforceability",
+      "score": 3,
+      "method": "tolerant_json",
+      "raw_snippet": "\"enforceability\": {\"score\": 3"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 2,
+      "scenario": "I3_S4",
+      "dimension": "legal_certainty",
+      "score": 7,
+      "method": "tolerant_json",
+      "raw_snippet": "\"legal_certainty\": {\"score\": 7"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 2,
+      "scenario": "I3_S4",
+      "dimension": "accountability",
+      "score": 7,
+      "method": "tolerant_json",
+      "raw_snippet": "\"accountability\": {\"score\": 7"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 2,
+      "scenario": "I3_S4",
+      "dimension": "enforceability",
+      "score": 8,
+      "method": "tolerant_json",
+      "raw_snippet": "\"enforceability\": {\"score\": 8"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 2,
+      "scenario": "I3_S5",
+      "dimension": "legal_certainty",
+      "score": 8,
+      "method": "tolerant_json",
+      "raw_snippet": "\"legal_certainty\": {\"score\": 8"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 2,
+      "scenario": "I3_S5",
+      "dimension": "accountability",
+      "score": 6,
+      "method": "tolerant_json",
+      "raw_snippet": "\"accountability\": {\"score\": 6"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 2,
+      "scenario": "I3_S5",
+      "dimension": "enforceability",
+      "score": 7,
+      "method": "tolerant_json",
+      "raw_snippet": "\"enforceability\": {\"score\": 7"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 2,
+      "scenario": "I3_S6",
+      "dimension": "legal_certainty",
+      "score": 5,
+      "method": "tolerant_json",
+      "raw_snippet": "\"legal_certainty\": {\"score\": 5"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 2,
+      "scenario": "I3_S6",
+      "dimension": "accountability",
+      "score": 4,
+      "method": "tolerant_json",
+      "raw_snippet": "\"accountability\": {\"score\": 4"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 2,
+      "scenario": "I3_S6",
+      "dimension": "enforceability",
+      "score": 5,
+      "method": "tolerant_json",
+      "raw_snippet": "\"enforceability\": {\"score\": 5"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S1",
+      "dimension": "legal_certainty",
+      "score": 4,
+      "method": "tolerant_json",
+      "raw_snippet": "\"legal_certainty\": {\"score\": 4"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S1",
+      "dimension": "accountability",
+      "score": 3,
+      "method": "tolerant_json",
+      "raw_snippet": "\"accountability\": {\"score\": 3"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S1",
+      "dimension": "enforceability",
+      "score": 5,
+      "method": "tolerant_json",
+      "raw_snippet": "\"enforceability\": {\"score\": 5"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S2",
+      "dimension": "legal_certainty",
+      "score": 2,
+      "method": "tolerant_json",
+      "raw_snippet": "\"legal_certainty\": {\"score\": 2"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S2",
+      "dimension": "accountability",
+      "score": 2,
+      "method": "tolerant_json",
+      "raw_snippet": "\"accountability\": {\"score\": 2"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S2",
+      "dimension": "enforceability",
+      "score": 1,
+      "method": "tolerant_json",
+      "raw_snippet": "\"enforceability\": {\"score\": 1"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S3",
+      "dimension": "legal_certainty",
+      "score": 3,
+      "method": "tolerant_json",
+      "raw_snippet": "\"legal_certainty\": {\"score\": 3"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S3",
+      "dimension": "accountability",
+      "score": 2,
+      "method": "tolerant_json",
+      "raw_snippet": "\"accountability\": {\"score\": 2"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S3",
+      "dimension": "enforceability",
+      "score": 4,
+      "method": "tolerant_json",
+      "raw_snippet": "\"enforceability\": {\"score\": 4"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S4",
+      "dimension": "legal_certainty",
+      "score": 6,
+      "method": "tolerant_json",
+      "raw_snippet": "\"legal_certainty\": {\"score\": 6"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S4",
+      "dimension": "accountability",
+      "score": 5,
+      "method": "tolerant_json",
+      "raw_snippet": "\"accountability\": {\"score\": 5"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S4",
+      "dimension": "enforceability",
+      "score": 6,
+      "method": "tolerant_json",
+      "raw_snippet": "\"enforceability\": {\"score\": 6"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S5",
+      "dimension": "legal_certainty",
+      "score": 5,
+      "method": "tolerant_json",
+      "raw_snippet": "\"legal_certainty\": {\"score\": 5"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S5",
+      "dimension": "accountability",
+      "score": 4,
+      "method": "tolerant_json",
+      "raw_snippet": "\"accountability\": {\"score\": 4"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S5",
+      "dimension": "enforceability",
+      "score": 6,
+      "method": "tolerant_json",
+      "raw_snippet": "\"enforceability\": {\"score\": 6"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S6",
+      "dimension": "legal_certainty",
+      "score": 5,
+      "method": "tolerant_json",
+      "raw_snippet": "\"legal_certainty\": {\"score\": 5"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S6",
+      "dimension": "accountability",
+      "score": 4,
+      "method": "tolerant_json",
+      "raw_snippet": "\"accountability\": {\"score\": 4"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "baseline",
+      "run": 3,
+      "scenario": "I3_S6",
+      "dimension": "enforceability",
+      "score": 3,
+      "method": "tolerant_json",
+      "raw_snippet": "\"enforceability\": {\"score\": 3"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 3,
+      "scenario": "I3_S1",
+      "dimension": "legal_certainty",
+      "score": 4,
+      "method": "tolerant_json",
+      "raw_snippet": "\"legal_certainty\": {\"score\": 4"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 3,
+      "scenario": "I3_S1",
+      "dimension": "accountability",
+      "score": 3,
+      "method": "tolerant_json",
+      "raw_snippet": "\"accountability\": {\"score\": 3"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 3,
+      "scenario": "I3_S1",
+      "dimension": "enforceability",
+      "score": 5,
+      "method": "tolerant_json",
+      "raw_snippet": "\"enforceability\": {\"score\": 5"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 3,
+      "scenario": "I3_S2",
+      "dimension": "legal_certainty",
+      "score": 2,
+      "method": "tolerant_json",
+      "raw_snippet": "\"legal_certainty\": {\"score\": 2"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 3,
+      "scenario": "I3_S2",
+      "dimension": "accountability",
+      "score": 2,
+      "method": "tolerant_json",
+      "raw_snippet": "\"accountability\": {\"score\": 2"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 3,
+      "scenario": "I3_S2",
+      "dimension": "enforceability",
+      "score": 1,
+      "method": "tolerant_json",
+      "raw_snippet": "\"enforceability\": {\"score\": 1"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 3,
+      "scenario": "I3_S3",
+      "dimension": "legal_certainty",
+      "score": 3,
+      "method": "tolerant_json",
+      "raw_snippet": "\"legal_certainty\": {\"score\": 3"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 3,
+      "scenario": "I3_S3",
+      "dimension": "accountability",
+      "score": 4,
+      "method": "tolerant_json",
+      "raw_snippet": "\"accountability\": {\"score\": 4"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 3,
+      "scenario": "I3_S3",
+      "dimension": "enforceability",
+      "score": 3,
+      "method": "tolerant_json",
+      "raw_snippet": "\"enforceability\": {\"score\": 3"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 3,
+      "scenario": "I3_S4",
+      "dimension": "legal_certainty",
+      "score": 6,
+      "method": "tolerant_json",
+      "raw_snippet": "\"legal_certainty\": {\"score\": 6"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 3,
+      "scenario": "I3_S4",
+      "dimension": "accountability",
+      "score": 6,
+      "method": "tolerant_json",
+      "raw_snippet": "\"accountability\": {\"score\": 6"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 3,
+      "scenario": "I3_S4",
+      "dimension": "enforceability",
+      "score": 7,
+      "method": "tolerant_json",
+      "raw_snippet": "\"enforceability\": {\"score\": 7"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 3,
+      "scenario": "I3_S5",
+      "dimension": "legal_certainty",
+      "score": 8,
+      "method": "tolerant_json",
+      "raw_snippet": "\"legal_certainty\": {\"score\": 8"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 3,
+      "scenario": "I3_S5",
+      "dimension": "accountability",
+      "score": 7,
+      "method": "tolerant_json",
+      "raw_snippet": "\"accountability\": {\"score\": 7"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 3,
+      "scenario": "I3_S5",
+      "dimension": "enforceability",
+      "score": 8,
+      "method": "tolerant_json",
+      "raw_snippet": "\"enforceability\": {\"score\": 8"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 3,
+      "scenario": "I3_S6",
+      "dimension": "legal_certainty",
+      "score": 5,
+      "method": "tolerant_json",
+      "raw_snippet": "\"legal_certainty\": {\"score\": 5"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 3,
+      "scenario": "I3_S6",
+      "dimension": "accountability",
+      "score": 4,
+      "method": "tolerant_json",
+      "raw_snippet": "\"accountability\": {\"score\": 4"
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 3,
+      "scenario": "I3_S6",
+      "dimension": "enforceability",
+      "score": 4,
+      "method": "tolerant_json",
+      "raw_snippet": "\"enforceability\": {\"score\": 4"
+    }
+  ],
+  "still_missing": []
+}
