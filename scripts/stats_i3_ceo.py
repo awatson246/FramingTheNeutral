@@ -10,17 +10,22 @@ Point estimates follow the H2 test in plot_response_results.py: per scenario,
 mean CEO score over runs minus mean baseline score over runs, averaged over the six
 scenarios. The "all" dimension is the mean of the three dimension deltas.
 
-Bootstrap, 10,000 resamples, seed 42:
-  primary (stratified): within each model, runs are resampled with replacement
-      separately within every scenario x condition stratum, and the H2 delta is
-      recomputed. Cluster level: resample models, then stratified resampling inside
-      each. Possible distinct resamples per model: product over strata of C(2n-1, n).
-  secondary (cell): scenario x run cells resampled within each condition, delta =
-      mean(CEO cells) - mean(baseline cells) (= H2 estimate when cells are balanced).
+Across models, PRIMARY (model level, one delta per model, n = 6; model_level.py):
+bootstrap 95% CI resampling models only, and a two-sided one-sample t-test against 0.
 
-Across models, per dimension: mean delta, cluster CIs, and a two-sided sign test on
-models with delta > 0 vs < 0 (ties excluded). Also reproduces the original H2
-one-sample t-tests on the five original models.
+Sensitivity bootstraps, 10,000 resamples, seed 42:
+  stratified: within each model, runs are resampled with replacement separately
+      within every scenario x condition stratum, and the H2 delta is recomputed.
+      Cluster level: resample models, then stratified resampling inside each.
+      Possible distinct resamples per model: product over strata of C(2n-1, n).
+  cell: scenario x run cells resampled within each condition, delta =
+      mean(CEO cells) - mean(baseline cells) (= H2 estimate when cells are balanced).
+Also a two-sided sign test on models with delta > 0 vs < 0 (ties excluded), and the
+original H2 one-sample t-tests on the five original models.
+
+The primary data include all recoveries (key_typo too). In the default run, the
+accountability result with key_typo excluded is also computed for
+results/stats/sensitivity_summary.csv.
 
 Writes results/stats/i3_ceo_model_level.csv and results/stats/i3_ceo_model_level.md.
 No API calls.
@@ -39,7 +44,9 @@ from pathlib import Path
 import numpy as np
 from scipy import stats
 
-I3_FILE        = Path("data/raw/instrument_3.json")
+from model_level import model_level_inference, update_summary
+
+I3_FILE       = Path("data/raw/instrument_3.json")
 RECOVERED_FILE = Path("data/processed/i3_recovered.json")
 OUT_DIR        = Path("results/stats")
 MODELS    = ["gpt-4o", "claude-sonnet", "deepseek-v3", "mistral-large",
@@ -153,25 +160,8 @@ def possible_resamples(st: dict) -> tuple[int, int]:
     return strat, comb(2 * nb - 1, nb) * comb(2 * nc - 1, nc)
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Model-level I3 CEO vs baseline statistics.")
-    parser.add_argument("--no-recovery", action="store_true",
-                        help="Use parsed scores only (ignore data/processed/i3_recovered.json).")
-    parser.add_argument("--exclude-key-typo", action="store_true",
-                        help="Drop recoveries made by fixing a misspelled dimension key.")
-    args = parser.parse_args()
-
-    data = json.loads(I3_FILE.read_text(encoding="utf-8"))
-    recovered = []
-    if not args.no_recovery and RECOVERED_FILE.exists():
-        recovered = json.loads(RECOVERED_FILE.read_text(encoding="utf-8"))["recovered"]
-        if args.exclude_key_typo:
-            recovered = [r for r in recovered if r["method"] != "key_typo"]
-    strata, n_recovered = load_strata(data, recovered)
-    recovery_note = ("parsed scores only" if args.no_recovery else
-                     f"parsed scores + {len(recovered)} recovered from raw text "
-                     f"({RECOVERED_FILE}{', key_typo excluded' if args.exclude_key_typo else ''})")
-
+def analyse(strata: dict, n_recovered: Counter) -> tuple[list[dict], dict]:
+    """Per-model and across-model rows plus the H2 reproduction, for one dataset."""
     LABELS = DIMS + [ALL]
     rows, per_model = [], {}
     for m in MODELS:
@@ -213,8 +203,10 @@ if __name__ == "__main__":
         rows.append(dict(analysis="across_models", model=f"{len(MODELS)} models", dimension=d,
                          baseline_mean=float(np.mean([r["baseline_mean"] for r in mrows])),
                          ceo_mean=float(np.mean([r["ceo_mean"] for r in mrows])),
-                         delta=float(np.mean(vals)), ci_low=lo, ci_high=hi,
-                         cell_ci_low=clo, cell_ci_high=chi, n_boot=N_BOOT,
+                         delta=float(np.mean(vals)),
+                         **model_level_inference(vals),                        # primary
+                         ci_low=lo, ci_high=hi,                                # sensitivity: stratified cluster
+                         cell_ci_low=clo, cell_ci_high=chi, n_boot=N_BOOT,     # sensitivity: cell cluster
                          sign_k_negative=k_neg, sign_k_positive=k_pos,
                          sign_ties=len(vals) - n_nz, sign_p_two_sided=float(p)))
 
@@ -223,10 +215,43 @@ if __name__ == "__main__":
         t, p = stats.ttest_1samp(arr, 0)
         rows.append(dict(analysis="h2_ttest_original_five", model="5 models", dimension=d,
                          delta=float(arr.mean()), t=float(t), p_t=float(p)))
+    return rows, per_model
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Model-level I3 CEO vs baseline statistics.")
+    parser.add_argument("--no-recovery", action="store_true",
+                        help="Use parsed scores only (ignore data/processed/i3_recovered.json).")
+    parser.add_argument("--exclude-key-typo", action="store_true",
+                        help="Drop recoveries made by fixing a misspelled dimension key.")
+    args = parser.parse_args()
+
+    data = json.loads(I3_FILE.read_text(encoding="utf-8"))
+    recovered = []
+    if not args.no_recovery and RECOVERED_FILE.exists():
+        recovered = json.loads(RECOVERED_FILE.read_text(encoding="utf-8"))["recovered"]
+        if args.exclude_key_typo:
+            recovered = [r for r in recovered if r["method"] != "key_typo"]
+    strata, n_recovered = load_strata(data, recovered)
+    recovery_note = ("parsed scores only" if args.no_recovery else
+                     f"parsed scores + {len(recovered)} recovered from raw text "
+                     f"({RECOVERED_FILE}{', key_typo excluded' if args.exclude_key_typo else ''})")
+
+    LABELS = DIMS + [ALL]
+    rows, per_model = analyse(strata, n_recovered)
+
+    # Accountability with the key_typo recovery excluded (for the sensitivity summary)
+    typo_variant = None
+    if not args.no_recovery and not args.exclude_key_typo and any(r["method"] == "key_typo" for r in recovered):
+        st_v, nr_v = load_strata(data, [r for r in recovered if r["method"] != "key_typo"])
+        v_rows, _ = analyse(st_v, nr_v)
+        typo_variant = next(r for r in v_rows if r["analysis"] == "across_models"
+                            and r["dimension"] == "accountability")
 
     # ---- outputs ----
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     cols = ["analysis", "model", "dimension", "baseline_mean", "ceo_mean", "delta",
+            "n_models", "sd", "df", "model_ci_low", "model_ci_high", "model_resamples_possible",
             "ci_low", "ci_high", "delta_cells", "cell_ci_low", "cell_ci_high",
             "runs_baseline", "runs_ceo", "n_recovered_scores", "n_missing_scores",
             "strat_resamples_possible", "cell_resamples_possible", "strat_distinct_boot_values",
@@ -247,26 +272,35 @@ if __name__ == "__main__":
     md = ["# I3 CEO vs baseline, model level", "",
           f"Generated by `scripts/stats_i3_ceo.py`. Data: {recovery_note}.",
           "delta = CEO - baseline (H2 estimator: mean over scenarios of per-scenario run means). "
-          "Primary CI: stratified bootstrap (runs resampled within each scenario x condition), "
-          "10,000 resamples, seed 42. Secondary CI: cell bootstrap (scenario x run cells "
-          "resampled within condition).", "",
+          "**Primary:** model level, one delta per model (n = 6): bootstrap 95% CI resampling models "
+          "only, and a two-sided one-sample t-test against 0. Sensitivity: stratified bootstrap (runs "
+          "resampled within each scenario x condition) and cell bootstrap (scenario x run cells "
+          "resampled within condition), 10,000 resamples, seed 42.", "",
           "## Data per model", "",
           "| Model | runs per scenario (b/c) | recovered scores | missing scores |", "|---|---|---|---|"]
     for m in MODELS:
         r0 = get(m, ALL)
         md.append(f"| {m} | {r0['runs_baseline']}/{r0['runs_ceo']} | {r0['n_recovered_scores']} | "
                   f"{r0['n_missing_scores']} |")
-    md += ["", "## Per model: delta [stratified 95% CI]", "",
+    md += ["", "## Per model: delta [stratified 95% CI, sensitivity]", "",
            "| Model | " + " | ".join(LABEL[d] for d in LABELS) + " |", "|---|" + "---|" * len(LABELS)]
     for m in MODELS:
         md.append(f"| {m} | " + " | ".join(
             f"{f3(get(m, d)['delta'])} {iv(get(m, d)['ci_low'], get(m, d)['ci_high'])}" for d in LABELS) + " |")
-    md += ["", "## Across models", "",
-           "| Dimension | mean delta | 95% CI stratified (cluster) | 95% CI cell (cluster) | "
-           "models < 0 | models > 0 | ties | sign test p (two-sided) |", "|---|---|---|---|---|---|---|---|"]
+    md += ["", "## Across models: primary (model level, n = 6)", "",
+           "| Dimension | mean delta | SD | 95% CI (models) | t | df | p (two-sided) |",
+           "|---|---|---|---|---|---|---|"]
     for d in LABELS:
         a = across[d]
-        md.append(f"| {LABEL[d]} | {f3(a['delta'])} | {iv(a['ci_low'], a['ci_high'])} | "
+        md.append(f"| {LABEL[d]} | {f3(a['delta'])} | {a['sd']:.3f} | "
+                  f"{iv(a['model_ci_low'], a['model_ci_high'])} | {a['t']:.3f} | {a['df']} | {a['p_t']:.4f} |")
+    md += ["", f"Model-only bootstrap: {across[ALL]['model_resamples_possible']} distinct resamples possible.",
+           "", "## Across models: sensitivity", "",
+           "| Dimension | 95% CI stratified (cluster) | 95% CI cell (cluster) | "
+           "models < 0 | models > 0 | ties | sign test p (two-sided) |", "|---|---|---|---|---|---|---|"]
+    for d in LABELS:
+        a = across[d]
+        md.append(f"| {LABEL[d]} | {iv(a['ci_low'], a['ci_high'])} | "
                   f"{iv(a['cell_ci_low'], a['cell_ci_high'])} | {a['sign_k_negative']} | "
                   f"{a['sign_k_positive']} | {a['sign_ties']} | {a['sign_p_two_sided']:.4f} |")
     md += ["", "## Accountability", "",
@@ -278,14 +312,40 @@ if __name__ == "__main__":
     a = across["accountability"]
     md.append(f"| **{a['model']} (mean)** | {a['baseline_mean']:.3f} | {a['ceo_mean']:.3f} | "
               f"{f3(a['delta'])} | {iv(a['ci_low'], a['ci_high'])} | {iv(a['cell_ci_low'], a['cell_ci_high'])} |")
-    md += ["", f"Sign test: {a['sign_k_negative']} < 0, {a['sign_k_positive']} > 0, "
-               f"{a['sign_ties']} ties; two-sided p = {a['sign_p_two_sided']:.4f}.", "",
+    md += ["", f"**Primary:** mean delta = {f3(a['delta'])}, SD = {a['sd']:.3f}, 95% CI (models) = "
+               f"{iv(a['model_ci_low'], a['model_ci_high'])}, t({a['df']}) = {a['t']:.3f}, "
+               f"p = {a['p_t']:.4f} (two-sided).", "",
+           f"Sensitivity: sign test {a['sign_k_negative']} < 0, {a['sign_k_positive']} > 0, "
+               f"{a['sign_ties']} ties; two-sided p = {a['sign_p_two_sided']:.4f}."]
+    if typo_variant:
+        v = typo_variant
+        md += ["", f"key_typo recovery excluded: mean delta = {f3(v['delta'])}, 95% CI (models) = "
+                   f"{iv(v['model_ci_low'], v['model_ci_high'])}, t({v['df']}) = {v['t']:.3f}, "
+                   f"p = {v['p_t']:.4f}; stratified {iv(v['ci_low'], v['ci_high'])}, "
+                   f"cell {iv(v['cell_ci_low'], v['cell_ci_high'])}."]
+    md += ["",
            "## Original H2 one-sample t-tests (five original models, this data)", "",
            "| Dimension | mean delta | t | p |", "|---|---|---|---|"]
     for r in rows:
         if r["analysis"] == "h2_ttest_original_five":
             md.append(f"| {LABEL[r['dimension']]} | {f3(r['delta'])} | {r['t']:.3f} | {r['p_t']:.4f} |")
     (OUT_DIR / "i3_ceo_model_level.md").write_text("\n".join(md) + "\n", encoding="utf-8")
+
+    # Sensitivity summary rows: only from the default (primary-data) run
+    if not args.no_recovery and not args.exclude_key_typo:
+        to_row = lambda a, test: {**a, "test": test, "mean": a["delta"],
+                                  "i3_stratified_cluster_ci_low": a["ci_low"],
+                                  "i3_stratified_cluster_ci_high": a["ci_high"],
+                                  "i3_cell_cluster_ci_low": a["cell_ci_low"],
+                                  "i3_cell_cluster_ci_high": a["cell_ci_high"]}
+        names = {"legal_certainty": "I3 legal certainty", "accountability": "I3 accountability",
+                 "enforceability": "I3 enforceability", ALL: "I3 all three"}
+        summary = [to_row(across[d], names[d]) for d in LABELS]
+        if typo_variant:
+            summary.append(to_row(typo_variant, "I3 accountability (key_typo excluded)"))
+        update_summary(summary)
+    else:
+        print("Non-default data options: sensitivity_summary.csv not updated.")
 
     print((OUT_DIR / "i3_ceo_model_level.md").read_text(encoding="utf-8"))
     print(f"Saved {OUT_DIR / 'i3_ceo_model_level.csv'} and {OUT_DIR / 'i3_ceo_model_level.md'}")

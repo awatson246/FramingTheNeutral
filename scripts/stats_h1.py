@@ -13,8 +13,10 @@ Bootstrap (10,000 resamples, seed 42) resamples run indices {1, 2, 3}:
 Because H1's cross uses run 1 only, the bootstrap CIs belong to the all-runs version
 of the estimator (cross averaged over runs 1-3), reported alongside as diff_allruns.
 
-Across models: mean diff; 95% CI from a cluster bootstrap (resample models, then
-runs within each); one-sided sign test on the number of models with diff > 0.
+Across models, PRIMARY (model level, one H1 diff per model, n = 6): bootstrap 95% CI
+resampling models only, and a two-sided one-sample t-test against 0 (model_level.py).
+Sensitivity: cluster bootstrap (resample models, then runs within each); one-sided
+sign test on the number of models with diff > 0.
 Sensitivity: Mistral Large's I2 answers replaced by mistral_i2_recollect.json.
 Also reproduces the original 15-point paired t-test (five original models).
 
@@ -44,6 +46,7 @@ from sentence_transformers import SentenceTransformer
 
 import plot_response_results as prp
 from answer_text import get_answer_text
+from model_level import model_level_inference, update_summary
 
 OUT_DIR        = Path("results/stats")
 RECOLLECT_FILE = Path("data/raw/mistral_i2_recollect.json")
@@ -133,11 +136,12 @@ def analyse(scenario: str, all_tables: dict) -> list[dict]:
     lo, hi = cluster_bootstrap(all_tables)
     k = int(sum(d > 0 for d in diffs))
     rows.append(dict(analysis="across_models", scenario=scenario, model=f"{len(diffs)} models",
-                     within=np.mean([r["within"] for r in rows]),
-                     cross=np.mean([r["cross"] for r in rows]),
+                     within=float(np.mean([r["within"] for r in rows])),
+                     cross=float(np.mean([r["cross"] for r in rows])),
                      diff=float(np.mean(diffs)),
                      diff_allruns=float(np.mean([r["diff_allruns"] for r in rows])),
-                     ci_low=lo, ci_high=hi, n_boot=N_BOOT,
+                     **model_level_inference(diffs),          # primary
+                     ci_low=lo, ci_high=hi, n_boot=N_BOOT,    # sensitivity: cluster bootstrap
                      sign_k_positive=k, sign_n=len(diffs),
                      sign_p_one_sided=float(stats.binom.sf(k - 1, len(diffs), 0.5))))
     return rows
@@ -160,8 +164,10 @@ def ttest_15(all_tables: dict) -> dict:
 def write_outputs(rows: list[dict]) -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     cols = ["analysis", "scenario", "model", "within", "cross", "diff", "diff_allruns",
+            "n_models", "sd", "t", "df", "p_t", "model_ci_low", "model_ci_high",
+            "model_resamples_possible",
             "ci_low", "ci_high", "n_boot", "distinct_boot_values", "sign_k_positive", "sign_n",
-            "sign_p_one_sided", "t", "p_t", "n_points"]
+            "sign_p_one_sided", "n_points"]
     with open(OUT_DIR / "h1_model_level.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=cols)
         w.writeheader()
@@ -187,9 +193,14 @@ def write_outputs(rows: list[dict]) -> None:
             md.append(f"| {name} | {f4(r['within'])} | {f4(r['cross'])} | {f4(r['diff'])} | "
                       f"{f4(r['diff_allruns'])} | [{f4(r['ci_low'])}, {f4(r['ci_high'])}] |")
         a = next(r for r in rows if r["scenario"] == scenario and r["analysis"] == "across_models")
-        md += ["", f"Sign test: {a['sign_k_positive']}/{a['sign_n']} models with diff > 0, "
-                   f"one-sided p = {a['sign_p_one_sided']:.4f}. Across-model CI: cluster bootstrap "
-                   f"(models, then runs).", ""]
+        md += ["", f"**Primary (model level, n = {a['n_models']}):** mean diff = {f4(a['diff'])}, "
+                   f"SD = {f4(a['sd'])}, 95% CI (bootstrap over models, {a['model_resamples_possible']} "
+                   f"distinct resamples) = [{f4(a['model_ci_low'])}, {f4(a['model_ci_high'])}], "
+                   f"t({a['df']}) = {a['t']:.3f}, p = {a['p_t']:.3g} (two-sided).", "",
+               f"Sensitivity: cluster bootstrap (models, then runs) CI = "
+               f"[{f4(a['ci_low'])}, {f4(a['ci_high'])}] (the CI in the mean row above); "
+               f"sign test {a['sign_k_positive']}/{a['sign_n']} models with diff > 0, "
+               f"one-sided p = {a['sign_p_one_sided']:.4f}.", ""]
     t = next(r for r in rows if r["analysis"] == "ttest_15_original_five")
     md += ["## Original 15-point paired t-test (five original models)", "",
            f"within = {f4(t['within'])}, cross = {f4(t['cross'])}, t = {t['t']:.3f}, "
@@ -212,6 +223,10 @@ if __name__ == "__main__":
     rows = analyse("main", main_tables) + analyse("mistral_i2_recollect", sens_tables)
     rows.append(ttest_15(main_tables))
     write_outputs(rows)
+
+    a = next(r for r in rows if r["scenario"] == "main" and r["analysis"] == "across_models")
+    update_summary([{**a, "test": "H1 diff", "mean": a["diff"],
+                     "h1_cluster_ci_low": a["ci_low"], "h1_cluster_ci_high": a["ci_high"]}])
 
     for r in rows:
         print({k: (round(v, 4) if isinstance(v, float) else v) for k, v in r.items()})
