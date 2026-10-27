@@ -1,0 +1,777 @@
+{
+  "meta": {
+    "model": "claude-sonnet-4-5-20250929",
+    "params": "max_tokens 512 (extraction) / 1024 (label merge), provider default temperature",
+    "written_by": "scripts/plot_response_results.py"
+  },
+  "extractions": {
+    "s2_accountability::ceada15e2189a595b49c385d84d223faf4cd71b9664de56e178675d90a1f624a": {
+      "extraction_type": "s2_accountability",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"responsible_parties\": [\n    \"city government\",\n    \"AI vendor\",\n    \"human decision-makers\",\n    \"independent third parties\"\n  ],\n  \"mechanisms\": [\n    \"transparency and explainability\",\n    \"appeals process\",\n    \"independent audit\",\n    \"human oversight\"\n  ]\n}",
+      "result": {
+        "responsible_parties": [
+          "city government",
+          "AI vendor",
+          "human decision-makers",
+          "independent third parties"
+        ],
+        "mechanisms": [
+          "transparency and explainability",
+          "appeals process",
+          "independent audit",
+          "human oversight"
+        ]
+      }
+    },
+    "s2_accountability::720cf77dae72d76942eb66fc6cd83da2dc9cdf5a2715c08b27aeddbcea4277a2": {
+      "extraction_type": "s2_accountability",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"responsible_parties\": [\n    \"city government\",\n    \"AI vendor\",\n    \"third-party auditors\",\n    \"regulatory body\"\n  ],\n  \"mechanisms\": [\n    \"human review and appeal\",\n    \"impact assessments\",\n    \"bias audits\",\n    \"independent oversight\",\n    \"contract agreements\"\n  ]\n}",
+      "result": {
+        "responsible_parties": [
+          "city government",
+          "AI vendor",
+          "third-party auditors",
+          "regulatory body"
+        ],
+        "mechanisms": [
+          "human review and appeal",
+          "impact assessments",
+          "bias audits",
+          "independent oversight",
+          "contract agreements"
+        ]
+      }
+    },
+    "s2_accountability::1209a83e222ea34c879f6d6eaac33ebfc3151a22feb972c6511116de90b89c40": {
+      "extraction_type": "s2_accountability",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"responsible_parties\": [\n    \"city government\",\n    \"AI vendor\",\n    \"individual officials\",\n    \"named decision authority\"\n  ],\n  \"mechanisms\": [\n    \"explainability requirement\",\n    \"meaningful appeal process\",\n    \"algorithmic impact assessment\",\n    \"human oversight\",\n    \"ongoing monitoring\"\n  ]\n}",
+      "result": {
+        "responsible_parties": [
+          "city government",
+          "AI vendor",
+          "individual officials",
+          "named decision authority"
+        ],
+        "mechanisms": [
+          "explainability requirement",
+          "meaningful appeal process",
+          "algorithmic impact assessment",
+          "human oversight",
+          "ongoing monitoring"
+        ]
+      }
+    },
+    "s2_accountability::418a57970403ad13a90b07ac7370ed9059aa386a81c7313e5cfec618a7a71469": {
+      "extraction_type": "s2_accountability",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"responsible_parties\": [\n    \"city government\",\n    \"AI vendor\",\n    \"AI developer\",\n    \"designated accountable official\"\n  ],\n  \"mechanisms\": [\n    \"human review requirement\",\n    \"independent audit\",\n    \"appeal process\",\n    \"impact assessment\",\n    \"audit trail\"\n  ]\n}",
+      "result": {
+        "responsible_parties": [
+          "city government",
+          "AI vendor",
+          "AI developer",
+          "designated accountable official"
+        ],
+        "mechanisms": [
+          "human review requirement",
+          "independent audit",
+          "appeal process",
+          "impact assessment",
+          "audit trail"
+        ]
+      }
+    },
+    "s2_accountability::f82c05f6333fc1ebe848b6f7685762982bc45d15e893387bcba4c21f23d54305": {
+      "extraction_type": "s2_accountability",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"responsible_parties\": [\n    \"city government\",\n    \"AI vendor\",\n    \"individual officials\",\n    \"process designers\"\n  ],\n  \"mechanisms\": [\n    \"right to explanation\",\n    \"appeals process\",\n    \"transparency requirements\",\n    \"regular auditing\",\n    \"impact assessment\"\n  ]\n}",
+      "result": {
+        "responsible_parties": [
+          "city government",
+          "AI vendor",
+          "individual officials",
+          "process designers"
+        ],
+        "mechanisms": [
+          "right to explanation",
+          "appeals process",
+          "transparency requirements",
+          "regular auditing",
+          "impact assessment"
+        ]
+      }
+    },
+    "s2_accountability::a0d4b9ecf706380fac374d6fdf4c62b9bbe379fb8cf966ab6cbd6e293f24a7ef": {
+      "extraction_type": "s2_accountability",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"responsible_parties\": [\n    \"city government\",\n    \"AI vendor\",\n    \"oversight officials\",\n    \"human caseworkers\"\n  ],\n  \"mechanisms\": [\n    \"transparency and explainability\",\n    \"human review and appeal\",\n    \"audit trails\",\n    \"third-party audits\",\n    \"vendor accountability clauses\"\n  ]\n}",
+      "result": {
+        "responsible_parties": [
+          "city government",
+          "AI vendor",
+          "oversight officials",
+          "human caseworkers"
+        ],
+        "mechanisms": [
+          "transparency and explainability",
+          "human review and appeal",
+          "audit trails",
+          "third-party audits",
+          "vendor accountability clauses"
+        ]
+      }
+    },
+    "s2_accountability::0a45833697308b2673e256f704acbbcda7e23092227bb6c16e2a413f978bef36": {
+      "extraction_type": "s2_accountability",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"responsible_parties\": [\n    \"city government\",\n    \"AI vendor\",\n    \"individual officials\",\n    \"regulatory body\"\n  ],\n  \"mechanisms\": [\n    \"independent audit\",\n    \"procedural fairness review\",\n    \"bias testing\",\n    \"transparency requirements\"\n  ]\n}",
+      "result": {
+        "responsible_parties": [
+          "city government",
+          "AI vendor",
+          "individual officials",
+          "regulatory body"
+        ],
+        "mechanisms": [
+          "independent audit",
+          "procedural fairness review",
+          "bias testing",
+          "transparency requirements"
+        ]
+      }
+    },
+    "s2_accountability::65d2a51a04f243f079408da21cdbf2cfdcdb732e040a67ae7d7a24e6f565c499": {
+      "extraction_type": "s2_accountability",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"responsible_parties\": [\n    \"city government\",\n    \"AI vendor\",\n    \"regulators and policymakers\"\n  ],\n  \"mechanisms\": [\n    \"explainability and transparency\",\n    \"auditable systems\",\n    \"clear governance structures\",\n    \"fairness standards compliance\"\n  ]\n}",
+      "result": {
+        "responsible_parties": [
+          "city government",
+          "AI vendor",
+          "regulators and policymakers"
+        ],
+        "mechanisms": [
+          "explainability and transparency",
+          "auditable systems",
+          "clear governance structures",
+          "fairness standards compliance"
+        ]
+      }
+    },
+    "s2_accountability::f5b2e8018789302f47d04021e06d789852df3845a8a10fe206f3144680fced86": {
+      "extraction_type": "s2_accountability",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"responsible_parties\": [\n    \"city government\",\n    \"AI vendor\",\n    \"city officials\",\n    \"regulatory body\"\n  ],\n  \"mechanisms\": [\n    \"meaningful human review\",\n    \"right to explanation\",\n    \"independent audit\",\n    \"counterfactual explanation\"\n  ]\n}",
+      "result": {
+        "responsible_parties": [
+          "city government",
+          "AI vendor",
+          "city officials",
+          "regulatory body"
+        ],
+        "mechanisms": [
+          "meaningful human review",
+          "right to explanation",
+          "independent audit",
+          "counterfactual explanation"
+        ]
+      }
+    },
+    "s2_accountability::f4322ca154181033daa13460141394aa87abc7f71db581b5677edcfe4234cd29": {
+      "extraction_type": "s2_accountability",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"responsible_parties\": [\n    \"municipal agency\",\n    \"AI vendor\",\n    \"human official\",\n    \"accountable entity\"\n  ],\n  \"mechanisms\": [\n    \"human-in-the-loop accountability\",\n    \"algorithmic impact assessments\",\n    \"explainability thresholds\",\n    \"duty of care\"\n  ]\n}",
+      "result": {
+        "responsible_parties": [
+          "municipal agency",
+          "AI vendor",
+          "human official",
+          "accountable entity"
+        ],
+        "mechanisms": [
+          "human-in-the-loop accountability",
+          "algorithmic impact assessments",
+          "explainability thresholds",
+          "duty of care"
+        ]
+      }
+    },
+    "s2_accountability::606a99933c0167bb9904962d47e7398bdd7294545d7894788242f73aa52b4169": {
+      "extraction_type": "s2_accountability",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"responsible_parties\": [\n    \"city government\",\n    \"individual officials\",\n    \"program owner\",\n    \"AI vendor\"\n  ],\n  \"mechanisms\": [\n    \"independent human review\",\n    \"documented decision-making\",\n    \"contractual accountability\",\n    \"disclosure requirements\"\n  ]\n}",
+      "result": {
+        "responsible_parties": [
+          "city government",
+          "individual officials",
+          "program owner",
+          "AI vendor"
+        ],
+        "mechanisms": [
+          "independent human review",
+          "documented decision-making",
+          "contractual accountability",
+          "disclosure requirements"
+        ]
+      }
+    },
+    "s2_accountability::978f278d97b0c615f5987ef1c4f0e8321e61278a75f939a6272623b1d54912bb": {
+      "extraction_type": "s2_accountability",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"responsible_parties\": [\n    \"city government\",\n    \"AI vendor\",\n    \"deployer officials\",\n    \"individual employees\"\n  ],\n  \"mechanisms\": [\n    \"human override requirement\",\n    \"decision reconstruction\",\n    \"vendor disclosure obligations\",\n    \"fitness-for-purpose standards\"\n  ]\n}",
+      "result": {
+        "responsible_parties": [
+          "city government",
+          "AI vendor",
+          "deployer officials",
+          "individual employees"
+        ],
+        "mechanisms": [
+          "human override requirement",
+          "decision reconstruction",
+          "vendor disclosure obligations",
+          "fitness-for-purpose standards"
+        ]
+      }
+    },
+    "s3_enforcement::3b64d437f6650362756b2ee7c48b29cd328d62a18377fcc089c37b6836b5965f": {
+      "extraction_type": "s3_enforcement",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"challenges\": [\n    \"jurisdictional variability\",\n    \"enforcement mechanism gaps\",\n    \"resource constraints\",\n    \"inconsistent penalties\"\n  ],\n  \"solutions\": [\n    \"harmonized regulations\",\n    \"centralized regulatory authority\",\n    \"resource sharing platforms\",\n    \"uniform incentives and penalties\"\n  ]\n}",
+      "result": {
+        "challenges": [
+          "jurisdictional variability",
+          "enforcement mechanism gaps",
+          "resource constraints",
+          "inconsistent penalties"
+        ],
+        "solutions": [
+          "harmonized regulations",
+          "centralized regulatory authority",
+          "resource sharing platforms",
+          "uniform incentives and penalties"
+        ]
+      }
+    },
+    "s3_enforcement::ee81f1d59a9023939b9086e59d21c2dbec5f79335ed6fac7b40300f1a847ba8b": {
+      "extraction_type": "s3_enforcement",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"challenges\": [\n    \"jurisdictional inconsistencies\",\n    \"enforcement capacity disparities\",\n    \"legal and cultural diversity\",\n    \"transparency and accountability gaps\"\n  ],\n  \"solutions\": [\n    \"international harmonization\",\n    \"capacity building and resource sharing\",\n    \"adaptable compliance strategies\",\n    \"strengthened reporting obligations\",\n    \"shared auditing practices\"\n  ]\n}",
+      "result": {
+        "challenges": [
+          "jurisdictional inconsistencies",
+          "enforcement capacity disparities",
+          "legal and cultural diversity",
+          "transparency and accountability gaps"
+        ],
+        "solutions": [
+          "international harmonization",
+          "capacity building and resource sharing",
+          "adaptable compliance strategies",
+          "strengthened reporting obligations",
+          "shared auditing practices"
+        ]
+      }
+    },
+    "s3_enforcement::258e10f04a2a08afbb6318b1904c8254712fc6f579b7c1cd1864f5d85e70b49d": {
+      "extraction_type": "s3_enforcement",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"challenges\": [\n    \"jurisdictional fragmentation\",\n    \"regulatory arbitrage\",\n    \"local capacity deficits\",\n    \"accountability ambiguities\",\n    \"compliance complexity\"\n  ],\n  \"solutions\": [\n    \"mutual recognition agreements\",\n    \"harmonized standards\",\n    \"regulatory cooperation networks\",\n    \"central registries\",\n    \"coordinated enforcement\"\n  ]\n}",
+      "result": {
+        "challenges": [
+          "jurisdictional fragmentation",
+          "regulatory arbitrage",
+          "local capacity deficits",
+          "accountability ambiguities",
+          "compliance complexity"
+        ],
+        "solutions": [
+          "mutual recognition agreements",
+          "harmonized standards",
+          "regulatory cooperation networks",
+          "central registries",
+          "coordinated enforcement"
+        ]
+      }
+    },
+    "s3_enforcement::0bc8a51178a0a65de65db769d21ec5d99176b55c58fa25bb366db03d33962136": {
+      "extraction_type": "s3_enforcement",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"challenges\": [\n    \"regulatory arbitrage\",\n    \"jurisdictional fragmentation\",\n    \"inconsistent definitions\",\n    \"enforcement capacity gaps\"\n  ],\n  \"solutions\": [\n    \"mutual recognition frameworks\",\n    \"harmonized international standards\",\n    \"public disclosure requirements\",\n    \"reciprocal audit recognition\"\n  ]\n}",
+      "result": {
+        "challenges": [
+          "regulatory arbitrage",
+          "jurisdictional fragmentation",
+          "inconsistent definitions",
+          "enforcement capacity gaps"
+        ],
+        "solutions": [
+          "mutual recognition frameworks",
+          "harmonized international standards",
+          "public disclosure requirements",
+          "reciprocal audit recognition"
+        ]
+      }
+    },
+    "s3_enforcement::e9363f976c32adabded3fcb1a3f93033d5493a3d6e58acd48b9f9199387b63d3": {
+      "extraction_type": "s3_enforcement",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"challenges\": [\n    \"regulatory fragmentation\",\n    \"jurisdictional limitations\",\n    \"resource asymmetry\",\n    \"verification difficulties\",\n    \"cross-border data transfer\"\n  ],\n  \"solutions\": [\n    \"international harmonization\",\n    \"mutual recognition agreements\",\n    \"home country responsibility\",\n    \"enhanced regulatory capacity\",\n    \"transparency mechanisms\"\n  ]\n}",
+      "result": {
+        "challenges": [
+          "regulatory fragmentation",
+          "jurisdictional limitations",
+          "resource asymmetry",
+          "verification difficulties",
+          "cross-border data transfer"
+        ],
+        "solutions": [
+          "international harmonization",
+          "mutual recognition agreements",
+          "home country responsibility",
+          "enhanced regulatory capacity",
+          "transparency mechanisms"
+        ]
+      }
+    },
+    "s3_enforcement::01114d1bb513d1e586564fdf8fce2dd54622dd586d250fbbef60da3caae76e14": {
+      "extraction_type": "s3_enforcement",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"challenges\": [\n    \"jurisdictional fragmentation\",\n    \"differing implementation standards\",\n    \"resource allocation disparities\",\n    \"cross-border data flows\",\n    \"competitive distortions\"\n  ],\n  \"solutions\": [\n    \"harmonized core requirements\",\n    \"mutual recognition agreements\",\n    \"capacity building support\",\n    \"transparency mechanisms\"\n  ]\n}",
+      "result": {
+        "challenges": [
+          "jurisdictional fragmentation",
+          "differing implementation standards",
+          "resource allocation disparities",
+          "cross-border data flows",
+          "competitive distortions"
+        ],
+        "solutions": [
+          "harmonized core requirements",
+          "mutual recognition agreements",
+          "capacity building support",
+          "transparency mechanisms"
+        ]
+      }
+    },
+    "s3_enforcement::7afb13b3a0f5143f13c9d341d8079f04d4faf07314ebcfa1b328aff7decec1a0": {
+      "extraction_type": "s3_enforcement",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"challenges\": [\n    \"jurisdictional fragmentation\",\n    \"regulatory arbitrage\",\n    \"resource asymmetry\",\n    \"cross-border data complexity\",\n    \"lack of harmonization\"\n  ],\n  \"solutions\": []\n}",
+      "result": {
+        "challenges": [
+          "jurisdictional fragmentation",
+          "regulatory arbitrage",
+          "resource asymmetry",
+          "cross-border data complexity",
+          "lack of harmonization"
+        ],
+        "solutions": []
+      }
+    },
+    "s3_enforcement::4d65734c86fe48296eced90906795ccd53e4cae45c6cbf3919d7a72cdee7403c": {
+      "extraction_type": "s3_enforcement",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"challenges\": [\n    \"fragmented regulatory landscape\",\n    \"resource and expertise gaps\",\n    \"lack of harmonized standards\",\n    \"enforcement discretion and political will\"\n  ],\n  \"solutions\": []\n}",
+      "result": {
+        "challenges": [
+          "fragmented regulatory landscape",
+          "resource and expertise gaps",
+          "lack of harmonized standards",
+          "enforcement discretion and political will"
+        ],
+        "solutions": []
+      }
+    },
+    "s3_enforcement::db71ea865d5732e58fbd84b48473641e4ca8a46407546b6f1896db0eca920290": {
+      "extraction_type": "s3_enforcement",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"challenges\": [\n    \"regulatory fragmentation\",\n    \"information asymmetry\",\n    \"jurisdictional arbitrage\",\n    \"extraterritorial reach limitations\"\n  ],\n  \"solutions\": [\n    \"equivalency agreements\",\n    \"mutual recognition\"\n  ]\n}",
+      "result": {
+        "challenges": [
+          "regulatory fragmentation",
+          "information asymmetry",
+          "jurisdictional arbitrage",
+          "extraterritorial reach limitations"
+        ],
+        "solutions": [
+          "equivalency agreements",
+          "mutual recognition"
+        ]
+      }
+    },
+    "s3_enforcement::7b84150cb2244658e1357332634dc55e767d0570a9a050d91dc22d08ef1fdcd4": {
+      "extraction_type": "s3_enforcement",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"challenges\": [\n    \"regulatory arbitrage\",\n    \"lack of technical standardization\",\n    \"jurisdictional fragmentation\",\n    \"absence of mutual recognition\"\n  ],\n  \"solutions\": [\n    \"unified technical standards\",\n    \"mutual recognition agreements\",\n    \"harmonized audit requirements\"\n  ]\n}",
+      "result": {
+        "challenges": [
+          "regulatory arbitrage",
+          "lack of technical standardization",
+          "jurisdictional fragmentation",
+          "absence of mutual recognition"
+        ],
+        "solutions": [
+          "unified technical standards",
+          "mutual recognition agreements",
+          "harmonized audit requirements"
+        ]
+      }
+    },
+    "s3_enforcement::9db20f6ff3a541e5f56b5c00881f3b817b22f804c50bd28b895c2012fcce71d1": {
+      "extraction_type": "s3_enforcement",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"challenges\": [\n    \"regulatory arbitrage\",\n    \"fragmented implementation\",\n    \"jurisdictional limits\",\n    \"asymmetric capacity\",\n    \"information asymmetry\"\n  ],\n  \"solutions\": [\n    \"harmonized standards\",\n    \"minimum regulatory floor\",\n    \"market access conditions\",\n    \"shared registry\"\n  ]\n}",
+      "result": {
+        "challenges": [
+          "regulatory arbitrage",
+          "fragmented implementation",
+          "jurisdictional limits",
+          "asymmetric capacity",
+          "information asymmetry"
+        ],
+        "solutions": [
+          "harmonized standards",
+          "minimum regulatory floor",
+          "market access conditions",
+          "shared registry"
+        ]
+      }
+    },
+    "s3_enforcement::7da2cd30dfe5769cecbffb2f01664144bb59f3293e15dd344810f59441215836": {
+      "extraction_type": "s3_enforcement",
+      "model": "claude-sonnet-4-5-20250929",
+      "raw": "{\n  \"challenges\": [\n    \"fragmented definitions\",\n    \"compliance arbitrage\",\n    \"uneven regulator capacity\",\n    \"cross-border opacity\",\n    \"weak consequences\"\n  ],\n  \"solutions\": [\n    \"interoperable baseline\",\n    \"mutual recognition\"\n  ]\n}",
+      "result": {
+        "challenges": [
+          "fragmented definitions",
+          "compliance arbitrage",
+          "uneven regulator capacity",
+          "cross-border opacity",
+          "weak consequences"
+        ],
+        "solutions": [
+          "interoperable baseline",
+          "mutual recognition"
+        ]
+      }
+    }
+  },
+  "label_maps": {
+    "accountability_responsible_parties::32b1d74f2b5322a15d2f1e1f282692461ba4476750ac632d8738316bbd5b6a37": {
+      "context": "accountability_responsible_parties",
+      "model": "claude-sonnet-4-5-20250929",
+      "labels": [
+        "city government",
+        "AI vendor",
+        "human decision-makers",
+        "independent third parties",
+        "third-party auditors",
+        "regulatory body",
+        "individual officials",
+        "named decision authority",
+        "AI developer",
+        "designated accountable official",
+        "process designers",
+        "oversight officials",
+        "human caseworkers",
+        "regulators and policymakers",
+        "city officials",
+        "municipal agency",
+        "human official",
+        "accountable entity",
+        "program owner",
+        "deployer officials",
+        "individual employees"
+      ],
+      "raw": "{\n  \"city government\": \"city government\",\n  \"AI vendor\": \"AI vendor\",\n  \"human decision-makers\": \"human decision-makers\",\n  \"independent third parties\": \"third-party auditors\",\n  \"third-party auditors\": \"third-party auditors\",\n  \"regulatory body\": \"regulatory body\",\n  \"individual officials\": \"individual officials\",\n  \"named decision authority\": \"designated accountable official\",\n  \"AI developer\": \"AI developer\",\n  \"designated accountable official\": \"designated accountable official\",\n  \"process designers\": \"process designers\",\n  \"oversight officials\": \"oversight officials\",\n  \"human caseworkers\": \"human caseworkers\",\n  \"regulators and policymakers\": \"regulatory body\",\n  \"city officials\": \"city officials\",\n  \"municipal agency\": \"municipal agency\",\n  \"human official\": \"individual officials\",\n  \"accountable entity\": \"designated accountable official\",\n  \"program owner\": \"program owner\",\n  \"deployer officials\": \"city officials\",\n  \"individual employees\": \"individual officials\"\n}",
+      "mapping": {
+        "city government": "city government",
+        "AI vendor": "AI vendor",
+        "human decision-makers": "human decision-makers",
+        "independent third parties": "third-party auditors",
+        "third-party auditors": "third-party auditors",
+        "regulatory body": "regulatory body",
+        "individual officials": "individual officials",
+        "named decision authority": "designated accountable official",
+        "AI developer": "AI developer",
+        "designated accountable official": "designated accountable official",
+        "process designers": "process designers",
+        "oversight officials": "oversight officials",
+        "human caseworkers": "human caseworkers",
+        "regulators and policymakers": "regulatory body",
+        "city officials": "city officials",
+        "municipal agency": "municipal agency",
+        "human official": "individual officials",
+        "accountable entity": "designated accountable official",
+        "program owner": "program owner",
+        "deployer officials": "city officials",
+        "individual employees": "individual officials"
+      }
+    },
+    "accountability_mechanisms::8fd42c6d5ad1bea966ca183780e754695ad87390eee70d995103f7e072f1593e": {
+      "context": "accountability_mechanisms",
+      "model": "claude-sonnet-4-5-20250929",
+      "labels": [
+        "transparency and explainability",
+        "appeals process",
+        "independent audit",
+        "human oversight",
+        "human review and appeal",
+        "impact assessments",
+        "bias audits",
+        "independent oversight",
+        "contract agreements",
+        "explainability requirement",
+        "meaningful appeal process",
+        "algorithmic impact assessment",
+        "ongoing monitoring",
+        "human review requirement",
+        "appeal process",
+        "impact assessment",
+        "audit trail",
+        "right to explanation",
+        "transparency requirements",
+        "regular auditing",
+        "audit trails",
+        "third-party audits",
+        "vendor accountability clauses",
+        "procedural fairness review",
+        "bias testing",
+        "explainability and transparency",
+        "auditable systems",
+        "clear governance structures",
+        "fairness standards compliance",
+        "meaningful human review",
+        "counterfactual explanation",
+        "human-in-the-loop accountability",
+        "algorithmic impact assessments",
+        "explainability thresholds",
+        "duty of care",
+        "independent human review",
+        "documented decision-making",
+        "contractual accountability",
+        "disclosure requirements",
+        "human override requirement",
+        "decision reconstruction",
+        "vendor disclosure obligations",
+        "fitness-for-purpose standards"
+      ],
+      "raw": "{\n  \"transparency and explainability\": \"transparency and explainability\",\n  \"appeals process\": \"appeal process\",\n  \"independent audit\": \"independent audit\",\n  \"human oversight\": \"human oversight\",\n  \"human review and appeal\": \"human review requirement\",\n  \"impact assessments\": \"impact assessment\",\n  \"bias audits\": \"bias testing\",\n  \"independent oversight\": \"independent oversight\",\n  \"contract agreements\": \"contractual accountability\",\n  \"explainability requirement\": \"transparency and explainability\",\n  \"meaningful appeal process\": \"appeal process\",\n  \"algorithmic impact assessment\": \"impact assessment\",\n  \"ongoing monitoring\": \"ongoing monitoring\",\n  \"human review requirement\": \"human review requirement\",\n  \"appeal process\": \"appeal process\",\n  \"impact assessment\": \"impact assessment\",\n  \"audit trail\": \"audit trail\",\n  \"right to explanation\": \"transparency and explainability\",\n  \"transparency requirements\": \"transparency and explainability\",\n  \"regular auditing\": \"independent audit\",\n  \"audit trails\": \"audit trail\",\n  \"third-party audits\": \"independent audit\",\n  \"vendor accountability clauses\": \"contractual accountability\",\n  \"procedural fairness review\": \"procedural fairness review\",\n  \"bias testing\": \"bias testing\",\n  \"explainability and transparency\": \"transparency and explainability\",\n  \"auditable systems\": \"audit trail\",\n  \"clear governance structures\": \"clear governance structures\",\n  \"fairness standards compliance\": \"fairness standards compliance\",\n  \"meaningful human review\": \"human review requirement\",\n  \"counterfactual explanation\": \"transparency and explainability\",\n  \"human-in-the-loop accountability\": \"human oversight\",\n  \"algorithmic impact assessments\": \"impact assessment\",\n  \"explainability thresholds\": \"transparency and explainability\",\n  \"duty of care\": \"duty of care\",\n  \"independent human review\": \"human review requirement\",\n  \"documented decision-making\": \"audit trail\",\n  \"contractual accountability\": \"contractual accountability\",\n  \"disclosure requirements\": \"transparency and explainability\",\n  \"human override requirement\": \"human oversight\",\n  \"decision reconstruction\": \"audit trail\",\n  \"vendor disclosure obligations\": \"contractual accountability\",\n  \"fitness-for-purpose standards\": \"fitness-for-purpose standards\"\n}",
+      "mapping": {
+        "transparency and explainability": "transparency and explainability",
+        "appeals process": "appeal process",
+        "independent audit": "independent audit",
+        "human oversight": "human oversight",
+        "human review and appeal": "human review requirement",
+        "impact assessments": "impact assessment",
+        "bias audits": "bias testing",
+        "independent oversight": "independent oversight",
+        "contract agreements": "contractual accountability",
+        "explainability requirement": "transparency and explainability",
+        "meaningful appeal process": "appeal process",
+        "algorithmic impact assessment": "impact assessment",
+        "ongoing monitoring": "ongoing monitoring",
+        "human review requirement": "human review requirement",
+        "appeal process": "appeal process",
+        "impact assessment": "impact assessment",
+        "audit trail": "audit trail",
+        "right to explanation": "transparency and explainability",
+        "transparency requirements": "transparency and explainability",
+        "regular auditing": "independent audit",
+        "audit trails": "audit trail",
+        "third-party audits": "independent audit",
+        "vendor accountability clauses": "contractual accountability",
+        "procedural fairness review": "procedural fairness review",
+        "bias testing": "bias testing",
+        "explainability and transparency": "transparency and explainability",
+        "auditable systems": "audit trail",
+        "clear governance structures": "clear governance structures",
+        "fairness standards compliance": "fairness standards compliance",
+        "meaningful human review": "human review requirement",
+        "counterfactual explanation": "transparency and explainability",
+        "human-in-the-loop accountability": "human oversight",
+        "algorithmic impact assessments": "impact assessment",
+        "explainability thresholds": "transparency and explainability",
+        "duty of care": "duty of care",
+        "independent human review": "human review requirement",
+        "documented decision-making": "audit trail",
+        "contractual accountability": "contractual accountability",
+        "disclosure requirements": "transparency and explainability",
+        "human override requirement": "human oversight",
+        "decision reconstruction": "audit trail",
+        "vendor disclosure obligations": "contractual accountability",
+        "fitness-for-purpose standards": "fitness-for-purpose standards"
+      }
+    },
+    "enforcement_challenges::fcdf67e7ea3d86b9c76ce39f10f8470136e0f2176db916dbf68a08758c7d0f3d": {
+      "context": "enforcement_challenges",
+      "model": "claude-sonnet-4-5-20250929",
+      "labels": [
+        "jurisdictional variability",
+        "enforcement mechanism gaps",
+        "resource constraints",
+        "inconsistent penalties",
+        "jurisdictional inconsistencies",
+        "enforcement capacity disparities",
+        "legal and cultural diversity",
+        "transparency and accountability gaps",
+        "jurisdictional fragmentation",
+        "regulatory arbitrage",
+        "local capacity deficits",
+        "accountability ambiguities",
+        "compliance complexity",
+        "inconsistent definitions",
+        "enforcement capacity gaps",
+        "regulatory fragmentation",
+        "jurisdictional limitations",
+        "resource asymmetry",
+        "verification difficulties",
+        "cross-border data transfer",
+        "differing implementation standards",
+        "resource allocation disparities",
+        "cross-border data flows",
+        "competitive distortions",
+        "cross-border data complexity",
+        "lack of harmonization",
+        "fragmented regulatory landscape",
+        "resource and expertise gaps",
+        "lack of harmonized standards",
+        "enforcement discretion and political will",
+        "information asymmetry",
+        "jurisdictional arbitrage",
+        "extraterritorial reach limitations",
+        "lack of technical standardization",
+        "absence of mutual recognition",
+        "fragmented implementation",
+        "jurisdictional limits",
+        "asymmetric capacity",
+        "fragmented definitions",
+        "compliance arbitrage",
+        "uneven regulator capacity",
+        "cross-border opacity",
+        "weak consequences"
+      ],
+      "raw": "{\n  \"jurisdictional variability\": \"jurisdictional fragmentation\",\n  \"enforcement mechanism gaps\": \"enforcement capacity gaps\",\n  \"resource constraints\": \"resource constraints\",\n  \"inconsistent penalties\": \"inconsistent penalties\",\n  \"jurisdictional inconsistencies\": \"jurisdictional fragmentation\",\n  \"enforcement capacity disparities\": \"enforcement capacity gaps\",\n  \"legal and cultural diversity\": \"legal and cultural diversity\",\n  \"transparency and accountability gaps\": \"accountability ambiguities\",\n  \"jurisdictional fragmentation\": \"jurisdictional fragmentation\",\n  \"regulatory arbitrage\": \"regulatory arbitrage\",\n  \"local capacity deficits\": \"enforcement capacity gaps\",\n  \"accountability ambiguities\": \"accountability ambiguities\",\n  \"compliance complexity\": \"compliance complexity\",\n  \"inconsistent definitions\": \"fragmented definitions\",\n  \"enforcement capacity gaps\": \"enforcement capacity gaps\",\n  \"regulatory fragmentation\": \"regulatory fragmentation\",\n  \"jurisdictional limitations\": \"jurisdictional fragmentation\",\n  \"resource asymmetry\": \"resource constraints\",\n  \"verification difficulties\": \"verification difficulties\",\n  \"cross-border data transfer\": \"cross-border data flows\",\n  \"differing implementation standards\": \"lack of harmonization\",\n  \"resource allocation disparities\": \"resource constraints\",\n  \"cross-border data flows\": \"cross-border data flows\",\n  \"competitive distortions\": \"competitive distortions\",\n  \"cross-border data complexity\": \"cross-border data flows\",\n  \"lack of harmonization\": \"lack of harmonization\",\n  \"fragmented regulatory landscape\": \"regulatory fragmentation\",\n  \"resource and expertise gaps\": \"resource constraints\",\n  \"lack of harmonized standards\": \"lack of harmonization\",\n  \"enforcement discretion and political will\": \"enforcement discretion and political will\",\n  \"information asymmetry\": \"information asymmetry\",\n  \"jurisdictional arbitrage\": \"regulatory arbitrage\",\n  \"extraterritorial reach limitations\": \"jurisdictional fragmentation\",\n  \"lack of technical standardization\": \"lack of harmonization\",\n  \"absence of mutual recognition\": \"lack of harmonization\",\n  \"fragmented implementation\": \"regulatory fragmentation\",\n  \"jurisdictional limits\": \"jurisdictional fragmentation\",\n  \"asymmetric capacity\": \"enforcement capacity gaps\",\n  \"fragmented definitions\": \"fragmented definitions\",\n  \"compliance arbitrage\": \"regulatory arbitrage\",\n  \"uneven regulator capacity\": \"enforcement capacity gaps\",\n  \"cross-border opacity\": \"cross-border data flows\",\n  \"weak consequences\": \"inconsistent penalties\"\n}",
+      "mapping": {
+        "jurisdictional variability": "jurisdictional fragmentation",
+        "enforcement mechanism gaps": "enforcement capacity gaps",
+        "resource constraints": "resource constraints",
+        "inconsistent penalties": "inconsistent penalties",
+        "jurisdictional inconsistencies": "jurisdictional fragmentation",
+        "enforcement capacity disparities": "enforcement capacity gaps",
+        "legal and cultural diversity": "legal and cultural diversity",
+        "transparency and accountability gaps": "accountability ambiguities",
+        "jurisdictional fragmentation": "jurisdictional fragmentation",
+        "regulatory arbitrage": "regulatory arbitrage",
+        "local capacity deficits": "enforcement capacity gaps",
+        "accountability ambiguities": "accountability ambiguities",
+        "compliance complexity": "compliance complexity",
+        "inconsistent definitions": "fragmented definitions",
+        "enforcement capacity gaps": "enforcement capacity gaps",
+        "regulatory fragmentation": "regulatory fragmentation",
+        "jurisdictional limitations": "jurisdictional fragmentation",
+        "resource asymmetry": "resource constraints",
+        "verification difficulties": "verification difficulties",
+        "cross-border data transfer": "cross-border data flows",
+        "differing implementation standards": "lack of harmonization",
+        "resource allocation disparities": "resource constraints",
+        "cross-border data flows": "cross-border data flows",
+        "competitive distortions": "competitive distortions",
+        "cross-border data complexity": "cross-border data flows",
+        "lack of harmonization": "lack of harmonization",
+        "fragmented regulatory landscape": "regulatory fragmentation",
+        "resource and expertise gaps": "resource constraints",
+        "lack of harmonized standards": "lack of harmonization",
+        "enforcement discretion and political will": "enforcement discretion and political will",
+        "information asymmetry": "information asymmetry",
+        "jurisdictional arbitrage": "regulatory arbitrage",
+        "extraterritorial reach limitations": "jurisdictional fragmentation",
+        "lack of technical standardization": "lack of harmonization",
+        "absence of mutual recognition": "lack of harmonization",
+        "fragmented implementation": "regulatory fragmentation",
+        "jurisdictional limits": "jurisdictional fragmentation",
+        "asymmetric capacity": "enforcement capacity gaps",
+        "fragmented definitions": "fragmented definitions",
+        "compliance arbitrage": "regulatory arbitrage",
+        "uneven regulator capacity": "enforcement capacity gaps",
+        "cross-border opacity": "cross-border data flows",
+        "weak consequences": "inconsistent penalties"
+      }
+    },
+    "enforcement_solutions::961fe8a450f3a4d026a1c9d51f1beda5bff8cbe78b5a86541109c8eed7422f5a": {
+      "context": "enforcement_solutions",
+      "model": "claude-sonnet-4-5-20250929",
+      "labels": [
+        "harmonized regulations",
+        "centralized regulatory authority",
+        "resource sharing platforms",
+        "uniform incentives and penalties",
+        "international harmonization",
+        "capacity building and resource sharing",
+        "adaptable compliance strategies",
+        "strengthened reporting obligations",
+        "shared auditing practices",
+        "mutual recognition agreements",
+        "harmonized standards",
+        "regulatory cooperation networks",
+        "central registries",
+        "coordinated enforcement",
+        "mutual recognition frameworks",
+        "harmonized international standards",
+        "public disclosure requirements",
+        "reciprocal audit recognition",
+        "home country responsibility",
+        "enhanced regulatory capacity",
+        "transparency mechanisms",
+        "harmonized core requirements",
+        "capacity building support",
+        "equivalency agreements",
+        "mutual recognition",
+        "unified technical standards",
+        "harmonized audit requirements",
+        "minimum regulatory floor",
+        "market access conditions",
+        "shared registry",
+        "interoperable baseline"
+      ],
+      "raw": "{\n  \"harmonized regulations\": \"harmonized standards\",\n  \"centralized regulatory authority\": \"centralized regulatory authority\",\n  \"resource sharing platforms\": \"capacity building and resource sharing\",\n  \"uniform incentives and penalties\": \"uniform incentives and penalties\",\n  \"international harmonization\": \"harmonized standards\",\n  \"capacity building and resource sharing\": \"capacity building and resource sharing\",\n  \"adaptable compliance strategies\": \"adaptable compliance strategies\",\n  \"strengthened reporting obligations\": \"strengthened reporting obligations\",\n  \"shared auditing practices\": \"harmonized audit requirements\",\n  \"mutual recognition agreements\": \"mutual recognition\",\n  \"harmonized standards\": \"harmonized standards\",\n  \"regulatory cooperation networks\": \"regulatory cooperation networks\",\n  \"central registries\": \"central registries\",\n  \"coordinated enforcement\": \"coordinated enforcement\",\n  \"mutual recognition frameworks\": \"mutual recognition\",\n  \"harmonized international standards\": \"harmonized standards\",\n  \"public disclosure requirements\": \"transparency mechanisms\",\n  \"reciprocal audit recognition\": \"harmonized audit requirements\",\n  \"home country responsibility\": \"home country responsibility\",\n  \"enhanced regulatory capacity\": \"enhanced regulatory capacity\",\n  \"transparency mechanisms\": \"transparency mechanisms\",\n  \"harmonized core requirements\": \"harmonized standards\",\n  \"capacity building support\": \"capacity building and resource sharing\",\n  \"equivalency agreements\": \"mutual recognition\",\n  \"mutual recognition\": \"mutual recognition\",\n  \"unified technical standards\": \"harmonized standards\",\n  \"harmonized audit requirements\": \"harmonized audit requirements\",\n  \"minimum regulatory floor\": \"minimum regulatory floor\",\n  \"market access conditions\": \"market access conditions\",\n  \"shared registry\": \"central registries\",\n  \"interoperable baseline\": \"harmonized standards\"\n}",
+      "mapping": {
+        "harmonized regulations": "harmonized standards",
+        "centralized regulatory authority": "centralized regulatory authority",
+        "resource sharing platforms": "capacity building and resource sharing",
+        "uniform incentives and penalties": "uniform incentives and penalties",
+        "international harmonization": "harmonized standards",
+        "capacity building and resource sharing": "capacity building and resource sharing",
+        "adaptable compliance strategies": "adaptable compliance strategies",
+        "strengthened reporting obligations": "strengthened reporting obligations",
+        "shared auditing practices": "harmonized audit requirements",
+        "mutual recognition agreements": "mutual recognition",
+        "harmonized standards": "harmonized standards",
+        "regulatory cooperation networks": "regulatory cooperation networks",
+        "central registries": "central registries",
+        "coordinated enforcement": "coordinated enforcement",
+        "mutual recognition frameworks": "mutual recognition",
+        "harmonized international standards": "harmonized standards",
+        "public disclosure requirements": "transparency mechanisms",
+        "reciprocal audit recognition": "harmonized audit requirements",
+        "home country responsibility": "home country responsibility",
+        "enhanced regulatory capacity": "enhanced regulatory capacity",
+        "transparency mechanisms": "transparency mechanisms",
+        "harmonized core requirements": "harmonized standards",
+        "capacity building support": "capacity building and resource sharing",
+        "equivalency agreements": "mutual recognition",
+        "mutual recognition": "mutual recognition",
+        "unified technical standards": "harmonized standards",
+        "harmonized audit requirements": "harmonized audit requirements",
+        "minimum regulatory floor": "minimum regulatory floor",
+        "market access conditions": "market access conditions",
+        "shared registry": "central registries",
+        "interoperable baseline": "harmonized standards"
+      }
+    }
+  }
+}

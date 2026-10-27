@@ -38,6 +38,7 @@ Output structure:
       jurisdiction_radar.[html|png]
 """
 
+import hashlib
 import json
 import os
 import re
@@ -360,9 +361,53 @@ def cosine_sim(a: np.ndarray, b: np.ndarray) -> float:
 # LLM extraction helper
 # =============================================================================
 
-_extraction_cache: dict[str, dict] = {}
-
 anthropic_client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+
+# Sankey extraction and label-merge outputs are stored in SANKEY_EXTRACTIONS_FILE and
+# read back from it, so the Sankeys can be rebuilt with no API calls. Both calls are
+# pinned to SANKEY_LLM_MODEL. With SANKEY_DRY_RUN set, calls that would be made are
+# recorded in sankey_pending_calls instead.
+SANKEY_EXTRACTIONS_FILE = Path("data/processed/sankey_extractions.json")
+SANKEY_LLM_MODEL        = "claude-sonnet-4-5-20250929"
+SANKEY_DRY_RUN          = False
+sankey_pending_calls: list[str] = []
+_sankey_store: dict | None = None
+
+
+def _sha(obj) -> str:
+    s = obj if isinstance(obj, str) else json.dumps(obj, ensure_ascii=False)
+    return hashlib.sha256(s.encode("utf-8")).hexdigest()
+
+
+def _store() -> dict:
+    global _sankey_store
+    if _sankey_store is None:
+        if SANKEY_EXTRACTIONS_FILE.exists():
+            _sankey_store = json.loads(SANKEY_EXTRACTIONS_FILE.read_text(encoding="utf-8"))
+        else:
+            _sankey_store = {"meta": {"model": SANKEY_LLM_MODEL,
+                                      "params": "max_tokens 512 (extraction) / 1024 (label merge), "
+                                                "provider default temperature",
+                                      "written_by": "scripts/plot_response_results.py"},
+                             "extractions": {}, "label_maps": {}}
+    return _sankey_store
+
+
+def _save_store() -> None:
+    SANKEY_EXTRACTIONS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    SANKEY_EXTRACTIONS_FILE.write_text(json.dumps(_store(), indent=2, ensure_ascii=False),
+                                       encoding="utf-8")
+
+
+def _sankey_call(prompt: str, max_tokens: int) -> str:
+    resp = anthropic_client.messages.create(
+        model=SANKEY_LLM_MODEL,
+        max_tokens=max_tokens,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    raw = resp.content[0].text.strip()
+    raw = re.sub(r"^```json\s*", "", raw)
+    return re.sub(r"```$", "", raw).strip()
 
 
 def extract_structured(text: str, extraction_type: str) -> dict:
@@ -381,9 +426,10 @@ def extract_structured(text: str, extraction_type: str) -> dict:
             "solutions": ["international treaty", "harmonized standards", ...]
           }
     """
-    cache_key = f"{extraction_type}::{hash(text)}"
-    if cache_key in _extraction_cache:
-        return _extraction_cache[cache_key]
+    cache_key = f"{extraction_type}::{_sha(text)}"
+    stored = _store()["extractions"].get(cache_key)
+    if stored is not None:
+        return stored["result"]
 
     if extraction_type == "s2_accountability":
         prompt = (
@@ -416,17 +462,17 @@ def extract_structured(text: str, extraction_type: str) -> dict:
     else:
         return {}
 
+    if SANKEY_DRY_RUN:
+        sankey_pending_calls.append(cache_key)
+        return fallback
+
     try:
-        resp = anthropic_client.messages.create(
-            model="claude-sonnet-4-5",
-            max_tokens=512,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        raw = resp.content[0].text.strip()
-        raw = re.sub(r"^```json\s*", "", raw)
-        raw = re.sub(r"```$", "", raw).strip()
+        raw = _sankey_call(prompt, 512)
         result = json.loads(raw)
-        _extraction_cache[cache_key] = result
+        _store()["extractions"][cache_key] = {"extraction_type": extraction_type,
+                                              "model": SANKEY_LLM_MODEL, "raw": raw,
+                                              "result": result}
+        _save_store()
         sleep(0.3)
         return result
     except Exception as e:
@@ -436,35 +482,34 @@ def extract_structured(text: str, extraction_type: str) -> dict:
 
 # =============================================================================
 # Sankey label deduplication via LLM clustering
-# Cache is persisted to SANKEY_CACHE_FILE so clustering only runs once.
+# Mappings are stored in SANKEY_EXTRACTIONS_FILE (with the extractions) so
+# clustering only runs once. The old results/sankey_label_cache.json (unpinned
+# model alias) is no longer read.
 # =============================================================================
 
-_sankey_label_cache: dict[str, dict] = {}
-
-
 def _load_sankey_cache() -> None:
-    global _sankey_label_cache
-    if SANKEY_CACHE_FILE.exists():
-        with open(SANKEY_CACHE_FILE, "r", encoding="utf-8") as f:
-            _sankey_label_cache = json.load(f)
+    _store()
 
 
 def _save_sankey_cache() -> None:
-    SANKEY_CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
-    with open(SANKEY_CACHE_FILE, "w", encoding="utf-8") as f:
-        json.dump(_sankey_label_cache, f, indent=2, ensure_ascii=False)
+    if not SANKEY_DRY_RUN:
+        _save_store()
 
 
 def get_sankey_label_mapping(labels: list[str], context: str) -> dict[str, str]:
     """
     Use Claude Sonnet to cluster synonym labels and return a canonical mapping.
-    Cache key is context + sorted label set. Returns {original: canonical}.
+    Key is context + sorted label set. Returns {original: canonical}.
     """
     if not labels:
         return {}
-    cache_key = f"{context}::{':'.join(sorted(labels))}"
-    if cache_key in _sankey_label_cache:
-        return _sankey_label_cache[cache_key]
+    cache_key = f"{context}::{_sha(sorted(labels))}"
+    stored = _store()["label_maps"].get(cache_key)
+    if stored is not None:
+        return stored["mapping"]
+    if SANKEY_DRY_RUN:
+        sankey_pending_calls.append(cache_key)
+        return {label: label for label in labels}
 
     prompt = (
         "You are a research assistant deduplicating labels in a Sankey diagram "
@@ -481,27 +526,20 @@ def get_sankey_label_mapping(labels: list[str], context: str) -> dict[str, str]:
     )
 
     try:
-        resp = anthropic_client.messages.create(
-            model="claude-sonnet-4-5",
-            max_tokens=1024,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        raw = resp.content[0].text.strip()
-        raw = re.sub(r"^```json\s*", "", raw)
-        raw = re.sub(r"```$", "", raw).strip()
+        raw = _sankey_call(prompt, 1024)
         mapping = json.loads(raw)
         # Ensure every input label is present
         for label in labels:
             if label not in mapping:
                 mapping[label] = label
-        _sankey_label_cache[cache_key] = mapping
+        _store()["label_maps"][cache_key] = {"context": context, "model": SANKEY_LLM_MODEL,
+                                             "labels": labels, "raw": raw, "mapping": mapping}
+        _save_store()
         sleep(0.3)
         return mapping
     except Exception as e:
         print(f"    [get_sankey_label_mapping] failed: {e}")
-        identity = {label: label for label in labels}
-        _sankey_label_cache[cache_key] = identity
-        return identity
+        return {label: label for label in labels}
 
 
 # =============================================================================
