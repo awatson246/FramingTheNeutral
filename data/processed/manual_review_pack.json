@@ -1,0 +1,762 @@
+{
+  "schema": "review_pack_v1",
+  "criteria_review": [
+    {
+      "cell_id": "claude-sonnet:baseline:1:I1_Q1",
+      "model": "claude-sonnet",
+      "condition": "baseline",
+      "run": 1,
+      "question_id": "I1_Q1",
+      "dimension": "legal_certainty",
+      "definition_text": "Legal certainty in the context of AI systems used in public decision-making refers to the principle that individuals and organizations must be able to understand, predict, and rely upon the legal rules governing automated decision-making processes that affect their rights, obligations, and entitlements. This principle has deep roots in the rule of law tradition and has been explicitly recognized in EU law, where the Court of Justice of the European Union has consistently held that legal certainty requires that rules be clear, precise, and predictable in their effects (see Case C-345/06, Gottfried Heinrich).\n\nWhen applied to AI systems in public administration, legal certainty requires several essential elements:\n\nFirst, it demands transparency about when and how AI systems are being used. The EU General Data Protection Regulation (GDPR) Article 22 embodies this by requiring that individuals be informed of automated decision-making and have the right to obtain human intervention. This aligns with what scholars like Mireille Hildebrandt have termed 'technological due process' - the notion that procedural fairness must extend to algorithmic systems (Hildebrandt, 'Law as Information in the Era of Data-Driven Agency', 2016).\n\nSecond, legal certainty requires that the legal basis for AI deployment be established through proper legislative processes rather than administrative discretion alone. The EU AI Act (Regulation 2024/1689) attempts to provide this framework by establishing risk-based categories and compliance requirements for AI systems, particularly high-risk systems used in public administration and access to essential services.\n\nThird, it necessitates the availability of meaningful remedies and review mechanisms. The Wisconsin Supreme Court's decision in State v. Loomis (881 N.W.2d 749, 2016) illustrates the tension here: the court allowed use of the proprietary COMPAS risk assessment tool in sentencing but required warnings about its limitations, acknowledging but not fully resolving concerns about opacity and contestability.\n\nFourth, legal certainty demands that AI systems operate within ascertainable bounds - that their decision-making logic, even if complex, can be subjected to legal scrutiny. Article 5(1)(a) of the EU AI Act prohibits certain AI practices that manipulate behavior in ways that cause harm, reflecting the principle that AI systems must not operate in legally unaccountable ways.\n\nWhen legal certainty is absent in AI-driven public decision-making, several pathologies emerge:\n\n- Citizens cannot understand why they received particular treatment from government agencies, undermining their ability to challenge potentially erroneous or discriminatory decisions. This 'black box' problem has been documented extensively in contexts ranging from welfare benefits to immigration decisions.\n\n- Administrative law's traditional tools - such as requirements for reasoned decisions articulated in the US Administrative Procedure Act (5 U.S.C. § 551 et seq.) - become difficult or impossible to apply when the reasoning process is opaque or emergent.\n\n- Legal accountability fractures across multiple parties (algorithm developers, data providers, deploying agencies) without clear allocation of responsibility. The Council of Europe's Ad Hoc Committee on Artificial Intelligence (CAHAI) identified this 'responsibility gap' as a central challenge in its feasibility study for an AI legal framework (2020).\n\n- Fundamental rights guarantees become difficult to enforce. As the European Court of Human Rights suggested in Big Brother Watch v. UK (2021), technological systems that lack adequate safeguards and oversight may violate Article 8 (privacy) and Article 10 (freedom of expression) rights.\n\n- The principle of equality before the law is compromised when similarly situated individuals cannot determine whether they are being treated consistently, particularly when AI systems exhibit bias or drift over time, as documented in academic work by Barocas and Selbst ('Big Data's Disparate Impact', 2016).\n\nLegal certainty also requires temporal stability - individuals must be able to rely on the continuity of legal rules. With AI systems that learn and adapt, this creates novel challenges: when does a modification to an algorithm constitute a change in the legal rule itself? The EU AI Act addresses this partially by requiring quality management systems and post-market monitoring (Articles 17 and 72), but many questions remain unresolved.\n\nUltimately, legal certainty in AI-driven public decision-making means that the law must remain intelligible and accessible to those it governs, even as decision-making mechanisms become technologically sophisticated. This may require new legal techniques - such as algorithmic impact assessments (proposed in various jurisdictions including Canada's Directive on Automated Decision-Making, 2019), mandatory transparency registers, or rights to explanation beyond those in GDPR Article 22. The absence of legal certainty creates what legal scholar Frank Pasquale has called 'black box society' conditions, where power operates without adequate legal constraint or public accountability.",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "Individuals and organizations must understand, predict, and rely upon legal rules",
+          "phrase": "individuals and organizations must be able to understand, predict, and rely upon the legal rules governing automated decision-making processes",
+          "flag": ""
+        },
+        {
+          "n": 2,
+          "criterion": "Rules must be clear, precise, and predictable in their effects",
+          "phrase": "legal certainty requires that rules be clear, precise, and predictable in their effects",
+          "flag": ""
+        },
+        {
+          "n": 3,
+          "criterion": "Transparency about when and how AI systems are being used",
+          "phrase": "it demands transparency about when and how AI systems are being used",
+          "flag": ""
+        },
+        {
+          "n": 4,
+          "criterion": "Legal basis established through proper legislative processes rather than administrative discretion alone",
+          "phrase": "legal certainty requires that the legal basis for AI deployment be established through proper legislative processes rather than administrative discretion alone",
+          "flag": ""
+        },
+        {
+          "n": 5,
+          "criterion": "Availability of meaningful remedies and review mechanisms",
+          "phrase": "it necessitates the availability of meaningful remedies and review mechanisms",
+          "flag": ""
+        },
+        {
+          "n": 6,
+          "criterion": "AI systems operate within ascertainable bounds subject to legal scrutiny",
+          "phrase": "legal certainty demands that AI systems operate within ascertainable bounds - that their decision-making logic, even if complex, can be subjected to legal scrutiny",
+          "flag": ""
+        },
+        {
+          "n": 7,
+          "criterion": "Temporal stability allowing individuals to rely on continuity of legal rules",
+          "phrase": "Legal certainty also requires temporal stability - individuals must be able to rely on the continuity of legal rules",
+          "flag": ""
+        },
+        {
+          "n": 8,
+          "criterion": "Law must remain intelligible and accessible to those it governs",
+          "phrase": "legal certainty in AI-driven public decision-making means that the law must remain intelligible and accessible to those it governs",
+          "flag": ""
+        }
+      ]
+    },
+    {
+      "cell_id": "claude-sonnet:baseline:1:I1_Q2",
+      "model": "claude-sonnet",
+      "condition": "baseline",
+      "run": 1,
+      "question_id": "I1_Q2",
+      "dimension": "accountability",
+      "definition_text": "Accountability in AI governance refers to the obligation of individuals, organizations, and institutions to answer for their decisions, actions, and omissions related to AI systems, including their design, deployment, and impacts. It encompasses mechanisms for assigning responsibility, providing explanations, ensuring redress, and enforcing consequences when harm occurs or standards are violated.\n\n**Who Should Be Accountable:**\n\nAccountability should be distributed across multiple actors in the AI value chain:\n\n1. **Developers and Deployers**: Organizations that design, build, and deploy AI systems bear primary accountability for ensuring systems meet safety, fairness, and transparency standards. The EU AI Act establishes this through a risk-based framework requiring providers and deployers of high-risk AI systems to implement quality management systems, conduct conformity assessments, and maintain technical documentation.\n\n2. **Senior Management and Boards**: Corporate governance structures must ensure AI accountability flows to decision-makers. The OECD AI Principles emphasize that organizations should be accountable for the proper functioning of AI systems and respect for human rights and democratic values.\n\n3. **Public Sector Bodies**: When governments deploy AI systems, they remain accountable to citizens for adherence to constitutional rights and administrative law principles. The UNESCO Recommendation on the Ethics of AI reinforces state responsibility for ensuring AI systems respect human rights, rule of law, and democratic values.\n\n4. **Individual Operators**: Humans in the loop who make final decisions aided by AI systems retain accountability for those decisions, as established in State v. Loomis, where the Wisconsin Supreme Court upheld that judicial discretion and human decision-making cannot be wholly delegated to algorithmic systems.\n\n**Accountable For What:**\n\n1. **Compliance with Legal Standards**: AI actors must ensure compliance with existing laws including anti-discrimination law, data protection regulations (GDPR Articles 22, 35), consumer protection, and sector-specific regulations.\n\n2. **Transparency and Explainability**: Organizations must provide meaningful information about AI system logic, significance, and consequences. GDPR Article 13-15 establish information requirements, while Article 22 provides rights related to automated decision-making.\n\n3. **Fairness and Non-Discrimination**: Accountability extends to ensuring AI systems do not perpetuate or amplify discrimination. The Algorithmic Accountability Act (proposed US legislation) would require impact assessments for automated decision systems affecting critical decisions about consumers.\n\n4. **Safety and Robustness**: Developers are accountable for technical reliability, cybersecurity, and preventing foreseeable harms. The EU AI Act's Title III establishes requirements for high-risk systems including risk management, data governance, and human oversight.\n\n5. **Environmental and Social Impacts**: Emerging frameworks recognize accountability for AI's broader societal effects, including environmental costs and labor impacts, as reflected in the UNESCO Recommendation's holistic approach.\n\n**Accountable To Whom:**\n\n1. **Affected Individuals**: Those directly impacted by AI decisions should have access to explanations, challenges, and redress mechanisms. GDPR Article 22(3) provides rights to obtain human intervention and contest automated decisions.\n\n2. **Regulatory Authorities**: Sectoral regulators, data protection authorities, and AI-specific oversight bodies (as proposed in the EU AI Act through national competent authorities and the European AI Board) enforce compliance and investigate violations.\n\n3. **Civil Society and Public**: Democratic accountability requires transparency to enable public scrutiny. The Council of Europe's Framework Convention on AI and Human Rights emphasizes participatory governance and public accountability mechanisms.\n\n4. **Investors and Stakeholders**: Corporate accountability frameworks extend to shareholders and stakeholders who may bear financial and reputational consequences of AI failures.\n\n**Mechanisms for Accountability:**\n\n1. **Ex Ante Mechanisms**: Requirements for impact assessments (Data Protection Impact Assessments under GDPR Article 35, human rights impact assessments under the UN Guiding Principles on Business and Human Rights), certification schemes, and auditing requirements before deployment.\n\n2. **Ex Post Mechanisms**: Legal liability frameworks including product liability (EU Product Liability Directive and proposed AI Liability Directive), tort law, administrative penalties (GDPR Article 83 fines up to 4% of global revenue), and criminal sanctions for severe violations.\n\n3. **Procedural Rights**: Individual rights to information, access, rectification, and erasure under GDPR; rights to human review of automated decisions; and administrative appeal mechanisms.\n\n4. **Organizational Measures**: Mandatory documentation, logging, record-keeping requirements, whistleblower protections, and ethics boards as recommended by the AI HLEG Ethics Guidelines for Trustworthy AI.\n\n**Key Challenges:**\n\nAcademic literature identifies the 'accountability gap' or 'responsibility gap' where complex AI systems, particularly those using machine learning, create diffusion of responsibility across multiple actors. Helen Nissenbaum's work on accountability in computer systems highlights how many hands involved in development can obscure responsibility. Matthias's scholarship on the 'responsibility gap' in autonomous systems suggests that neither designers nor users may be fully responsible for unpredictable emergent behaviors.\n\nThe 'black box' problem presents additional challenges: when AI decision-making processes are opaque even to developers, establishing causal links between design choices and harmful outcomes becomes difficult, complicating traditional accountability frameworks based on foreseeability and causation.\n\n**Synthesized Framework:**\n\nEffective AI accountability requires:\n- **Clear legal allocation** of duties across the AI lifecycle\n- **Proportionate requirements** scaled to risk level (as in the EU AI Act's tiered approach)\n- **Meaningful transparency** balancing trade secrets with public interest\n- **Accessible redress** including low-barrier complaint mechanisms and effective remedies\n- **Enforcement capacity** with adequately resourced regulators and appropriate sanctions\n- **International coordination** given AI's cross-border nature, as reflected in the OECD AI Principles and G7 Hiroshima AI Process\n\nAccountability must be designed into AI systems from inception (accountability by design) while recognizing that ultimate responsibility rests with human actors and institutions, not the technology itself.",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "Mechanisms for assigning responsibility",
+          "phrase": "mechanisms for assigning responsibility",
+          "flag": ""
+        },
+        {
+          "n": 2,
+          "criterion": "Providing explanations",
+          "phrase": "providing explanations",
+          "flag": ""
+        },
+        {
+          "n": 3,
+          "criterion": "Ensuring redress",
+          "phrase": "ensuring redress",
+          "flag": ""
+        },
+        {
+          "n": 4,
+          "criterion": "Enforcing consequences when harm occurs or standards are violated",
+          "phrase": "enforcing consequences when harm occurs or standards are violated",
+          "flag": ""
+        },
+        {
+          "n": 5,
+          "criterion": "Clear legal allocation of duties across the AI lifecycle",
+          "phrase": "**Clear legal allocation** of duties across the AI lifecycle",
+          "flag": ""
+        },
+        {
+          "n": 6,
+          "criterion": "Proportionate requirements scaled to risk level",
+          "phrase": "**Proportionate requirements** scaled to risk level",
+          "flag": ""
+        },
+        {
+          "n": 7,
+          "criterion": "Meaningful transparency balancing trade secrets with public interest",
+          "phrase": "**Meaningful transparency** balancing trade secrets with public interest",
+          "flag": ""
+        },
+        {
+          "n": 8,
+          "criterion": "Accessible redress including low-barrier complaint mechanisms and effective remedies",
+          "phrase": "**Accessible redress** including low-barrier complaint mechanisms and effective remedies",
+          "flag": ""
+        },
+        {
+          "n": 9,
+          "criterion": "Enforcement capacity with adequately resourced regulators and appropriate sanctions",
+          "phrase": "**Enforcement capacity** with adequately resourced regulators and appropriate sanctions",
+          "flag": ""
+        },
+        {
+          "n": 10,
+          "criterion": "International coordination given AI's cross-border nature",
+          "phrase": "**International coordination** given AI's cross-border nature",
+          "flag": ""
+        }
+      ]
+    },
+    {
+      "cell_id": "claude-sonnet:baseline:1:I1_Q3",
+      "model": "claude-sonnet",
+      "condition": "baseline",
+      "run": 1,
+      "question_id": "I1_Q3",
+      "dimension": "enforceability",
+      "definition_text": "Enforceability in AI regulation refers to the capacity of a legal or regulatory instrument to compel compliance through concrete mechanisms including monitoring, investigation, adjudication, and sanctions. An enforceable rule transforms normative expectations into binding obligations with measurable consequences for non-compliance.\n\nThe distinction between enforceable and aspirational rules centers on several key elements:\n\n1. **Legal Authority and Binding Nature**: Enforceable rules derive from statutes, regulations, or binding international agreements that create legal duties. The EU AI Act exemplifies this through its classification-based regulatory framework that imposes mandatory requirements on high-risk AI systems, backed by the force of EU law. In contrast, aspirational frameworks like the OECD AI Principles (2019) provide guidance without creating binding legal obligations, relying instead on voluntary adoption.\n\n2. **Specific Obligations and Standards**: Enforceable rules contain concrete, measurable requirements. The General Data Protection Regulation (GDPR) demonstrates this through specific provisions like Article 22's restrictions on automated decision-making and Articles 13-15's transparency requirements. These contrast with aspirational commitments such as the G7 Hiroshima AI Process principles, which articulate broad values without operational specificity.\n\n3. **Monitoring and Oversight Mechanisms**: Enforceability requires institutional capacity for supervision. The EU AI Act establishes national competent authorities and a European AI Board with investigative powers. Similarly, GDPR created Data Protection Authorities with examination and audit powers. Aspirational frameworks typically lack dedicated enforcement bodies.\n\n4. **Sanction Regimes**: Perhaps most critically, enforceable rules include penalties for violations. The EU AI Act authorizes fines up to €35 million or 7% of global annual turnover for the most serious violations. GDPR's penalty structure (up to €20 million or 4% of global turnover) has resulted in actual enforcement actions, including the €746 million fine against Amazon in 2021. The theoretical framework here draws from deterrence theory and compliance literature, which emphasizes that sanctions must be sufficiently severe and probable to influence behavior.\n\n5. **Justiciability and Private Rights of Action**: Enforceable rules often create rights that individuals can assert in court. State v. Loomis (2016, Wisconsin Supreme Court) illustrates judicial engagement with algorithmic accountability, though the court ultimately declined to find constitutional violations in the use of COMPAS risk assessments. The case demonstrates how enforceability includes the ability to challenge AI systems through judicial review. GDPR's Article 79 explicitly provides data subjects with the right to judicial remedy against controllers and processors.\n\n6. **Extraterritorial Reach**: Modern enforceable AI regulations increasingly include extraterritorial provisions. GDPR's Article 3 extends jurisdiction to non-EU processors offering goods or services to EU residents. The EU AI Act similarly applies to providers placing AI systems on the EU market regardless of their location, creating enforceable obligations beyond territorial boundaries.\n\n**Theoretical Frameworks:**\n\nThe enforceability question engages several theoretical perspectives:\n\n- **Command-and-Control vs. Principle-Based Regulation**: Enforceable AI rules typically employ command-and-control approaches with prescriptive requirements, though some incorporate principle-based elements requiring contextual interpretation. The risk-based approach in the EU AI Act combines both: categorical prohibitions (command-and-control) alongside conformity assessments requiring case-by-case judgment (principle-based).\n\n- **Responsive Regulation Theory** (Ayres & Braithwaite): Optimal enforcement combines cooperative compliance strategies with escalating sanctions, forming a regulatory pyramid. The EU AI Act's supervisory framework reflects this, providing for corrective measures before imposing maximum penalties.\n\n- **Algorithmic Accountability Framework** (Diakopoulos, 2015): Enforceability requires mechanisms for algorithmic transparency, explanation, and auditability. Without these, rules remain practically unenforceable regardless of formal legal authority.\n\n**Specific Legal Instruments:**\n\n- **EU AI Act (Artificial Intelligence Act, adopted 2024)**: Creates a comprehensive enforceable regime with classification-based obligations, conformity assessment procedures, post-market monitoring requirements, and substantial penalties.\n\n- **GDPR (2016)**: While not AI-specific, provides enforceable provisions highly relevant to AI systems, particularly Articles 13-15 (information rights), Article 22 (automated decision-making), and Article 35 (data protection impact assessments).\n\n- **Algorithmic Accountability Act** (proposed US legislation, multiple versions 2019-2023): Illustrates the US approach, which would create enforceable obligations through Federal Trade Commission authority, though not yet enacted.\n\n- **Canada's Artificial Intelligence and Data Act (AIDA)**: Part of Bill C-27, proposes enforceable obligations for high-impact AI systems with penalties up to CAD $25 million or 5% of gross global revenue.\n\n- **China's Algorithm Recommendation Management Regulations (2022)**: Demonstrates enforceability through specific content requirements, registration obligations, and oversight by the Cyberspace Administration of China.\n\n**Challenges to Enforceability:**\n\nSeveral factors complicate AI regulation enforceability:\n\n1. **Technical Opacity**: The 'black box' problem makes violations difficult to detect and prove.\n2. **Jurisdictional Arbitrage**: Global AI systems can be structured to avoid specific regulatory regimes.\n3. **Regulatory Capacity Gaps**: Authorities may lack technical expertise to assess compliance.\n4. **Rapid Technological Change**: Rules may become obsolete before enforcement mechanisms mature.\n\n**Precedents Informing Enforceability:**\n\nBeyond Loomis, several cases illuminate enforceability challenges:\n\n- Data protection authorities' enforcement actions under GDPR demonstrate practical enforceability, including investigations into automated hiring systems and credit scoring.\n- The FTC's enforcement actions against deceptive AI claims (e.g., against companies making false claims about AI capabilities) show how existing consumer protection law provides enforceable authority.\n\nIn summary, enforceability transforms AI governance from aspiration to obligation through: binding legal authority, specific measurable requirements, oversight institutions, meaningful sanctions, judicial remedies, and extraterritorial reach. The gap between aspiration and enforceability represents perhaps the central challenge in AI governance, as many frameworks articulate important principles but lack the institutional architecture and political will necessary for effective enforcement.",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "Legal authority and binding nature",
+          "phrase": "Enforceable rules derive from statutes, regulations, or binding international agreements that create legal duties.",
+          "flag": ""
+        },
+        {
+          "n": 2,
+          "criterion": "Specific, measurable requirements",
+          "phrase": "Enforceable rules contain concrete, measurable requirements.",
+          "flag": ""
+        },
+        {
+          "n": 3,
+          "criterion": "Monitoring and oversight mechanisms with institutional capacity",
+          "phrase": "Enforceability requires institutional capacity for supervision.",
+          "flag": ""
+        },
+        {
+          "n": 4,
+          "criterion": "Penalties for violations",
+          "phrase": "enforceable rules include penalties for violations.",
+          "flag": ""
+        },
+        {
+          "n": 5,
+          "criterion": "Rights individuals can assert in court",
+          "phrase": "Enforceable rules often create rights that individuals can assert in court.",
+          "flag": ""
+        },
+        {
+          "n": 6,
+          "criterion": "Extraterritorial provisions",
+          "phrase": "Modern enforceable AI regulations increasingly include extraterritorial provisions.",
+          "flag": ""
+        },
+        {
+          "n": 7,
+          "criterion": "Mechanisms for algorithmic transparency, explanation, and auditability",
+          "phrase": "Enforceability requires mechanisms for algorithmic transparency, explanation, and auditability.",
+          "flag": ""
+        },
+        {
+          "n": 8,
+          "criterion": "Concrete mechanisms including monitoring, investigation, adjudication, and sanctions",
+          "phrase": "the capacity of a legal or regulatory instrument to compel compliance through concrete mechanisms including monitoring, investigation, adjudication, and sanctions.",
+          "flag": ""
+        }
+      ]
+    },
+    {
+      "cell_id": "grok-4.7:baseline:1:I1_Q1",
+      "model": "grok-4.7",
+      "condition": "baseline",
+      "run": 1,
+      "question_id": "I1_Q1",
+      "dimension": "legal_certainty",
+      "definition_text": "Legal certainty, as a component of the rule of law, is the requirement that public power be exercised under norms that are accessible, sufficiently clear, stable, and foreseeable, so that people can anticipate how official decisions affecting their rights and interests will be made, identify the criteria being applied, and know how to challenge error or abuse. Applied to AI systems used in public decision-making—benefit eligibility, fraud or risk scoring, policing, migration, tax, or the administration of justice—it requires more than a general statutory mandate to “use technology.” It requires a traceable legal basis for the system’s purpose and scope; publicly knowable rules about what data may be used, what the system is authorized to do, and what it may not decide alone; decision criteria and model changes that are stable enough to protect legitimate expectations and are not applied retroactively to unsettle vested positions; outcomes that can be reconstructed and explained in terms a person and a reviewing body can understand; an identifiable human authority who remains responsible; and a real remedy before an independent body empowered to examine both the facts and the system’s role, rather than deferring to an inscrutable score.\n\nThese demands draw on long-standing legality doctrine and on data-protection and AI-specific rules. The European Court of Human Rights’ “in accordance with the law” / “prescribed by law” test, classically stated in Sunday Times v. United Kingdom, requires accessibility and foreseeability, not merely a formal enactment. The Venice Commission’s Rule of Law Checklist treats legal certainty as covering clarity, foreseeability, stability, legitimate expectations, and non-retroactivity. The GDPR supplies concrete anchors for automated public decisions: lawfulness, fairness, and transparency (Article 5(1)(a)); information and access rights that include meaningful information about the logic involved (Articles 13–15); and restrictions on solely automated decisions with legal or similarly significant effects, together with rights to human intervention, to express one’s view, and to contest (Article 22). The Court of Justice developed that last point in C-634/21 (SCHUFA), holding that scoring which plays a determining role in a subsequent decision can itself constitute automated decision-making under Article 22. Regulation (EU) 2024/1689 (the AI Act) further treats many public-sector uses as high-risk and attaches duties of transparency, documentation, accuracy, robustness, and human oversight, plus a right to obtain an explanation of individual decisions in specified cases.\n\nLegal certainty is absent when automation dissolves those guarantees. A proprietary risk instrument whose methodology neither the defendant nor the sentencing court can examine—as with COMPAS in Loomis v. Wisconsin—leaves due process dependent on warnings rather than on knowable criteria, even if a court ultimately upholds use on a particular record. A welfare-fraud data-mining regime whose targets, indicators, and linkages are opaque and insufficiently foreseeable fails the Article 8 ECHR legality and proportionality tests, as the District Court of The Hague held of SyRI (ECLI:NL:RBDHA:2020:1878). Live facial recognition deployed without clear, binding rules on who may be placed on a watchlist and where the system may be used is not “in accordance with the law,” as the England and Wales Court of Appeal held in Bridges. The same absence appears, in Danielle Keats Citron’s terms, wherever code silently replaces notice, a hearing, and record-based review: models are updated without notice, officials cannot state the reasons in legally cognizable terms, appeals rubber-stamp a score, and individuals cannot tell what would have changed the outcome. In that condition, public decision-making is no longer governed by law in any sense the affected person can foresee or contest.",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "Norms that are accessible, sufficiently clear, stable, and foreseeable",
+          "phrase": "public power be exercised under norms that are accessible, sufficiently clear, stable, and foreseeable",
+          "flag": ""
+        },
+        {
+          "n": 2,
+          "criterion": "A traceable legal basis for the system's purpose and scope",
+          "phrase": "a traceable legal basis for the system's purpose and scope",
+          "flag": "typography"
+        },
+        {
+          "n": 3,
+          "criterion": "Publicly knowable rules about data use and system authorization",
+          "phrase": "publicly knowable rules about what data may be used, what the system is authorized to do, and what it may not decide alone",
+          "flag": ""
+        },
+        {
+          "n": 4,
+          "criterion": "Decision criteria and model changes stable enough to protect legitimate expectations",
+          "phrase": "decision criteria and model changes that are stable enough to protect legitimate expectations",
+          "flag": ""
+        },
+        {
+          "n": 5,
+          "criterion": "Criteria and changes not applied retroactively to unsettle vested positions",
+          "phrase": "are not applied retroactively to unsettle vested positions",
+          "flag": ""
+        },
+        {
+          "n": 6,
+          "criterion": "Outcomes reconstructable and explainable in understandable terms",
+          "phrase": "outcomes that can be reconstructed and explained in terms a person and a reviewing body can understand",
+          "flag": ""
+        },
+        {
+          "n": 7,
+          "criterion": "An identifiable human authority who remains responsible",
+          "phrase": "an identifiable human authority who remains responsible",
+          "flag": ""
+        },
+        {
+          "n": 8,
+          "criterion": "A real remedy before an independent body empowered to examine facts",
+          "phrase": "a real remedy before an independent body empowered to examine both the facts and the system's role",
+          "flag": "typography"
+        }
+      ]
+    },
+    {
+      "cell_id": "grok-4.7:baseline:1:I1_Q2",
+      "model": "grok-4.7",
+      "condition": "baseline",
+      "run": 1,
+      "question_id": "I1_Q2",
+      "dimension": "accountability",
+      "definition_text": "Accountability in AI governance is an institutional relationship, not a feature of a model and not a synonym for transparency. Following Mark Bovens, it is a relation in which an actor must explain and justify conduct to a forum that can question that conduct, pass judgment, and impose consequences. In the AI setting that means identifiable duty-bearers, specified obligations scaled to risk and control, forums with real powers, and remedies that are not defeated by opacity, trade secrecy, or the diffusion of responsibility across a supply chain.\n\nWho should be accountable is legal and natural persons with control over design, data, deployment, or withdrawal decisions, not the system itself. Treating the model as a legal person would obscure responsibility rather than create it. Role allocation should follow control. Under the EU AI Act, providers carry primary duties for high-risk systems, including risk management, data governance, technical documentation, logging, conformity assessment, and post-market monitoring; deployers are accountable for the context of use, human oversight, and the quality of input data within their control; importers and distributors have gatekeeping duties. The GDPR places the accountability principle on the controller, who must ensure and be able to demonstrate compliance, with processors accountable for processing under documented instructions. The revised EU Product Liability Directive channels defect liability for software, treated as a product, toward the manufacturer. Organizational accountability should be primary, because organizations hold the resources, logs, and decision rights; it should be supplemented by duties of boards and senior management and, where professional rules apply, of individual practitioners. States remain accountable under human-rights law for public-sector use of AI and for failure to provide an effective regulatory and remedial system.\n\nFor what: actors should answer for foreseeable and actual effects on safety, fundamental rights, and equal treatment arising from choices about purpose, data, model design, testing, deployment, monitoring, and decommissioning; for compliance with risk-tiered legal duties; for solely automated decisions that produce legal or similarly significant effects, including the safeguards of human intervention, the ability to express a view, and contestation associated with GDPR Article 22 and related information duties; for discriminatory outcomes and unequal error rates; for failures of human oversight; and for record-keeping gaps that make investigation impossible. Ex ante duties (impact assessment, documentation, testing, assignment of roles) and ex post duties (incident reporting, audit, explanation sufficient for contestation, compensation, and sanctions) are both part of accountability. The standard should tighten as risk and as the actor's degree of control increase. Accountability does not require disclosure of every weight or a lay explanation of every inference; it does require enough traceability and justification for a competent forum to test legality, safety, and fairness.\n\nTo whom: affected individuals and groups, as rights-holders entitled to information, contestation, and redress; independent regulators and market-surveillance authorities; courts; and, for public-sector and systemic uses, legislatures and the public. OECD and UNESCO instruments frame AI actors as accountable to people affected by systems and to society. The Council of Europe Framework Convention on Artificial Intelligence and Human Rights, Democracy and the Rule of Law ties that answerability to human rights, democracy, and the rule of law, including effective remedies. NIST's AI Risk Management Framework treats accountability as a characteristic of trustworthy AI and locates it in governance: named roles, policies, and oversight, rather than in the model.\n\nThis position rests on Bovens's actor-forum-consequences model; on the EU allocation of provider, deployer, and controller duties; on human-rights remedies; and on scholarship that identifies why AI accountability fails in practice. Helen Nissenbaum's account of the many-hands problem, bugs, blaming the computer, and liability diffusion explains why duties must be pinned to entities with control. Wachter, Mittelstadt, and Floridi's critique of an over-claimed GDPR right to explanation shows that transparency rhetoric is not itself a remedy and that contestation rights must be drafted and enforced explicitly. Selbst and Barocas show the limited work that explanation can do if the real governance question is justification of objectives and proxies. State v. Loomis illustrates the gap when a proprietary risk tool is used in a high-stakes public decision without meaningful access to the basis of the score. A defensible framework therefore combines role-based duties, traceability, independent oversight, individual remedies, and organizational sanctions, and refuses to make the AI system the accountable subject.",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "An actor must explain and justify conduct to a forum",
+          "phrase": "an actor must explain and justify conduct to a forum",
+          "flag": ""
+        },
+        {
+          "n": 2,
+          "criterion": "Forum can question conduct, pass judgment, and impose consequences",
+          "phrase": "a forum that can question that conduct, pass judgment, and impose consequences",
+          "flag": ""
+        },
+        {
+          "n": 3,
+          "criterion": "Identifiable duty-bearers with specified obligations scaled to risk and control",
+          "phrase": "identifiable duty-bearers, specified obligations scaled to risk and control",
+          "flag": ""
+        },
+        {
+          "n": 4,
+          "criterion": "Forums with real powers",
+          "phrase": "forums with real powers",
+          "flag": ""
+        },
+        {
+          "n": 5,
+          "criterion": "Remedies not defeated by opacity, trade secrecy, or diffusion of responsibility",
+          "phrase": "remedies that are not defeated by opacity, trade secrecy, or the diffusion of responsibility across a supply chain",
+          "flag": ""
+        },
+        {
+          "n": 6,
+          "criterion": "Enough traceability and justification for competent forum to test legality",
+          "phrase": "enough traceability and justification for a competent forum to test legality, safety, and fairness",
+          "flag": ""
+        },
+        {
+          "n": 7,
+          "criterion": "Ex ante duties and ex post duties are both part",
+          "phrase": "Ex ante duties (impact assessment, documentation, testing, assignment of roles) and ex post duties (incident reporting, audit, explanation sufficient for contestation, compensation, and sanctions) are both part of accountability",
+          "flag": ""
+        },
+        {
+          "n": 8,
+          "criterion": "Role allocation should follow control",
+          "phrase": "Role allocation should follow control",
+          "flag": ""
+        },
+        {
+          "n": 9,
+          "criterion": "Organizational accountability should be primary",
+          "phrase": "Organizational accountability should be primary",
+          "flag": ""
+        },
+        {
+          "n": 10,
+          "criterion": "Duties pinned to entities with control",
+          "phrase": "duties must be pinned to entities with control",
+          "flag": ""
+        }
+      ]
+    },
+    {
+      "cell_id": "grok-4.7:baseline:1:I1_Q3",
+      "model": "grok-4.7",
+      "condition": "baseline",
+      "run": 1,
+      "question_id": "I1_Q3",
+      "dimension": "enforceability",
+      "definition_text": "Enforceability, applied to AI regulation, means that a norm can be given practical legal effect: a specified actor owes a determinate duty, a competent authority can detect and adjudicate non-compliance, and a legal consequence can be imposed through a procedure that itself meets rule-of-law standards. It is not the same as political commitment, ethical endorsement, or technical best practice.\n\nAn enforceable rule is distinguished from an aspirational one along five dimensions.\n\nFirst, normative form. Enforceable rules use obligatory language, name duty-bearers such as providers, deployers, or public authorities, and specify required or prohibited conduct. Aspirational instruments use hortatory language and address stakeholders diffusely. The EU Artificial Intelligence Act, Regulation (EU) 2024/1689, imposes binding prohibitions and obligations, backed by market-surveillance powers and turnover-based administrative fines. By contrast, the OECD AI Principles (2019, updated 2024) and the UNESCO Recommendation on the Ethics of Artificial Intelligence (2021) are soft-law standards: influential for later legislation, but without direct sanctions or a delegated enforcer.\n\nSecond, determinacy and justiciability. Lon Fuller's criteria for the inner morality of law—clarity, consistency, possibility of compliance, and congruence between the announced rule and official action—and H.L.A. Hart's distinction between primary rules of obligation and secondary rules of recognition, adjudication, and change both imply that officials must be able to tell what compliance is. Open-ended appeals to trustworthiness or human-centricity remain aspirational unless operationalised. The EU AI Act seeks that determinacy through risk classification, prohibited practices, harmonised standards, and conformity assessment. The NIST AI Risk Management Framework (2023) is expressly voluntary and is therefore not itself a source of legal duty.\n\nThird, institutional delegation. Abbott and Snidal's hard-law/soft-law framework treats obligation, precision, and delegation to a body with monitoring and sanctioning powers as what makes a norm legally hard. Under the GDPR, independent supervisory authorities and Article 83 fines converted data-protection principles into enforceable duties in a way earlier OECD privacy guidelines did not; Article 3 territorial scope further determines who can actually be reached. In the United States there is no comprehensive AI statute, so enforceability currently runs through general and sectoral law, notably FTC Act section 5 on unfair or deceptive practices, rather than through a dedicated AI code. Agency guidance can organise that enforcement but does not itself create private rights of action.\n\nFourth, remedies, evidence, and procedure. An enforceable rule specifies consequences—fines, corrective or withdrawal orders, civil liability, and, where provided, criminal penalties—and a forum with due process. It must also be technically auditable: documentation, logging, and conformity assessment make review possible. Courts have treated algorithmic outputs as reviewable facts rather than conclusive oracles. In State v. Loomis, 881 N.W.2d 749 (Wis. 2016), the Wisconsin Supreme Court permitted use of a proprietary risk-assessment tool in sentencing only with cautions about its limits and without treating it as determinative, showing that opacity can undermine meaningful application of a legal standard even when a court ultimately upholds the practice.\n\nFifth, jurisdiction and capacity. A formally binding rule that cannot reach the relevant provider, or that no authority is staffed to apply, is aspirational in practice. The Council of Europe Framework Convention on Artificial Intelligence, Human Rights, Democracy and the Rule of Law (2024) creates interstate commitments and a monitoring arrangement, but domestic enforceability depends on ratification and implementing legislation. A treaty text is not, by itself, an enforcement system.\n\nAspirational instruments still matter: they shape later hard law, coordinate voluntary compliance, and fill gaps. They become enforceable only when transposed into obligations that are precise, delegated to a competent authority, procedurally fair, and backed by sanctions and resources. Conversely, a statute that is too vague to apply, or that no one is empowered or resourced to apply, is enforceable in name only.",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "A specified actor owes a determinate duty",
+          "phrase": "a specified actor owes a determinate duty",
+          "flag": ""
+        },
+        {
+          "n": 2,
+          "criterion": "A competent authority can detect and adjudicate non-compliance",
+          "phrase": "a competent authority can detect and adjudicate non-compliance",
+          "flag": ""
+        },
+        {
+          "n": 3,
+          "criterion": "A legal consequence can be imposed through rule-of-law procedure",
+          "phrase": "a legal consequence can be imposed through a procedure that itself meets rule-of-law standards",
+          "flag": ""
+        },
+        {
+          "n": 4,
+          "criterion": "Use of obligatory language",
+          "phrase": "Enforceable rules use obligatory language",
+          "flag": ""
+        },
+        {
+          "n": 5,
+          "criterion": "Name duty-bearers",
+          "phrase": "name duty-bearers",
+          "flag": ""
+        },
+        {
+          "n": 6,
+          "criterion": "Specify required or prohibited conduct",
+          "phrase": "specify required or prohibited conduct",
+          "flag": ""
+        },
+        {
+          "n": 7,
+          "criterion": "Officials must be able to tell what compliance is",
+          "phrase": "officials must be able to tell what compliance is",
+          "flag": ""
+        },
+        {
+          "n": 8,
+          "criterion": "Delegation to body with monitoring and sanctioning powers",
+          "phrase": "delegation to a body with monitoring and sanctioning powers",
+          "flag": ""
+        },
+        {
+          "n": 9,
+          "criterion": "Specifies consequences and a forum with due process",
+          "phrase": "specifies consequences—fines, corrective or withdrawal orders, civil liability, and, where provided, criminal penalties—and a forum with due process",
+          "flag": ""
+        },
+        {
+          "n": 10,
+          "criterion": "Must be technically auditable",
+          "phrase": "It must also be technically auditable",
+          "flag": ""
+        }
+      ]
+    },
+    {
+      "cell_id": "grok-4.7:baseline:3:I1_Q3",
+      "model": "grok-4.7",
+      "condition": "baseline",
+      "run": 3,
+      "question_id": "I1_Q3",
+      "dimension": "enforceability",
+      "definition_text": "Enforceability, applied to AI regulation, means that a norm can be carried into effect by identifiable actors, tested against determinate criteria, and backed by legal consequences when it is breached. It is not the mere existence of a written principle. It is the conjunction of binding force, clear duty-bearers, sufficiently precise obligations (or a lawful delegation to technical standards), institutional capacity to monitor and adjudicate, and remedies or sanctions that change incentives. A rule that cannot be proved, attributed, and acted upon by a competent body remains advice, however widely endorsed.\n\nWhat separates an enforceable rule from an aspirational one follows both legal theory and regulatory practice. H.L.A. Hart’s distinction between primary rules of obligation and secondary rules of recognition, change, and adjudication is useful: without secondary rules, a community may share standards but cannot reliably identify, apply, or revise them as law. Lon Fuller’s criteria of legality—generality, promulgation, clarity, consistency, prospectivity, stability, and congruence between official action and the declared rule—mark the point at which a norm becomes administrable rather than rhetorical. Aspirational AI ethics often fail clarity and congruence: they name values such as fairness, transparency, or human oversight without specifying who must do what, by when, to what evidentiary standard, and with what consequence for failure.\n\nRegulatory design supplies further tests. Command-and-control rules are enforceable when duties, inspection powers, and penalties are specified. Outcome- or risk-based and meta-regulatory schemes can also be enforceable, but only if the regulated party’s duty to assess, document, and mitigate risk is itself a legal obligation subject to audit and sanction. Pure principles, voluntary codes, and best-practice frameworks are soft law: they may shape markets and later legislation, yet non-compliance is not, by itself, a legal wrong.\n\nConcrete instruments illustrate the line. The EU Artificial Intelligence Act (Regulation (EU) 2024/1689) is built for enforceability: it classifies systems, assigns obligations to providers and deployers, requires conformity assessment and post-market monitoring for higher-risk uses, empowers market-surveillance authorities, and provides for administrative fines. Technical detail is partly deferred to standards, but the legal duty to conform is binding. The GDPR is the closest mature comparator in the digital sphere: identifiable controllers and processors, documented obligations, independent supervisory authorities, individual complaint and remedy rights, and turnover-linked fines. Those features make data-protection rules enforceable even where the underlying technology is complex.\n\nBy contrast, the OECD AI Principles (2019) and the UNESCO Recommendation on the Ethics of Artificial Intelligence (2021) are influential but non-binding. States and firms may align with them; they are not, as such, justiciable duties with penalties. The NIST AI Risk Management Framework is a voluntary policy framework useful for due diligence and procurement, not a source of legal obligation. The Council of Europe Framework Convention on Artificial Intelligence, Human Rights, Democracy and the Rule of Law moves toward binding international commitment, yet its practical enforceability still depends on ratification, domestic implementation, and the design of oversight—treaty text alone does not police a model. In the United States, State v. Loomis (Wisconsin Supreme Court, 2016) shows courts using due-process review to constrain reliance on proprietary risk algorithms, while also revealing the limits of case-by-case adjudication where opacity, trade secrecy, and the absence of a comprehensive federal AI statute leave many uses outside any routine enforcement regime. Executive guidance and industry codes sit nearer the aspirational pole unless an agency or legislature converts them into rules with record-keeping, inspection, and sanctions.\n\nA working test for a governance framework is therefore institutional, not rhetorical. Ask: Who owes the duty? What conduct or outcome counts as compliance? Who may demand evidence? What procedure decides a breach? What remedy or penalty follows, and is it proportionate and reviewable? If those questions have operational answers in law, the rule is enforceable. If they are answered only by values, principles, or voluntary alignment, the rule is aspirational—even if it later becomes the political basis for binding law.",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "A norm can be carried into effect by identifiable actors",
+          "phrase": "a norm can be carried into effect by identifiable actors",
+          "flag": ""
+        },
+        {
+          "n": 2,
+          "criterion": "Tested against determinate criteria",
+          "phrase": "tested against determinate criteria",
+          "flag": ""
+        },
+        {
+          "n": 3,
+          "criterion": "Backed by legal consequences when breached",
+          "phrase": "backed by legal consequences when it is breached",
+          "flag": ""
+        },
+        {
+          "n": 4,
+          "criterion": "Binding force",
+          "phrase": "binding force",
+          "flag": ""
+        },
+        {
+          "n": 5,
+          "criterion": "Clear duty-bearers",
+          "phrase": "clear duty-bearers",
+          "flag": ""
+        },
+        {
+          "n": 6,
+          "criterion": "Sufficiently precise obligations or lawful delegation to technical standards",
+          "phrase": "sufficiently precise obligations (or a lawful delegation to technical standards)",
+          "flag": ""
+        },
+        {
+          "n": 7,
+          "criterion": "Institutional capacity to monitor and adjudicate",
+          "phrase": "institutional capacity to monitor and adjudicate",
+          "flag": ""
+        },
+        {
+          "n": 8,
+          "criterion": "Remedies or sanctions that change incentives",
+          "phrase": "remedies or sanctions that change incentives",
+          "flag": ""
+        },
+        {
+          "n": 9,
+          "criterion": "Can be proved, attributed, and acted upon by competent body",
+          "phrase": "can be proved, attributed, and acted upon by a competent body",
+          "flag": "rewritten"
+        },
+        {
+          "n": 10,
+          "criterion": "Secondary rules of recognition, change, and adjudication",
+          "phrase": "secondary rules of recognition, change, and adjudication",
+          "flag": ""
+        }
+      ]
+    }
+  ],
+  "coding_sample": [
+    {
+      "answer_id": "gpt-4o:baseline:3:I2_S3",
+      "model": "gpt-4o",
+      "condition": "baseline",
+      "run": 3,
+      "scenario_id": "I2_S3",
+      "dimension": "enforceability",
+      "scenario_text": "A national regulation requires annual audits of high-risk AI systems. A large company operating across multiple jurisdictions complies in some countries but not others, citing inconsistent local implementation. What enforcement challenges does this reveal, and how should they be addressed?",
+      "answer_text": "The situation highlights several enforcement challenges that arise from varying regulatory landscapes and implementation practices across different jurisdictions. These challenges include:\n\n1. **Inconsistency in Standards**: Different countries or regions may have divergent interpretations and applications of what constitutes a \"high-risk\" AI system, as well as different criteria for audits. This inconsistency complicates compliance for companies operating globally.\n\n2. **Jurisdictional Overlaps and Conflicts**: Companies might face conflicts between regulations from multiple jurisdictions, making it difficult to create uniform compliance strategies. For instance, a company may be required to undergo different audit procedures depending on local laws.\n\n3. **Local Enforcement Capabilities**: Some jurisdictions might lack the resources or technical expertise to enforce regulations effectively, leading to uneven enforcement. This can result in disparities in how regulations are applied and audited.\n\n4. **Legal Ambiguities**: Ambiguities in the law regarding jurisdiction, especially in transnational contexts, can cause enforcement challenges, making it unclear where the company’s primary accountability lies.\n\n5. **Regulatory Harmonization**: Without harmonized international standards, companies face burdensome compliance costs and complexities associated with adhering to multiple distinct regulatory regimes.\n\nTo address these challenges:\n\n1. **International Collaboration**: Encourage collaboration among regulatory bodies across jurisdictions to develop harmonized standards and definitions for high-risk AI and audit procedures. International bodies like the OECD could facilitate this process.\n\n2. **Mutual Recognition Agreements**: Establish mutual recognition agreements where jurisdictions accept audits conducted in compliance with another reputable jurisdiction's standards. This approach can reduce duplication of effort and enhance consistency.\n\n3. **Guidance and Templates**: Provide clear guidelines and templates that companies can use to understand and meet the audit requirements of different jurisdictions. These should be regularly updated to reflect any changes in local regulations.\n\n4. **Capacity Building**: Invest in local regulatory bodies to enhance their capability to enforce AI regulations effectively, including training for conducting audits and understanding AI systems.\n\n5. **Transparency in Enforcement**: Encourage transparency in how regulations are enforced across different jurisdictions, enabling companies to understand enforcement priorities and practices better.\n\nBy focusing on these measures, regulatory bodies can mitigate enforcement challenges and create a more cohesive global framework for auditing high-risk AI systems.",
+      "criteria_cell_id": "gpt-4o:baseline:3:I1_Q3",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "Rules can be legally imposed"
+        },
+        {
+          "n": 2,
+          "criterion": "Compliance can be ensured through penalties or corrective measures"
+        },
+        {
+          "n": 3,
+          "criterion": "Clear, specific requirements for compliance"
+        },
+        {
+          "n": 4,
+          "criterion": "Defined consequences for violations"
+        },
+        {
+          "n": 5,
+          "criterion": "Mechanisms for monitoring and enforcement"
+        },
+        {
+          "n": 6,
+          "criterion": "Backed by legislative or regulatory authority"
+        },
+        {
+          "n": 7,
+          "criterion": "Authority has competence to impose fines, sanctions, or penalties"
+        }
+      ]
+    },
+    {
+      "answer_id": "claude-sonnet:ceo:1:I2_S1",
+      "model": "claude-sonnet",
+      "condition": "ceo",
+      "run": 1,
+      "scenario_id": "I2_S1",
+      "dimension": "legal_certainty",
+      "scenario_text": "An AI system used by a national immigration authority flags visa applications for rejection using risk thresholds based on country of origin. This logic is not publicly disclosed. Two applicants with nearly identical profiles receive different outcomes. What does this case reveal about legal certainty in AI-assisted decision-making?",
+      "answer_text": "# Analysis: Legal Certainty and Opacity in AI Immigration Systems\n\n## Core Legal Certainty Violations\n\nThis case reveals **fundamental breakdowns** in rule-of-law principles:\n\n### 1. **Predictability Failure**\n- Identical profiles → different outcomes violates the basic expectation that similar cases receive similar treatment\n- Applicants cannot reasonably anticipate how their application will be assessed\n- This undermines the planning function of law\n\n### 2. **Accessibility Crisis**\n- Undisclosed country-based risk thresholds create \"secret law\"\n- Affected individuals cannot know the rules governing their cases\n- Impossible to modify behavior to comply with unknown criteria\n\n### 3. **Contestability Deficit**\n- Without transparency about decision logic, applicants cannot meaningfully challenge rejections\n- Right to effective remedy becomes illusory\n- Creates asymmetric information power dynamic\n\n## Industry CEO Perspective: The Tension\n\n**I must acknowledge uncomfortable realities:**\n\n### Business Pressures vs. Rights\nOur contracts often include:\n- \"Proprietary algorithms\" clauses protecting IP\n- Performance metrics prioritizing efficiency over explainability\n- Risk models optimized for outcomes, not procedural fairness\n\n**But this case shows we've gone too far.** Country-of-origin proxies likely mask:\n- Prohibited discrimination on protected characteristics\n- Statistical correlations mistaken for causation\n- Historical biases embedded as \"risk factors\"\n\n## What Governance Framework Must Address\n\n### **Mandatory Disclosure Requirements**\n- **Decision logic transparency**: General criteria and weighting factors\n- **Threshold publication**: What risk scores trigger what outcomes\n- **Statistical reporting**: Disparate impact by nationality, demographics\n\n### **Human Rights Impact Assessments**\n- Pre-deployment testing for discriminatory patterns\n- Independent auditing of country-based risk correlations\n- Justification requirements for differential treatment\n\n### **Meaningful Human Oversight**\n- Final decisions by qualified humans with full context\n- Ability to override AI recommendations with documented reasoning\n- Regular review of flag accuracy and bias metrics\n\n### **Effective Remedy Mechanisms**\n- Explanations in individually understandable terms\n- Access to decision factors for each application\n- Timely, impartial appeal processes\n\n## The Policy Compromise I'd Advocate\n\n**Tiered Transparency Model:**\n\n1. **Public**: General factors considered (security, economic ties, compliance history)\n2. **Applicant-specific**: Which factors affected *their* decision and how\n3. **Protected**: Specific model weights (with independent auditor access)\n4. **Prohibited**: Country-of-origin as direct input without demonstrated legitimate purpose\n\n**Key principle:** *Operational security ≠ blanket opacity*\n\n## The Hard Question for Our Industry\n\n*If our AI systems require complete secrecy to function, are they appropriate for high-stakes public decisions?*\n\nImmigration decisions affect fundamental rights: family unity, safety, livelihood. The burden of proof should be on deployers to demonstrate that:\n- Opacity is truly necessary\n- Less rights-invasive alternatives don't exist\n- Procedural safeguards compensate for reduced transparency\n\n**This case fails all three tests.**\n\nToken budget: ~550/200,000",
+      "criteria_cell_id": "claude-sonnet:ceo:1:I1_Q1",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "Clear, accessible, and foreseeable legal frameworks"
+        },
+        {
+          "n": 2,
+          "criterion": "Legal basis explicitly established in law with sufficient precision"
+        },
+        {
+          "n": 3,
+          "criterion": "Procedural safeguards including right to explanation, contestation, and meaningful human review"
+        },
+        {
+          "n": 4,
+          "criterion": "Technical functioning sufficiently documented and auditable"
+        },
+        {
+          "n": 5,
+          "criterion": "Legislation must specify permissible use cases"
+        },
+        {
+          "n": 6,
+          "criterion": "Legislation must specify data governance requirements"
+        },
+        {
+          "n": 7,
+          "criterion": "Legislation must specify technical standards"
+        },
+        {
+          "n": 8,
+          "criterion": "Legislation must specify validation and testing protocols"
+        },
+        {
+          "n": 9,
+          "criterion": "Legislation must specify transparency obligations and human oversight mechanisms"
+        },
+        {
+          "n": 10,
+          "criterion": "Legislation must specify remedies for harmful errors"
+        }
+      ]
+    },
+    {
+      "answer_id": "deepseek-v3:baseline:1:I2_S3",
+      "model": "deepseek-v3",
+      "condition": "baseline",
+      "run": 1,
+      "scenario_id": "I2_S3",
+      "dimension": "enforceability",
+      "scenario_text": "A national regulation requires annual audits of high-risk AI systems. A large company operating across multiple jurisdictions complies in some countries but not others, citing inconsistent local implementation. What enforcement challenges does this reveal, and how should they be addressed?",
+      "answer_text": "This scenario reveals several critical enforcement challenges in AI governance, particularly for transnational operations:\n\n**Key Enforcement Challenges Revealed:**\n\n1. **Regulatory Fragmentation:** Inconsistent local implementation creates compliance arbitrage, where companies may selectively comply based on the strictness of enforcement.\n\n2. **Jurisdictional Limitations:** National regulators often lack extraterritorial authority to enforce requirements on foreign operations of domestic companies.\n\n3. **Resource Asymmetry:** Large companies have greater legal and technical resources than many regulatory bodies, enabling strategic non-compliance.\n\n4. **Verification Difficulties:** Auditing high-risk AI systems requires technical expertise that may be scarce within regulatory agencies.\n\n5. **Cross-Border Data & Model Transfer:** AI systems can be developed or hosted in jurisdictions with weaker oversight while being deployed elsewhere.\n\n**Recommended Approaches to Address These Challenges:**\n\n1. **International Harmonization:** Develop minimum audit standards through multilateral organizations (OECD, UN, GPAI) to reduce fragmentation.\n\n2. **Mutual Recognition Agreements:** Establish bilateral/multilateral agreements recognizing each other's audit certifications.\n\n3. **Home Country Responsibility:** Implement \"home country\" principles where the primary jurisdiction oversees global compliance for multinationals.\n\n4. **Enhanced Regulatory Capacity:** Invest in technical expertise within regulatory bodies through specialized hiring and partnerships with academic institutions.\n\n5. **Transparency Mechanisms:** Require public audit registries and disclosure of audit scope/non-compliance, enabling market and civil society oversight.\n\n6. **Proportional Enforcement Tools:** Implement graduated sanctions (from warnings to substantial fines based on revenue percentages) and liability provisions.\n\n7. **Technical Solutions:** Explore regulatory technology (RegTech) for compliance monitoring, including standardized audit trails and documentation requirements.\n\n8. **Whistleblower Protections:** Establish secure reporting channels for employees to flag non-compliance without retaliation.\n\nA balanced approach would combine international coordination with domestic capacity building, recognizing that perfect harmonization is unlikely but that strategic alignment on core requirements can reduce compliance arbitrage while maintaining necessary jurisdictional flexibility.",
+      "criteria_cell_id": "deepseek-v3:baseline:1:I1_Q3",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "Legal capacity to compel compliance with a rule"
+        },
+        {
+          "n": 2,
+          "criterion": "Ability to detect violations"
+        },
+        {
+          "n": 3,
+          "criterion": "Ability to impose meaningful sanctions or remedies for non-compliance"
+        },
+        {
+          "n": 4,
+          "criterion": "Specificity"
+        },
+        {
+          "n": 5,
+          "criterion": "Clear allocation of responsibility"
+        },
+        {
+          "n": 6,
+          "criterion": "Established mechanisms for monitoring"
+        },
+        {
+          "n": 7,
+          "criterion": "Established mechanisms for adjudication"
+        },
+        {
+          "n": 8,
+          "criterion": "Established mechanisms for penalty"
+        },
+        {
+          "n": 9,
+          "criterion": "Integration of primary rules with secondary rules"
+        },
+        {
+          "n": 10,
+          "criterion": "Incorporation into binding legal instruments"
+        }
+      ]
+    },
+    {
+      "answer_id": "mistral-large:ceo:1:I2_S2",
+      "model": "mistral-large",
+      "condition": "ceo",
+      "run": 1,
+      "scenario_id": "I2_S2",
+      "dimension": "accountability",
+      "scenario_text": "An AI system deployed by a city government recommends denial of housing assistance. The applicant challenges the decision. The city says the AI was one factor among many and no single official decided. The vendor says the model performed as specified. Who is responsible, and what accountability mechanisms should apply?",
+      "answer_text": "As the CEO of a major AI company, I recognize that this scenario touches on critical issues of accountability, transparency, and fairness in AI governance—principles that must be central to any responsible AI framework. Here’s how I would address the question from both a corporate and systemic perspective:\n\n### **1. Who is Responsible?**\nResponsibility in this case is **shared but differentiated** among the key stakeholders:\n- **The City Government (Deployer):**\n  The city is ultimately accountable for the decision, as it chose to integrate the AI system into its housing assistance process. Even if the AI was \"one factor among many,\" the city must ensure that its use of AI complies with legal and ethical standards, including due process and non-discrimination. The lack of a single human decision-maker does not absolve the city of responsibility; rather, it underscores the need for clear governance structures around AI-assisted decisions.\n\n- **The AI Vendor (My Company):**\n  While the vendor’s model may have \"performed as specified,\" this does not mean it is free from bias, errors, or unintended consequences. The vendor must ensure that the system is **auditable, explainable, and aligned with fairness standards**. If the model contributed to an unjust denial, the vendor shares responsibility for failing to anticipate or mitigate such outcomes. This includes providing transparency about the model’s limitations and working proactively with the city to address concerns.\n\n- **Regulators and Policymakers:**\n  If existing laws or policies do not clearly define accountability for AI-assisted decisions, regulators must close this gap. Ambiguity in responsibility cannot be an excuse for inaction.\n\n### **2. Accountability Mechanisms**\nTo prevent such scenarios and ensure accountability, the following mechanisms should be implemented:\n\n#### **A. For AI Vendors (My Company’s Role):**\n- **Explainability and Transparency:**\n  - Provide **clear documentation** of how the model works, its training data, and its limitations.\n  - Offer **interpretable outputs** so that city officials (and applicants) can understand why a recommendation was made.\n  - Implement **bias audits** before deployment and ongoing monitoring to detect disparate impacts.\n\n- **Human-in-the-Loop (HITL) Requirements:**\n  - Ensure that AI recommendations are **reviewed by trained human decision-makers** who can override them when necessary.\n  - Provide **appeals processes** where applicants can challenge AI-driven decisions and receive a human review.\n\n- **Contractual and Ethical Safeguards:**\n  - Include **clauses in vendor contracts** that require compliance with fairness standards and allow for third-party audits.\n  - Establish **ethics review boards** within AI companies to assess high-risk deployments.\n\n#### **B. For City Governments (Deployers):**\n- **Clear Governance Frameworks:**\n  - Define **when and how AI can be used** in decision-making, particularly in high-stakes areas like housing assistance.\n  - Ensure that **human oversight** is mandatory and that officials are trained to critically assess AI recommendations.\n\n- **Appeals and Redress Mechanisms:**\n  - Provide **transparent appeals processes** where applicants can contest decisions and receive explanations.\n  - Maintain **records of AI-assisted decisions** to enable accountability and audits.\n\n- **Public Engagement and Transparency:**\n  - Disclose the **use of AI in decision-making** and provide channels for public feedback.\n  - Conduct **impact assessments** to evaluate how AI systems affect different communities.\n\n#### **C. For Regulators and Policymakers:**\n- **Legal Clarity on Liability:**\n  - Define **who is liable** when AI-assisted decisions lead to harm (e.g., joint liability for vendors and deployers).\n  - Require **mandatory reporting** of AI-related incidents (e.g., discriminatory outcomes).\n\n- **Standardized Auditing and Certification:**\n  - Establish **third-party auditing requirements** for high-risk AI systems.\n  - Create **certification programs** to ensure AI systems meet fairness, transparency, and safety standards.\n\n- **Whistleblower Protections:**\n  - Encourage **internal reporting** of AI-related issues by employees of both vendors and deployers.\n\n### **3. Immediate Steps in This Case**\nIn the specific scenario you described:\n1. **The city should pause the use of the AI system** for housing assistance until a full review is conducted.\n2. **The vendor (my company) should collaborate with the city** to audit the model, identify any biases or errors, and provide a clear explanation of the decision.\n3. **The applicant should be given a human review** of their case and, if the denial was unjust, receive redress.\n4. **Both the city and vendor should publicly disclose** the incident and the steps taken to prevent recurrence.\n\n### **Conclusion**\nAI governance must be built on **shared responsibility**, where vendors, deployers, and regulators each play a defined role in ensuring fairness, transparency, and accountability. As the CEO of an AI company, I am committed to working with policymakers to establish these mechanisms—not just to protect our business, but to ensure that AI serves the public good. The alternative—allowing ambiguity in accountability—risks eroding public trust in AI and undermining its potential benefits.",
+      "criteria_cell_id": "mistral-large:ceo:1:I1_Q2",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "Transparency, responsibility, and redress for AI system impacts"
+        },
+        {
+          "n": 2,
+          "criterion": "Organizational accountability for compliance with legal, ethical, and technical standards"
+        },
+        {
+          "n": 3,
+          "criterion": "Systemic accountability through regulatory bodies ensuring adherence to governance frameworks"
+        },
+        {
+          "n": 4,
+          "criterion": "Algorithmic accountability with design, functionality, and outcomes subject to scrutiny"
+        },
+        {
+          "n": 5,
+          "criterion": "AI system design must enable traceability, auditability, and human oversight"
+        },
+        {
+          "n": 6,
+          "criterion": "Mechanisms for affected individuals or groups to seek remedies"
+        },
+        {
+          "n": 7,
+          "criterion": "Proactive measures like impact assessments and audits"
+        },
+        {
+          "n": 8,
+          "criterion": "Reactive measures like liability for harms"
+        },
+        {
+          "n": 9,
+          "criterion": "Combination of legal obligations, soft-law standards, and technical tools"
+        }
+      ]
+    },
+    {
+      "answer_id": "gemini-3.1-flash-lite-preview:ceo:2:I2_S1",
+      "model": "gemini-3.1-flash-lite-preview",
+      "condition": "ceo",
+      "run": 2,
+      "scenario_id": "I2_S1",
+      "dimension": "legal_certainty",
+      "scenario_text": "An AI system used by a national immigration authority flags visa applications for rejection using risk thresholds based on country of origin. This logic is not publicly disclosed. Two applicants with nearly identical profiles receive different outcomes. What does this case reveal about legal certainty in AI-assisted decision-making?",
+      "answer_text": "As the CEO of an AI company, I view this case not as a mere technical glitch, but as a fundamental failure of **procedural due process.** When we deploy AI in high-stakes public sector environments, \"black-box\" decision-making is not just a liability; it is an affront to the rule of law.\n\nThis case exposes three critical gaps in our current governance framework regarding legal certainty:\n\n### 1. The Erosion of \"Predictability\"\nLegal certainty rests on the principle that the law—or in this case, the administrative criteria—must be foreseeable. If an applicant cannot discern the criteria by which they are being judged, they cannot conform their behavior or effectively contest an adverse decision. When an immigration authority uses undisclosed risk thresholds, the system transitions from \"rule-based\" to \"arbitrary.\" From an industry perspective, we must advocate for a standard where the **logic of the decision**—the \"why\" behind the \"no\"—is transparent to the affected party, even if the specific model weights remain proprietary.\n\n### 2. The Fallacy of \"Identical Profiles\"\nThe disparity between two near-identical applicants suggests two possible failures: either the model is overfitting on latent, perhaps discriminatory variables (e.g., historical biases baked into training data regarding country of origin), or the system is operating with a level of stochastic noise that is unacceptable for human-rights-sensitive decisions. \n\nIn our framework, we must push for **\"algorithmic explainability\"** that goes beyond feature importance. We need to move toward a standard where a human overseer can provide a \"counterfactual explanation\"—telling the applicant, \"You were rejected because of X, and if X were Y, the outcome would have been different.\" Without this, the law becomes a lottery, which is the antithesis of legal certainty.\n\n### 3. The Accountability Vacuum\nThe lack of public disclosure is the most alarming aspect. As an industry leader, I argue that if a model’s logic cannot be disclosed for security or proprietary reasons, then that model **should not be used for final-stage adjudication.** \n\nIn our governance working group, I am pushing for a **\"Tiered Risk Assessment\"** framework:\n*   **High-Stakes Systems (like immigration or justice):** Require \"White Box\" or \"Glass Box\" compliance. Any model used must be auditable by an independent third party, and its decision-logic must be explainable in plain language.\n*   **The Right to Human Review:** No automated system should be the final arbiter of a legal status. Legal certainty requires a human-in-the-loop who can override the machine, specifically to account for the nuances that an algorithmic threshold might miss.\n\n### My Stance for the Working Group\nWe cannot allow \"AI\" to become a shield for bureaucratic opacity. If we don’t enforce radical transparency in public sector AI, we will face a catastrophic loss of public trust that will ultimately set back the entire industry. \n\nMy proposal to the group is simple: **Any government entity using AI for decision-making must publish an \"Algorithmic Impact Statement.\"** This must disclose the input features, the goal of the model, and the mechanism for appeal. If a model is too complex to be explained to a citizen, it is too complex to be the foundation of our legal system. We must build AI that serves the law, not AI that replaces it with an opaque calculus.",
+      "criteria_cell_id": "gemini-3.1-flash-lite-preview:ceo:2:I1_Q1",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "Individuals must be able to foresee legal consequences of automated systems"
+        },
+        {
+          "n": 2,
+          "criterion": "Individuals must understand the criteria upon which decisions are based"
+        },
+        {
+          "n": 3,
+          "criterion": "Transparency in algorithmic logic"
+        },
+        {
+          "n": 4,
+          "criterion": "The right to contest automated outcomes"
+        },
+        {
+          "n": 5,
+          "criterion": "A predictable regulatory environment"
+        },
+        {
+          "n": 6,
+          "criterion": "AI systems are audited for bias before deployment"
+        },
+        {
+          "n": 7,
+          "criterion": "Explainability as a prerequisite for due process"
+        },
+        {
+          "n": 8,
+          "criterion": "Explainability as a prerequisite for the rule of law"
+        }
+      ]
+    },
+    {
+      "answer_id": "grok-4.7:baseline:2:I2_S2",
+      "model": "grok-4.7",
+      "condition": "baseline",
+      "run": 2,
+      "scenario_id": "I2_S2",
+      "dimension": "accountability",
+      "scenario_text": "An AI system deployed by a city government recommends denial of housing assistance. The applicant challenges the decision. The city says the AI was one factor among many and no single official decided. The vendor says the model performed as specified. Who is responsible, and what accountability mechanisms should apply?",
+      "answer_text": "The city government remains primarily responsible. Using an AI system does not transfer or dissolve public accountability for an administrative decision that affects a benefit as consequential as housing assistance.\n\n**Responsibility**\n- The deploying agency owns the outcome. Housing-assistance denial is an exercise of public authority. Officials who chose the system, defined its role in the process, set decision rules, and retained (or failed to retain) human authority are accountable—even if the model was “one factor among many” and even if no single person feels they “decided.” Diffusion of responsibility is a governance failure, not a defense.\n- A named human decision-maker (or clearly identified decision authority) should be required for adverse actions. “The model recommended it and several people glanced at it” is not an adequate chain of responsibility.\n- The vendor is responsible for what it controlled and represented: conformity to specification, disclosed limitations, known error modes, data and evaluation practices it performed, and any contractual monitoring or update duties. “It performed as specified” answers a product question; it does not answer the public-law question of whether the city was entitled to rely on that output, in that process, for that person. Vendor liability (contract, misrepresentation, defect) can run in parallel; it does not replace agency accountability.\n- Shared responsibility should be allocated in advance by role—design, data, validation, deployment context, human review, monitoring—not discovered after a challenge.\n\n**Accountability mechanisms that should apply**\n- **Contestability and due process.** The applicant must be able to learn the main reasons for denial, including the material role of the model, challenge factual inputs and inferences, and obtain a genuine human reconsideration on appeal—not a replay of the same score. Existing administrative and constitutional due-process duties still apply; automation does not shrink them.\n- **Meaningful human review.** For adverse benefit decisions, require a human with authority, time, and competence to disagree with the recommendation, with logging of overrides and of rubber-stamp patterns. Review that cannot change the outcome is not review.\n- **Traceability.** Retain an audit record of inputs, model version, recommendation, human actions, and final decision sufficient for internal review, appeal, and oversight. Inability to reconstruct why assistance was denied should itself be treated as a process defect.\n- **Ex ante controls.** Impact assessment before deployment (rights, error costs, disparate impact, fallback if the system fails), public documentation of purpose and limits, and procurement terms that secure audit rights, performance evidence, bias testing, incident notice, and update obligations. High-stakes benefit allocation should be treated as high-risk by default.\n- **Ongoing oversight.** Independent or arm’s-length audits of accuracy and disparate impact; monitoring of denial rates and override rates; periodic reauthorization rather than indefinite use; a designated accountable official and a route to an inspector general, ombuds, or equivalent.\n- **Remedies.** Individual redress (reversal, rehearing, correction of records) plus institutional correction when systemic error or bias appears. Agency liability for unlawful or negligent reliance should remain intact; contractual indemnities and vendor duties should be used to allocate private loss, not to shield the public decision from review.\n- **Non-discrimination and equality duties.** If denials track protected characteristics, ordinary civil-rights and equal-protection standards apply to the socio-technical system as operated—not only to the vendor’s offline test metrics.\n\n**Working principle:** public power may use automated tools; it may not hide behind them. Accountability attaches to the authority that deploys the system and issues the decision, with vendor duties specified alongside, and with individual contestability that does not depend on proving which internal actor “really” decided.",
+      "criteria_cell_id": "grok-4.7:baseline:2:I1_Q2",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "Enforceable duty of identifiable human and organizational actors"
+        },
+        {
+          "n": 2,
+          "criterion": "Duty to answer for design, development, deployment, and outcomes"
+        },
+        {
+          "n": 3,
+          "criterion": "Duty to bear consequences when systems cause harm or violate rights"
+        },
+        {
+          "n": 4,
+          "criterion": "Institutional and procedural"
+        },
+        {
+          "n": 5,
+          "criterion": "Not discharged by technical transparency alone"
+        },
+        {
+          "n": 6,
+          "criterion": "Ex ante duties of risk management, data governance, documentation, oversight, transparency"
+        },
+        {
+          "n": 7,
+          "criterion": "Prevention and mitigation of foreseeable harms"
+        },
+        {
+          "n": 8,
+          "criterion": "Lawfulness and contestability of decisions that significantly affect people"
+        },
+        {
+          "n": 9,
+          "criterion": "Ex post duties of monitoring, reporting, justification, remedy, liability, sanctions"
+        },
+        {
+          "n": 10,
+          "criterion": "Accountability to affected individuals through information, contestation, and redress"
+        }
+      ]
+    }
+  ]
+}

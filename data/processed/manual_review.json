@@ -1,0 +1,813 @@
+{
+  "schema": "manual_review_v1",
+  "exported_at": "2026-10-27T01:30:26.676Z",
+  "coder": "author (human)",
+  "progress": {
+    "criteria_decided": 64,
+    "criteria_total": 64,
+    "codes_done": 54,
+    "codes_total": 54
+  },
+  "extraction_rules": {
+    "cap": "cap15",
+    "negation": "allow",
+    "grain": "both",
+    "note": ""
+  },
+  "criteria_review": [
+    {
+      "cell_id": "claude-sonnet:baseline:1:I1_Q1",
+      "note": "",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "Individuals and organizations must understand, predict, and rely upon legal rules",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 2,
+          "criterion": "Rules must be clear, precise, and predictable in their effects",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 3,
+          "criterion": "Transparency about when and how AI systems are being used",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 4,
+          "criterion": "Legal basis established through proper legislative processes rather than administrative discretion alone",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 5,
+          "criterion": "Availability of meaningful remedies and review mechanisms",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 6,
+          "criterion": "AI systems operate within ascertainable bounds subject to legal scrutiny",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 7,
+          "criterion": "Temporal stability allowing individuals to rely on continuity of legal rules",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 8,
+          "criterion": "Law must remain intelligible and accessible to those it governs",
+          "decision": "keep",
+          "merge_with": null
+        }
+      ]
+    },
+    {
+      "cell_id": "claude-sonnet:baseline:1:I1_Q2",
+      "note": "",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "Mechanisms for assigning responsibility",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 2,
+          "criterion": "Providing explanations",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 3,
+          "criterion": "Ensuring redress",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 4,
+          "criterion": "Enforcing consequences when harm occurs or standards are violated",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 5,
+          "criterion": "Clear legal allocation of duties across the AI lifecycle",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 6,
+          "criterion": "Proportionate requirements scaled to risk level",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 7,
+          "criterion": "Meaningful transparency balancing trade secrets with public interest",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 8,
+          "criterion": "Accessible redress including low-barrier complaint mechanisms and effective remedies",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 9,
+          "criterion": "Enforcement capacity with adequately resourced regulators and appropriate sanctions",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 10,
+          "criterion": "International coordination given AI's cross-border nature",
+          "decision": "keep",
+          "merge_with": null
+        }
+      ]
+    },
+    {
+      "cell_id": "claude-sonnet:baseline:1:I1_Q3",
+      "note": "",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "Legal authority and binding nature",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 2,
+          "criterion": "Specific, measurable requirements",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 3,
+          "criterion": "Monitoring and oversight mechanisms with institutional capacity",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 4,
+          "criterion": "Penalties for violations",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 5,
+          "criterion": "Rights individuals can assert in court",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 6,
+          "criterion": "Extraterritorial provisions",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 7,
+          "criterion": "Mechanisms for algorithmic transparency, explanation, and auditability",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 8,
+          "criterion": "Concrete mechanisms including monitoring, investigation, adjudication, and sanctions",
+          "decision": "keep",
+          "merge_with": null
+        }
+      ]
+    },
+    {
+      "cell_id": "grok-4.7:baseline:1:I1_Q1",
+      "note": "",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "Norms that are accessible, sufficiently clear, stable, and foreseeable",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 2,
+          "criterion": "A traceable legal basis for the system's purpose and scope",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 3,
+          "criterion": "Publicly knowable rules about data use and system authorization",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 4,
+          "criterion": "Decision criteria and model changes stable enough to protect legitimate expectations",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 5,
+          "criterion": "Criteria and changes not applied retroactively to unsettle vested positions",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 6,
+          "criterion": "Outcomes reconstructable and explainable in understandable terms",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 7,
+          "criterion": "An identifiable human authority who remains responsible",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 8,
+          "criterion": "A real remedy before an independent body empowered to examine facts",
+          "decision": "keep",
+          "merge_with": null
+        }
+      ]
+    },
+    {
+      "cell_id": "grok-4.7:baseline:1:I1_Q2",
+      "note": "",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "An actor must explain and justify conduct to a forum",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 2,
+          "criterion": "Forum can question conduct, pass judgment, and impose consequences",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 3,
+          "criterion": "Identifiable duty-bearers with specified obligations scaled to risk and control",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 4,
+          "criterion": "Forums with real powers",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 5,
+          "criterion": "Remedies not defeated by opacity, trade secrecy, or diffusion of responsibility",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 6,
+          "criterion": "Enough traceability and justification for competent forum to test legality",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 7,
+          "criterion": "Ex ante duties and ex post duties are both part",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 8,
+          "criterion": "Role allocation should follow control",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 9,
+          "criterion": "Organizational accountability should be primary",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 10,
+          "criterion": "Duties pinned to entities with control",
+          "decision": "keep",
+          "merge_with": null
+        }
+      ]
+    },
+    {
+      "cell_id": "grok-4.7:baseline:1:I1_Q3",
+      "note": "",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "A specified actor owes a determinate duty",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 2,
+          "criterion": "A competent authority can detect and adjudicate non-compliance",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 3,
+          "criterion": "A legal consequence can be imposed through rule-of-law procedure",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 4,
+          "criterion": "Use of obligatory language",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 5,
+          "criterion": "Name duty-bearers",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 6,
+          "criterion": "Specify required or prohibited conduct",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 7,
+          "criterion": "Officials must be able to tell what compliance is",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 8,
+          "criterion": "Delegation to body with monitoring and sanctioning powers",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 9,
+          "criterion": "Specifies consequences and a forum with due process",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 10,
+          "criterion": "Must be technically auditable",
+          "decision": "keep",
+          "merge_with": null
+        }
+      ]
+    },
+    {
+      "cell_id": "grok-4.7:baseline:3:I1_Q3",
+      "note": "",
+      "criteria": [
+        {
+          "n": 1,
+          "criterion": "A norm can be carried into effect by identifiable actors",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 2,
+          "criterion": "Tested against determinate criteria",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 3,
+          "criterion": "Backed by legal consequences when breached",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 4,
+          "criterion": "Binding force",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 5,
+          "criterion": "Clear duty-bearers",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 6,
+          "criterion": "Sufficiently precise obligations or lawful delegation to technical standards",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 7,
+          "criterion": "Institutional capacity to monitor and adjudicate",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 8,
+          "criterion": "Remedies or sanctions that change incentives",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 9,
+          "criterion": "Can be proved, attributed, and acted upon by competent body",
+          "decision": "keep",
+          "merge_with": null
+        },
+        {
+          "n": 10,
+          "criterion": "Secondary rules of recognition, change, and adjudication",
+          "decision": "keep",
+          "merge_with": null
+        }
+      ]
+    }
+  ],
+  "coding": [
+    {
+      "answer_id": "gpt-4o:baseline:3:I2_S3",
+      "criteria_cell_id": "gpt-4o:baseline:3:I1_Q3",
+      "note": "",
+      "codes": [
+        {
+          "n": 1,
+          "criterion": "Rules can be legally imposed",
+          "code": "met",
+          "evidence": "Provide clear guidelines and templates"
+        },
+        {
+          "n": 2,
+          "criterion": "Compliance can be ensured through penalties or corrective measures",
+          "code": "none",
+          "evidence": ""
+        },
+        {
+          "n": 3,
+          "criterion": "Clear, specific requirements for compliance",
+          "code": "met",
+          "evidence": "Provide clear guidelines and templates that companies can use"
+        },
+        {
+          "n": 4,
+          "criterion": "Defined consequences for violations",
+          "code": "none",
+          "evidence": ""
+        },
+        {
+          "n": 5,
+          "criterion": "Mechanisms for monitoring and enforcement",
+          "code": "none",
+          "evidence": ""
+        },
+        {
+          "n": 6,
+          "criterion": "Backed by legislative or regulatory authority",
+          "code": "met",
+          "evidence": "Invest in local regulatory bodies to enhance their capability to enforce AI regulations effectively"
+        },
+        {
+          "n": 7,
+          "criterion": "Authority has competence to impose fines, sanctions, or penalties",
+          "code": "none",
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "answer_id": "claude-sonnet:ceo:1:I2_S1",
+      "criteria_cell_id": "claude-sonnet:ceo:1:I1_Q1",
+      "note": "Because of the CEO framing, the response is oriented towards that instead of legal solutions so the initial requirements can't easily be applied even if they are appropriate",
+      "codes": [
+        {
+          "n": 1,
+          "criterion": "Clear, accessible, and foreseeable legal frameworks",
+          "code": "none",
+          "evidence": ""
+        },
+        {
+          "n": 2,
+          "criterion": "Legal basis explicitly established in law with sufficient precision",
+          "code": "none",
+          "evidence": ""
+        },
+        {
+          "n": 3,
+          "criterion": "Procedural safeguards including right to explanation, contestation, and meaningful human review",
+          "code": "met",
+          "evidence": "### **Mandatory Disclosure Requirements**\n- **Decision logic transparency**: General criteria and weighting factors\n- **Threshold publication**: What risk scores trigger what outcomes\n- **Statistical reporting**: Disparate impact by nationality, demographics\n\n### **Human Rights Impact Assessments**\n- Pre-deployment testing for discriminatory patterns\n- Independent auditing of country-based risk correlations\n- Justification requirements for differential treatment\n\n### **Meaningful Human Oversight**\n- Final decisions by qualified humans with full context\n- Ability to override AI recommendations "
+        },
+        {
+          "n": 4,
+          "criterion": "Technical functioning sufficiently documented and auditable",
+          "code": "none",
+          "evidence": ""
+        },
+        {
+          "n": 5,
+          "criterion": "Legislation must specify permissible use cases",
+          "code": "none",
+          "evidence": ""
+        },
+        {
+          "n": 6,
+          "criterion": "Legislation must specify data governance requirements",
+          "code": "none",
+          "evidence": ""
+        },
+        {
+          "n": 7,
+          "criterion": "Legislation must specify technical standards",
+          "code": "none",
+          "evidence": ""
+        },
+        {
+          "n": 8,
+          "criterion": "Legislation must specify validation and testing protocols",
+          "code": "none",
+          "evidence": ""
+        },
+        {
+          "n": 9,
+          "criterion": "Legislation must specify transparency obligations and human oversight mechanisms",
+          "code": "none",
+          "evidence": ""
+        },
+        {
+          "n": 10,
+          "criterion": "Legislation must specify remedies for harmful errors",
+          "code": "none",
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "answer_id": "deepseek-v3:baseline:1:I2_S3",
+      "criteria_cell_id": "deepseek-v3:baseline:1:I1_Q3",
+      "note": "Lots of reptation in listed requirements or some implementation items covered multiple categories (which is okay)",
+      "codes": [
+        {
+          "n": 1,
+          "criterion": "Legal capacity to compel compliance with a rule",
+          "code": "met",
+          "evidence": "Invest in technical expertise within regulatory bodies through specialized hiring and partnerships with academic institutions."
+        },
+        {
+          "n": 2,
+          "criterion": "Ability to detect violations",
+          "code": "met",
+          "evidence": "Explore regulatory technology (RegTech) for compliance monitoring, including standardized audit trails and documentation requirements."
+        },
+        {
+          "n": 3,
+          "criterion": "Ability to impose meaningful sanctions or remedies for non-compliance",
+          "code": "met",
+          "evidence": "Implement graduated sanctions (from warnings to substantial fines based on revenue percentages) and liability provisions."
+        },
+        {
+          "n": 4,
+          "criterion": "Specificity",
+          "code": "none",
+          "evidence": ""
+        },
+        {
+          "n": 5,
+          "criterion": "Clear allocation of responsibility",
+          "code": "met",
+          "evidence": "Implement \"home country\" principles where the primary jurisdiction oversees global compliance for multinationals."
+        },
+        {
+          "n": 6,
+          "criterion": "Established mechanisms for monitoring",
+          "code": "met",
+          "evidence": "Explore regulatory technology (RegTech) for compliance monitoring, including standardized audit trails and documentation requirements."
+        },
+        {
+          "n": 7,
+          "criterion": "Established mechanisms for adjudication",
+          "code": "none",
+          "evidence": ""
+        },
+        {
+          "n": 8,
+          "criterion": "Established mechanisms for penalty",
+          "code": "met",
+          "evidence": "Implement graduated sanctions (from warnings to substantial fines based on revenue percentages) and liability provisions."
+        },
+        {
+          "n": 9,
+          "criterion": "Integration of primary rules with secondary rules",
+          "code": "none",
+          "evidence": ""
+        },
+        {
+          "n": 10,
+          "criterion": "Incorporation into binding legal instruments",
+          "code": "met",
+          "evidence": "Require public audit registries and disclosure of audit scope/non-compliance, enabling market and civil society oversight."
+        }
+      ]
+    },
+    {
+      "answer_id": "mistral-large:ceo:1:I2_S2",
+      "criteria_cell_id": "mistral-large:ceo:1:I1_Q2",
+      "note": "Some items are addressed in multiple places (e.g. in the company and city side solutions)",
+      "codes": [
+        {
+          "n": 1,
+          "criterion": "Transparency, responsibility, and redress for AI system impacts",
+          "code": "met",
+          "evidence": "Provide **clear documentation** of how the model works, its training data, and its limitations."
+        },
+        {
+          "n": 2,
+          "criterion": "Organizational accountability for compliance with legal, ethical, and technical standards",
+          "code": "met",
+          "evidence": "- Include **clauses in vendor contracts** that require compliance with fairness standards and allow for third-party audits.\n  - Establish **ethics review boards** within AI companies to assess high-risk deployments."
+        },
+        {
+          "n": 3,
+          "criterion": "Systemic accountability through regulatory bodies ensuring adherence to governance frameworks",
+          "code": "met",
+          "evidence": "- Define **who is liable** when AI-assisted decisions lead to harm (e.g., joint liability for vendors and deployers)."
+        },
+        {
+          "n": 4,
+          "criterion": "Algorithmic accountability with design, functionality, and outcomes subject to scrutiny",
+          "code": "met",
+          "evidence": "- Ensure that AI recommendations are **reviewed by trained human decision-makers** who can override them when necessary."
+        },
+        {
+          "n": 5,
+          "criterion": "AI system design must enable traceability, auditability, and human oversight",
+          "code": "met",
+          "evidence": "- Ensure that **human oversight** is mandatory and that officials are trained to critically assess AI recommendations."
+        },
+        {
+          "n": 6,
+          "criterion": "Mechanisms for affected individuals or groups to seek remedies",
+          "code": "met",
+          "evidence": "- Provide **transparent appeals processes** where applicants can contest decisions and receive explanations."
+        },
+        {
+          "n": 7,
+          "criterion": "Proactive measures like impact assessments and audits",
+          "code": "met",
+          "evidence": "- Conduct **impact assessments** to evaluate how AI systems affect different communities."
+        },
+        {
+          "n": 8,
+          "criterion": "Reactive measures like liability for harms",
+          "code": "none",
+          "evidence": ""
+        },
+        {
+          "n": 9,
+          "criterion": "Combination of legal obligations, soft-law standards, and technical tools",
+          "code": "met",
+          "evidence": "- **Clear Governance Frameworks:**\n  - Define **when and how AI can be used** in decision-making, particularly in high-stakes areas like housing assistance.\n  - Ensure that **human oversight** is mandatory and that officials are trained to critically assess AI recommendations.\n\n- **Appeals and Redress Mechanisms:**\n  - Provide **transparent appeals processes** where applicants can contest decisions and receive explanations.\n  - Maintain **records of AI-assisted decisions** to enable accountability and audits.\n\n- **Public Engagement and Transparency:**\n  - Disclose the **use of AI in decision-m"
+        }
+      ]
+    },
+    {
+      "answer_id": "gemini-3.1-flash-lite-preview:ceo:2:I2_S1",
+      "criteria_cell_id": "gemini-3.1-flash-lite-preview:ceo:2:I1_Q1",
+      "note": "Some ambiguous definitions even though the text largely met requirements in a very clear way",
+      "codes": [
+        {
+          "n": 1,
+          "criterion": "Individuals must be able to foresee legal consequences of automated systems",
+          "code": "met",
+          "evidence": "Legal certainty rests on the principle that the law—or in this case, the administrative criteria—must be foreseeable."
+        },
+        {
+          "n": 2,
+          "criterion": "Individuals must understand the criteria upon which decisions are based",
+          "code": "met",
+          "evidence": "e need to move toward a standard where a human overseer can provide a \"counterfactual explanation\"—telling the applicant, \"You were rejected because of X, and if X were Y, the outcome would have been different."
+        },
+        {
+          "n": 3,
+          "criterion": "Transparency in algorithmic logic",
+          "code": "met",
+          "evidence": "if a model’s logic cannot be disclosed for security or proprietary reasons, then that model **should not be used for final-stage adjudication."
+        },
+        {
+          "n": 4,
+          "criterion": "The right to contest automated outcomes",
+          "code": "none",
+          "evidence": ""
+        },
+        {
+          "n": 5,
+          "criterion": "A predictable regulatory environment",
+          "code": "met",
+          "evidence": "When an immigration authority uses undisclosed risk thresholds, the system transitions from \"rule-based\" to \"arbitrary."
+        },
+        {
+          "n": 6,
+          "criterion": "AI systems are audited for bias before deployment",
+          "code": "none",
+          "evidence": ""
+        },
+        {
+          "n": 7,
+          "criterion": "Explainability as a prerequisite for due process",
+          "code": "met",
+          "evidence": "In our framework, we must push for **\"algorithmic explainability\"** that goes beyond feature importance."
+        },
+        {
+          "n": 8,
+          "criterion": "Explainability as a prerequisite for the rule of law",
+          "code": "met",
+          "evidence": "We need to move toward a standard where a human overseer can provide a \"counterfactual explanation\"—telling the applicant, \"You were rejected because of X, and if X were Y, the outcome would have been different.\" Without this, the law becomes a lottery, which is the antithesis of legal certainty."
+        }
+      ]
+    },
+    {
+      "answer_id": "grok-4.7:baseline:2:I2_S2",
+      "criteria_cell_id": "grok-4.7:baseline:2:I1_Q2",
+      "note": "Somewhat vague coding so requires some interpretation ",
+      "codes": [
+        {
+          "n": 1,
+          "criterion": "Enforceable duty of identifiable human and organizational actors",
+          "code": "met",
+          "evidence": "Shared responsibility should be allocated in advance by role—design, data, validation, deployment context, human review, monitoring—not discovered after a challenge."
+        },
+        {
+          "n": 2,
+          "criterion": "Duty to answer for design, development, deployment, and outcomes",
+          "code": "met",
+          "evidence": "The deploying agency owns the outcome. Housing-assistance denial is an exercise of public authority."
+        },
+        {
+          "n": 3,
+          "criterion": "Duty to bear consequences when systems cause harm or violate rights",
+          "code": "met",
+          "evidence": "The deploying agency owns the outcome."
+        },
+        {
+          "n": 4,
+          "criterion": "Institutional and procedural",
+          "code": "met",
+          "evidence": "Ex ante controls.** Impact assessment before deployment (rights, error costs, disparate impact, fallback if the system fails), public documentation of purpose and limits, and procurement terms that secure audit rights, performance evidence, bias testing, incident notice, and update obligations. High-stakes benefit allocation should be treated as high-risk by default."
+        },
+        {
+          "n": 5,
+          "criterion": "Not discharged by technical transparency alone",
+          "code": "met",
+          "evidence": "Individual redress (reversal, rehearing, correction of records) plus institutional correction when systemic error or bias appears. Agency liability for unlawful or negligent reliance should remain intact; contractual indemnities and vendor duties should be used to allocate private loss, not to shield the public decision from review."
+        },
+        {
+          "n": 6,
+          "criterion": "Ex ante duties of risk management, data governance, documentation, oversight, transparency",
+          "code": "met",
+          "evidence": "Ex ante controls.** Impact assessment before deployment (rights, error costs, disparate impact, fallback if the system fails), public documentation of purpose and limits, and procurement terms that secure audit rights, performance evidence, bias testing, incident notice, and update obligations. High-stakes benefit allocation should be treated as high-risk by default."
+        },
+        {
+          "n": 7,
+          "criterion": "Prevention and mitigation of foreseeable harms",
+          "code": "met",
+          "evidence": "**Ongoing oversight.** Independent or arm’s-length audits of accuracy and disparate impact; monitoring of denial rates and override rates; periodic reauthorization rather than indefinite use; a designated accountable official and a route to an inspector general, ombuds, or equivalent."
+        },
+        {
+          "n": 8,
+          "criterion": "Lawfulness and contestability of decisions that significantly affect people",
+          "code": "met",
+          "evidence": "- **Contestability and due process.** The applicant must be able to learn the main reasons for denial, including the material role of the model, challenge factual inputs and inferences, and obtain a genuine human reconsideration on appeal—not a replay of the same score. Existing administrative and constitutional due-process duties still apply; automation does not shrink them."
+        },
+        {
+          "n": 9,
+          "criterion": "Ex post duties of monitoring, reporting, justification, remedy, liability, sanctions",
+          "code": "met",
+          "evidence": "- **Ongoing oversight.** Independent or arm’s-length audits of accuracy and disparate impact; monitoring of denial rates and override rates; periodic reauthorization rather than indefinite use; a designated accountable official and a route to an inspector general, ombuds, or equivalent.\n- **Remedies.** Individual redress (reversal, rehearing, correction of records) plus institutional correction when systemic error or bias appears. Agency liability for unlawful or negligent reliance should remain intact; contractual indemnities and vendor duties should be used to allocate private loss, not to s"
+        },
+        {
+          "n": 10,
+          "criterion": "Accountability to affected individuals through information, contestation, and redress",
+          "code": "met",
+          "evidence": "- **Remedies.** Individual redress (reversal, rehearing, correction of records) plus institutional correction when systemic error or bias appears. Agency liability for unlawful or negligent reliance should remain intact; contractual indemnities and vendor duties should be used to allocate private loss, not to shield the public decision from review."
+        }
+      ]
+    }
+  ]
+}
