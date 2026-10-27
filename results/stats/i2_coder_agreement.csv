@@ -1,0 +1,4 @@
+pair,n_answers,n_units,only_in_first,only_in_second,pct_agree_3,kappa_3,pct_agree_bin,kappa_bin
+claude-sonnet vs gpt-6.1-sol,108,980,0,0,90,0.545803,90.102,0.549769
+author vs claude-sonnet,6,54,0,926,74.0741,0.335677,74.0741,0.335677
+author vs gpt-6.1-sol,6,54,0,926,79.6296,0.499157,79.6296,0.499157
