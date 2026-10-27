@@ -20,6 +20,15 @@ with t-based 95% CI and model-only bootstrap CI; CEO minus baseline the same.
 Also: the author's hand codes (manual_review.json, 6 answers) vs the primary
 coder on the same answers.
 
+Answer-length check (primary coder): I2 answer length in o200k tokens (the same
+answer text the coders saw; Mistral from mistral_i2_recollect.json):
+  - per model and condition, mean length; CEO minus baseline paired by scenario
+    and run; across models (n = 6) as above
+  - Pearson and Spearman correlation of length with % met across the 108
+    answers, and within each condition (54 each)
+  - length-adjusted CEO minus baseline: residuals of % met from an OLS fit on
+    log(tokens) over all 108 answers, then the same paired difference and n = 6 test
+
 Writes results/stats/i2_coding_model_level.csv and .md and the I2 rows of
 results/stats/sensitivity_summary.csv.
 
@@ -32,13 +41,19 @@ import json
 from pathlib import Path
 
 import numpy as np
+import tiktoken
+from scipy import stats
 
+from answer_text import get_answer_text
 from i2_criteria import CONDITIONS, MODELS, RUNS
 from model_level import model_level_inference, update_summary
 
-CODES_FILE  = Path("data/processed/i2_codes.json")
-REVIEW_FILE = Path("data/processed/manual_review.json")
-OUT_DIR     = Path("results/stats")
+CODES_FILE     = Path("data/processed/i2_codes.json")
+REVIEW_FILE    = Path("data/processed/manual_review.json")
+I2_FILE        = Path("data/raw/instrument_2.json")
+RECOLLECT_FILE = Path("data/raw/mistral_i2_recollect.json")
+OUT_DIR        = Path("results/stats")
+ENCODING       = "o200k_base"
 
 SCENARIOS = ["I2_S1", "I2_S2", "I2_S3"]
 ALL       = "all"
@@ -87,6 +102,46 @@ def per_model(pcts: dict) -> dict:
     return out
 
 
+def answer_lengths() -> dict:
+    """{(model, condition, run, scenario): o200k tokens of the coded answer text}"""
+    enc = tiktoken.get_encoding(ENCODING)
+    i2, recollect = load(I2_FILE), load(RECOLLECT_FILE)
+    return {(m, c, r, s): len(enc.encode(get_answer_text(
+                (recollect if m == "mistral-large" else i2)[m][c][r][s])))
+            for m in MODELS for c in CONDITIONS for r in RUNS for s in SCENARIOS}
+
+
+def paired_ceo_minus_baseline(values: dict) -> list[float]:
+    """Per model: mean over scenario x run of CEO minus baseline."""
+    return [float(np.mean([values[(m, "ceo", r, s)] - values[(m, "baseline", r, s)]
+                           for s in SCENARIOS for r in RUNS])) for m in MODELS]
+
+
+def length_check(pcts: dict, lengths: dict) -> dict:
+    keys = sorted(pcts)
+    y = np.array([pcts[k] for k in keys])
+    x = np.array([lengths[k] for k in keys], dtype=float)
+    corr = []
+    for cond in [ALL] + CONDITIONS:
+        idx = [i for i, k in enumerate(keys) if cond == ALL or k[1] == cond]
+        r, p = stats.pearsonr(x[idx], y[idx])
+        rho, p_rho = stats.spearmanr(x[idx], y[idx])
+        corr.append({"condition": cond, "n_answers": len(idx), "r": float(r), "p_r": float(p),
+                     "rho": float(rho), "p_rho": float(p_rho)})
+    fit = stats.linregress(np.log(x), y)
+    resid = {k: float(y[i] - (fit.intercept + fit.slope * np.log(x[i]))) for i, k in enumerate(keys)}
+    per_model_len = [{"model": m,
+                      "baseline_tokens": float(np.mean([lengths[(m, "baseline", r, s)] for s in SCENARIOS for r in RUNS])),
+                      "ceo_tokens": float(np.mean([lengths[(m, "ceo", r, s)] for s in SCENARIOS for r in RUNS])),
+                      "ceo_minus_baseline_tokens": d}
+                     for m, d in zip(MODELS, paired_ceo_minus_baseline(lengths))]
+    return {"corr": corr, "slope": float(fit.slope), "intercept": float(fit.intercept),
+            "fit_r2": float(fit.rvalue ** 2), "per_model_len": per_model_len,
+            "len_test": model_level_inference([r["ceo_minus_baseline_tokens"] for r in per_model_len]),
+            "unadjusted": model_level_inference(paired_ceo_minus_baseline(pcts)),
+            "adjusted": model_level_inference(paired_ceo_minus_baseline(resid))}
+
+
 def human_vs_coder(review: dict, coder_codes: dict) -> list[dict]:
     rows = []
     for a in review["coding"]:
@@ -118,6 +173,17 @@ if __name__ == "__main__":
                                     **model_level_inference([pm[scope][m][key] for m in MODELS])})
 
     human = human_vs_coder(load(REVIEW_FILE), codes["gpt-6.1-sol"])
+    lc = length_check(answer_pcts(codes["gpt-6.1-sol"], True), answer_lengths())
+    length_rows = (
+        [{"analysis": "length_per_model", "model": r["model"], **r} for r in lc["per_model_len"]]
+        + [{"analysis": "length_across_models", "measure": "CEO minus baseline tokens",
+            "model": f"{len(MODELS)} models", **lc["len_test"]}]
+        + [{"analysis": "length_correlation", "measure": "tokens vs % met", **c} for c in lc["corr"]]
+        + [{"analysis": "length_fit", "measure": "% met ~ log(tokens), 108 answers",
+            "slope": lc["slope"], "intercept": lc["intercept"], "fit_r2": lc["fit_r2"]}]
+        + [{"analysis": "length_adjusted_across_models", "variant": v, "scenario": ALL,
+            "measure": "CEO minus baseline % met", "model": f"{len(MODELS)} models", **lc[k]}
+           for v, k in [("primary unadjusted", "unadjusted"), ("primary length-adjusted", "adjusted")]])
 
     # ---- outputs ----
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -125,11 +191,14 @@ if __name__ == "__main__":
             "baseline_met", "baseline_not_met", "ceo_met", "ceo_minus_baseline", "n_pairs",
             "n_models", "mean", "sd", "t", "df", "p_t", "t_ci_low", "t_ci_high",
             "model_ci_low", "model_ci_high", "model_resamples_possible",
-            "answer_id", "n_criteria", "author_met", "gpt_met", "gpt_met_no_quote_rule"]
+            "answer_id", "n_criteria", "author_met", "gpt_met", "gpt_met_no_quote_rule",
+            "baseline_tokens", "ceo_tokens", "ceo_minus_baseline_tokens",
+            "condition", "n_answers", "r", "p_r", "rho", "p_rho", "slope", "intercept", "fit_r2"]
     with open(OUT_DIR / "i2_coding_model_level.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=cols)
         w.writeheader()
-        for r in per_model_rows + across_rows + [{"analysis": "author_vs_gpt", **h} for h in human]:
+        for r in (per_model_rows + across_rows + [{"analysis": "author_vs_gpt", **h} for h in human]
+                  + length_rows):
             w.writerow({c: (f"{r[c]:.6g}" if isinstance(r.get(c), float) else r.get(c, "")) for c in cols})
 
     f1 = lambda x: f"{x:.1f}"
@@ -168,10 +237,38 @@ if __name__ == "__main__":
               f"{f1(np.mean([h['author_met'] for h in human]))} | "
               f"{f1(np.mean([h['gpt_met'] for h in human]))} | "
               f"{f1(np.mean([h['gpt_met_no_quote_rule'] for h in human]))} |")
+
+    lt = lc["len_test"]
+    md += ["", f"## Answer length (o200k tokens), primary coder", "",
+           "| Model | baseline tokens | CEO tokens | CEO-base tokens |", "|---|---|---|---|"]
+    for r in lc["per_model_len"]:
+        md.append(f"| {r['model']} | {r['baseline_tokens']:.0f} | {r['ceo_tokens']:.0f} | "
+                  f"{r['ceo_minus_baseline_tokens']:+.0f} |")
+    md += ["", "| Measure | mean | SD | t | df | p (two-sided) | 95% CI (t) | 95% CI (models) |",
+           "|---|---|---|---|---|---|---|---|",
+           f"| CEO minus baseline tokens | {lt['mean']:+.0f} | {lt['sd']:.0f} | {lt['t']:.3f} | "
+           f"{lt['df']} | {lt['p_t']:.2e} | [{lt['t_ci_low']:+.0f}, {lt['t_ci_high']:+.0f}] | "
+           f"[{lt['model_ci_low']:+.0f}, {lt['model_ci_high']:+.0f}] |",
+           "", "| Correlation, tokens vs % met | answers | Pearson r | p | Spearman rho | p |",
+           "|---|---|---|---|---|---|"]
+    for c in lc["corr"]:
+        md.append(f"| {'all' if c['condition'] == ALL else c['condition']} | {c['n_answers']} | "
+                  f"{c['r']:.3f} | {c['p_r']:.2e} | {c['rho']:.3f} | {c['p_rho']:.2e} |")
+    md += ["", f"OLS % met ~ log(tokens), 108 answers: slope {lc['slope']:.3f}, "
+               f"intercept {lc['intercept']:.3f}, R² {lc['fit_r2']:.3f}", "",
+           "| CEO minus baseline % met, all scenarios | mean | SD | t | df | p (two-sided) | 95% CI (t) | 95% CI (models) |",
+           "|---|---|---|---|---|---|---|---|"]
+    for name, k in [("unadjusted", "unadjusted"), ("length-adjusted (residuals)", "adjusted")]:
+        a = lc[k]
+        md.append(f"| {name} | {s1(a['mean'])} | {a['sd']:.2f} | {a['t']:.3f} | {a['df']} | "
+                  f"{a['p_t']:.2e} | {iv(a['t_ci_low'], a['t_ci_high'])} | "
+                  f"{iv(a['model_ci_low'], a['model_ci_high'])} |")
     (OUT_DIR / "i2_coding_model_level.md").write_text("\n".join(md) + "\n", encoding="utf-8")
 
     short = {"baseline % not met": "% not met", "CEO minus baseline % met": "CEO-baseline % met"}
     update_summary([{**a, "test": f"I2 {short[a['measure']]} {LABEL[a['scenario']]}"
-                     + ("" if a["variant"] == "primary" else f" {a['variant']}")} for a in across_rows])
+                     + ("" if a["variant"] == "primary" else f" {a['variant']}")} for a in across_rows]
+                   + [{**lc["adjusted"], "test": "I2 CEO-baseline % met all scenarios (length-adjusted)"},
+                      {**lc["len_test"], "test": "I2 CEO-baseline tokens"}])
 
     print((OUT_DIR / "i2_coding_model_level.md").read_text(encoding="utf-8"))

@@ -32,6 +32,7 @@ SUMMARY_ORDER = (["H1 diff", "I3 legal certainty", "I3 accountability", "I3 enfo
                  + [f"I4 asymmetry {d}" for d in I4_DIMS]
                  + [f"I4 asymmetry {d} {v}" for v in I4_VARIANTS for d in I4_DIMS]
                  + [f"I2 {m} {s}" for m in I2_MEASURES for s in I2_SCOPES]
+                 + ["I2 CEO-baseline % met all scenarios (length-adjusted)", "I2 CEO-baseline tokens"]
                  + [f"I2 {m} {s} {v}" for v in I2_VARIANTS for m in I2_MEASURES for s in I2_SCOPES])
 SUMMARY_COLS = ["test", "n_models", "mean", "sd", "t", "df", "p_t",
                 "t_ci_low", "t_ci_high",
