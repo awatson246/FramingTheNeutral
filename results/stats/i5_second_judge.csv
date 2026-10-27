@@ -1,0 +1,33 @@
+model,judge,n,mean_tier,tier1_pct,tier2_pct,tier3_pct,tier4_pct,tier34_pct,self_mean_tier,self_tier34_pct,third_34_gt_self,third_mean_gt_self
+gpt-4o,claude-sonnet-4-5 (extractor),115,2.24348,33.913,7.82609,58.2609,0,58.2609,1.40816,0,True,True
+gpt-4o,gpt-6.1-sol (second judge),115,2.94783,31.3043,5.21739,0.869565,62.6087,63.4783,1.40816,0,True,True
+claude-sonnet,claude-sonnet-4-5 (extractor),307,1.64821,50.1629,35.8306,13.0293,0.977199,14.0065,1.51659,1.4218,True,True
+claude-sonnet,gpt-6.1-sol (second judge),307,1.95114,54.7231,12.7036,15.3094,17.2638,32.5733,1.51659,1.4218,True,True
+deepseek-v3,claude-sonnet-4-5 (extractor),233,1.79399,42.0601,36.4807,21.4592,0,21.4592,1.42553,0,True,True
+deepseek-v3,gpt-6.1-sol (second judge),233,2.55794,37.3391,9.87124,12.4464,40.3433,52.7897,1.42553,0,True,True
+mistral-large,claude-sonnet-4-5 (extractor),266,1.45489,63.5338,28.1955,7.5188,0.75188,8.27068,1.46465,1.0101,True,False
+mistral-large,gpt-6.1-sol (second judge),266,1.89098,58.2707,17.2932,1.50376,22.9323,24.4361,1.46465,1.0101,True,True
+gemini-3.1-flash-lite-preview,claude-sonnet-4-5 (extractor),235,1.94894,25.5319,54.0426,20.4255,0,20.4255,1.44304,0,True,True
+gemini-3.1-flash-lite-preview,gpt-6.1-sol (second judge),235,2.58723,28.5106,20,15.7447,35.7447,51.4894,1.44304,0,True,True
+grok-4.7,claude-sonnet-4-5 (extractor),293,1.64164,51.8771,32.0819,16.041,0,16.041,1.48837,0,True,True
+grok-4.7,gpt-6.1-sol (second judge),293,2.09898,49.4881,11.6041,18.43,20.4778,38.9078,1.48837,0,True,True
+
+agreement_measure,value
+n_sources,1449
+n_paired,1449
+n_missing_second,0
+pct_agree,49.2063
+pct_within_one,83.5059
+kappa_unweighted,0.29421
+kappa_linear,0.44385
+pct_agree_tier34_binary,73.0159
+kappa_tier34_binary,0.39392
+n_verifiable_paired,1449
+pct_agree_verifiable,75.0173
+kappa_verifiable,0.423194
+
+"confusion (rows extractor, columns second judge)",tier 1,tier 2,tier 3,tier 4
+tier 1,577,77,2,16
+tier 2,69,94,128,209
+tier 3,7,24,42,199
+tier 4,5,0,0,0
