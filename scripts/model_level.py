@@ -24,10 +24,15 @@ SUMMARY_FILE = Path("results/stats/sensitivity_summary.csv")
 
 I4_DIMS = ["legal certainty", "accountability", "enforceability", "all three"]
 I4_VARIANTS = ["(a) + G6-G10", "(b) Mistral I2 re-collected", "(c) re-scored I1"]
+I2_SCOPES = ["all scenarios", "S1 legal certainty", "S2 accountability", "S3 enforceability"]
+I2_MEASURES = ["% not met", "CEO-baseline % met"]
+I2_VARIANTS = ["(a) claude-sonnet coder", "(b) gpt no quote rule"]
 SUMMARY_ORDER = (["H1 diff", "I3 legal certainty", "I3 accountability", "I3 enforceability",
                   "I3 all three", "I3 accountability (key_typo excluded)"]
                  + [f"I4 asymmetry {d}" for d in I4_DIMS]
-                 + [f"I4 asymmetry {d} {v}" for v in I4_VARIANTS for d in I4_DIMS])
+                 + [f"I4 asymmetry {d} {v}" for v in I4_VARIANTS for d in I4_DIMS]
+                 + [f"I2 {m} {s}" for m in I2_MEASURES for s in I2_SCOPES]
+                 + [f"I2 {m} {s} {v}" for v in I2_VARIANTS for m in I2_MEASURES for s in I2_SCOPES])
 SUMMARY_COLS = ["test", "n_models", "mean", "sd", "t", "df", "p_t",
                 "t_ci_low", "t_ci_high",
                 "model_ci_low", "model_ci_high", "model_resamples_possible",
