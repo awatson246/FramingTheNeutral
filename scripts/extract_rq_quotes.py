@@ -20,6 +20,7 @@ from collections import Counter
 from pathlib import Path
 
 from answer_text import get_answer_text
+from data_sources import load_i5
 
 RAW_DIR   = Path("data/raw")
 RESULTS_DIR = Path("results")
@@ -384,7 +385,8 @@ SOURCE_TYPE_TO_TIER = {
 
 if __name__ == "__main__":
     i1_data = load_json("instrument_1")
-    i5_data = load_json("instrument_5")
+    # Mistral's I2 sources per MISTRAL_I2_SOURCE (data_sources.py; default re-collected)
+    i5_data = load_i5()
 
     if i1_data is None:
         print("[error] data/raw/instrument_1.json not found.")

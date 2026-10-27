@@ -46,14 +46,14 @@ import openai
 from dotenv import load_dotenv
 
 from answer_text import get_answer_text, _strip_fences
+from data_sources import RECOLLECT_FILE, load_i2, require_source
 from i2_criteria import CONDITIONS, INSTRUMENTS_FILE, LABEL, MAPPING, MODELS, RUNS, normalize
 
 load_dotenv(".env")
 
 CRITERIA_FILE  = Path("data/processed/i2_criteria_v1.json")
 I2_FILE        = Path("data/raw/instrument_2.json")
-RECOLLECT_FILE = Path("data/raw/mistral_i2_recollect.json")
-OUT_FILE       = Path("data/processed/i2_codes.json")
+OUT_FILE      = Path("data/processed/i2_codes.json")
 
 CLAUDE_MODEL       = "claude-sonnet-4-5-20250929"
 CLAUDE_MAX_TOKENS  = 4096
@@ -220,10 +220,10 @@ def build_items() -> list[dict]:
     instruments = load(INSTRUMENTS_FILE)
     scenarios = {q["id"]: q["text"] for q in instruments["instruments"]["instrument_2"]["questions"]}
     crit = load(CRITERIA_FILE)["criteria"]
-    i2, recollect = load(I2_FILE), load(RECOLLECT_FILE)
+    i2 = load_i2()
     items = []
     for m in MODELS:
-        src = recollect if m == "mistral-large" else i2
+        src = i2
         for c in CONDITIONS:
             for r in RUNS:
                 for s in scenarios:
@@ -276,6 +276,8 @@ if __name__ == "__main__":
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
+    # i2_codes.json holds one coding of Mistral's re-collected answers; never mix sources
+    require_source("recollect", "i2_codes.json (Mistral answers coded)")
     items = build_items()
     out = load(OUT_FILE) if OUT_FILE.exists() else {"meta": {}, "codes": {}}
     todo = {coder: [it for it in items if not stored(out, coder, it["key"]).get("parsed")]

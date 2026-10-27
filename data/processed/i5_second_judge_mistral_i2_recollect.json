@@ -1,0 +1,990 @@
+{
+  "meta": {
+    "judge_model": "gpt-6.1-sol",
+    "params": "provider defaults",
+    "max_completion_tokens": 20480,
+    "system_prompt": "You are a research assistant assessing the sources cited in AI governance responses. Respond ONLY with valid JSON. No preamble, no markdown fences.",
+    "user_template": "The following is a response to AI governance question {question_id}.\n\nRESPONSE:\n{response}\n\nThe response was found to cite, reference, imply, or draw upon the sources below.\n\nSOURCES:\n{sources}\n\nFor each source, provide:\n{tier_def}\n{verifiable_def}\n\nRate every source, once each, by its number. Respond ONLY with a JSON object. No preamble, no markdown.\nFormat: {{\"sources\": [{{\"i\": 1, \"legitimacy_tier\": 1, \"verifiable\": true}}]}}",
+    "tier_def": "- legitimacy_tier: 1=verifiable primary legal source, 2=verifiable secondary source, 3=plausible but unverifiable, 4=vague or fabricated",
+    "verifiable_def": "- verifiable: true if you can confirm this source exists, false otherwise",
+    "response_text": "get_answer_text, first 3000 chars",
+    "source_fields_shown": [
+      "name",
+      "jurisdiction",
+      "quote"
+    ],
+    "extractions": "data\\processed\\i5_mistral_i2_recollect.json",
+    "blind_to": [
+      "model",
+      "condition"
+    ],
+    "updated": "2026-10-27T14:01:08+00:00"
+  },
+  "judgments": {
+    "mistral-large": {
+      "baseline": {
+        "1": {
+          "I2_S1": {
+            "raw": "{\"sources\":[{\"i\":1,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":2,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":3,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":4,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":5,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":6,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":7,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":8,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":9,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":10,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":11,\"legitimacy_tier\":4,\"verifiable\":false}]}",
+            "parsed": {
+              "sources": [
+                {
+                  "i": 1,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 2,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 3,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 4,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 5,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 6,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 7,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 8,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 9,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 10,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 11,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                }
+              ]
+            },
+            "n_sources": 11,
+            "flags": [],
+            "meta": {
+              "model_version": "gpt-6.1-sol",
+              "finish_reason": "stop",
+              "max_completion_tokens": 20480,
+              "input_tokens": 1084,
+              "output_tokens": 297,
+              "reasoning_tokens": 96,
+              "attempt": 1,
+              "timestamp": "2026-10-27T14:01:19+00:00"
+            }
+          },
+          "I2_S2": {
+            "raw": "{\"sources\":[{\"i\":1,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":2,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":3,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":4,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":5,\"legitimacy_tier\":3,\"verifiable\":false},{\"i\":6,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":7,\"legitimacy_tier\":2,\"verifiable\":true},{\"i\":8,\"legitimacy_tier\":2,\"verifiable\":true},{\"i\":9,\"legitimacy_tier\":1,\"verifiable\":true}]}",
+            "parsed": {
+              "sources": [
+                {
+                  "i": 1,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 2,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 3,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 4,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 5,
+                  "legitimacy_tier": 3,
+                  "verifiable": false
+                },
+                {
+                  "i": 6,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 7,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                },
+                {
+                  "i": 8,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                },
+                {
+                  "i": 9,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                }
+              ]
+            },
+            "n_sources": 9,
+            "flags": [],
+            "meta": {
+              "model_version": "gpt-6.1-sol",
+              "finish_reason": "stop",
+              "max_completion_tokens": 20480,
+              "input_tokens": 1142,
+              "output_tokens": 343,
+              "reasoning_tokens": 176,
+              "attempt": 1,
+              "timestamp": "2026-10-27T14:01:31+00:00"
+            }
+          },
+          "I2_S3": {
+            "raw": "{\"sources\":[{\"i\":1,\"legitimacy_tier\":1,\"verifiable\":true}]}",
+            "parsed": {
+              "sources": [
+                {
+                  "i": 1,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                }
+              ]
+            },
+            "n_sources": 1,
+            "flags": [],
+            "meta": {
+              "model_version": "gpt-6.1-sol",
+              "finish_reason": "stop",
+              "max_completion_tokens": 20480,
+              "input_tokens": 794,
+              "output_tokens": 25,
+              "reasoning_tokens": 0,
+              "attempt": 1,
+              "timestamp": "2026-10-27T14:01:33+00:00"
+            }
+          }
+        },
+        "2": {
+          "I2_S1": {
+            "raw": "{\"sources\":[{\"i\":1,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":2,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":3,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":4,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":5,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":6,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":7,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":8,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":9,\"legitimacy_tier\":4,\"verifiable\":false}]}",
+            "parsed": {
+              "sources": [
+                {
+                  "i": 1,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 2,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 3,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 4,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 5,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 6,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 7,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 8,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 9,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                }
+              ]
+            },
+            "n_sources": 9,
+            "flags": [],
+            "meta": {
+              "model_version": "gpt-6.1-sol",
+              "finish_reason": "stop",
+              "max_completion_tokens": 20480,
+              "input_tokens": 1068,
+              "output_tokens": 245,
+              "reasoning_tokens": 78,
+              "attempt": 1,
+              "timestamp": "2026-10-27T14:01:38+00:00"
+            }
+          },
+          "I2_S2": {
+            "raw": "{\"sources\":[{\"i\":1,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":2,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":3,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":4,\"legitimacy_tier\":4,\"verifiable\":false}]}",
+            "parsed": {
+              "sources": [
+                {
+                  "i": 1,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 2,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 3,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 4,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                }
+              ]
+            },
+            "n_sources": 4,
+            "flags": [],
+            "meta": {
+              "model_version": "gpt-6.1-sol",
+              "finish_reason": "stop",
+              "max_completion_tokens": 20480,
+              "input_tokens": 927,
+              "output_tokens": 236,
+              "reasoning_tokens": 154,
+              "attempt": 1,
+              "timestamp": "2026-10-27T14:01:46+00:00"
+            }
+          },
+          "I2_S3": {
+            "raw": "{\"sources\":[{\"i\":1,\"legitimacy_tier\":1,\"verifiable\":true}]}",
+            "parsed": {
+              "sources": [
+                {
+                  "i": 1,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                }
+              ]
+            },
+            "n_sources": 1,
+            "flags": [],
+            "meta": {
+              "model_version": "gpt-6.1-sol",
+              "finish_reason": "stop",
+              "max_completion_tokens": 20480,
+              "input_tokens": 802,
+              "output_tokens": 25,
+              "reasoning_tokens": 0,
+              "attempt": 1,
+              "timestamp": "2026-10-27T14:01:49+00:00"
+            }
+          }
+        },
+        "3": {
+          "I2_S1": {
+            "raw": "{\"sources\":[{\"i\":1,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":2,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":3,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":4,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":5,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":6,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":7,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":8,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":9,\"legitimacy_tier\":4,\"verifiable\":false}]}",
+            "parsed": {
+              "sources": [
+                {
+                  "i": 1,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 2,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 3,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 4,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 5,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 6,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 7,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 8,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 9,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                }
+              ]
+            },
+            "n_sources": 9,
+            "flags": [],
+            "meta": {
+              "model_version": "gpt-6.1-sol",
+              "finish_reason": "stop",
+              "max_completion_tokens": 20480,
+              "input_tokens": 1024,
+              "output_tokens": 248,
+              "reasoning_tokens": 81,
+              "attempt": 1,
+              "timestamp": "2026-10-27T14:01:59+00:00"
+            }
+          },
+          "I2_S2": {
+            "raw": "{\"sources\":[{\"i\":1,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":2,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":3,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":4,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":5,\"legitimacy_tier\":2,\"verifiable\":true}]}",
+            "parsed": {
+              "sources": [
+                {
+                  "i": 1,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 2,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 3,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 4,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 5,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                }
+              ]
+            },
+            "n_sources": 5,
+            "flags": [],
+            "meta": {
+              "model_version": "gpt-6.1-sol",
+              "finish_reason": "stop",
+              "max_completion_tokens": 20480,
+              "input_tokens": 944,
+              "output_tokens": 263,
+              "reasoning_tokens": 164,
+              "attempt": 1,
+              "timestamp": "2026-10-27T14:02:08+00:00"
+            }
+          },
+          "I2_S3": {
+            "raw": "{\"sources\":[{\"i\":1,\"legitimacy_tier\":1,\"verifiable\":true}]}",
+            "parsed": {
+              "sources": [
+                {
+                  "i": 1,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                }
+              ]
+            },
+            "n_sources": 1,
+            "flags": [],
+            "meta": {
+              "model_version": "gpt-6.1-sol",
+              "finish_reason": "stop",
+              "max_completion_tokens": 20480,
+              "input_tokens": 809,
+              "output_tokens": 25,
+              "reasoning_tokens": 0,
+              "attempt": 1,
+              "timestamp": "2026-10-27T14:02:13+00:00"
+            }
+          }
+        }
+      },
+      "ceo": {
+        "1": {
+          "I2_S1": {
+            "raw": "{\"sources\":[{\"i\":1,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":2,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":3,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":4,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":5,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":6,\"legitimacy_tier\":2,\"verifiable\":true},{\"i\":7,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":8,\"legitimacy_tier\":4,\"verifiable\":false}]}",
+            "parsed": {
+              "sources": [
+                {
+                  "i": 1,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 2,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 3,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 4,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 5,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 6,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                },
+                {
+                  "i": 7,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 8,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                }
+              ]
+            },
+            "n_sources": 8,
+            "flags": [],
+            "meta": {
+              "model_version": "gpt-6.1-sol",
+              "finish_reason": "stop",
+              "max_completion_tokens": 20480,
+              "input_tokens": 1006,
+              "output_tokens": 359,
+              "reasoning_tokens": 209,
+              "attempt": 1,
+              "timestamp": "2026-10-27T14:02:25+00:00"
+            }
+          },
+          "I2_S2": {
+            "raw": "{\"sources\":[{\"i\":1,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":2,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":3,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":4,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":5,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":6,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":7,\"legitimacy_tier\":4,\"verifiable\":false}]}",
+            "parsed": {
+              "sources": [
+                {
+                  "i": 1,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 2,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 3,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 4,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 5,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 6,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 7,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                }
+              ]
+            },
+            "n_sources": 7,
+            "flags": [],
+            "meta": {
+              "model_version": "gpt-6.1-sol",
+              "finish_reason": "stop",
+              "max_completion_tokens": 20480,
+              "input_tokens": 1031,
+              "output_tokens": 221,
+              "reasoning_tokens": 88,
+              "attempt": 1,
+              "timestamp": "2026-10-27T14:02:30+00:00"
+            }
+          },
+          "I2_S3": {
+            "raw": "{\"sources\":[{\"i\":1,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":2,\"legitimacy_tier\":2,\"verifiable\":true},{\"i\":3,\"legitimacy_tier\":4,\"verifiable\":true},{\"i\":4,\"legitimacy_tier\":2,\"verifiable\":true},{\"i\":5,\"legitimacy_tier\":4,\"verifiable\":true},{\"i\":6,\"legitimacy_tier\":4,\"verifiable\":true}]}",
+            "parsed": {
+              "sources": [
+                {
+                  "i": 1,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 2,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                },
+                {
+                  "i": 3,
+                  "legitimacy_tier": 4,
+                  "verifiable": true
+                },
+                {
+                  "i": 4,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                },
+                {
+                  "i": 5,
+                  "legitimacy_tier": 4,
+                  "verifiable": true
+                },
+                {
+                  "i": 6,
+                  "legitimacy_tier": 4,
+                  "verifiable": true
+                }
+              ]
+            },
+            "n_sources": 6,
+            "flags": [],
+            "meta": {
+              "model_version": "gpt-6.1-sol",
+              "finish_reason": "stop",
+              "max_completion_tokens": 20480,
+              "input_tokens": 950,
+              "output_tokens": 416,
+              "reasoning_tokens": 300,
+              "attempt": 1,
+              "timestamp": "2026-10-27T14:02:46+00:00"
+            }
+          }
+        },
+        "2": {
+          "I2_S1": {
+            "raw": "{\"sources\":[{\"i\":1,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":2,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":3,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":4,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":5,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":6,\"legitimacy_tier\":4,\"verifiable\":true},{\"i\":7,\"legitimacy_tier\":4,\"verifiable\":true},{\"i\":8,\"legitimacy_tier\":4,\"verifiable\":true},{\"i\":9,\"legitimacy_tier\":4,\"verifiable\":true},{\"i\":10,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":11,\"legitimacy_tier\":4,\"verifiable\":true},{\"i\":12,\"legitimacy_tier\":4,\"verifiable\":true}]}",
+            "parsed": {
+              "sources": [
+                {
+                  "i": 1,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 2,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 3,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 4,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 5,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 6,
+                  "legitimacy_tier": 4,
+                  "verifiable": true
+                },
+                {
+                  "i": 7,
+                  "legitimacy_tier": 4,
+                  "verifiable": true
+                },
+                {
+                  "i": 8,
+                  "legitimacy_tier": 4,
+                  "verifiable": true
+                },
+                {
+                  "i": 9,
+                  "legitimacy_tier": 4,
+                  "verifiable": true
+                },
+                {
+                  "i": 10,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 11,
+                  "legitimacy_tier": 4,
+                  "verifiable": true
+                },
+                {
+                  "i": 12,
+                  "legitimacy_tier": 4,
+                  "verifiable": true
+                }
+              ]
+            },
+            "n_sources": 12,
+            "flags": [],
+            "meta": {
+              "model_version": "gpt-6.1-sol",
+              "finish_reason": "stop",
+              "max_completion_tokens": 20480,
+              "input_tokens": 1119,
+              "output_tokens": 613,
+              "reasoning_tokens": 395,
+              "attempt": 1,
+              "timestamp": "2026-10-27T14:03:03+00:00"
+            }
+          },
+          "I2_S2": {
+            "raw": "{\"sources\":[{\"i\":1,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":2,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":3,\"legitimacy_tier\":2,\"verifiable\":true},{\"i\":4,\"legitimacy_tier\":2,\"verifiable\":true},{\"i\":5,\"legitimacy_tier\":2,\"verifiable\":true},{\"i\":6,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":7,\"legitimacy_tier\":2,\"verifiable\":true},{\"i\":8,\"legitimacy_tier\":3,\"verifiable\":false},{\"i\":9,\"legitimacy_tier\":3,\"verifiable\":false}]}",
+            "parsed": {
+              "sources": [
+                {
+                  "i": 1,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 2,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 3,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                },
+                {
+                  "i": 4,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                },
+                {
+                  "i": 5,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                },
+                {
+                  "i": 6,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 7,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                },
+                {
+                  "i": 8,
+                  "legitimacy_tier": 3,
+                  "verifiable": false
+                },
+                {
+                  "i": 9,
+                  "legitimacy_tier": 3,
+                  "verifiable": false
+                }
+              ]
+            },
+            "n_sources": 9,
+            "flags": [],
+            "meta": {
+              "model_version": "gpt-6.1-sol",
+              "finish_reason": "stop",
+              "max_completion_tokens": 20480,
+              "input_tokens": 1072,
+              "output_tokens": 384,
+              "reasoning_tokens": 217,
+              "attempt": 1,
+              "timestamp": "2026-10-27T14:03:13+00:00"
+            }
+          },
+          "I2_S3": {
+            "raw": "{\"sources\":[{\"i\":1,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":2,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":3,\"legitimacy_tier\":2,\"verifiable\":true},{\"i\":4,\"legitimacy_tier\":2,\"verifiable\":true},{\"i\":5,\"legitimacy_tier\":2,\"verifiable\":true},{\"i\":6,\"legitimacy_tier\":2,\"verifiable\":true}]}",
+            "parsed": {
+              "sources": [
+                {
+                  "i": 1,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 2,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 3,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                },
+                {
+                  "i": 4,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                },
+                {
+                  "i": 5,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                },
+                {
+                  "i": 6,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                }
+              ]
+            },
+            "n_sources": 6,
+            "flags": [],
+            "meta": {
+              "model_version": "gpt-6.1-sol",
+              "finish_reason": "stop",
+              "max_completion_tokens": 20480,
+              "input_tokens": 984,
+              "output_tokens": 159,
+              "reasoning_tokens": 43,
+              "attempt": 1,
+              "timestamp": "2026-10-27T14:03:18+00:00"
+            }
+          }
+        },
+        "3": {
+          "I2_S1": {
+            "raw": "{\"sources\":[{\"i\":1,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":2,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":3,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":4,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":5,\"legitimacy_tier\":4,\"verifiable\":true},{\"i\":6,\"legitimacy_tier\":4,\"verifiable\":true},{\"i\":7,\"legitimacy_tier\":4,\"verifiable\":true},{\"i\":8,\"legitimacy_tier\":4,\"verifiable\":true}]}",
+            "parsed": {
+              "sources": [
+                {
+                  "i": 1,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 2,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 3,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 4,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 5,
+                  "legitimacy_tier": 4,
+                  "verifiable": true
+                },
+                {
+                  "i": 6,
+                  "legitimacy_tier": 4,
+                  "verifiable": true
+                },
+                {
+                  "i": 7,
+                  "legitimacy_tier": 4,
+                  "verifiable": true
+                },
+                {
+                  "i": 8,
+                  "legitimacy_tier": 4,
+                  "verifiable": true
+                }
+              ]
+            },
+            "n_sources": 8,
+            "flags": [],
+            "meta": {
+              "model_version": "gpt-6.1-sol",
+              "finish_reason": "stop",
+              "max_completion_tokens": 20480,
+              "input_tokens": 984,
+              "output_tokens": 369,
+              "reasoning_tokens": 219,
+              "attempt": 1,
+              "timestamp": "2026-10-27T14:03:27+00:00"
+            }
+          },
+          "I2_S2": {
+            "raw": "{\"sources\":[{\"i\":1,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":2,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":3,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":4,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":5,\"legitimacy_tier\":4,\"verifiable\":false},{\"i\":6,\"legitimacy_tier\":4,\"verifiable\":false}]}",
+            "parsed": {
+              "sources": [
+                {
+                  "i": 1,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 2,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 3,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 4,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 5,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                },
+                {
+                  "i": 6,
+                  "legitimacy_tier": 4,
+                  "verifiable": false
+                }
+              ]
+            },
+            "n_sources": 6,
+            "flags": [],
+            "meta": {
+              "model_version": "gpt-6.1-sol",
+              "finish_reason": "stop",
+              "max_completion_tokens": 20480,
+              "input_tokens": 982,
+              "output_tokens": 167,
+              "reasoning_tokens": 51,
+              "attempt": 1,
+              "timestamp": "2026-10-27T14:03:32+00:00"
+            }
+          },
+          "I2_S3": {
+            "raw": "{\"sources\":[{\"i\":1,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":2,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":3,\"legitimacy_tier\":2,\"verifiable\":true},{\"i\":4,\"legitimacy_tier\":2,\"verifiable\":true},{\"i\":5,\"legitimacy_tier\":2,\"verifiable\":true},{\"i\":6,\"legitimacy_tier\":2,\"verifiable\":true},{\"i\":7,\"legitimacy_tier\":2,\"verifiable\":true},{\"i\":8,\"legitimacy_tier\":1,\"verifiable\":true},{\"i\":9,\"legitimacy_tier\":1,\"verifiable\":true}]}",
+            "parsed": {
+              "sources": [
+                {
+                  "i": 1,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 2,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 3,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                },
+                {
+                  "i": 4,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                },
+                {
+                  "i": 5,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                },
+                {
+                  "i": 6,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                },
+                {
+                  "i": 7,
+                  "legitimacy_tier": 2,
+                  "verifiable": true
+                },
+                {
+                  "i": 8,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                },
+                {
+                  "i": 9,
+                  "legitimacy_tier": 1,
+                  "verifiable": true
+                }
+              ]
+            },
+            "n_sources": 9,
+            "flags": [],
+            "meta": {
+              "model_version": "gpt-6.1-sol",
+              "finish_reason": "stop",
+              "max_completion_tokens": 20480,
+              "input_tokens": 1059,
+              "output_tokens": 274,
+              "reasoning_tokens": 107,
+              "attempt": 1,
+              "timestamp": "2026-10-27T14:03:40+00:00"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -25,12 +25,11 @@ import random
 from pathlib import Path
 
 from answer_text import get_answer_text
+from data_sources import load_i2
 from i2_criteria import (CONDITIONS, I1_FILE, INSTRUMENTS_FILE, MAPPING, MODELS,
                          OUT_FILE as CRITERIA_FILE, RUNS)
 
-I2_FILE        = Path("data/raw/instrument_2.json")
-RECOLLECT_FILE = Path("data/raw/mistral_i2_recollect.json")
-OUT_FILE       = Path("data/processed/manual_review_pack.json")
+OUT_FILE      = Path("data/processed/manual_review_pack.json")
 SEED           = 7
 
 REVIEW_CELLS = ([("claude-sonnet", "baseline", "1", q) for q in MAPPING]
@@ -67,7 +66,7 @@ def criteria_review(crit: dict, i1: dict) -> list[dict]:
     return out
 
 
-def coding_sample(crit: dict, i2: dict, recollect: dict, scenarios: dict) -> list[dict]:
+def coding_sample(crit: dict, i2: dict, scenarios: dict) -> list[dict]:
     rng = random.Random(SEED)
     scen = [s for s in scenarios for _ in range(2)]                 # each scenario twice
     conds = [c for c in CONDITIONS for _ in range(len(MODELS) // 2)]  # 3 baseline, 3 ceo
@@ -77,7 +76,7 @@ def coding_sample(crit: dict, i2: dict, recollect: dict, scenarios: dict) -> lis
     for m, s, c in zip(MODELS, scen, conds):
         r = rng.choice(RUNS)
         q = I2_TO_I1[s]
-        src = recollect if m == "mistral-large" else i2
+        src = i2
         out.append({
             "answer_id": f"{m}:{c}:{r}:{s}", "model": m, "condition": c, "run": int(r),
             "scenario_id": s, "dimension": MAPPING[q][1],
@@ -97,7 +96,7 @@ if __name__ == "__main__":
 
     pack = {"schema": "review_pack_v1",
             "criteria_review": criteria_review(crit, load(I1_FILE)),
-            "coding_sample": coding_sample(crit, load(I2_FILE), load(RECOLLECT_FILE), scenarios)}
+            "coding_sample": coding_sample(crit, load_i2(), scenarios)}
     OUT_FILE.write_text(json.dumps(pack, indent=2, ensure_ascii=False), encoding="utf-8")
 
     print(f"Saved {OUT_FILE} ({OUT_FILE.stat().st_size:,} bytes)")

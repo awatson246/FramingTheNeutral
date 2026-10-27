@@ -1,8 +1,8 @@
 analysis,variant,model,dimension,i3_mean,i4_peer_mean,asymmetry,n_i4_cells,n_models,mean,sd,t,df,p_t,t_ci_low,t_ci_high,model_ci_low,model_ci_high,model_resamples_possible,k_positive
-per_model,primary,gpt-4o,legal_certainty,5.27778,8.83333,3.55556,6,,,,,,,,,,,,
-per_model,primary,gpt-4o,accountability,4.77778,8.16667,3.38889,6,,,,,,,,,,,,
-per_model,primary,gpt-4o,enforceability,5.66667,7.83333,2.16667,6,,,,,,,,,,,,
-per_model,primary,gpt-4o,all_dimensions,5.24074,8.27778,3.03704,6,,,,,,,,,,,,
+per_model,primary,gpt-4o,legal_certainty,5.27778,9.16667,3.88889,6,,,,,,,,,,,,
+per_model,primary,gpt-4o,accountability,4.77778,8.5,3.72222,6,,,,,,,,,,,,
+per_model,primary,gpt-4o,enforceability,5.66667,8,2.33333,6,,,,,,,,,,,,
+per_model,primary,gpt-4o,all_dimensions,5.24074,8.55556,3.31481,6,,,,,,,,,,,,
 per_model,primary,claude-sonnet,legal_certainty,5,8.33333,3.33333,6,,,,,,,,,,,,
 per_model,primary,claude-sonnet,accountability,5.05556,8.16667,3.11111,6,,,,,,,,,,,,
 per_model,primary,claude-sonnet,enforceability,5.38889,6.66667,1.27778,6,,,,,,,,,,,,
@@ -19,14 +19,14 @@ per_model,primary,gemini-3.1-flash-lite-preview,legal_certainty,4.5,8.33333,3.83
 per_model,primary,gemini-3.1-flash-lite-preview,accountability,3.83333,8.5,4.66667,6,,,,,,,,,,,,
 per_model,primary,gemini-3.1-flash-lite-preview,enforceability,4.44444,7.16667,2.72222,6,,,,,,,,,,,,
 per_model,primary,gemini-3.1-flash-lite-preview,all_dimensions,4.25926,8,3.74074,6,,,,,,,,,,,,
-per_model,primary,grok-4.7,legal_certainty,3.61111,6.5,2.88889,30,,,,,,,,,,,,
-per_model,primary,grok-4.7,accountability,4.16667,6.93333,2.76667,30,,,,,,,,,,,,
-per_model,primary,grok-4.7,enforceability,3.55556,5.3,1.74444,30,,,,,,,,,,,,
-per_model,primary,grok-4.7,all_dimensions,3.77778,6.24444,2.46667,30,,,,,,,,,,,,
-per_model,(a) + G6-G10,gpt-4o,legal_certainty,5.27778,9.08333,3.80556,12,,,,,,,,,,,,
-per_model,(a) + G6-G10,gpt-4o,accountability,4.77778,8.58333,3.80556,12,,,,,,,,,,,,
-per_model,(a) + G6-G10,gpt-4o,enforceability,5.66667,8.25,2.58333,12,,,,,,,,,,,,
-per_model,(a) + G6-G10,gpt-4o,all_dimensions,5.24074,8.63889,3.39815,12,,,,,,,,,,,,
+per_model,primary,grok-4.7,legal_certainty,3.61111,6.56667,2.95556,30,,,,,,,,,,,,
+per_model,primary,grok-4.7,accountability,4.16667,7.03333,2.86667,30,,,,,,,,,,,,
+per_model,primary,grok-4.7,enforceability,3.55556,5.33333,1.77778,30,,,,,,,,,,,,
+per_model,primary,grok-4.7,all_dimensions,3.77778,6.31111,2.53333,30,,,,,,,,,,,,
+per_model,(a) + G6-G10,gpt-4o,legal_certainty,5.27778,9.25,3.97222,12,,,,,,,,,,,,
+per_model,(a) + G6-G10,gpt-4o,accountability,4.77778,8.75,3.97222,12,,,,,,,,,,,,
+per_model,(a) + G6-G10,gpt-4o,enforceability,5.66667,8.33333,2.66667,12,,,,,,,,,,,,
+per_model,(a) + G6-G10,gpt-4o,all_dimensions,5.24074,8.77778,3.53704,12,,,,,,,,,,,,
 per_model,(a) + G6-G10,claude-sonnet,legal_certainty,5,8.83333,3.83333,12,,,,,,,,,,,,
 per_model,(a) + G6-G10,claude-sonnet,accountability,5.05556,8.75,3.69444,12,,,,,,,,,,,,
 per_model,(a) + G6-G10,claude-sonnet,enforceability,5.38889,7.41667,2.02778,12,,,,,,,,,,,,
@@ -43,38 +43,38 @@ per_model,(a) + G6-G10,gemini-3.1-flash-lite-preview,legal_certainty,4.5,8.91667
 per_model,(a) + G6-G10,gemini-3.1-flash-lite-preview,accountability,3.83333,9,5.16667,12,,,,,,,,,,,,
 per_model,(a) + G6-G10,gemini-3.1-flash-lite-preview,enforceability,4.44444,7.91667,3.47222,12,,,,,,,,,,,,
 per_model,(a) + G6-G10,gemini-3.1-flash-lite-preview,all_dimensions,4.25926,8.61111,4.35185,12,,,,,,,,,,,,
-per_model,(a) + G6-G10,grok-4.7,legal_certainty,3.61111,6.5,2.88889,30,,,,,,,,,,,,
-per_model,(a) + G6-G10,grok-4.7,accountability,4.16667,6.93333,2.76667,30,,,,,,,,,,,,
-per_model,(a) + G6-G10,grok-4.7,enforceability,3.55556,5.3,1.74444,30,,,,,,,,,,,,
-per_model,(a) + G6-G10,grok-4.7,all_dimensions,3.77778,6.24444,2.46667,30,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,gpt-4o,legal_certainty,5.27778,9.16667,3.88889,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,gpt-4o,accountability,4.77778,8.5,3.72222,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,gpt-4o,enforceability,5.66667,8,2.33333,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,gpt-4o,all_dimensions,5.24074,8.55556,3.31481,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,claude-sonnet,legal_certainty,5,8.33333,3.33333,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,claude-sonnet,accountability,5.05556,8.16667,3.11111,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,claude-sonnet,enforceability,5.38889,6.66667,1.27778,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,claude-sonnet,all_dimensions,5.14815,7.72222,2.57407,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,deepseek-v3,legal_certainty,3.66667,8.83333,5.16667,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,deepseek-v3,accountability,4.5,9.16667,4.66667,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,deepseek-v3,enforceability,5.11111,7.33333,2.22222,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,deepseek-v3,all_dimensions,4.42593,8.44444,4.01852,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,mistral-large,legal_certainty,4.16667,8.5,4.33333,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,mistral-large,accountability,4.72222,8.5,3.77778,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,mistral-large,enforceability,5.16667,7.66667,2.5,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,mistral-large,all_dimensions,4.68519,8.22222,3.53704,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,gemini-3.1-flash-lite-preview,legal_certainty,4.5,8.33333,3.83333,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,gemini-3.1-flash-lite-preview,accountability,3.83333,8.5,4.66667,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,gemini-3.1-flash-lite-preview,enforceability,4.44444,7.16667,2.72222,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,gemini-3.1-flash-lite-preview,all_dimensions,4.25926,8,3.74074,6,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,grok-4.7,legal_certainty,3.61111,6.56667,2.95556,30,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,grok-4.7,accountability,4.16667,7.03333,2.86667,30,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,grok-4.7,enforceability,3.55556,5.33333,1.77778,30,,,,,,,,,,,,
-per_model,(b) Mistral I2 re-collected,grok-4.7,all_dimensions,3.77778,6.31111,2.53333,30,,,,,,,,,,,,
-per_model,(c) re-scored I1,gpt-4o,legal_certainty,5.27778,8.66667,3.38889,6,,,,,,,,,,,,
-per_model,(c) re-scored I1,gpt-4o,accountability,4.77778,8.33333,3.55556,6,,,,,,,,,,,,
-per_model,(c) re-scored I1,gpt-4o,enforceability,5.66667,8,2.33333,6,,,,,,,,,,,,
-per_model,(c) re-scored I1,gpt-4o,all_dimensions,5.24074,8.33333,3.09259,6,,,,,,,,,,,,
+per_model,(a) + G6-G10,grok-4.7,legal_certainty,3.61111,6.56667,2.95556,30,,,,,,,,,,,,
+per_model,(a) + G6-G10,grok-4.7,accountability,4.16667,7.03333,2.86667,30,,,,,,,,,,,,
+per_model,(a) + G6-G10,grok-4.7,enforceability,3.55556,5.33333,1.77778,30,,,,,,,,,,,,
+per_model,(a) + G6-G10,grok-4.7,all_dimensions,3.77778,6.31111,2.53333,30,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,gpt-4o,legal_certainty,5.27778,8.83333,3.55556,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,gpt-4o,accountability,4.77778,8.16667,3.38889,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,gpt-4o,enforceability,5.66667,7.83333,2.16667,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,gpt-4o,all_dimensions,5.24074,8.27778,3.03704,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,claude-sonnet,legal_certainty,5,8.33333,3.33333,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,claude-sonnet,accountability,5.05556,8.16667,3.11111,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,claude-sonnet,enforceability,5.38889,6.66667,1.27778,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,claude-sonnet,all_dimensions,5.14815,7.72222,2.57407,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,deepseek-v3,legal_certainty,3.66667,8.83333,5.16667,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,deepseek-v3,accountability,4.5,9.16667,4.66667,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,deepseek-v3,enforceability,5.11111,7.33333,2.22222,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,deepseek-v3,all_dimensions,4.42593,8.44444,4.01852,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,mistral-large,legal_certainty,4.16667,8.5,4.33333,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,mistral-large,accountability,4.72222,8.5,3.77778,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,mistral-large,enforceability,5.16667,7.66667,2.5,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,mistral-large,all_dimensions,4.68519,8.22222,3.53704,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,gemini-3.1-flash-lite-preview,legal_certainty,4.5,8.33333,3.83333,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,gemini-3.1-flash-lite-preview,accountability,3.83333,8.5,4.66667,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,gemini-3.1-flash-lite-preview,enforceability,4.44444,7.16667,2.72222,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,gemini-3.1-flash-lite-preview,all_dimensions,4.25926,8,3.74074,6,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,grok-4.7,legal_certainty,3.61111,6.5,2.88889,30,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,grok-4.7,accountability,4.16667,6.93333,2.76667,30,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,grok-4.7,enforceability,3.55556,5.3,1.74444,30,,,,,,,,,,,,
+per_model,(b) Mistral I2 original,grok-4.7,all_dimensions,3.77778,6.24444,2.46667,30,,,,,,,,,,,,
+per_model,(c) re-scored I1,gpt-4o,legal_certainty,5.27778,9,3.72222,6,,,,,,,,,,,,
+per_model,(c) re-scored I1,gpt-4o,accountability,4.77778,8.66667,3.88889,6,,,,,,,,,,,,
+per_model,(c) re-scored I1,gpt-4o,enforceability,5.66667,8.16667,2.5,6,,,,,,,,,,,,
+per_model,(c) re-scored I1,gpt-4o,all_dimensions,5.24074,8.61111,3.37037,6,,,,,,,,,,,,
 per_model,(c) re-scored I1,claude-sonnet,legal_certainty,5,8.33333,3.33333,6,,,,,,,,,,,,
 per_model,(c) re-scored I1,claude-sonnet,accountability,5.05556,7.83333,2.77778,6,,,,,,,,,,,,
 per_model,(c) re-scored I1,claude-sonnet,enforceability,5.38889,6.66667,1.27778,6,,,,,,,,,,,,
@@ -91,23 +91,23 @@ per_model,(c) re-scored I1,gemini-3.1-flash-lite-preview,legal_certainty,4.5,8.5
 per_model,(c) re-scored I1,gemini-3.1-flash-lite-preview,accountability,3.83333,8.33333,4.5,6,,,,,,,,,,,,
 per_model,(c) re-scored I1,gemini-3.1-flash-lite-preview,enforceability,4.44444,7.16667,2.72222,6,,,,,,,,,,,,
 per_model,(c) re-scored I1,gemini-3.1-flash-lite-preview,all_dimensions,4.25926,8,3.74074,6,,,,,,,,,,,,
-per_model,(c) re-scored I1,grok-4.7,legal_certainty,3.61111,6.5,2.88889,30,,,,,,,,,,,,
-per_model,(c) re-scored I1,grok-4.7,accountability,4.16667,6.93333,2.76667,30,,,,,,,,,,,,
-per_model,(c) re-scored I1,grok-4.7,enforceability,3.55556,5.3,1.74444,30,,,,,,,,,,,,
-per_model,(c) re-scored I1,grok-4.7,all_dimensions,3.77778,6.24444,2.46667,30,,,,,,,,,,,,
-across_models,primary,6 models,legal_certainty,,,,,6,3.85185,0.805587,11.712,5,7.97635e-05,3.00644,4.69726,3.30556,4.48148,462,6
-across_models,primary,6 models,accountability,,,,,6,3.72963,0.798043,11.4476,5,8.90966e-05,2.89213,4.56712,3.1537,4.30556,462,6
-across_models,primary,6 models,enforceability,,,,,6,2.10556,0.523226,9.85719,5,0.000183148,1.55646,2.65465,1.70741,2.46296,462,6
-across_models,primary,6 models,all_dimensions,,,,,6,3.22901,0.636716,12.4222,5,5.99258e-05,2.56082,3.8972,2.76852,3.6821,462,6
-across_models,(a) + G6-G10,6 models,legal_certainty,,,,,6,4.19907,0.887397,11.5907,5,8.38924e-05,3.26781,5.13034,3.52778,4.85648,462,6
-across_models,(a) + G6-G10,6 models,accountability,,,,,6,4.07685,0.842948,11.8468,5,7.54585e-05,3.19223,4.96147,3.45278,4.6713,462,6
-across_models,(a) + G6-G10,6 models,enforceability,,,,,6,2.59167,0.654696,9.69651,5,0.000198139,1.90461,3.27873,2.11852,3.06944,462,6
-across_models,(a) + G6-G10,6 models,all_dimensions,,,,,6,3.62253,0.735664,12.0617,5,6.91509e-05,2.8505,4.39456,3.05586,4.11111,462,6
-across_models,(b) Mistral I2 re-collected,6 models,legal_certainty,,,,,6,3.91852,0.775605,12.3753,5,6.1039e-05,3.10457,4.73247,3.38333,4.50926,462,6
-across_models,(b) Mistral I2 re-collected,6 models,accountability,,,,,6,3.80185,0.755569,12.3253,5,6.22541e-05,3.00893,4.59477,3.24259,4.36111,462,6
-across_models,(b) Mistral I2 re-collected,6 models,enforceability,,,,,6,2.13889,0.526753,9.94618,5,0.000175428,1.5861,2.69168,1.72222,2.49074,462,6
-across_models,(b) Mistral I2 re-collected,6 models,all_dimensions,,,,,6,3.28642,0.613281,13.1262,5,4.58114e-05,2.64282,3.93002,2.83765,3.72469,462,6
-across_models,(c) re-scored I1,6 models,legal_certainty,,,,,6,3.87963,0.878,10.8236,5,0.000116823,2.95822,4.80103,3.28704,4.55579,462,6
-across_models,(c) re-scored I1,6 models,accountability,,,,,6,3.61852,0.741592,11.952,5,7.22875e-05,2.84027,4.39677,3.06852,4.15741,462,6
-across_models,(c) re-scored I1,6 models,enforceability,,,,,6,2.18889,0.559321,9.58602,5,0.000209296,1.60192,2.77586,1.74444,2.56481,462,6
-across_models,(c) re-scored I1,6 models,all_dimensions,,,,,6,3.22901,0.671936,11.7711,5,7.78406e-05,2.52386,3.93417,2.74753,3.70988,462,6
+per_model,(c) re-scored I1,grok-4.7,legal_certainty,3.61111,6.56667,2.95556,30,,,,,,,,,,,,
+per_model,(c) re-scored I1,grok-4.7,accountability,4.16667,7.03333,2.86667,30,,,,,,,,,,,,
+per_model,(c) re-scored I1,grok-4.7,enforceability,3.55556,5.33333,1.77778,30,,,,,,,,,,,,
+per_model,(c) re-scored I1,grok-4.7,all_dimensions,3.77778,6.31111,2.53333,30,,,,,,,,,,,,
+across_models,primary,6 models,legal_certainty,,,,,6,3.91852,0.775605,12.3753,5,6.1039e-05,3.10457,4.73247,3.38333,4.50926,462,6
+across_models,primary,6 models,accountability,,,,,6,3.80185,0.755569,12.3253,5,6.22541e-05,3.00893,4.59477,3.24259,4.36111,462,6
+across_models,primary,6 models,enforceability,,,,,6,2.13889,0.526753,9.94618,5,0.000175428,1.5861,2.69168,1.72222,2.49074,462,6
+across_models,primary,6 models,all_dimensions,,,,,6,3.28642,0.613281,13.1262,5,4.58114e-05,2.64282,3.93002,2.83765,3.72469,462,6
+across_models,(a) + G6-G10,6 models,legal_certainty,,,,,6,4.23796,0.854945,12.1421,5,6.6954e-05,3.34075,5.13517,3.60741,4.86111,462,6
+across_models,(a) + G6-G10,6 models,accountability,,,,,6,4.1213,0.803276,12.5674,5,5.66318e-05,3.27831,4.96428,3.52963,4.68056,462,6
+across_models,(a) + G6-G10,6 models,enforceability,,,,,6,2.61111,0.646691,9.89017,5,0.000180241,1.93245,3.28977,2.13889,3.0787,462,6
+across_models,(a) + G6-G10,6 models,all_dimensions,,,,,6,3.65679,0.707991,12.6517,5,5.4818e-05,2.9138,4.39978,3.11235,4.13117,462,6
+across_models,(b) Mistral I2 original,6 models,legal_certainty,,,,,6,3.85185,0.805587,11.712,5,7.97635e-05,3.00644,4.69726,3.30556,4.48148,462,6
+across_models,(b) Mistral I2 original,6 models,accountability,,,,,6,3.72963,0.798043,11.4476,5,8.90966e-05,2.89213,4.56712,3.1537,4.30556,462,6
+across_models,(b) Mistral I2 original,6 models,enforceability,,,,,6,2.10556,0.523226,9.85719,5,0.000183148,1.55646,2.65465,1.70741,2.46296,462,6
+across_models,(b) Mistral I2 original,6 models,all_dimensions,,,,,6,3.22901,0.636716,12.4222,5,5.99258e-05,2.56082,3.8972,2.76852,3.6821,462,6
+across_models,(c) re-scored I1,6 models,legal_certainty,,,,,6,3.9463,0.834752,11.58,5,8.42705e-05,3.07028,4.82231,3.37593,4.6037,462,6
+across_models,(c) re-scored I1,6 models,accountability,,,,,6,3.69074,0.724881,12.4716,5,5.87803e-05,2.93002,4.45146,3.14074,4.2037,462,6
+across_models,(c) re-scored I1,6 models,enforceability,,,,,6,2.22222,0.566558,9.60769,5,0.000207051,1.62766,2.81679,1.76852,2.59259,462,6
+across_models,(c) re-scored I1,6 models,all_dimensions,,,,,6,3.28642,0.654505,12.2995,5,6.28924e-05,2.59956,3.97328,2.80494,3.75,462,6

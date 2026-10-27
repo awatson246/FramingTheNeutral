@@ -58,6 +58,7 @@ from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
 
 from answer_text import get_answer_text
+from data_sources import load_i2, load_i5
 
 load_dotenv()
 
@@ -2491,10 +2492,12 @@ if __name__ == "__main__":
     # Pre-load all available data
     # -------------------------------------------------------------------------
     i1_data = _try_load("instrument_1")
-    i2_data = _try_load("instrument_2")
+    # Mistral's I2 answers and their I5 sources per MISTRAL_I2_SOURCE
+    # (data_sources.py; default re-collected)
+    i2_data = load_i2()
     i3_data = _try_load("instrument_3")
     i4_data = _try_load("instrument_4")
-    i5_data = _try_load("instrument_5")
+    i5_data = load_i5()
 
     # Determine model list from first available dataset
     models = None

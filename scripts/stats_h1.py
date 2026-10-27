@@ -17,8 +17,10 @@ Across models, PRIMARY (model level, one H1 diff per model, n = 6): bootstrap 95
 resampling models only, and a two-sided one-sample t-test against 0 (model_level.py).
 Sensitivity: cluster bootstrap (resample models, then runs within each); one-sided
 sign test on the number of models with diff > 0.
-Sensitivity: Mistral Large's I2 answers replaced by mistral_i2_recollect.json.
-Also reproduces the original 15-point paired t-test (five original models).
+Mistral Large's I2 answers come from MISTRAL_I2_SOURCE (data_sources.py; default
+re-collected, mistral_i2_recollect.json); the other source is the sensitivity row.
+Also reproduces the original 15-point paired t-test (five original models, original
+Mistral I2 answers, as in the paper).
 
 Writes results/stats/h1_model_level.csv and results/stats/h1_model_level.md.
 No API calls; the embedding model loads from the local cache.
@@ -46,11 +48,11 @@ from sentence_transformers import SentenceTransformer
 
 import plot_response_results as prp
 from answer_text import get_answer_text
+from data_sources import LABELS, SOURCES, load_i2, mistral_i2_source, other_source
 from model_level import model_level_inference, update_summary
 
 OUT_DIR        = Path("results/stats")
-RECOLLECT_FILE = Path("data/raw/mistral_i2_recollect.json")
-MODELS         = ["gpt-4o", "claude-sonnet", "deepseek-v3", "mistral-large",
+MODELS        = ["gpt-4o", "claude-sonnet", "deepseek-v3", "mistral-large",
                   "gemini-3.1-flash-lite-preview", "grok-4.7"]
 ORIGINAL_FIVE  = MODELS[:5]
 DIM_PAIRS      = [("I1_Q1", "I2_S1"), ("I1_Q2", "I2_S2"), ("I1_Q3", "I2_S3")]
@@ -155,13 +157,13 @@ def ttest_15(all_tables: dict) -> dict:
             within.append(np.mean([W[a, b] for a, b in combinations(range(3), 2)]))
             cross.append(C[0])
     t, p = stats.ttest_rel(within, cross)
-    return dict(analysis="ttest_15_original_five", scenario="main", model="5 models x 3 pairs",
+    return dict(analysis="ttest_15_original_five", scenario="original", model="5 models x 3 pairs",
                 within=float(np.mean(within)), cross=float(np.mean(cross)),
                 diff=float(np.mean(within) - np.mean(cross)), t=float(t), p_t=float(p),
                 n_points=len(within))
 
 
-def write_outputs(rows: list[dict]) -> None:
+def write_outputs(rows: list[dict], primary: str, sensitivity: str) -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     cols = ["analysis", "scenario", "model", "within", "cross", "diff", "diff_allruns",
             "n_models", "sd", "t", "df", "p_t", "t_ci_low", "t_ci_high",
@@ -182,8 +184,8 @@ def write_outputs(rows: list[dict]) -> None:
           "`within`, `cross`, `diff` use the H1 estimator (cross from run 1). "
           "`diff_allruns` uses cross averaged over runs 1-3; bootstrap CIs (10,000 resamples, "
           "seed 42, runs resampled within model) are for this all-runs estimator.", ""]
-    for scenario, title in [("main", "Main (original Mistral I2 answers)"),
-                            ("mistral_i2_recollect", "Sensitivity (Mistral I2 re-collected)")]:
+    for scenario, title in [(primary, f"Primary ({LABELS[primary]})"),
+                            (sensitivity, f"Sensitivity ({LABELS[sensitivity]})")]:
         md += [f"## {title}", "",
                "| Model | within | cross | diff | diff_allruns | 95% CI (diff_allruns) |",
                "|---|---|---|---|---|---|"]
@@ -204,31 +206,32 @@ def write_outputs(rows: list[dict]) -> None:
                f"sign test {a['sign_k_positive']}/{a['sign_n']} models with diff > 0, "
                f"one-sided p = {a['sign_p_one_sided']:.4f}.", ""]
     t = next(r for r in rows if r["analysis"] == "ttest_15_original_five")
-    md += ["## Original 15-point paired t-test (five original models)", "",
+    md += ["## Original 15-point paired t-test (five original models, original Mistral I2)", "",
            f"within = {f4(t['within'])}, cross = {f4(t['cross'])}, t = {t['t']:.3f}, "
            f"p = {t['p_t']:.3g}, n = {t['n_points']}", ""]
     (OUT_DIR / "h1_model_level.md").write_text("\n".join(md), encoding="utf-8")
 
 
 if __name__ == "__main__":
+    primary, sensitivity = mistral_i2_source(), other_source()
     i1 = prp._try_load("instrument_1")
-    i2 = prp._try_load("instrument_2")
-    with open(RECOLLECT_FILE, encoding="utf-8") as f:
-        recollect = json.load(f)
-    i2_recollect = {**i2, "mistral-large": recollect["mistral-large"]}
+    i2 = {s: load_i2(s) for s in SOURCES}
 
     embed = SentenceTransformer(prp.EMBEDDING_MODEL)
-    main_tables = {m: similarity_tables(i1, i2, m, embed) for m in MODELS}
-    sens_tables = {**main_tables,
-                   "mistral-large": similarity_tables(i1, i2_recollect, "mistral-large", embed)}
+    others = {m: similarity_tables(i1, i2[primary], m, embed) for m in MODELS if m != "mistral-large"}
+    tables = {s: {m: (others[m] if m != "mistral-large"
+                      else similarity_tables(i1, i2[s], m, embed)) for m in MODELS}
+              for s in SOURCES}
 
-    rows = analyse("main", main_tables) + analyse("mistral_i2_recollect", sens_tables)
-    rows.append(ttest_15(main_tables))
-    write_outputs(rows)
+    rows = analyse(primary, tables[primary]) + analyse(sensitivity, tables[sensitivity])
+    rows.append(ttest_15(tables["original"]))
+    write_outputs(rows, primary, sensitivity)
 
-    a = next(r for r in rows if r["scenario"] == "main" and r["analysis"] == "across_models")
-    update_summary([{**a, "test": "H1 diff", "mean": a["diff"],
-                     "h1_cluster_ci_low": a["ci_low"], "h1_cluster_ci_high": a["ci_high"]}])
+    across = {s: next(r for r in rows if r["scenario"] == s and r["analysis"] == "across_models")
+              for s in (primary, sensitivity)}
+    update_summary([{**a, "test": "H1 diff" + ("" if s == primary else f" ({LABELS[s]})"),
+                     "mean": a["diff"], "h1_cluster_ci_low": a["ci_low"],
+                     "h1_cluster_ci_high": a["ci_high"]} for s, a in across.items()])
 
     for r in rows:
         print({k: (round(v, 4) if isinstance(v, float) else v) for k, v in r.items()})

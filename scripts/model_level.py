@@ -23,11 +23,11 @@ SEED   = 42
 SUMMARY_FILE = Path("results/stats/sensitivity_summary.csv")
 
 I4_DIMS = ["legal certainty", "accountability", "enforceability", "all three"]
-I4_VARIANTS = ["(a) + G6-G10", "(b) Mistral I2 re-collected", "(c) re-scored I1"]
+I4_VARIANTS = ["(a) + G6-G10", "(b) Mistral I2 original", "(c) re-scored I1"]
 I2_SCOPES = ["all scenarios", "S1 legal certainty", "S2 accountability", "S3 enforceability"]
 I2_MEASURES = ["% not met", "CEO-baseline % met"]
 I2_VARIANTS = ["(a) claude-sonnet coder", "(b) gpt no quote rule"]
-SUMMARY_ORDER = (["H1 diff", "I3 legal certainty", "I3 accountability", "I3 enforceability",
+SUMMARY_ORDER = (["H1 diff", "H1 diff (Mistral I2 original)", "I3 legal certainty", "I3 accountability", "I3 enforceability",
                   "I3 all three", "I3 accountability (key_typo excluded)"]
                  + [f"I4 asymmetry {d}" for d in I4_DIMS]
                  + [f"I4 asymmetry {d} {v}" for v in I4_VARIANTS for d in I4_DIMS]

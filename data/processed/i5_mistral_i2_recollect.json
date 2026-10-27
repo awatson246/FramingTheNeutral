@@ -1,0 +1,1249 @@
+{
+  "meta": {
+    "extractor_model": "claude-sonnet-4-5-20250929",
+    "prompt": "collect_llm_responses.build_i5_prompt",
+    "caller": "collect_llm_responses.call_i5_extractor",
+    "answers": "data\\raw\\mistral_i2_recollect.json",
+    "updated": "2026-10-27T13:59:16+00:00"
+  },
+  "extractions": {
+    "mistral-large": {
+      "baseline": {
+        "1": {
+          "I2_S1": {
+            "raw": "```json\n{\n  \"sources\": [\n    {\n      \"name\": \"GDPR Article 22\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"under GDPR Article 22 or administrative law\"\n    },\n    {\n      \"name\": \"ICCPR (International Covenant on Civil and Political Rights)\",\n      \"type\": \"international_treaty\",\n      \"jurisdiction\": \"UN\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"under human rights frameworks like the ICCPR or EU Charter\"\n    },\n    {\n      \"name\": \"EU Charter of Fundamental Rights\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"under human rights frameworks like the ICCPR or EU Charter\"\n    },\n    {\n      \"name\": \"ECHR (European Convention on Human Rights)\",\n      \"type\": \"international_treaty\",\n      \"jurisdiction\": \"Council of Europe\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"under the ECHR or national constitutions\"\n    },\n    {\n      \"name\": \"Rule of Law Principle\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Legal certainty—a fundamental principle of the rule of law\"\n    },\n    {\n      \"name\": \"EU Non-Discrimination Law\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"under EU non-discrimination law\"\n    },\n    {\n      \"name\": \"Administrative Law Principles\",\n      \"type\": \"implicit_only\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"under GDPR Article 22 or administrative law\"\n    },\n    {\n      \"name\": \"Due Process Rights\",\n      \"type\": \"implicit_only\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"This may breach **due process rights**\"\n    },\n    {\n      \"name\": \"Equality and Non-Discrimination Principles\",\n      \"type\": \"implicit_only\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"the decisions may violate **equality and non-discrimination principles**\"\n    },\n    {\n      \"name\": \"Right to Effective Remedy\",\n      \"type\": \"implicit_only\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"including the right to **explanation** and **effective remedy**\"\n    },\n    {\n      \"name\": \"National Constitutions (unspecified)\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 3,\n      \"verifiable\": false,\n      \"quote\": \"under the ECHR or national constitutions\"\n    }\n  ]\n}\n```",
+            "parsed": {
+              "sources": [
+                {
+                  "name": "GDPR Article 22",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "under GDPR Article 22 or administrative law"
+                },
+                {
+                  "name": "ICCPR (International Covenant on Civil and Political Rights)",
+                  "type": "international_treaty",
+                  "jurisdiction": "UN",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "under human rights frameworks like the ICCPR or EU Charter"
+                },
+                {
+                  "name": "EU Charter of Fundamental Rights",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "under human rights frameworks like the ICCPR or EU Charter"
+                },
+                {
+                  "name": "ECHR (European Convention on Human Rights)",
+                  "type": "international_treaty",
+                  "jurisdiction": "Council of Europe",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "under the ECHR or national constitutions"
+                },
+                {
+                  "name": "Rule of Law Principle",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Legal certainty—a fundamental principle of the rule of law"
+                },
+                {
+                  "name": "EU Non-Discrimination Law",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "under EU non-discrimination law"
+                },
+                {
+                  "name": "Administrative Law Principles",
+                  "type": "implicit_only",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "under GDPR Article 22 or administrative law"
+                },
+                {
+                  "name": "Due Process Rights",
+                  "type": "implicit_only",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "This may breach **due process rights**"
+                },
+                {
+                  "name": "Equality and Non-Discrimination Principles",
+                  "type": "implicit_only",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "the decisions may violate **equality and non-discrimination principles**"
+                },
+                {
+                  "name": "Right to Effective Remedy",
+                  "type": "implicit_only",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "including the right to **explanation** and **effective remedy**"
+                },
+                {
+                  "name": "National Constitutions (unspecified)",
+                  "type": "national_legislation",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 3,
+                  "verifiable": false,
+                  "quote": "under the ECHR or national constitutions"
+                }
+              ]
+            },
+            "meta": {
+              "model_version": "claude-sonnet-4-5-20250929",
+              "finish_reason": "end_turn",
+              "input_tokens": 1043,
+              "answer_tokens": 853,
+              "timestamp": "2026-10-27T13:59:25+00:00"
+            }
+          },
+          "I2_S2": {
+            "raw": "```json\n{\n  \"sources\": [\n    {\n      \"name\": \"Administrative Law Principles\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 3,\n      \"verifiable\": false,\n      \"quote\": \"the government is ultimately accountable for the outcome under administrative law\"\n    },\n    {\n      \"name\": \"Human Rights Obligations - Right to Housing\",\n      \"type\": \"international_treaty\",\n      \"jurisdiction\": \"UN\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"human rights obligations (e.g., right to housing, due process)\"\n    },\n    {\n      \"name\": \"Human Rights Obligations - Due Process\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"human rights obligations (e.g., right to housing, due process)\"\n    },\n    {\n      \"name\": \"Procedural Fairness Principles\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"the city violated principles of **procedural fairness** (e.g., right to explanation, appeal)\"\n    },\n    {\n      \"name\": \"Right to Explanation\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"procedural fairness** (e.g., right to explanation, appeal)\"\n    },\n    {\n      \"name\": \"EU AI Act\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"Example: The EU AI Act requires **conformity assessments** for high-risk AI systems.\"\n    },\n    {\n      \"name\": \"Model Cards Framework\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"they must enable **auditability** (e.g., sharing model cards, data sources, or bias metrics)\"\n    },\n    {\n      \"name\": \"Human Rights Impact Assessment (HRIA)\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Mandate an HRIA before deploying AI in welfare decisions, assessing risks to rights\"\n    },\n    {\n      \"name\": \"Right to Non-Discrimination\",\n      \"type\": \"international_treaty\",\n      \"jurisdiction\": \"UN\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"assessing risks to rights (e.g., housing, non-discrimination)\"\n    }\n  ]\n}\n```",
+            "parsed": {
+              "sources": [
+                {
+                  "name": "Administrative Law Principles",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 3,
+                  "verifiable": false,
+                  "quote": "the government is ultimately accountable for the outcome under administrative law"
+                },
+                {
+                  "name": "Human Rights Obligations - Right to Housing",
+                  "type": "international_treaty",
+                  "jurisdiction": "UN",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "human rights obligations (e.g., right to housing, due process)"
+                },
+                {
+                  "name": "Human Rights Obligations - Due Process",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "human rights obligations (e.g., right to housing, due process)"
+                },
+                {
+                  "name": "Procedural Fairness Principles",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "the city violated principles of **procedural fairness** (e.g., right to explanation, appeal)"
+                },
+                {
+                  "name": "Right to Explanation",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "procedural fairness** (e.g., right to explanation, appeal)"
+                },
+                {
+                  "name": "EU AI Act",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "Example: The EU AI Act requires **conformity assessments** for high-risk AI systems."
+                },
+                {
+                  "name": "Model Cards Framework",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "they must enable **auditability** (e.g., sharing model cards, data sources, or bias metrics)"
+                },
+                {
+                  "name": "Human Rights Impact Assessment (HRIA)",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Mandate an HRIA before deploying AI in welfare decisions, assessing risks to rights"
+                },
+                {
+                  "name": "Right to Non-Discrimination",
+                  "type": "international_treaty",
+                  "jurisdiction": "UN",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "assessing risks to rights (e.g., housing, non-discrimination)"
+                }
+              ]
+            },
+            "meta": {
+              "model_version": "claude-sonnet-4-5-20250929",
+              "finish_reason": "end_turn",
+              "input_tokens": 1113,
+              "answer_tokens": 748,
+              "timestamp": "2026-10-27T13:59:34+00:00"
+            }
+          },
+          "I2_S3": {
+            "raw": "```json\n{\n  \"sources\": [\n    {\n      \"name\": \"EU AI Act\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"A company may comply with the EU AI Act's rigorous audit requirements but ignore weaker or unenforced rules in other markets.\"\n    }\n  ]\n}\n```",
+            "parsed": {
+              "sources": [
+                {
+                  "name": "EU AI Act",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "A company may comply with the EU AI Act's rigorous audit requirements but ignore weaker or unenforced rules in other markets."
+                }
+              ]
+            },
+            "meta": {
+              "model_version": "claude-sonnet-4-5-20250929",
+              "finish_reason": "end_turn",
+              "input_tokens": 1008,
+              "answer_tokens": 107,
+              "timestamp": "2026-10-27T13:59:36+00:00"
+            }
+          }
+        },
+        "2": {
+          "I2_S1": {
+            "raw": "```json\n{\n  \"sources\": [\n    {\n      \"name\": \"GDPR Article 22\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"under the **right to explanation** in GDPR Article 22\"\n    },\n    {\n      \"name\": \"EU Equality Directives\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"indirect discrimination** under anti-discrimination laws (e.g., EU's Equality Directives\"\n    },\n    {\n      \"name\": \"U.S. Title VII\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"indirect discrimination** under anti-discrimination laws (e.g., EU's Equality Directives, U.S. Title VII\"\n    },\n    {\n      \"name\": \"EU Charter of Fundamental Rights, Article 47\",\n      \"type\": \"international_treaty\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"right to an effective remedy** (e.g., under the EU Charter of Fundamental Rights, Article 47)\"\n    },\n    {\n      \"name\": \"Rule of Law Principle\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Legal certainty—a fundamental principle of the rule of law\"\n    },\n    {\n      \"name\": \"Equality Before the Law Principle\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"This may violate the principle of **equality before the law**\"\n    },\n    {\n      \"name\": \"Due Process Principle\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"The lack of transparency and recourse violates **due process**\"\n    },\n    {\n      \"name\": \"International Human Rights Frameworks\",\n      \"type\": \"international_treaty\",\n      \"jurisdiction\": \"UN\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"or international human rights frameworks\"\n    },\n    {\n      \"name\": \"Administrative Law Principles\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"in GDPR Article 22 or administrative law principles\"\n    }\n  ]\n}\n```",
+            "parsed": {
+              "sources": [
+                {
+                  "name": "GDPR Article 22",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "under the **right to explanation** in GDPR Article 22"
+                },
+                {
+                  "name": "EU Equality Directives",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "indirect discrimination** under anti-discrimination laws (e.g., EU's Equality Directives"
+                },
+                {
+                  "name": "U.S. Title VII",
+                  "type": "national_legislation",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "indirect discrimination** under anti-discrimination laws (e.g., EU's Equality Directives, U.S. Title VII"
+                },
+                {
+                  "name": "EU Charter of Fundamental Rights, Article 47",
+                  "type": "international_treaty",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "right to an effective remedy** (e.g., under the EU Charter of Fundamental Rights, Article 47)"
+                },
+                {
+                  "name": "Rule of Law Principle",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Legal certainty—a fundamental principle of the rule of law"
+                },
+                {
+                  "name": "Equality Before the Law Principle",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "This may violate the principle of **equality before the law**"
+                },
+                {
+                  "name": "Due Process Principle",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "The lack of transparency and recourse violates **due process**"
+                },
+                {
+                  "name": "International Human Rights Frameworks",
+                  "type": "international_treaty",
+                  "jurisdiction": "UN",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "or international human rights frameworks"
+                },
+                {
+                  "name": "Administrative Law Principles",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "in GDPR Article 22 or administrative law principles"
+                }
+              ]
+            },
+            "meta": {
+              "model_version": "claude-sonnet-4-5-20250929",
+              "finish_reason": "end_turn",
+              "input_tokens": 1061,
+              "answer_tokens": 733,
+              "timestamp": "2026-10-27T13:59:44+00:00"
+            }
+          },
+          "I2_S2": {
+            "raw": "```json\n{\n  \"sources\": [\n    {\n      \"name\": \"Administrative Law (Due Process)\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Under administrative law (e.g., due process, non-discrimination statutes like the Fair Housing Act in the U.S.)\"\n    },\n    {\n      \"name\": \"Fair Housing Act\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"Under administrative law (e.g., due process, non-discrimination statutes like the Fair Housing Act in the U.S.)\"\n    },\n    {\n      \"name\": \"Consumer Protection Laws\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 3,\n      \"verifiable\": false,\n      \"quote\": \"In some jurisdictions, vendors may face liability under consumer protection laws or product liability frameworks\"\n    },\n    {\n      \"name\": \"Product Liability Framework\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 3,\n      \"verifiable\": false,\n      \"quote\": \"In some jurisdictions, vendors may face liability under consumer protection laws or product liability frameworks\"\n    }\n  ]\n}\n```",
+            "parsed": {
+              "sources": [
+                {
+                  "name": "Administrative Law (Due Process)",
+                  "type": "policy_framework",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Under administrative law (e.g., due process, non-discrimination statutes like the Fair Housing Act in the U.S.)"
+                },
+                {
+                  "name": "Fair Housing Act",
+                  "type": "national_legislation",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "Under administrative law (e.g., due process, non-discrimination statutes like the Fair Housing Act in the U.S.)"
+                },
+                {
+                  "name": "Consumer Protection Laws",
+                  "type": "national_legislation",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 3,
+                  "verifiable": false,
+                  "quote": "In some jurisdictions, vendors may face liability under consumer protection laws or product liability frameworks"
+                },
+                {
+                  "name": "Product Liability Framework",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 3,
+                  "verifiable": false,
+                  "quote": "In some jurisdictions, vendors may face liability under consumer protection laws or product liability frameworks"
+                }
+              ]
+            },
+            "meta": {
+              "model_version": "claude-sonnet-4-5-20250929",
+              "finish_reason": "end_turn",
+              "input_tokens": 1048,
+              "answer_tokens": 355,
+              "timestamp": "2026-10-27T13:59:48+00:00"
+            }
+          },
+          "I2_S3": {
+            "raw": "```json\n{\n  \"sources\": [\n    {\n      \"name\": \"EU AI Act\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"Companies may prioritize compliance in jurisdictions with stricter penalties (e.g., the EU under the AI Act)\"\n    }\n  ]\n}\n```",
+            "parsed": {
+              "sources": [
+                {
+                  "name": "EU AI Act",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "Companies may prioritize compliance in jurisdictions with stricter penalties (e.g., the EU under the AI Act)"
+                }
+              ]
+            },
+            "meta": {
+              "model_version": "claude-sonnet-4-5-20250929",
+              "finish_reason": "end_turn",
+              "input_tokens": 1023,
+              "answer_tokens": 103,
+              "timestamp": "2026-10-27T13:59:50+00:00"
+            }
+          }
+        },
+        "3": {
+          "I2_S1": {
+            "raw": "```json\n{\n  \"sources\": [\n    {\n      \"name\": \"International Covenant on Civil and Political Rights (ICCPR)\",\n      \"type\": \"international_treaty\",\n      \"jurisdiction\": \"UN\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"under human rights frameworks like the ICCPR\"\n    },\n    {\n      \"name\": \"EU Charter of Fundamental Rights\",\n      \"type\": \"international_treaty\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"regional laws like the EU Charter\"\n    },\n    {\n      \"name\": \"Rule of Law Principle\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Legal certainty—a fundamental principle of the rule of law\"\n    },\n    {\n      \"name\": \"Due Process Principle\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"undermining due process and procedural fairness\"\n    },\n    {\n      \"name\": \"Procedural Fairness Principle\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"undermining due process and procedural fairness\"\n    },\n    {\n      \"name\": \"Equality Before the Law Principle\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"violate equality before the law and anti-discrimination protections\"\n    },\n    {\n      \"name\": \"Principle of Legality\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Violation of the Principle of Legality\"\n    },\n    {\n      \"name\": \"Transparency Principle\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"The AI system's use of undisclosed risk thresholds based on country of origin violates the principle of transparency\"\n    },\n    {\n      \"name\": \"Accountability Principle in AI Governance\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"it is difficult to hold the immigration authority or the AI developers accountable for errors, biases, or unjust outcomes\"\n    }\n  ]\n}\n```",
+            "parsed": {
+              "sources": [
+                {
+                  "name": "International Covenant on Civil and Political Rights (ICCPR)",
+                  "type": "international_treaty",
+                  "jurisdiction": "UN",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "under human rights frameworks like the ICCPR"
+                },
+                {
+                  "name": "EU Charter of Fundamental Rights",
+                  "type": "international_treaty",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "regional laws like the EU Charter"
+                },
+                {
+                  "name": "Rule of Law Principle",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Legal certainty—a fundamental principle of the rule of law"
+                },
+                {
+                  "name": "Due Process Principle",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "undermining due process and procedural fairness"
+                },
+                {
+                  "name": "Procedural Fairness Principle",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "undermining due process and procedural fairness"
+                },
+                {
+                  "name": "Equality Before the Law Principle",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "violate equality before the law and anti-discrimination protections"
+                },
+                {
+                  "name": "Principle of Legality",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Violation of the Principle of Legality"
+                },
+                {
+                  "name": "Transparency Principle",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "The AI system's use of undisclosed risk thresholds based on country of origin violates the principle of transparency"
+                },
+                {
+                  "name": "Accountability Principle in AI Governance",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "it is difficult to hold the immigration authority or the AI developers accountable for errors, biases, or unjust outcomes"
+                }
+              ]
+            },
+            "meta": {
+              "model_version": "claude-sonnet-4-5-20250929",
+              "finish_reason": "end_turn",
+              "input_tokens": 1026,
+              "answer_tokens": 725,
+              "timestamp": "2026-10-27T13:59:58+00:00"
+            }
+          },
+          "I2_S2": {
+            "raw": "```json\n{\n  \"sources\": [\n    {\n      \"name\": \"Fair Housing Act\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"fair housing laws, due process, anti-discrimination statutes like the Fair Housing Act in the U.S.\"\n    },\n    {\n      \"name\": \"Due Process Constitutional Rights\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"fair housing laws, due process, anti-discrimination statutes\"\n    },\n    {\n      \"name\": \"Product Liability Framework\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"If the AI system is treated as a 'product,' vendors could face liability under product liability frameworks (e.g., for defective design or failure to warn about risks)\"\n    },\n    {\n      \"name\": \"Administrative Law\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"officials may be personally liable for violating administrative law or constitutional due process rights\"\n    },\n    {\n      \"name\": \"Meaningful Human Control Principle\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Officials must exercise 'meaningful human control' over AI-assisted decisions\"\n    }\n  ]\n}\n```",
+            "parsed": {
+              "sources": [
+                {
+                  "name": "Fair Housing Act",
+                  "type": "national_legislation",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "fair housing laws, due process, anti-discrimination statutes like the Fair Housing Act in the U.S."
+                },
+                {
+                  "name": "Due Process Constitutional Rights",
+                  "type": "national_legislation",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "fair housing laws, due process, anti-discrimination statutes"
+                },
+                {
+                  "name": "Product Liability Framework",
+                  "type": "policy_framework",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "If the AI system is treated as a 'product,' vendors could face liability under product liability frameworks (e.g., for defective design or failure to warn about risks)"
+                },
+                {
+                  "name": "Administrative Law",
+                  "type": "national_legislation",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "officials may be personally liable for violating administrative law or constitutional due process rights"
+                },
+                {
+                  "name": "Meaningful Human Control Principle",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Officials must exercise 'meaningful human control' over AI-assisted decisions"
+                }
+              ]
+            },
+            "meta": {
+              "model_version": "claude-sonnet-4-5-20250929",
+              "finish_reason": "end_turn",
+              "input_tokens": 1025,
+              "answer_tokens": 424,
+              "timestamp": "2026-10-27T14:00:03+00:00"
+            }
+          },
+          "I2_S3": {
+            "raw": "```json\n{\n  \"sources\": [\n    {\n      \"name\": \"EU AI Act\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"A company may comply with the EU AI Act's strict audit requirements but ignore similar (but differently worded) rules in another country due to weaker enforcement or ambiguity in local laws.\"\n    }\n  ]\n}\n```",
+            "parsed": {
+              "sources": [
+                {
+                  "name": "EU AI Act",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "A company may comply with the EU AI Act's strict audit requirements but ignore similar (but differently worded) rules in another country due to weaker enforcement or ambiguity in local laws."
+                }
+              ]
+            },
+            "meta": {
+              "model_version": "claude-sonnet-4-5-20250929",
+              "finish_reason": "end_turn",
+              "input_tokens": 1007,
+              "answer_tokens": 118,
+              "timestamp": "2026-10-27T14:00:05+00:00"
+            }
+          }
+        }
+      },
+      "ceo": {
+        "1": {
+          "I2_S1": {
+            "raw": "```json\n{\n  \"sources\": [\n    {\n      \"name\": \"GDPR (General Data Protection Regulation)\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"GDPR's \\\"right to explanation\\\" in the EU\"\n    },\n    {\n      \"name\": \"Due Process Protections\",\n      \"type\": \"implicit_only\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"due process protections in the U.S.\"\n    },\n    {\n      \"name\": \"Title VII of the Civil Rights Act\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"Title VII in the U.S.\"\n    },\n    {\n      \"name\": \"UK Equality Act\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"UK\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"the Equality Act in the UK\"\n    },\n    {\n      \"name\": \"EU Non-Discrimination Directives\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"EU non-discrimination directives\"\n    },\n    {\n      \"name\": \"Right to Explanation Principle\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"right to an explanation\"\n    },\n    {\n      \"name\": \"Disparate Impact Doctrine\",\n      \"type\": \"implicit_only\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"disparate impact—a form of indirect discrimination prohibited under anti-discrimination laws\"\n    },\n    {\n      \"name\": \"Administrative Law Principles\",\n      \"type\": \"implicit_only\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"a cornerstone of administrative law in many jurisdictions\"\n    }\n  ]\n}\n```",
+            "parsed": {
+              "sources": [
+                {
+                  "name": "GDPR (General Data Protection Regulation)",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "GDPR's \"right to explanation\" in the EU"
+                },
+                {
+                  "name": "Due Process Protections",
+                  "type": "implicit_only",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "due process protections in the U.S."
+                },
+                {
+                  "name": "Title VII of the Civil Rights Act",
+                  "type": "national_legislation",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "Title VII in the U.S."
+                },
+                {
+                  "name": "UK Equality Act",
+                  "type": "national_legislation",
+                  "jurisdiction": "UK",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "the Equality Act in the UK"
+                },
+                {
+                  "name": "EU Non-Discrimination Directives",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "EU non-discrimination directives"
+                },
+                {
+                  "name": "Right to Explanation Principle",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "right to an explanation"
+                },
+                {
+                  "name": "Disparate Impact Doctrine",
+                  "type": "implicit_only",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "disparate impact—a form of indirect discrimination prohibited under anti-discrimination laws"
+                },
+                {
+                  "name": "Administrative Law Principles",
+                  "type": "implicit_only",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "a cornerstone of administrative law in many jurisdictions"
+                }
+              ]
+            },
+            "meta": {
+              "model_version": "claude-sonnet-4-5-20250929",
+              "finish_reason": "end_turn",
+              "input_tokens": 1077,
+              "answer_tokens": 599,
+              "timestamp": "2026-10-27T14:00:12+00:00"
+            }
+          },
+          "I2_S2": {
+            "raw": "```json\n{\n  \"sources\": [\n    {\n      \"name\": \"Due Process Clause\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"the city must ensure that its use of AI complies with legal and ethical standards, including due process and non-discrimination\"\n    },\n    {\n      \"name\": \"Non-Discrimination Legal Standards\",\n      \"type\": \"implicit_only\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": false,\n      \"quote\": \"the city must ensure that its use of AI complies with legal and ethical standards, including due process and non-discrimination\"\n    },\n    {\n      \"name\": \"Fairness Standards in AI\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 3,\n      \"verifiable\": false,\n      \"quote\": \"The vendor must ensure that the system is auditable, explainable, and aligned with fairness standards\"\n    },\n    {\n      \"name\": \"Human-in-the-Loop Concept\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Ensure that AI recommendations are reviewed by trained human decision-makers who can override them when necessary\"\n    },\n    {\n      \"name\": \"Bias Audit Requirements\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Implement bias audits before deployment and ongoing monitoring to detect disparate impacts\"\n    },\n    {\n      \"name\": \"AI Transparency and Explainability Principles\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Provide clear documentation of how the model works, its training data, and its limitations\"\n    },\n    {\n      \"name\": \"Appeals Process Requirements\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": false,\n      \"quote\": \"Provide appeals processes where applicants can challenge AI-driven decisions and receive a human review\"\n    }\n  ]\n}\n```",
+            "parsed": {
+              "sources": [
+                {
+                  "name": "Due Process Clause",
+                  "type": "national_legislation",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "the city must ensure that its use of AI complies with legal and ethical standards, including due process and non-discrimination"
+                },
+                {
+                  "name": "Non-Discrimination Legal Standards",
+                  "type": "implicit_only",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": false,
+                  "quote": "the city must ensure that its use of AI complies with legal and ethical standards, including due process and non-discrimination"
+                },
+                {
+                  "name": "Fairness Standards in AI",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 3,
+                  "verifiable": false,
+                  "quote": "The vendor must ensure that the system is auditable, explainable, and aligned with fairness standards"
+                },
+                {
+                  "name": "Human-in-the-Loop Concept",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Ensure that AI recommendations are reviewed by trained human decision-makers who can override them when necessary"
+                },
+                {
+                  "name": "Bias Audit Requirements",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Implement bias audits before deployment and ongoing monitoring to detect disparate impacts"
+                },
+                {
+                  "name": "AI Transparency and Explainability Principles",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Provide clear documentation of how the model works, its training data, and its limitations"
+                },
+                {
+                  "name": "Appeals Process Requirements",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": false,
+                  "quote": "Provide appeals processes where applicants can challenge AI-driven decisions and receive a human review"
+                }
+              ]
+            },
+            "meta": {
+              "model_version": "claude-sonnet-4-5-20250929",
+              "finish_reason": "end_turn",
+              "input_tokens": 1051,
+              "answer_tokens": 612,
+              "timestamp": "2026-10-27T14:00:19+00:00"
+            }
+          },
+          "I2_S3": {
+            "raw": "```json\n{\n  \"sources\": [\n    {\n      \"name\": \"EU AI Act\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"The EU AI Act and U.S. NIST AI Framework could serve as starting points\"\n    },\n    {\n      \"name\": \"NIST AI Risk Management Framework\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"ISO/IEC standards, NIST AI Risk Management Framework, or EU AI Act-like guardrails\"\n    },\n    {\n      \"name\": \"ISO/IEC standards\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"ISO/IEC standards, NIST AI Risk Management Framework, or EU AI Act-like guardrails\"\n    },\n    {\n      \"name\": \"OECD AI principles\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"UN\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"international cooperation (e.g., via the OECD, G7, or UN)\"\n    },\n    {\n      \"name\": \"G7 AI governance frameworks\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"international cooperation (e.g., via the OECD, G7, or UN)\"\n    },\n    {\n      \"name\": \"UN AI governance initiatives\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"UN\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"international cooperation (e.g., via the OECD, G7, or UN)\"\n    }\n  ]\n}\n```",
+            "parsed": {
+              "sources": [
+                {
+                  "name": "EU AI Act",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "The EU AI Act and U.S. NIST AI Framework could serve as starting points"
+                },
+                {
+                  "name": "NIST AI Risk Management Framework",
+                  "type": "policy_framework",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "ISO/IEC standards, NIST AI Risk Management Framework, or EU AI Act-like guardrails"
+                },
+                {
+                  "name": "ISO/IEC standards",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "ISO/IEC standards, NIST AI Risk Management Framework, or EU AI Act-like guardrails"
+                },
+                {
+                  "name": "OECD AI principles",
+                  "type": "policy_framework",
+                  "jurisdiction": "UN",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "international cooperation (e.g., via the OECD, G7, or UN)"
+                },
+                {
+                  "name": "G7 AI governance frameworks",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "international cooperation (e.g., via the OECD, G7, or UN)"
+                },
+                {
+                  "name": "UN AI governance initiatives",
+                  "type": "policy_framework",
+                  "jurisdiction": "UN",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "international cooperation (e.g., via the OECD, G7, or UN)"
+                }
+              ]
+            },
+            "meta": {
+              "model_version": "claude-sonnet-4-5-20250929",
+              "finish_reason": "end_turn",
+              "input_tokens": 1035,
+              "answer_tokens": 519,
+              "timestamp": "2026-10-27T14:00:25+00:00"
+            }
+          }
+        },
+        "2": {
+          "I2_S1": {
+            "raw": "```json\n{\n  \"sources\": [\n    {\n      \"name\": \"EU AI Act\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"under the EU AI Act's transparency obligations\"\n    },\n    {\n      \"name\": \"GDPR (General Data Protection Regulation)\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"GDPR's \\\"right to explanation\\\"\"\n    },\n    {\n      \"name\": \"Title VII of the Civil Rights Act\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"Title VII in the U.S.\"\n    },\n    {\n      \"name\": \"EU Equality Directives\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"EU Equality Directives\"\n    },\n    {\n      \"name\": \"UN Guiding Principles on Business and Human Rights\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"UN\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"The UN Guiding Principles on Business and Human Rights emphasize that companies must avoid causing or contributing to human rights abuses\"\n    },\n    {\n      \"name\": \"Explainability principle in AI governance\",\n      \"type\": \"implicit_only\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 3,\n      \"verifiable\": false,\n      \"quote\": \"This violates the principle of *explainability*, which is increasingly recognized as a legal requirement in AI governance\"\n    },\n    {\n      \"name\": \"Legal certainty principle\",\n      \"type\": \"implicit_only\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Legal certainty—the principle that laws and decisions must be predictable, clear, and consistently applied\"\n    },\n    {\n      \"name\": \"Due process principles\",\n      \"type\": \"implicit_only\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"due process principles\"\n    },\n    {\n      \"name\": \"Procedural fairness principle\",\n      \"type\": \"implicit_only\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"This undermines *procedural fairness*\"\n    },\n    {\n      \"name\": \"Disparate impact doctrine\",\n      \"type\": \"implicit_only\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"it could trigger disparate impact claims\"\n    },\n    {\n      \"name\": \"Proxy discrimination concept\",\n      \"type\": \"implicit_only\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"The use of country of origin as a risk factor—without clear justification or oversight—risks *proxy discrimination*\"\n    },\n    {\n      \"name\": \"Anti-discrimination laws (general reference)\",\n      \"type\": \"implicit_only\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 3,\n      \"verifiable\": false,\n      \"quote\": \"This raises red flags under anti-discrimination laws\"\n    }\n  ]\n}\n```",
+            "parsed": {
+              "sources": [
+                {
+                  "name": "EU AI Act",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "under the EU AI Act's transparency obligations"
+                },
+                {
+                  "name": "GDPR (General Data Protection Regulation)",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "GDPR's \"right to explanation\""
+                },
+                {
+                  "name": "Title VII of the Civil Rights Act",
+                  "type": "national_legislation",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "Title VII in the U.S."
+                },
+                {
+                  "name": "EU Equality Directives",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "EU Equality Directives"
+                },
+                {
+                  "name": "UN Guiding Principles on Business and Human Rights",
+                  "type": "policy_framework",
+                  "jurisdiction": "UN",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "The UN Guiding Principles on Business and Human Rights emphasize that companies must avoid causing or contributing to human rights abuses"
+                },
+                {
+                  "name": "Explainability principle in AI governance",
+                  "type": "implicit_only",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 3,
+                  "verifiable": false,
+                  "quote": "This violates the principle of *explainability*, which is increasingly recognized as a legal requirement in AI governance"
+                },
+                {
+                  "name": "Legal certainty principle",
+                  "type": "implicit_only",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Legal certainty—the principle that laws and decisions must be predictable, clear, and consistently applied"
+                },
+                {
+                  "name": "Due process principles",
+                  "type": "implicit_only",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "due process principles"
+                },
+                {
+                  "name": "Procedural fairness principle",
+                  "type": "implicit_only",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "This undermines *procedural fairness*"
+                },
+                {
+                  "name": "Disparate impact doctrine",
+                  "type": "implicit_only",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "it could trigger disparate impact claims"
+                },
+                {
+                  "name": "Proxy discrimination concept",
+                  "type": "implicit_only",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "The use of country of origin as a risk factor—without clear justification or oversight—risks *proxy discrimination*"
+                },
+                {
+                  "name": "Anti-discrimination laws (general reference)",
+                  "type": "implicit_only",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 3,
+                  "verifiable": false,
+                  "quote": "This raises red flags under anti-discrimination laws"
+                }
+              ]
+            },
+            "meta": {
+              "model_version": "claude-sonnet-4-5-20250929",
+              "finish_reason": "end_turn",
+              "input_tokens": 1037,
+              "answer_tokens": 938,
+              "timestamp": "2026-10-27T14:00:35+00:00"
+            }
+          },
+          "I2_S2": {
+            "raw": "```json\n{\n  \"sources\": [\n    {\n      \"name\": \"GDPR (General Data Protection Regulation)\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"GDPR's \\\"right to explanation\\\"\"\n    },\n    {\n      \"name\": \"Fair Housing Act\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"alignment with the Fair Housing Act\"\n    },\n    {\n      \"name\": \"Human-in-the-Loop (HITL) concept\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Human-in-the-Loop (HITL) Requirements\"\n    },\n    {\n      \"name\": \"Multi-stakeholder approach to AI governance\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"issues that demand a multi-stakeholder approach to ensure public trust and ethical deployment of AI systems\"\n    },\n    {\n      \"name\": \"Due process concept\",\n      \"type\": \"implicit_only\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"the city must ensure that its use complies with legal and ethical standards, including due process and anti-discrimination laws\"\n    },\n    {\n      \"name\": \"Anti-discrimination laws\",\n      \"type\": \"implicit_only\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"including due process and anti-discrimination laws\"\n    },\n    {\n      \"name\": \"Disparate impact doctrine\",\n      \"type\": \"implicit_only\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"testing for disparate impact across protected classes\"\n    },\n    {\n      \"name\": \"AI bias audit frameworks\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Bias audits (e.g., testing for disparate impact across protected classes)\"\n    },\n    {\n      \"name\": \"Explainability/interpretability requirements in AI\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Explainability reviews (ensuring the AI's reasoning can be understood by non-experts)\"\n    }\n  ]\n}\n```",
+            "parsed": {
+              "sources": [
+                {
+                  "name": "GDPR (General Data Protection Regulation)",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "GDPR's \"right to explanation\""
+                },
+                {
+                  "name": "Fair Housing Act",
+                  "type": "national_legislation",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "alignment with the Fair Housing Act"
+                },
+                {
+                  "name": "Human-in-the-Loop (HITL) concept",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Human-in-the-Loop (HITL) Requirements"
+                },
+                {
+                  "name": "Multi-stakeholder approach to AI governance",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "issues that demand a multi-stakeholder approach to ensure public trust and ethical deployment of AI systems"
+                },
+                {
+                  "name": "Due process concept",
+                  "type": "implicit_only",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "the city must ensure that its use complies with legal and ethical standards, including due process and anti-discrimination laws"
+                },
+                {
+                  "name": "Anti-discrimination laws",
+                  "type": "implicit_only",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "including due process and anti-discrimination laws"
+                },
+                {
+                  "name": "Disparate impact doctrine",
+                  "type": "implicit_only",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "testing for disparate impact across protected classes"
+                },
+                {
+                  "name": "AI bias audit frameworks",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Bias audits (e.g., testing for disparate impact across protected classes)"
+                },
+                {
+                  "name": "Explainability/interpretability requirements in AI",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Explainability reviews (ensuring the AI's reasoning can be understood by non-experts)"
+                }
+              ]
+            },
+            "meta": {
+              "model_version": "claude-sonnet-4-5-20250929",
+              "finish_reason": "end_turn",
+              "input_tokens": 1046,
+              "answer_tokens": 723,
+              "timestamp": "2026-10-27T14:00:43+00:00"
+            }
+          },
+          "I2_S3": {
+            "raw": "```json\n{\n  \"sources\": [\n    {\n      \"name\": \"EU AI Act\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"An AI system deemed \\\"high-risk\\\" in the EU under the AI Act\"\n    },\n    {\n      \"name\": \"GDPR\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"Legal risks arise if regulators in one jurisdiction penalize a company for non-compliance elsewhere (e.g., under extraterritorial laws like the EU's GDPR)\"\n    },\n    {\n      \"name\": \"Partnership on AI\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Work with industry groups (e.g., Partnership on AI, OECD, Global Partnership on AI)\"\n    },\n    {\n      \"name\": \"OECD\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Work with industry groups (e.g., Partnership on AI, OECD, Global Partnership on AI)\"\n    },\n    {\n      \"name\": \"Global Partnership on AI\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Work with industry groups (e.g., Partnership on AI, OECD, Global Partnership on AI)\"\n    },\n    {\n      \"name\": \"NIST AI Risk Management Framework\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Encourage regulators to align with frameworks like the **NIST AI Risk Management Framework**\"\n    }\n  ]\n}\n```",
+            "parsed": {
+              "sources": [
+                {
+                  "name": "EU AI Act",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "An AI system deemed \"high-risk\" in the EU under the AI Act"
+                },
+                {
+                  "name": "GDPR",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "Legal risks arise if regulators in one jurisdiction penalize a company for non-compliance elsewhere (e.g., under extraterritorial laws like the EU's GDPR)"
+                },
+                {
+                  "name": "Partnership on AI",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Work with industry groups (e.g., Partnership on AI, OECD, Global Partnership on AI)"
+                },
+                {
+                  "name": "OECD",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Work with industry groups (e.g., Partnership on AI, OECD, Global Partnership on AI)"
+                },
+                {
+                  "name": "Global Partnership on AI",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Work with industry groups (e.g., Partnership on AI, OECD, Global Partnership on AI)"
+                },
+                {
+                  "name": "NIST AI Risk Management Framework",
+                  "type": "policy_framework",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Encourage regulators to align with frameworks like the **NIST AI Risk Management Framework**"
+                }
+              ]
+            },
+            "meta": {
+              "model_version": "claude-sonnet-4-5-20250929",
+              "finish_reason": "end_turn",
+              "input_tokens": 1039,
+              "answer_tokens": 529,
+              "timestamp": "2026-10-27T14:00:49+00:00"
+            }
+          }
+        },
+        "3": {
+          "I2_S1": {
+            "raw": "```json\n{\n  \"sources\": [\n    {\n      \"name\": \"EU Charter of Fundamental Rights\",\n      \"type\": \"international_treaty\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"the EU's Charter of Fundamental Rights\"\n    },\n    {\n      \"name\": \"U.S. Equal Protection Clause\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"US\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"the U.S. Equal Protection Clause\"\n    },\n    {\n      \"name\": \"UK Equality Act\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"UK\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"the UK's Equality Act\"\n    },\n    {\n      \"name\": \"GDPR Article 22\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"the right to an explanation under GDPR Article 22\"\n    },\n    {\n      \"name\": \"Legal certainty principle\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Legal certainty—the principle that laws and decisions must be predictable, transparent, and consistently applied\"\n    },\n    {\n      \"name\": \"Procedural fairness principle\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Violates procedural fairness\"\n    },\n    {\n      \"name\": \"Administrative law principles\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"applicants cannot meaningfully appeal or seek remedies under administrative law\"\n    },\n    {\n      \"name\": \"Anti-discrimination legal principles\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Many jurisdictions prohibit discrimination based on nationality or origin\"\n    }\n  ]\n}\n```",
+            "parsed": {
+              "sources": [
+                {
+                  "name": "EU Charter of Fundamental Rights",
+                  "type": "international_treaty",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "the EU's Charter of Fundamental Rights"
+                },
+                {
+                  "name": "U.S. Equal Protection Clause",
+                  "type": "national_legislation",
+                  "jurisdiction": "US",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "the U.S. Equal Protection Clause"
+                },
+                {
+                  "name": "UK Equality Act",
+                  "type": "national_legislation",
+                  "jurisdiction": "UK",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "the UK's Equality Act"
+                },
+                {
+                  "name": "GDPR Article 22",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "the right to an explanation under GDPR Article 22"
+                },
+                {
+                  "name": "Legal certainty principle",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Legal certainty—the principle that laws and decisions must be predictable, transparent, and consistently applied"
+                },
+                {
+                  "name": "Procedural fairness principle",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Violates procedural fairness"
+                },
+                {
+                  "name": "Administrative law principles",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "applicants cannot meaningfully appeal or seek remedies under administrative law"
+                },
+                {
+                  "name": "Anti-discrimination legal principles",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Many jurisdictions prohibit discrimination based on nationality or origin"
+                }
+              ]
+            },
+            "meta": {
+              "model_version": "claude-sonnet-4-5-20250929",
+              "finish_reason": "end_turn",
+              "input_tokens": 1058,
+              "answer_tokens": 612,
+              "timestamp": "2026-10-27T14:00:56+00:00"
+            }
+          },
+          "I2_S2": {
+            "raw": "```json\n{\n  \"sources\": [\n    {\n      \"name\": \"Human-in-the-loop (HITL) requirements\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 3,\n      \"verifiable\": false,\n      \"quote\": \"Human-in-the-loop (HITL) requirements for high-stakes decisions.\"\n    },\n    {\n      \"name\": \"Multi-stakeholder accountability framework\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 3,\n      \"verifiable\": false,\n      \"quote\": \"multi-stakeholder accountability framework\"\n    },\n    {\n      \"name\": \"Regulatory sandboxes\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 2,\n      \"verifiable\": true,\n      \"quote\": \"Regulatory sandboxes—allow controlled testing of AI in public services with safeguards.\"\n    },\n    {\n      \"name\": \"Appeal and redress processes\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 3,\n      \"verifiable\": false,\n      \"quote\": \"Appeal and redress processes—affected individuals must have a clear path to challenge decisions.\"\n    },\n    {\n      \"name\": \"Bias and fairness audits\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 3,\n      \"verifiable\": false,\n      \"quote\": \"Bias and fairness audits by independent third parties.\"\n    },\n    {\n      \"name\": \"Impact assessments\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"unspecified\",\n      \"legitimacy_tier\": 3,\n      \"verifiable\": false,\n      \"quote\": \"Should require impact assessments before deployment in sensitive domains.\"\n    }\n  ]\n}\n```",
+            "parsed": {
+              "sources": [
+                {
+                  "name": "Human-in-the-loop (HITL) requirements",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 3,
+                  "verifiable": false,
+                  "quote": "Human-in-the-loop (HITL) requirements for high-stakes decisions."
+                },
+                {
+                  "name": "Multi-stakeholder accountability framework",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 3,
+                  "verifiable": false,
+                  "quote": "multi-stakeholder accountability framework"
+                },
+                {
+                  "name": "Regulatory sandboxes",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 2,
+                  "verifiable": true,
+                  "quote": "Regulatory sandboxes—allow controlled testing of AI in public services with safeguards."
+                },
+                {
+                  "name": "Appeal and redress processes",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 3,
+                  "verifiable": false,
+                  "quote": "Appeal and redress processes—affected individuals must have a clear path to challenge decisions."
+                },
+                {
+                  "name": "Bias and fairness audits",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 3,
+                  "verifiable": false,
+                  "quote": "Bias and fairness audits by independent third parties."
+                },
+                {
+                  "name": "Impact assessments",
+                  "type": "policy_framework",
+                  "jurisdiction": "unspecified",
+                  "legitimacy_tier": 3,
+                  "verifiable": false,
+                  "quote": "Should require impact assessments before deployment in sensitive domains."
+                }
+              ]
+            },
+            "meta": {
+              "model_version": "claude-sonnet-4-5-20250929",
+              "finish_reason": "end_turn",
+              "input_tokens": 1081,
+              "answer_tokens": 492,
+              "timestamp": "2026-10-27T14:01:01+00:00"
+            }
+          },
+          "I2_S3": {
+            "raw": "```json\n{\n  \"sources\": [\n    {\n      \"name\": \"EU AI Act\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"An AI system deemed \\\"high-risk\\\" in the EU under the AI Act\"\n    },\n    {\n      \"name\": \"OECD AI Principles\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"international\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"Work with organizations like the **OECD, ISO, or IEEE** to develop globally recognized AI audit frameworks\"\n    },\n    {\n      \"name\": \"ISO/IEC 42001\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"international\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"the **ISO/IEC 42001** standard for AI management systems\"\n    },\n    {\n      \"name\": \"IEEE AI Standards\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"international\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"Work with organizations like the **OECD, ISO, or IEEE** to develop globally recognized AI audit frameworks\"\n    },\n    {\n      \"name\": \"G7\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"international\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"through forums like the **G7, G20, or UN AI Advisory Body**\"\n    },\n    {\n      \"name\": \"G20\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"international\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"through forums like the **G7, G20, or UN AI Advisory Body**\"\n    },\n    {\n      \"name\": \"UN AI Advisory Body\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"UN\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"through forums like the **G7, G20, or UN AI Advisory Body**\"\n    },\n    {\n      \"name\": \"GDPR\",\n      \"type\": \"national_legislation\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"similar to **GDPR adequacy decisions**\"\n    },\n    {\n      \"name\": \"GDPR adequacy decisions mechanism\",\n      \"type\": \"policy_framework\",\n      \"jurisdiction\": \"EU\",\n      \"legitimacy_tier\": 1,\n      \"verifiable\": true,\n      \"quote\": \"similar to **GDPR adequacy decisions**\"\n    }\n  ]\n}\n```",
+            "parsed": {
+              "sources": [
+                {
+                  "name": "EU AI Act",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "An AI system deemed \"high-risk\" in the EU under the AI Act"
+                },
+                {
+                  "name": "OECD AI Principles",
+                  "type": "policy_framework",
+                  "jurisdiction": "international",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "Work with organizations like the **OECD, ISO, or IEEE** to develop globally recognized AI audit frameworks"
+                },
+                {
+                  "name": "ISO/IEC 42001",
+                  "type": "policy_framework",
+                  "jurisdiction": "international",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "the **ISO/IEC 42001** standard for AI management systems"
+                },
+                {
+                  "name": "IEEE AI Standards",
+                  "type": "policy_framework",
+                  "jurisdiction": "international",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "Work with organizations like the **OECD, ISO, or IEEE** to develop globally recognized AI audit frameworks"
+                },
+                {
+                  "name": "G7",
+                  "type": "policy_framework",
+                  "jurisdiction": "international",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "through forums like the **G7, G20, or UN AI Advisory Body**"
+                },
+                {
+                  "name": "G20",
+                  "type": "policy_framework",
+                  "jurisdiction": "international",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "through forums like the **G7, G20, or UN AI Advisory Body**"
+                },
+                {
+                  "name": "UN AI Advisory Body",
+                  "type": "policy_framework",
+                  "jurisdiction": "UN",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "through forums like the **G7, G20, or UN AI Advisory Body**"
+                },
+                {
+                  "name": "GDPR",
+                  "type": "national_legislation",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "similar to **GDPR adequacy decisions**"
+                },
+                {
+                  "name": "GDPR adequacy decisions mechanism",
+                  "type": "policy_framework",
+                  "jurisdiction": "EU",
+                  "legitimacy_tier": 1,
+                  "verifiable": true,
+                  "quote": "similar to **GDPR adequacy decisions**"
+                }
+              ]
+            },
+            "meta": {
+              "model_version": "claude-sonnet-4-5-20250929",
+              "finish_reason": "end_turn",
+              "input_tokens": 1038,
+              "answer_tokens": 719,
+              "timestamp": "2026-10-27T14:01:08+00:00"
+            }
+          }
+        }
+      }
+    }
+  }
+}

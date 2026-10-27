@@ -45,14 +45,13 @@ import tiktoken
 from scipy import stats
 
 from answer_text import get_answer_text
+from data_sources import load_i2, require_source
 from i2_criteria import CONDITIONS, MODELS, RUNS
 from model_level import model_level_inference, update_summary
 
 CODES_FILE     = Path("data/processed/i2_codes.json")
 REVIEW_FILE    = Path("data/processed/manual_review.json")
-I2_FILE        = Path("data/raw/instrument_2.json")
-RECOLLECT_FILE = Path("data/raw/mistral_i2_recollect.json")
-OUT_DIR        = Path("results/stats")
+OUT_DIR       = Path("results/stats")
 ENCODING       = "o200k_base"
 
 SCENARIOS = ["I2_S1", "I2_S2", "I2_S3"]
@@ -105,9 +104,8 @@ def per_model(pcts: dict) -> dict:
 def answer_lengths() -> dict:
     """{(model, condition, run, scenario): o200k tokens of the coded answer text}"""
     enc = tiktoken.get_encoding(ENCODING)
-    i2, recollect = load(I2_FILE), load(RECOLLECT_FILE)
-    return {(m, c, r, s): len(enc.encode(get_answer_text(
-                (recollect if m == "mistral-large" else i2)[m][c][r][s])))
+    i2 = load_i2()
+    return {(m, c, r, s): len(enc.encode(get_answer_text(i2[m][c][r][s])))
             for m in MODELS for c in CONDITIONS for r in RUNS for s in SCENARIOS}
 
 
@@ -154,6 +152,7 @@ def human_vs_coder(review: dict, coder_codes: dict) -> list[dict]:
 
 
 if __name__ == "__main__":
+    require_source("recollect", "i2_codes.json (Mistral answers coded)")
     codes = load(CODES_FILE)["codes"]
 
     per_model_rows, across_rows, pm_by_variant = [], [], {}
